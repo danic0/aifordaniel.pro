@@ -21,7 +21,20 @@
     };
   }
 
-  async function fillPdf(bytes, id, data, sigPng) {
+  // append the battery certificate pages (stored once on the site) to a document
+  async function addCerts(doc, certBytes) {
+    if (!certBytes) return;
+    const { PDFDocument } = root.PDFLib;
+    const c = await PDFDocument.load(certBytes);
+    (await doc.copyPages(c, c.getPageIndices())).forEach(p => doc.addPage(p));
+  }
+  async function withCerts(bytes, certBytes) {
+    const doc = await root.PDFLib.PDFDocument.load(bytes);
+    await addCerts(doc, certBytes);
+    return doc.save();
+  }
+
+  async function fillPdf(bytes, id, data, sigPng, certBytes) {
     const { PDFDocument, StandardFonts, rgb } = root.PDFLib;
     const doc = await PDFDocument.load(bytes);
     const font = await doc.embedFont(StandardFonts.Helvetica);
@@ -52,8 +65,9 @@
         page.drawImage(sig, { x: x0 + (bw - w) / 2, y: H - y1, width: w, height: h });
       }
     }
+    await addCerts(doc, certBytes);
     return doc.save();
   }
 
-  root.ATTOFill = { fillPdf, values };
+  root.ATTOFill = { fillPdf, values, withCerts };
 })(typeof window !== 'undefined' ? window : globalThis);

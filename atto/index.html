@@ -1115,9 +1115,10 @@ function recordTrip(d) {
 }
 
 // ---------- make the PDF ----------
-const pdfCache = {};
+const pdfCache = {}; let certsP = null;
 function prefetch(id) {
-  const ck = id + i18n.get(); if (!pdfCache[ck]) pdfCache[ck] = fetch(docsUrl(id)).then(r => { if (!r.ok) throw new Error('fetch ' + r.status); return r.arrayBuffer(); })
+  const get = u => fetch(u).then(r => { if (!r.ok) throw new Error('fetch ' + r.status); return r.arrayBuffer(); });
+  const ck = id + i18n.get(); if (!pdfCache[ck]) pdfCache[ck] = Promise.all([get(docsUrl(id)), certsP || (certsP = get('docs/flight-certificates.pdf').catch(e => { certsP = null; throw e; }))]).then(([b, c]) => ({ b, c }))
     .catch(e => { delete pdfCache[ck]; throw e; });
   pdfCache[ck].catch(() => {});
   return pdfCache[ck];
@@ -1167,9 +1168,9 @@ async function make() {
   const minShow = new Promise(r => setTimeout(r, 2000));
   try {
     await loadLib();
-    const base = await prefetch(fid);
+    const base = await prefetch(fid);   // { b: airline pages, c: battery certificates }
     const sig = need.has('sig') && ink ? await sigPng() : null;
-    const [out] = await Promise.all([ATTOFill.fillPdf(base.slice(0), fid, data, sig), minShow]);
+    const [out] = await Promise.all([ATTOFill.fillPdf(base.b.slice(0), fid, data, sig, base.c.slice(0)), minShow]);
     bar.style.width = '100%'; mkStep.textContent = t('הקובץ מוכן ✓');
     await new Promise(r => setTimeout(r, 350));
     if (fileUrl) URL.revokeObjectURL(fileUrl);
@@ -1271,9 +1272,17 @@ function renderDone(data, quiet) {
   $('wiz').scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' });
   setTimeout(() => $('doneTitle').focus({ preventScroll: true }), 300);
 }
-$('plainBtn').addEventListener('click', () => {
-  const c = cards[fid]; save(docsUrl(fid), fileName(c.he));
-  fileUrl = null; doneSubKey = 'הקובץ ירד בלי פרטים. ממלאים אותו ביד לפי ההסבר בעמוד הראשון.'; renderDone(null); $('again').href = docsUrl(fid);
+$('plainBtn').addEventListener('click', async () => {
+  const c = cards[fid], btn = $('plainBtn'); btn.disabled = true;
+  try {
+    await loadLib(); const base = await prefetch(fid);
+    const out = await ATTOFill.withCerts(base.b.slice(0), base.c.slice(0));
+    if (fileUrl) URL.revokeObjectURL(fileUrl);
+    const url = URL.createObjectURL(new Blob([out], { type: 'application/pdf' }));
+    save(url, fileName(c.he));
+    fileUrl = null; doneSubKey = 'הקובץ ירד בלי פרטים. ממלאים אותו ביד לפי ההסבר בעמוד הראשון.'; renderDone(null); $('again').href = url;
+  } catch (e) { console.warn(e); $('alert').textContent = t('לא הצלחנו ליצור את הקובץ. בדקו את החיבור לאינטרנט ונסו שוב, או התקשרו אלינו: 073 391 3999'); $('alert').hidden = false; }
+  finally { btn.disabled = false; }
 });
 $('restart').addEventListener('click', () => {
   handSign = false; wform.reset(); clearPad(); clearDraft(); sayDate('fOutDate'); sayDate('fRetDate'); Object.keys(acked).forEach(k => delete acked[k]); $('wOutNo').hidden = true; $('wRetNo').hidden = true; document.querySelectorAll('.fld.bad').forEach(f => f.classList.remove('bad'));
