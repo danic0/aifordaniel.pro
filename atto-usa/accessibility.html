@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accessibility statement · Fly with ATTO</title>
+<link rel="icon" href="img/movinglife.webp">
+<style>
+@font-face { font-family: 'Heebo'; font-weight: 400; font-display: swap; src: url(fonts/heebo-hebrew-400-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 400; font-display: swap; src: url(fonts/heebo-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 500; font-display: swap; src: url(fonts/heebo-hebrew-500-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 500; font-display: swap; src: url(fonts/heebo-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 700; font-display: swap; src: url(fonts/heebo-hebrew-700-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 700; font-display: swap; src: url(fonts/heebo-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 800; font-display: swap; src: url(fonts/heebo-hebrew-800-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 800; font-display: swap; src: url(fonts/heebo-latin-800-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+:root { --paper: #ffffff; --ink: #3a3a3d; --muted: #66666b; --hair: #e6e6ea; --blue: #2b77ad; --soft: #f5f8fb;
+  --font: 'Heebo', 'Arial Hebrew', Arial, sans-serif; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-color-scheme: dark) { :root { --paper: #121214; --ink: #ececee; --muted: #b0b0b6; --hair: #2c2d32; --blue: #7bbbe8; --soft: #1c1e22; color-scheme: dark } }
+html.a11y-hc { --paper: #000; --ink: #fff; --muted: #fff; --hair: #fff; --blue: #ffd400; --soft: #000; color-scheme: dark }
+html.a11y-fs1 { font-size: 112%; } html.a11y-fs2 { font-size: 125%; }
+html.a11y-links a { text-decoration: underline !important; }
+html.a11y-font body { font-family: Arial, sans-serif !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.1875rem; line-height: 1.75; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 60px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--hair); padding-bottom: 18px; }
+header img { height: 34px; width: auto; display: block; }
+html.a11y-hc header img { background: #fff; padding: 2px; border-radius: 4px; }
+a { color: var(--blue); font-weight: 700; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; line-height: 1.2; margin: 34px 0 6px; text-wrap: balance; }
+.upd { color: var(--muted); margin: 0 0 26px; }
+h2 { font-size: 1.35rem; font-weight: 800; margin: 34px 0 8px; }
+p { margin: 0 0 12px; }
+ul { margin: 0 0 12px; padding-right: 22px; padding-left: 0; }
+li { margin: 4px 0; }
+.box { background: var(--soft); border: 1px solid var(--hair); border-radius: 12px; padding: 16px 18px; }
+.box p { margin: 4px 0; }
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+.langs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 10px; direction: ltr; }
+.langs button { font: inherit; font-size: 15px; border: 1.5px solid #d6dbe3; background: #fff; color: inherit; border-radius: 999px; padding: 6px 14px; min-height: 40px; cursor: pointer; }
+.langs button[aria-pressed="true"] { border-color: #3c8cc4; color: #2b77ad; font-weight: 700; }
+html[dir="ltr"], html[dir="ltr"] body { direction: ltr; text-align: left; }
+html[dir="ltr"] ul { padding-right: 0; padding-left: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html" aria-label="Back to the flight documents"><img src="img/movinglife.webp" alt="MovingLife"></a>
+    <a href="index.html">Back to the flight documents</a>
+  </header>
+  <main>
+    <h1>Accessibility statement</h1>
+    <p class="upd">Last updated: October 21, 2026</p>
+    <p>MovingLife wants everyone, including people with disabilities and older adults, to be able to use "Fly with ATTO" easily and independently. We work to keep the site usable for all.</p>
+    <h2>Accessibility level</h2>
+    <p>We aim for the site to conform to the Web Content Accessibility Guidelines (WCAG) 2.2, level AA, and to support the goals of the Americans with Disabilities Act (ADA). We check it with automated tools and by hand, including keyboard only use and phone screens, and we keep improving it.</p>
+    <p>The accessibility features are built into the site itself. We do not use a third party accessibility overlay. You can also use your own device settings, such as larger text, zoom and screen readers.</p>
+    <h2>What we did</h2>
+    <ul>
+      <li>An accessibility menu on every page: larger text, high contrast, underlined links, a readable font, stopped animations and a large cursor. Your settings are saved on your device.</li>
+      <li>The documents are prepared in short steps, with one or two questions each, a hint next to every field and an example.</li>
+      <li>Clear error messages shown next to the field to fix, and read out by screen readers.</li>
+      <li>A review step before the file is created, where you see all your details and can change any of them.</li>
+      <li>Full keyboard navigation, a clear focus outline and a "Skip to the flight documents" link at the top of the page.</li>
+      <li>Large buttons and fields that are easy to tap on a phone, and readable text size.</li>
+      <li>Enough color contrast between text and background, and support for your device's dark mode.</li>
+      <li>Text descriptions for images and labels for all fields.</li>
+      <li>Respect for your device's "reduce motion" setting.</li>
+      <li>The site works on phones, tablets and computers, and in common browsers.</li>
+    </ul>
+    <h2>Parts that are not fully accessible</h2>
+    <ul>
+      <li>The PDF file you download is made for printing and showing at the airport, and is not fully accessible to screen readers. All the instructions in it are also shown as text on this site, in the "How it works" step for your airline. Airline forms inside the file are published by the airlines themselves.</li>
+      <li>Signing is done by drawing on the screen. If that is hard for you, download the file without your details and sign by hand, or contact us and we will help.</li>
+    </ul>
+    <h2>Helper tool only</h2>
+    <p>This site is a helper tool. The files are created automatically from the details you enter and may contain mistakes or omissions. You are responsible for checking the details, completing any missing document and sending it to the airline. MovingLife is only a facilitator and the final decision belongs to the airline.</p>
+    <h2>Found a problem? We are here to help</h2>
+    <p>If something on the site is not accessible to you, or you need help preparing the documents, please contact us. It helps to tell us which page had the problem and what you tried to do.</p>
+    <div class="box">
+      <p><b>MovingLife USA accessibility contact</b></p>
+      <p><span>Phone:</span> <a href="tel:+15593541089"><span class="ltr">+1 559 354 1089</span></a></p>
+      <p><span>Website:</span> <a href="https://us.movinglife.com/">us.movinglife.com</a></p>
+      <p>We try to answer every request within 2 business days. If you cannot use the site, call us and we will help you.</p>
+    </div>
+  </main>
+</div>
+<script>
+try { const p = JSON.parse(localStorage.getItem('atto-a11y') || '{}');
+  if (p.fs) document.documentElement.classList.add('a11y-fs' + p.fs);
+  ['hc', 'links', 'font'].forEach(k => { if (p[k]) document.documentElement.classList.add('a11y-' + k); });
+} catch (e) {}
+</script>
+</body>
+</html>

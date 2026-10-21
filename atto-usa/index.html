@@ -1,0 +1,1561 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Choose your airline and download every document you need to fly with an ATTO scooter">
+<meta property="og:title" content="Fly with ATTO: all your flight documents">
+<meta property="og:description" content="Pick your airline and get all documents in one file">
+<meta property="og:image" content="img/kit.webp">
+<link rel="icon" href="img/movinglife.webp">
+<title>Fly with ATTO</title>
+
+<link rel="preload" href="fonts/heebo-hebrew-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/heebo-hebrew-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; }
+
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/heebo-hebrew-400-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/heebo-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/heebo-hebrew-500-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/heebo-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/heebo-hebrew-700-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/heebo-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 800; font-display: swap; src: url(fonts/heebo-hebrew-800-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-style: normal; font-weight: 800; font-display: swap; src: url(fonts/heebo-latin-800-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Layout: a quiet continuation of movinglife.co.il. White page, centred headings in the site's short voice,
+   one step-by-step wizard as the heart of the page. Blue from the logo only on actions. */
+:root {
+  --paper: #ffffff; --card: #ffffff; --soft: #f5f8fb; --ink: #3a3a3d; --muted: #66666b; --hair: #e6e6ea; --field: #c9c9d1;
+  --blue: #2b77ad; --blue-hover: #215f8b; --brand: #3c8cc4; --on-blue: #ffffff; --tint: #eaf3fa;
+  --ok: #2b7a4b; --ok-tint: #ecf6f0; --warn: #8a5d00; --warn-tint: #fff7e3; --err: #b3261e; --err-tint: #fdecea;
+  --font: 'Heebo', 'Arial Hebrew', Arial, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #121214; --card: #1a1b1e; --soft: #1c1e22; --ink: #ececee; --muted: #b0b0b6; --hair: #2c2d32; --field: #4a4b52;
+  --blue: #7bbbe8; --blue-hover: #9acbee; --brand: #7bbbe8; --on-blue: #0b2233; --tint: #18293a;
+  --ok: #8ad8aa; --ok-tint: #15281d; --warn: #e8c063; --warn-tint: #2b2310; --err: #ff8a80; --err-tint: #2e1514; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #121214; --card: #1a1b1e; --soft: #1c1e22; --ink: #ececee; --muted: #b0b0b6; --hair: #2c2d32; --field: #4a4b52;
+  --blue: #7bbbe8; --blue-hover: #9acbee; --brand: #7bbbe8; --on-blue: #0b2233; --tint: #18293a;
+  --ok: #8ad8aa; --ok-tint: #15281d; --warn: #e8c063; --warn-tint: #2b2310; --err: #ff8a80; --err-tint: #2e1514; color-scheme: dark }
+/* accessibility menu: high contrast */
+html.a11y-hc {
+  --paper: #000000; --card: #000000; --soft: #000000; --ink: #ffffff; --muted: #ffffff; --hair: #ffffff; --field: #ffffff;
+  --blue: #ffd400; --blue-hover: #ffe566; --brand: #ffd400; --on-blue: #000000; --tint: #1a1a00;
+  --ok: #7dff7d; --ok-tint: #001a00; --warn: #ffd400; --warn-tint: #1a1a00; --err: #ff8080; --err-tint: #1a0000; color-scheme: dark }
+html.a11y-hc .logo, html.a11y-hc .chip img, html.a11y-hc .brand img { background: #fff; border-radius: 4px; padding: 2px; }
+html.a11y-fs1 { font-size: 112%; } html.a11y-fs2 { font-size: 125%; }
+html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
+html.a11y-font body, html.a11y-font button, html.a11y-font input { font-family: Arial, 'Arial Hebrew', sans-serif !important; letter-spacing: .01em; }
+html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+html.a11y-cursor, html.a11y-cursor * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l15 11-7 1 4 8-3 1-4-8-5 5z' fill='%23000' stroke='%23fff' stroke-width='1.4'/%3E%3C/svg%3E") 4 2, auto !important; }
+
+html { direction: rtl; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.1875rem; line-height: 1.65; direction: rtl; text-align: right; }
+.page { direction: rtl; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+section, main { scroll-margin-top: 12px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; right: 12px; top: -60px; z-index: 100; background: var(--blue); color: var(--on-blue); padding: 10px 16px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+/* header */
+.site-header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 16px; flex-wrap: wrap; }
+
+.three { list-style: none; display: flex; justify-content: center; gap: 12px; padding: 0; margin: 22px 0 6px; flex-wrap: wrap; counter-reset: s; }
+.three { flex-wrap: nowrap; max-width: 520px; margin-inline: auto; }
+.three li { counter-increment: s; flex: 1 1 0; min-width: 0; background: var(--soft); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 8px; text-align: center; font-size: .95rem; }
+.three li::before { content: counter(s); display: block; width: 30px; height: 30px; line-height: 30px; margin: 0 auto 4px; border-radius: 50%; background: var(--blue); color: var(--on-blue); font-weight: 800; }
+.three b, .three span { display: block; overflow-wrap: anywhere; }
+.faqs { margin-top: 18px; display: grid; gap: 8px; }
+.faq { border: 1px solid var(--hair); border-radius: 10px; background: var(--soft); }
+.faq summary { cursor: pointer; padding: 12px 14px; min-height: 44px; box-sizing: border-box; font-weight: 700; display: flex; align-items: center; }
+.faq p { margin: 0; padding: 0 14px 14px; color: var(--ink); }
+/* bigger tap areas without changing the look */
+.link, .site, .more a, footer a, .a11y-foot a { position: relative; }
+.link::after, .site::after, footer a::after, .a11y-foot a::after { content: ""; position: absolute; inset: -9px -6px; }
+.brand img { height: 38px; width: auto; display: block; }
+.brand .dark { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brand .light { display: none; } :root:not([data-theme="light"]) .brand .dark { display: block; } }
+:root[data-theme="dark"] .brand .light { display: none; } :root[data-theme="dark"] .brand .dark { display: block; }
+.hdr { display: flex; align-items: center; gap: 14px; font-size: 16px; }
+.hdr a { text-decoration: none; color: var(--muted); } .hdr a:hover { color: var(--blue); }
+.hdr .tel { color: var(--ink); font-weight: 500; }
+.a11y-btn { display: inline-flex; align-items: center; gap: 8px; font: 500 16px var(--font); color: var(--ink); background: var(--card);
+  border: 1px solid var(--hair); border-radius: 999px; padding: 6px 14px 6px 12px; min-height: 44px; cursor: pointer; }
+.a11y-btn svg { width: 22px; height: 22px; color: var(--blue); }
+.a11y-btn:hover { border-color: var(--blue); }
+@media (max-width: 560px) { .hdr .tel, .hdr .site { display: none; } }
+
+/* type */
+h1, h2.sec { font-weight: 800; color: var(--ink); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(34px, 6vw, 54px); line-height: 1.12; }
+h2.sec { font-size: clamp(28px, 4.2vw, 40px); line-height: 1.18; }
+.sub { color: var(--muted); font-weight: 400; font-size: clamp(19px, 2.3vw, 22px); margin: 14px auto 0; max-width: 46ch; }
+.center { text-align: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font: 700 1.1rem var(--font);
+  border-radius: 6px; padding: 14px 30px; min-height: 56px; background: var(--blue); color: var(--on-blue); border: 2px solid var(--blue); cursor: pointer; }
+.btn:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
+.btn[disabled] { opacity: .65; cursor: progress; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--field); }
+.btn.ghost:hover { border-color: var(--blue); color: var(--blue); background: transparent; }
+.link { color: var(--blue); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 1px; background: none; border-top: 0; border-left: 0; border-right: 0; font: inherit; font-weight: 700; cursor: pointer; }
+
+/* hero */
+.hero { padding-block: clamp(40px, 7vw, 76px) clamp(30px, 5vw, 50px); text-align: center; border-top: 1px solid var(--hair); }
+.hero .btn { margin-top: 28px; }
+.hero .mine-note { margin: 14px 0 0; color: var(--muted); }
+
+/* flight kit */
+.kit { padding-block: clamp(40px, 6vw, 70px); border-top: 1px solid var(--hair); }
+.kit .head { text-align: center; margin-bottom: 34px; }
+.kitgrid { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 380px); gap: 56px; justify-content: center; align-items: center; }
+@media (max-width: 760px) { .kitgrid { grid-template-columns: minmax(0, 1fr); gap: 26px; } }
+.player { position: relative; justify-self: center; width: 100%; max-width: 320px; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; }
+.player video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.playbtn { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.12); border: 0; cursor: pointer; padding: 0; }
+.playbtn span { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+.playbtn svg { width: 38px; height: 38px; color: #2b77ad; margin-left: -4px; }
+.playbtn em { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-style: normal; color: #fff; font-weight: 700; font-size: 17px; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.player.playing .playbtn { display: none; }
+.kitcopy { text-align: center; }
+@media (min-width: 761px) { .kitcopy { text-align: right; } }
+.kitcopy p { margin: 0 0 18px; color: var(--muted); font-size: 20px; }
+.feats { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 10px; }
+.feats li { font-size: 19px; }
+.feats li::before { content: "✓"; color: var(--blue); font-weight: 800; margin-left: 10px; }
+.kitcopy .more { margin: 16px 0 0; font-size: 18px; }
+.cue { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 44px auto 0; width: max-content; max-width: 100%; text-decoration: none; color: var(--muted); font-size: 17px; text-align: center; }
+.cue:hover { color: var(--blue); }
+.cue svg { color: var(--blue); animation: nudge 1.6s ease-in-out infinite; }
+@keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+/* ---------- the wizard ---------- */
+.forms { padding-block: clamp(40px, 6vw, 70px); border-top: 1px solid var(--hair); }
+.wiz { max-width: 760px; margin: 30px auto 0; background: var(--card); border: 1px solid var(--hair); border-radius: 14px;
+  padding: clamp(18px, 4vw, 34px); box-shadow: 0 18px 50px rgba(20, 40, 60, .07); scroll-margin-top: 12px; }
+.prog { list-style: none; margin: 0 0 6px; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; }
+.prog li { display: grid; gap: 6px; font-size: 13.5px; color: var(--muted); text-align: center; min-width: 0; }
+.prog li::before { content: ""; height: 6px; border-radius: 6px; background: var(--hair); }
+.prog li.on::before, .prog li.past::before { background: var(--blue); }
+.prog li.on { color: var(--ink); font-weight: 700; }
+.prog li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 560px) { .prog li span { display: none; } }
+.count { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+.chip { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--soft); border: 1px solid var(--hair); border-radius: 10px; padding: 10px 14px; margin-bottom: 20px; }
+.chip img { height: 30px; width: auto; max-width: 130px; object-fit: contain; }
+.chip b { font-weight: 700; }
+.chip .link { margin-inline-start: auto; font-size: 16px; }
+.step:focus { outline: none; }
+.st-title { font-weight: 800; font-size: clamp(23px, 3.2vw, 28px); line-height: 1.25; margin: 0; outline: none; }
+.st-help { margin: 6px 0 20px; color: var(--muted); }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 18px; }
+@media (max-width: 600px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+.fld { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.fld.wide { grid-column: 1 / -1; }
+.fld label, .fld .lbl { font-weight: 700; font-size: 1.05rem; }
+.fld .opt { font-weight: 400; color: var(--muted); font-size: .9em; }
+.fields > .hint { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: .95rem; transition: color .3s; }
+.fields > .hint.flash { color: var(--accent, #0a6); font-weight: 700; }
+.fld .hint { margin: 0; color: var(--muted); font-size: .95rem; }
+.fld input { font: inherit; font-size: 1.2rem; padding: 12px 14px; min-height: 56px; box-sizing: border-box; width: 100%;
+  border: 2px solid var(--field); border-radius: 6px; background: var(--paper); color: var(--ink); }
+
+.paste { border: 1px solid var(--hair); border-radius: 10px; background: var(--soft); margin: 0 0 16px; }
+.paste summary { cursor: pointer; padding: 14px 16px; min-height: 48px; box-sizing: border-box; font-weight: 700; color: var(--blue); }
+.paste-in { padding: 0 16px 16px; display: grid; gap: 8px; }
+.paste textarea { font: inherit; font-size: 1.05rem; padding: 12px 14px; box-sizing: border-box; width: 100%; border: 2px solid var(--field); border-radius: 6px; background: var(--paper); color: var(--ink); resize: vertical; }
+.paste textarea:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 4px var(--tint); }
+.paste .hint { margin: 0; color: var(--muted); font-size: .95rem; }
+.paste-msg { margin: 0; font-weight: 700; }
+.paste-msg:empty { display: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fld input[dir="ltr"] { text-align: left; }
+.fld input.up { text-transform: uppercase; }
+.fld input::placeholder { color: var(--muted); opacity: .6; text-transform: none; }
+.fld input:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 4px var(--tint); }
+.fld .fe { margin: 0; color: var(--err); font-weight: 700; font-size: 1rem; display: flex; gap: 6px; }
+.fld .fe::before { content: "!"; display: inline-grid; place-items: center; flex: none; width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--err); color: var(--paper); font-size: .8em; margin-top: .2em; }
+.fld.bad input, .fld.bad .pad { border-color: var(--err); background: var(--err-tint); }
+.grp { grid-column: 1 / -1; font-weight: 800; font-size: 1.1rem; padding-top: 12px; border-top: 1px solid var(--hair); margin: 4px 0 -8px; }
+.grp:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.pad { position: relative; border: 2px dashed var(--field); border-radius: 8px; background: var(--paper); height: 190px; touch-action: none; }
+.pad canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+.pad .phold { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); opacity: .7; font-size: 1.15rem; pointer-events: none; }
+.pad .line { position: absolute; left: 24px; right: 24px; bottom: 46px; border-bottom: 1.5px solid var(--hair); pointer-events: none; }
+.pad .clear { position: absolute; left: 10px; bottom: 8px; font: inherit; font-size: 1rem; padding: 4px 14px; min-height: 40px;
+  border: 1px solid var(--field); border-radius: 6px; background: var(--card); color: var(--ink); cursor: pointer; }
+.nav { display: flex; gap: 12px; margin-top: 26px; align-items: center; flex-wrap: wrap; }
+.nav .btn { flex: 1 1 220px; }
+.nav .back { flex: 0 1 auto; }
+.alert { margin: 18px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--err-tint); color: var(--err); font-weight: 700; }
+.plain.fam { border-top: 0; padding-top: 0; margin-top: 10px; }
+.plain { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--hair); color: var(--muted); font-size: 1rem; text-align: center; }
+
+/* airline grid inside the wizard */
+.find { max-width: 460px; margin: 0 auto 16px; }
+.find input { width: 100%; box-sizing: border-box; font: inherit; font-size: 1.1rem; padding: 14px 16px; min-height: 56px;
+  border: 2px solid var(--field); border-radius: 6px; background: var(--paper); color: var(--ink); text-align: right; }
+.find input:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 4px var(--tint); }
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+@media (max-width: 540px) { .board { grid-template-columns: 1fr 1fr; gap: 10px; } }
+.card { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; color: var(--ink); font: inherit;
+  background: var(--card); border: 2px solid var(--hair); border-radius: 12px; padding: 18px 10px 14px; min-width: 0; cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .1s ease; -webkit-tap-highlight-color: transparent; }
+.logo { height: 64px; width: 100%; display: grid; place-items: center; }
+.logo img { max-height: 54px; max-width: 92%; width: auto; object-fit: contain; }
+.word { font-weight: 800; font-size: clamp(20px, 3vw, 24px); line-height: 1; color: var(--muted); }
+.cname { font-weight: 500; font-size: 17px; }
+@media (hover: hover) {
+  .card .logo { filter: grayscale(1); opacity: .6; transition: filter .25s ease, opacity .25s ease; }
+  .card:hover .logo, .card:focus-visible .logo, .card[aria-pressed="true"] .logo { filter: none; opacity: 1; }
+  .card:hover { border-color: var(--brand); box-shadow: 0 10px 26px rgba(20,40,60,.08); }
+}
+.card:active { transform: scale(.98); }
+.card[aria-pressed="true"] { border-color: var(--blue); background: var(--tint); }
+.card[aria-pressed="true"]::after { content: "✓"; position: absolute; top: 8px; left: 8px; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--blue); color: var(--on-blue); display: grid; place-items: center; font-weight: 800; font-size: 15px; }
+.none { text-align: center; color: var(--muted); margin: 10px 0 0; }
+
+/* review */
+.review { margin: 0; display: grid; gap: 0; border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; }
+.review .row { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--hair); }
+.review .row:first-child { border-top: 0; }
+.review dt { color: var(--muted); font-size: 1rem; }
+.review dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.review dd.empty { font-weight: 400; color: var(--muted); }
+.review dd img { height: 44px; width: auto; max-width: 100%; background: #fff; border-radius: 4px; }
+.review .edit { font-size: .95rem; }
+@media (max-width: 520px) { .review .row { grid-template-columns: minmax(0, 1fr) auto; } .review dd { grid-column: 1 / 2; } .review .edit { grid-row: 1 / 3; grid-column: 2; } }
+.consent { margin-top: 20px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; padding: 14px 16px;
+  border: 2px solid var(--field); border-radius: 10px; background: var(--soft); cursor: pointer; }
+.consent input { width: 28px; height: 28px; margin: 2px 0 0; accent-color: var(--blue); cursor: pointer; }
+.consent b { display: block; margin-bottom: 4px; }
+.consent span { color: var(--ink); font-size: 1rem; line-height: 1.6; }
+.consent.bad { border-color: var(--err); background: var(--err-tint); }
+
+/* done */
+.done-top { text-align: center; padding: 6px 0 4px; }
+.done-top .tick { width: 74px; height: 74px; border-radius: 50%; background: var(--ok-tint); color: var(--ok); display: grid; place-items: center; margin: 0 auto 12px; }
+.done-top .tick svg { width: 40px; height: 40px; }
+.done-top h3 { color: var(--ok); }
+.todo { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 14px; counter-reset: t; }
+.todo > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; align-items: start; }
+.todo > li::before { counter-increment: t; content: counter(t); width: 36px; height: 36px; border-radius: 50%; background: var(--blue); color: var(--on-blue);
+  display: grid; place-items: center; font-weight: 800; }
+.todo b { display: block; }
+.todo ul { margin: 6px 0 0; padding-right: 20px; padding-left: 0; color: var(--ink); list-style: disc; display: grid; gap: 4px; }
+.when { margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: var(--ok-tint); color: var(--ok); font-weight: 700; }
+.when.late { background: var(--warn-tint); color: var(--warn); }
+.note { margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: var(--warn-tint); color: var(--warn); font-weight: 500; }
+.disc { margin: 22px 0 0; padding: 14px 16px; border-radius: 10px; background: var(--soft); color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.disc b { color: var(--ink); }
+
+.cert { text-align: center; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--hair); }
+.cert p { color: var(--muted); margin: 12px auto 22px; max-width: 54ch; }
+
+/* faq */
+.faq { padding-block: clamp(40px, 6vw, 70px); border-top: 1px solid var(--hair); }
+.faq .list { max-width: 760px; margin: 30px auto 0; }
+.faq details { border-bottom: 1px solid var(--hair); }
+.faq summary { cursor: pointer; font-weight: 500; font-size: 20px; padding: 18px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--blue); font-weight: 300; font-size: 1.5em; line-height: .9; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0 0 18px; color: var(--muted); }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--hair); }
+.site-footer .wrap { padding-block: 34px 40px; display: grid; gap: 18px; justify-items: center; text-align: center; }
+.site-footer .brand img { height: 30px; }
+.contact { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.cbtn { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; border: 1px solid var(--hair); border-radius: 6px; padding: 11px 18px; min-height: 48px; font-weight: 500; }
+.cbtn { max-width: 100%; box-sizing: border-box; }
+.cbtn, .contact, footer p, footer { overflow-wrap: anywhere; }
+.cbtn svg { color: var(--blue); flex: none; }
+.cbtn:hover { border-color: var(--blue); color: var(--blue); }
+.cbtn .val { direction: ltr; unicode-bidi: isolate; }
+.site-footer p { margin: 0; font-size: 14px; color: var(--muted); max-width: 80ch; }
+.flinks { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: 15px; }
+.flinks a { color: var(--blue); }
+
+/* phone: fixed bar at the bottom */
+.callbar { display: none; }
+@media (max-width: 720px) {
+  .callbar { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; gap: 10px; background: var(--paper); border-top: 1px solid var(--hair);
+    padding: 10px max(14px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(14px, env(safe-area-inset-left, 0px)); }
+  .callbar a { flex: 1; display: inline-flex; justify-content: center; align-items: center; text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 6px; min-height: 50px; }
+  .callbar .c1 { background: var(--blue); color: var(--on-blue); } .callbar .c2 { border: 1px solid var(--field); color: var(--ink); }
+  .site-footer .wrap { padding-bottom: 100px; }
+}
+
+/* "creating your document" screen with the MovingLife logo filling in */
+.maker { position: fixed; inset: 0; z-index: 60; background: var(--paper); display: grid; place-content: center; justify-items: center; gap: 14px;
+  padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); text-align: center; }
+.mk-logo { position: relative; width: min(260px, 70vw); }
+.mk-logo img { display: block; width: 100%; height: auto; }
+.mk-base { filter: grayscale(1); opacity: .18; }
+.mk-fill { position: absolute; inset: 0; clip-path: inset(0 0 0 100%); animation: mkfill 1.6s cubic-bezier(.6,.05,.3,1) infinite; }
+@keyframes mkfill { 0% { clip-path: inset(0 0 0 100%); } 70% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 0 0); opacity: 0; } }
+.mk-title { margin: 6px 0 0; font-weight: 800; font-size: 26px; color: var(--ink); }
+.mk-title::after { content: ""; display: inline-block; width: 1.2em; text-align: right; animation: dots 1.2s steps(4) infinite; }
+@keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+.mk-step { margin: 0; color: var(--muted); font-size: 1.05rem; min-height: 1.6em; }
+.mk-bar { width: min(260px, 70vw); height: 5px; border-radius: 5px; background: var(--hair); overflow: hidden; }
+.mk-bar span { display: block; height: 100%; width: 0; background: var(--brand); border-radius: 5px; transition: width .45s ease; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mk-logo img { filter: brightness(1.5); } :root:not([data-theme="light"]) .mk-base { filter: grayscale(1) brightness(1.5); } }
+
+/* accessibility panel */
+.a11y { position: fixed; inset: 0; z-index: 80; display: grid; justify-items: start; align-items: start; background: rgba(0,0,0,.35); }
+.a11y-box { box-sizing: border-box; margin: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) 0 0; width: min(380px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px); overflow: auto; background: var(--card); color: var(--ink); border: 1px solid var(--hair); border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25); padding: 18px; display: grid; gap: 10px; }
+.a11y-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.a11y-head h2 { margin: 0; font-size: 22px; font-weight: 800; }
+.a11y-x { font: 700 22px var(--font); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--hair); background: var(--card); color: var(--ink); cursor: pointer; }
+.a11y-opt { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; font: 500 1.05rem var(--font); color: var(--ink); text-align: right;
+  background: var(--soft); border: 2px solid var(--hair); border-radius: 10px; padding: 12px 14px; min-height: 54px; cursor: pointer; }
+.a11y-opt[aria-pressed="true"] { border-color: var(--blue); background: var(--tint); }
+.a11y-opt[aria-pressed="true"]::after { content: "✓ פעיל"; color: var(--blue); font-weight: 800; font-size: .9rem; }
+.a11y-size { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.a11y-size button { font: 700 1rem var(--font); color: var(--ink); background: var(--soft); border: 2px solid var(--hair); border-radius: 10px; min-height: 54px; cursor: pointer; }
+.a11y-size button[aria-pressed="true"] { border-color: var(--blue); background: var(--tint); }
+.a11y-foot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 4px; font-size: 1rem; }
+.a11y-foot a { color: var(--blue); font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .cue svg, .mk-fill, .mk-title::after { animation: none; } .mk-fill { clip-path: none; } .mk-title::after { content: "..."; } .card, .card .logo { transition: none !important; } }
+
+/* flight code helper */
+.codebox { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; background: var(--tint); border: 2px solid var(--blue);
+  border-radius: 12px; padding: 14px 16px; margin: 0 0 22px; }
+.codebox img { height: 34px; width: auto; max-width: 110px; object-fit: contain; background: #fff; border-radius: 6px; padding: 4px; }
+.codebox img[hidden] { display: none; }
+.cb-title { margin: 0; font-weight: 800; font-size: 1.15rem; }
+.cb-title .code { display: inline-block; direction: ltr; unicode-bidi: isolate; background: var(--blue); color: var(--on-blue); border-radius: 6px;
+  padding: 0 10px; margin: 0 4px; font-size: 1.15em; letter-spacing: .06em; }
+.cb-text { margin: 4px 0 10px; color: var(--ink); font-size: 1rem; }
+.cb-ticket { direction: ltr; display: inline-flex; align-items: center; gap: 10px; background: var(--card); border: 1px dashed var(--field); border-radius: 8px;
+  padding: 6px 12px; font-size: .95rem; color: var(--muted); max-width: 100%; flex-wrap: wrap; }
+.cb-ticket b { color: var(--ink); font-size: 1.15rem; letter-spacing: .04em; background: #fff4b8; color: #3a3a3d; padding: 0 6px; border-radius: 4px; }
+.cb-ticket i { font-style: normal; color: var(--blue); }
+@media (max-width: 520px) { .codebox { grid-template-columns: minmax(0, 1fr); } }
+.fld .fw { margin: 0; color: var(--warn); background: var(--warn-tint); border-radius: 6px; padding: 8px 10px; font-weight: 700; font-size: 1rem; }
+
+/* send by email */
+.mail { margin: 10px 0 12px; padding: 14px; border: 2px solid var(--blue); border-radius: 12px; background: var(--tint); display: grid; gap: 10px; }
+.mail .btn { width: 100%; }
+.mail-help { margin: 0; font-size: 1rem; }
+.mail-to { margin: 0; font-size: 1rem; overflow-wrap: anywhere; }
+.mail-to b { font-size: 1.05rem; }
+.fld .dw { margin: 0; color: var(--ok); font-weight: 700; font-size: 1rem; min-height: 0; }
+.fld .dw:empty { display: none; }
+
+/* language switch (top left, always) */
+.site-header .wrap { direction: rtl; }
+.lang { position: relative; }
+.lang-btn { display: inline-flex; align-items: center; gap: 8px; font: 500 16px var(--font); color: var(--ink); background: var(--card); border: 1.5px solid var(--hair); border-radius: 999px; padding: 6px 12px 6px 10px; min-height: 44px; cursor: pointer; }
+.lang-btn:hover { border-color: var(--blue); }
+.lang-btn .chev { width: 14px; height: 14px; color: var(--muted); }
+.flag { width: 28px; height: 20px; border-radius: 3px; box-shadow: 0 0 0 1px rgba(0,0,0,.18); display: block; flex: none; }
+.lang-menu { position: absolute; top: calc(100% + 8px); left: 0; z-index: 70; min-width: 210px; background: var(--paper); border: 1.5px solid var(--hair); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.18); padding: 6px; display: grid; gap: 2px; direction: ltr; text-align: left; }
+.lang-menu button { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 48px; border: 0; background: none; color: var(--ink); font: 500 18px var(--font); padding: 6px 10px; border-radius: 8px; cursor: pointer; text-align: left; }
+.lang-menu button:hover, .lang-menu button[aria-pressed="true"] { background: var(--card); }
+.lang-menu button[aria-pressed="true"]::after { content: "✓"; margin-inline-start: auto; color: var(--blue); font-weight: 800; }
+.lang-menu button[lang="ar"] { direction: rtl; flex-direction: row-reverse; justify-content: flex-start; }
+@media (max-width: 560px) {
+  .a11y-btn { font-size: 0; gap: 0; width: 44px; min-height: 44px; padding: 0; justify-content: center; }
+  #langCode { display: none; }
+  .lang-btn { padding: 6px 10px; }
+  .site-header .wrap { flex-wrap: nowrap; }
+  .hdr { gap: 8px; }
+}
+/* left to right languages */
+html[dir="ltr"], html[dir="ltr"] .page { direction: ltr; }
+html[dir="ltr"] .hdr { direction: ltr; flex-direction: row-reverse; }
+html[dir="ltr"] .skip { right: auto; left: 12px; }
+html[dir="ltr"] .feats li::before { margin-left: 0; margin-right: 10px; }
+html[dir="ltr"] .todo ul { padding-right: 0; padding-left: 20px; }
+@media (min-width: 761px) { html[dir="ltr"] .kitcopy { text-align: left; } }
+html[dir="ltr"] .fld select, html[dir="ltr"] .fld textarea { text-align: left; }
+html[dir="ltr"] .a11y-opt { text-align: left; }
+html[dir="ltr"] .mk-title::after { text-align: left; }
+html[dir="ltr"] .playbtn svg { margin-left: 0; margin-right: -4px; }
+.lang-ru, .lang-ar, .lang-en { --font: 'Heebo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; }
+.lang-ar { --font: 'Heebo', 'Segoe UI', 'Noto Sans Arabic', Tahoma, Arial, sans-serif; line-height: 1.75; }
+.gcard { border: 1.5px solid var(--hair, #e6e6ea); border-radius: 14px; padding: 4px 16px 10px; margin: 12px 0; } .gcard h4 { margin: 12px 0 6px; font-size: 1.05rem; } .gcard ul, .gcard ol { margin: 0; padding-left: 22px; } .gcard li { margin: 6px 0; line-height: 1.5; }
+.find input { text-align: left !important; } @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ver.ok { background: #16301f; color: #9fe0b2; } :root:not([data-theme="light"]) .ver.warn { background: #3a2a10; color: #ffd28a; } :root:not([data-theme="light"]) .card .logo { background: #f4f5f7; border-radius: 10px; } :root:not([data-theme="light"]) .chip img, :root:not([data-theme="light"]) #codeLogo { background: #f4f5f7; border-radius: 6px; padding: 2px; } }
+#doneSend { grid-template-columns: minmax(0, 1fr); } #doneSend li, .gcard li { overflow-wrap: anywhere; } #doneSend b, .gcard b { display: inline; } .todo > li > div { min-width: 0; }
+.copybox { border: 1.5px solid var(--hair, #e6e6ea); border-radius: 14px; padding: 4px 16px 10px; margin: 14px 0; } .copybox summary { cursor: pointer; font-weight: 700; padding: 12px 0; min-height: 24px; color: var(--blue, #2b77ad); } #copyList { list-style: none; margin: 0; padding: 0; } .cp { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--hair, #e6e6ea); } .cp:first-child { border-top: 0; } .cp span { display: flex; flex-direction: column; min-width: 0; } .cp b { font-size: 13px; opacity: .7; font-weight: 600; } .cp i { font-style: normal; overflow-wrap: anywhere; } .cp button { flex: none; min-height: 44px; min-width: 76px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .card .logo .word { color: #3a3a3d; } }
+.review .edit-dd { margin: 0; } @media (max-width: 520px) { .review .edit-dd { grid-row: 1 / 3; grid-column: 2; } }
+.skip { top: -999px !important; } .skip:focus { top: 12px !important; }
+.chip { flex-wrap: nowrap; padding: 8px 12px; } .chip img:not([hidden]) + .chip-txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.chip .link, .plain .link, #msgCopy, #sigHand, .review .edit, .flinks a { display: inline-flex; align-items: center; min-height: 44px; }
+input[type=checkbox] { width: 24px; height: 24px; flex: none; }
+.chip .link { white-space: nowrap; } .review .edit { min-width: 44px; justify-content: center; } #sigClear { min-height: 44px; }
+body.wiz-in .callbar { display: none !important; }
+.kitphoto img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.ver { font-size: 14px; margin: 10px 0 4px; padding: 8px 12px; border-radius: 10px; } .ver.ok { background: #eef7f0; color: #1f5a30; } .ver.warn { background: #fff4e5; color: #8a4b00; }
+#lang, .langs { display: none !important; }
+</style>
+</head>
+<body>
+
+
+<div class="page" dir="rtl" lang="he">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+    <symbol id="flag-he" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect y="2" width="30" height="3.2" fill="#0038b8"/><rect y="14.8" width="30" height="3.2" fill="#0038b8"/><g fill="none" stroke="#0038b8" stroke-width=".9"><path d="M15 6l3.46 6h-6.92z"/><path d="M15 14l-3.46-6h6.92z"/></g></symbol>
+    <symbol id="flag-en" viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice"><rect width="60" height="40" fill="#012169"/><path d="M0 0L60 40M60 0L0 40" stroke="#fff" stroke-width="7"/><path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="12"/><path d="M30 0V40M0 20H60" stroke="#C8102E" stroke-width="7"/></symbol>
+    <symbol id="flag-ru" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect y="6.67" width="30" height="6.67" fill="#0039a6"/><rect y="13.33" width="30" height="6.67" fill="#d52b1e"/></symbol>
+    <symbol id="flag-ar" viewBox="0 0 30 20"><rect width="30" height="20" fill="#0b6b3a"/><text x="15" y="15.5" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="'Segoe UI',Tahoma,Arial,sans-serif">ع</text></symbol>
+  </defs></svg>
+  <a class="skip" href="#forms">דלגו להכנת מסמכי הטיסה</a>
+  <header class="site-header"><div class="wrap">
+    <a class="brand" href="https://us.movinglife.com/" aria-label="MovingLife USA, main website">
+      <img class="light" src="img/movinglife.webp" alt="MovingLife" width="148" height="38"><img class="dark" src="img/movinglife-dark.webp" alt="" width="148" height="38">
+    </a>
+    <div class="hdr">
+      <a class="tel" href="tel:+15593541089"><span class="ltr">+1 559 354 1089</span></a>
+      <a class="site" href="https://us.movinglife.com/">us.movinglife.com</a>
+      <button type="button" class="a11y-btn" id="a11yOpen" aria-haspopup="dialog" aria-controls="a11y">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4" r="2" fill="currentColor"/><path d="M4 8.5c2.6.8 5.3 1.2 8 1.2s5.4-.4 8-1.2M12 9.7v4.6m0 0-3.2 6.2M12 14.3l3.2 6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        נגישות</button>
+      <div class="lang" id="lang">
+        <button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Language">
+          <svg class="flag" id="langFlag" viewBox="0 0 30 20" aria-hidden="true"></svg><span id="langCode">עב</span>
+          <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="lang-menu" id="langMenu" role="group" aria-label="Language" hidden></div>
+      </div>
+    </div>
+  </div></header>
+
+  <main id="main">
+  <section class="wrap hero">
+    <h1>מסמכי הטיסה לקלנועית ATTO</h1>
+    <p class="sub">ממלאים כמה פרטים ומקבלים את כל המסמכים בקובץ אחד.</p>
+    <ol class="three" aria-label="שלושה צעדים">
+      <li><b>ממלאים</b><span>כמה פרטים</span></li>
+      <li><b>חותמים</b><span>על המסך</span></li>
+      <li><b>שולחים</b><span>לחברת התעופה</span></li>
+    </ol>
+    <a class="btn" id="heroBtn" href="#forms">להכנת מסמכי הטיסה</a>
+  </section>
+
+  <section class="wrap kit" id="kit" aria-label="ערכת הטיסה של ATTO">
+    <div class="head center">
+      <h2 class="sec">ערכת הטיסה של ATTO</h2>
+      <p class="sub">מומלצת לכל טיסה.</p>
+    </div>
+    <div class="kitgrid">
+      <div class="player kitphoto"><img src="img/flight-kit-us.webp" width="540" height="960" alt="The ATTO scooter folded in trolley mode, covered by the MovingLife flight kit bag" loading="lazy"></div>
+      <div class="kitcopy">
+        <p>עוטפת את הקלנועית המקופלת ושומרת עליה ממכות ומשריטות בזמן ההעמסה למטוס.</p>
+        <ul class="feats"><li>מלבישים ומורידים בדקה</li><li>הקלנועית נשארת במצב טרולי</li></ul>
+        <a class="btn" href="tel:+15593541089">To order: <span class="ltr">+1 559 354 1089</span></a>
+        <p class="more"><a class="link" href="https://us.movinglife.com/">More about the flight kit</a></p>
+      </div>
+    </div>
+    <a class="cue" href="#forms"><span>גללו למטה להכנת מסמכי הטיסה</span>
+      <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 4v15m0 0-6.5-6.5M12 19l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </section>
+
+  <section class="wrap forms" id="forms" tabindex="-1" aria-label="Prepare your flight documents">
+    <div class="head center">
+      <h2 class="sec">הכנת מסמכי הטיסה</h2>
+      <p class="sub">כמה שלבים קצרים, ובסוף יורד קובץ מוכן.</p>
+    </div>
+
+    <section class="wiz" id="wiz" aria-labelledby="stTitle">
+      <ol class="prog" id="prog" aria-hidden="true"></ol>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="chip" id="chip" hidden><img id="chipLogo" alt=""><span class="chip-txt"><span>חברת התעופה:</span> <b id="chipName"></b></span>
+        <button type="button" class="link" id="chipChange">החלפת חברה</button></div>
+
+      <form id="wform" novalidate autocomplete="on">
+        <!-- 1 airline -->
+        <div class="step" data-step="airline">
+          <h3 class="st-title" tabindex="-1">באיזו חברת תעופה אתם טסים?</h3>
+          <p class="st-help">לוחצים על הלוגו. לא מוצאים? בחרו "חברה אחרת".</p>
+          <div class="find"><label for="find" class="vh">חיפוש חברת תעופה</label>
+            <input id="find" type="search" placeholder="חיפוש חברה" autocomplete="off" enterkeyhint="search"></div>
+          <div class="board" id="board" role="group" aria-label="חברות תעופה"></div>
+          <p class="none" id="none" hidden>לא מצאנו את החברה. בחרו "חברה אחרת" או התקשרו אלינו.</p>
+        </div>
+
+        <div class="step" data-step="guide" hidden>
+          <h3 class="st-title" tabindex="-1" id="gTitle"></h3>
+          <p class="st-help" id="gLead"></p>
+          <div class="gcard"><h4>What you need</h4><ul id="gNeed"></ul></div>
+          <div class="gcard"><h4>What we prepare for you</h4><ul id="gMake"></ul></div>
+          <div class="gcard"><h4>What you do after</h4><ol id="gDo"></ol><div class="when" id="gWhen"></div><div class="note" id="gNote" hidden></div></div>
+          <p class="ver" id="gVer"></p>
+          <p><a class="link" id="gLink" target="_blank" rel="noopener" hidden></a></p>
+        </div>
+
+        <!-- 2 personal -->
+        <div class="step" data-step="personal" hidden>
+          <h3 class="st-title" tabindex="-1">פרטי הנוסע</h3>
+          <p class="st-help">כותבים <b>באנגלית</b>, כמו בדרכון.</p>
+          <div class="fields">
+            <div class="fld" data-k="name"><label for="fFirst">שם פרטי באנגלית</label>
+              <input id="fFirst" class="up" autocomplete="given-name" autocapitalize="characters" spellcheck="false" placeholder="DAVID" dir="ltr" aria-describedby="eFirst">
+              <p class="fe" id="eFirst" hidden></p></div>
+            <div class="fld" data-k="name"><label for="fLast">שם משפחה באנגלית</label>
+              <input id="fLast" class="up" autocomplete="family-name" autocapitalize="characters" spellcheck="false" placeholder="COHEN" dir="ltr" aria-describedby="hName eLast">
+              <p class="fe" id="eLast" hidden></p></div>
+            <p class="hint wide" id="hName" data-k="name">כמו בדרכון. אם המכשיר מילא את השם בעברית, נתרגם לאנגלית. בדקו שהאיות נכון.</p>
+            <input id="fName" type="hidden">
+            <div class="fld" data-k="phone"><label for="fPhone">טלפון נייד</label>
+              <input id="fPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(212) 555 0123" dir="ltr" aria-describedby="ePhone">
+              <p class="fe" id="ePhone" hidden></p></div>
+            <div class="fld" data-k="phone2"><label for="fPhone2">טלפון נוסף <span class="opt">(לא חובה)</span></label>
+              <input id="fPhone2" type="tel" inputmode="tel" placeholder="(310) 555 0147" dir="ltr" aria-describedby="hPhone2 ePhone2">
+              <p class="hint" id="hPhone2">למשל של בן משפחה</p><p class="fe" id="ePhone2" hidden></p></div>
+            <div class="fld wide" data-k="email"><label for="fEmail">מייל</label>
+              <input id="fEmail" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="name@gmail.com" dir="ltr" aria-describedby="hEmail eEmail">
+              <p class="hint" id="hEmail">לכאן יגיע האישור מחברת התעופה</p><p class="fe" id="eEmail" hidden></p></div>
+          </div>
+        </div>
+
+        <!-- 3 trip -->
+        <div class="step" data-step="trip" hidden>
+          <h3 class="st-title" tabindex="-1">ההזמנה והטיסות</h3>
+          <p class="st-help">כל הפרטים מופיעים באישור ההזמנה.</p>
+          <details class="paste" id="pasteBox">
+            <summary>יש לכם אישור הזמנה במייל? הדביקו אותו כאן ונמלא בשבילכם</summary>
+            <div class="paste-in">
+              <label for="pasteTxt" class="sr">הדביקו כאן את הטקסט של אישור ההזמנה</label>
+              <textarea id="pasteTxt" rows="5" dir="auto" spellcheck="false" aria-describedby="pasteMsg" placeholder="מעתיקים את המייל מהחברה ומדביקים כאן"></textarea>
+              <p class="hint">הטקסט נשאר במכשיר שלכם ולא נשלח לשום מקום.</p>
+              <p id="pasteMsg" class="paste-msg" role="status" aria-live="polite"></p>
+            </div>
+          </details>
+          <div class="codebox" id="codeBox" data-k="flights" hidden>
+            <img id="codeLogo" alt="">
+            <div><p class="cb-title" id="codeTitle"></p><p class="cb-text" id="codeText"></p>
+              <div class="cb-ticket" aria-hidden="true"><span>Flight</span><b id="codeEx"></b><span>JFK</span><i>✈</i><span id="codeTo">ZRH</span></div></div>
+          </div>
+          <div class="fields">
+            <div class="fld wide" data-k="dest"><label for="fDest">לאן טסים?</label>
+              <p class="hint" id="hDest">המדינה של היעד. לדוגמה יוון</p>
+              <input id="fDest" list="countries" autocomplete="off" placeholder="Orlando" aria-describedby="hDest eDest">
+              <datalist id="countries"><option value="יוון"><option value="קפריסין"><option value="איטליה"><option value="צרפת"><option value="ספרד"><option value="פורטוגל"><option value="גרמניה"><option value="אוסטריה"><option value="שווייץ"><option value="הולנד"><option value="בלגיה"><option value="אנגליה"><option value="אירלנד"><option value="הונגריה"><option value="צ'כיה"><option value="פולין"><option value="רומניה"><option value="בולגריה"><option value="קרואטיה"><option value="מונטנגרו"><option value="סלובניה"><option value="אלבניה"><option value="סרביה"><option value="מלטה"><option value="טורקיה"><option value="גאורגיה"><option value="אזרבייג'ן"><option value="איחוד האמירויות"><option value="תאילנד"><option value="הודו"><option value="יפן"><option value="ארצות הברית"><option value="קנדה"><option value="מקסיקו"><option value="ברזיל"><option value="ארגנטינה"><option value="אוסטרליה"><option value="מרוקו"><option value="מצרים"><option value="ירדן"><option value="שוודיה"><option value="נורווגיה"><option value="דנמרק"><option value="פינלנד"><option value="אוקראינה"><option value="רוסיה"><option value="אוזבקיסטן"><option value="קזחסטן"><option value="סיישל"></datalist>
+              <p class="fe" id="eDest" hidden></p></div>
+            <div class="fld wide" data-k="booking"><label for="fBooking">מספר הזמנה</label>
+              <p class="hint" id="hBooking">בדרך כלל 6 תווים. לדוגמה ABC123</p>
+              <input id="fBooking" class="up" autocapitalize="characters" spellcheck="false" placeholder="ABC123" dir="ltr" aria-describedby="hBooking eBooking">
+              <p class="fe" id="eBooking" hidden></p></div>
+            <p class="grp" data-k="dates">טיסת הלוך</p>
+            <div class="fld" data-k="flights"><label for="fOutNo">מספר טיסה</label>
+              <input id="fOutNo" class="up" autocapitalize="characters" spellcheck="false" placeholder="LY315" dir="ltr" aria-describedby="eOutNo">
+              <p class="fe" id="eOutNo" hidden></p><p class="fw" id="wOutNo" hidden></p></div>
+            <div class="fld" data-k="dates"><label for="fOutDate">תאריך</label>
+              <input id="fOutDate" type="date" aria-describedby="wOutDate eOutDate"><p class="dw" id="wOutDate" aria-live="polite"></p><p class="fe" id="eOutDate" hidden></p></div>
+            <p class="grp" data-k="dates">טיסת חזור <span class="opt">(אם יש)</span></p>
+            <div class="fld" data-k="flights"><label for="fRetNo">מספר טיסה</label>
+              <input id="fRetNo" class="up" autocapitalize="characters" spellcheck="false" placeholder="LY316" dir="ltr" aria-describedby="eRetNo">
+              <p class="fe" id="eRetNo" hidden></p><p class="fw" id="wRetNo" hidden></p></div>
+            <div class="fld" data-k="dates"><label for="fRetDate">תאריך</label>
+              <input id="fRetDate" type="date" aria-describedby="wRetDate eRetDate"><p class="dw" id="wRetDate" aria-live="polite"></p><p class="fe" id="eRetDate" hidden></p></div>
+            <div class="fld wide" data-k="route"><label for="fRoute">מסלול הטיסה <span class="opt">(לא חובה)</span></label>
+              <p class="hint" id="hRoute">קודי שדות התעופה. לדוגמה TLV DXB TLV</p>
+              <input id="fRoute" class="up" autocapitalize="characters" spellcheck="false" placeholder="JFK LHR JFK" dir="ltr" aria-describedby="hRoute eRoute">
+              <p class="fe" id="eRoute" hidden></p></div>
+          </div>
+        </div>
+
+        <!-- 4 insurance (Blue Bird) -->
+        <div class="step" data-step="insurance" hidden>
+          <h3 class="st-title" tabindex="-1">ביטוח נסיעות</h3>
+          <p class="st-help">בלו בירד דורשת ביטוח נסיעות שמכסה גם את הקלנועית. הפרטים מופיעים בפוליסה. כותבים באנגלית.</p>
+          <div class="fields">
+            <div class="fld" data-k="insurance"><label for="fInsCo">חברת הביטוח</label>
+              <input id="fInsCo" placeholder="Harel" dir="ltr" aria-describedby="eInsCo"><p class="fe" id="eInsCo" hidden></p></div>
+            <div class="fld" data-k="insurance"><label for="fInsPol">מספר פוליסה</label>
+              <input id="fInsPol" placeholder="12345678" dir="ltr" aria-describedby="eInsPol"><p class="fe" id="eInsPol" hidden></p></div>
+            <div class="fld wide" data-k="insurance"><label for="fInsEx">השתתפות עצמית <span class="opt">(Excess, לא חובה)</span></label>
+              <input id="fInsEx" placeholder="100 USD" dir="ltr" aria-describedby="eInsEx"><p class="fe" id="eInsEx" hidden></p></div>
+          </div>
+        </div>
+
+        <!-- 5 signature -->
+        <div class="step" data-step="sign" hidden>
+          <h3 class="st-title" tabindex="-1">חתימה</h3>
+          <p class="st-help">חותמים באצבע על המסך או בעכבר.</p>
+          <div class="fields">
+            <div class="fld wide" data-k="sig"><span class="lbl" id="sigLbl">חתימת הנוסע</span>
+              <div class="pad"><canvas id="sigPad" role="img" aria-labelledby="sigLbl"></canvas><span class="line"></span>
+                <span class="phold" id="sigHint">חתמו כאן</span><button type="button" class="clear" id="sigClear">ניקוי</button></div>
+              <p class="fe" id="eSig" hidden></p></div>
+          </div>
+          <p class="plain" id="sigAlt"><button type="button" class="link" id="sigPrev" hidden>שימוש בחתימה הקודמת</button> <button type="button" class="link" id="sigHand">אחתום ביד אחרי ההדפסה</button></p>
+          <p class="st-help" id="handNote" hidden>מצוין. הקובץ ייווצר בלי חתימה. מדפיסים וחותמים ביד במקום המסומן.</p>
+        </div>
+
+        <!-- 6 review -->
+        <div class="step" data-step="review" hidden>
+          <h3 class="st-title" tabindex="-1">בודקים שהכול נכון</h3>
+          <p class="st-help">כך הפרטים ייכתבו בטופס. משהו לא נכון? לוחצים על "תיקון".</p>
+          <dl class="review" id="review"></dl>
+          <label class="consent" id="consentBox">
+            <input type="checkbox" id="consent" aria-describedby="consentTxt">
+            <span id="consentTxt"><b>קראתי ואני מאשר/ת</b>זהו כלי עזר בלבד, וייתכנו בו טעויות. האחריות לבדוק את הקובץ, להשלים מסמכים חסרים ולשלוח אותו לחברת התעופה היא שלי בלבד. MovingLife אינה אחראית לטעות, לחוסר או להחלטה של חברת התעופה, ולא תהיה לי כל טענה כלפיה. אני מסכים/ה ש MovingLife תשמור את השם, פרטי הקשר, חברת התעופה, היעד ותאריכי הנסיעה, כדי לשפר את השירות ואולי לפנות אליי בעתיד בסקר על הנגישות ביעד.</span>
+          </label>
+        </div>
+
+        <p class="alert" id="alert" role="alert" hidden></p>
+        <div class="nav" id="nav">
+          <button type="submit" class="btn" id="next">המשך</button>
+          <button type="button" class="btn ghost back" id="back">חזרה</button>
+        </div>
+        <p class="plain" id="plainRow" hidden>מעדיפים למלא ביד? <button type="button" class="link" id="plainBtn">להורדת קובץ ריק</button></p>
+        <p class="plain fam" id="famRow"><span>צריכים עזרה?</span> <a class="link" id="famLink" href="https://wa.me/" target="_blank" rel="noopener">שלחו את הקישור לבן משפחה בוואטסאפ</a> <span class="orcall">or call <a class="link" href="tel:+15593541089"><span class="ltr">+1 559 354 1089</span></a></span></p>
+      </form>
+
+      <!-- 7 done -->
+      <div class="step" data-step="done" id="done" hidden>
+        <div class="done-top">
+          <div class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3 class="st-title" tabindex="-1" id="doneTitle">הקובץ שלכם מוכן</h3>
+          <p class="st-help" id="doneSub">הקובץ נשמר בתיקיית ההורדות.</p>
+          <a class="btn" id="again" href="#">להורדה שוב</a>
+        </div>
+        <ol class="todo">
+          <li><div><b>בודקים את הקובץ</b>שהשם, ההזמנה והטיסות נכונים.</div></li>
+          <li><div><b>שולחים לחברת התעופה</b>
+            <div class="mail" id="mailBox" hidden>
+              <button type="button" class="btn" id="mailBtn">שליחה במייל</button>
+              <p class="mail-help" id="mailHelp"></p>
+              <p class="mail-to">כתובת המייל: <b class="ltr" id="mailTo"></b> <button type="button" class="link" id="mailCopy">העתקה</button></p>
+            </div>
+            <p class="ver" id="verBox" hidden></p>
+            <ul id="doneSend"></ul><div class="when" id="doneWhen"></div><div class="note" id="doneNote" hidden></div>
+            <details class="copybox" id="copyBox" hidden><summary>Filling in an online form? Show your details to copy</summary><p class="st-help">Tap Copy next to each detail and paste it into the airline form.</p><ul id="copyList"></ul></details>
+            <p class="mail-to" id="formBox" hidden><a class="btn" id="formLink" target="_blank" rel="noopener" hidden></a> <button type="button" class="link" id="msgCopy" hidden></button></p></div></li>
+          <li><div><b>מדפיסים ולוקחים לשדה</b><span>בדלפק מקפלים את הקלנועית, מכבים אותה ושולפים את הסוללה לתיק היד.</span>
+            <ul><li>הקובץ מודפס, ושמור גם בטלפון</li><li>דרכון וכרטיס טיסה</li><li>הסוללה בתיק היד</li><li>הגעה מוקדמת לדלפק</li></ul></div></li>
+        </ol>
+        <p class="plain" id="shareFam" hidden><button type="button" class="link" id="shareFamBtn">שלחו את הקובץ לבן משפחה</button></p>
+        <p class="disc"><b>חשוב:</b> זהו כלי עזר בלבד. האחריות לבדוק את הקובץ ולשלוח אותו לחברת התעופה היא של המשתמש.</p>
+        <div class="nav"><button type="button" class="btn ghost" id="restart">הכנת קובץ לטיסה אחרת</button></div>
+      </div>
+    </section>
+
+    <div class="cert">
+      <h2 class="sec">אישורי הטיסה של הקלנועית והסוללה</h2>
+      <p>הסוללה עומדת בדרישות IATA ועברה בדיקת UN 38.3. החוברת כבר נמצאת בכל קובץ.</p>
+      <a class="link" href="docs/flight-certificates.pdf" download="ATTO flight approvals - manufacturer and battery.pdf">להורדת החוברת</a>
+    </div>
+  </section>
+
+  <div class="maker" id="maker" hidden role="status" aria-live="polite">
+    <div class="mk-logo" aria-hidden="true"><img class="mk-base" src="img/movinglife-lg.webp" alt=""><img class="mk-fill" src="img/movinglife-lg.webp" alt=""></div>
+    <p class="mk-title">יוצר מסמך</p>
+    <p class="mk-step" id="mkStep">כותבים את הפרטים שלכם בטופס</p>
+    <div class="mk-bar"><span></span></div>
+  </div>
+
+  <section class="wrap faq" aria-label="Frequently asked questions">
+    <h2 class="sec center">Frequently asked questions</h2>
+    <div class="list">
+      <details><summary>What is in the file?</summary><p>Where and when to notify your airline, a page for flight day, a notification letter with your details, a manufacturer letter and the battery approvals.</p></details>
+      <details><summary>What details do you keep?</summary><p>None. Your details stay in your browser and are written into your file on your device. MovingLife does not receive or store them.</p></details>
+      <details><summary>Is the scooter approved for flights?</summary><p>The battery is a dry lithium-ion battery, 249.6 Wh, it meets IATA requirements and passed the UN 38.3 test. The final decision is made by the airline.</p></details>
+      <details><summary>My airline is not on the list</summary><p>Choose "Other airline" and you will get a general notification letter with all the scooter details.</p></details>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer"><div class="wrap">
+    <span class="brand"><img class="light" src="img/movinglife.webp" alt="MovingLife" width="148" height="38"><img class="dark" src="img/movinglife-dark.webp" alt="" width="148" height="38"></span>
+    <div class="contact">
+      <a class="cbtn" href="tel:+15593541089"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z" fill="currentColor"/></svg><span class="ltr">+1 559 354 1089</span></a>
+      <a class="cbtn" href="https://us.movinglife.com/"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.2V17h16V7.2l-8 5.3z M5.2 7l6.8 4.5L18.8 7z" fill="currentColor" fill-rule="evenodd"/></svg><span>us.movinglife.com</span></a>
+    </div>
+    <nav class="flinks" aria-label="קישורים"><a href="accessibility.html">Accessibility statement</a><a href="https://us.movinglife.com/">us.movinglife.com</a></nav>
+    <p>* Helper tool only. The files are created automatically from the details you enter and may contain mistakes or omissions. You are responsible for checking the details, completing any missing document and sending it to the airline. MovingLife is not responsible in any way for an error, omission, refusal, delay or requirement of an airline or an airport, and no claim may be made against it. The final decision belongs to the airline only.</p>
+    <p><b>Privacy:</b> the details you enter stay in your browser and are written into your file on your device. MovingLife does not receive or store them.</p>
+  </div></footer>
+
+  <nav class="callbar" aria-label="יצירת קשר מהירה">
+    <a class="c1" href="tel:+15593541089">Call us</a>
+    <a class="c2" href="#forms">מסמכי טיסה</a>
+  </nav>
+
+  <div class="a11y" id="a11y" hidden>
+    <div class="a11y-box" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+      <div class="a11y-head"><h2 id="a11yTitle">תפריט נגישות</h2><button type="button" class="a11y-x" id="a11yClose" aria-label="סגירת תפריט הנגישות">×</button></div>
+      <span class="lbl">גודל טקסט</span>
+      <div class="a11y-size" role="group" aria-label="גודל טקסט">
+        <button type="button" data-fs="0" aria-pressed="true">רגיל</button>
+        <button type="button" data-fs="1" aria-pressed="false" style="font-size:1.1rem">גדול</button>
+        <button type="button" data-fs="2" aria-pressed="false" style="font-size:1.22rem">גדול מאוד</button>
+      </div>
+      <button type="button" class="a11y-opt" data-a="hc" aria-pressed="false">ניגודיות גבוהה</button>
+      <button type="button" class="a11y-opt" data-a="links" aria-pressed="false">הדגשת קישורים</button>
+      <button type="button" class="a11y-opt" data-a="font" aria-pressed="false">גופן קריא</button>
+      <button type="button" class="a11y-opt" data-a="still" aria-pressed="false">עצירת אנימציות</button>
+      <button type="button" class="a11y-opt" data-a="cursor" aria-pressed="false">סמן עכבר גדול</button>
+      <div class="a11y-foot"><button type="button" class="link" id="a11yReset">איפוס הגדרות</button><a href="accessibility.html">הצהרת נגישות</a></div>
+    </div>
+  </div>
+</div>
+<script src="fillmap.js"></script>
+<script src="fill.js"></script>
+<script src="i18n.js"></script>
+<script>
+document.documentElement.setAttribute("dir","ltr"); document.documentElement.setAttribute("lang","en");
+const AIRLINES = [
+  ['american', "American Airlines", "American Airlines", 'img/american.webp'],
+  ['delta', "Delta", "Delta", 'img/delta.webp'],
+  ['united', "United", "United", 'img/united.webp'],
+  ['southwest', "Southwest", "Southwest", 'img/southwest.webp'],
+  ['alaska', "Alaska Airlines", "Alaska Airlines", 'img/alaska.webp'],
+  ['jetblue', "JetBlue", "JetBlue", 'img/jetblue.webp'],
+  ['frontier', "Frontier", "Frontier", 'img/frontier.webp'],
+  ['allegiant', "Allegiant", "Allegiant", 'img/allegiant.webp'],
+  ['suncountry', "Sun Country", "Sun Country", 'img/suncountry.webp'],
+  ['breeze', "Breeze", "Breeze", 'img/breeze.webp'],
+  ['avelo', "Avelo", "Avelo", 'img/avelo.webp'],
+  ['aircanada', "Air Canada", "Air Canada", 'img/aircanada.webp'],
+  ['britishairways', "British Airways", "British Airways", 'img/britishairways.webp'],
+  ['lufthansa', "Lufthansa", "Lufthansa", 'img/lufthansa.webp'],
+  ['airfrance', "Air France", "Air France", 'img/airfrance.webp'],
+  ['klm', "KLM", "KLM", 'img/klm.webp'],
+  ['virgin', "Virgin Atlantic", "Virgin Atlantic", 'img/virgin.webp'],
+  ['emirates', "Emirates", "Emirates", 'img/emirates.webp'],
+  ['aerlingus', "Aer Lingus", "Aer Lingus", 'img/aerlingus.webp'],
+  ['qatar', "Qatar Airways", "Qatar Airways", 'img/qatar.webp'],
+  ['other', 'חברה אחרת', 'חברה אחרת', null, '#48484a'],
+];
+const SEND = {"american": {"send": ["Tell American Airlines Special Assistance about your scooter. On aa.com, open Contact American, then Special Assistance", "Ask them to confirm that your battery type is approved for travel. Share the battery details from this file: lithium-ion, removable, 249.6 Wh", "American says collapsible devices can be stored overhead or under your seat. Ask what applies to your scooter"], "deadline": "As early as possible. American gives no fixed notice period", "note": "For flights on or after March 31, 2027, American requires the battery to have a manufacturer label that states its type. Check your battery label before you fly.", "ver": 1, "soft": true}, "delta": {"send": ["Tell Delta at least 48 hours before you fly: in My Trips under Accessible Services, in the Fly Delta app, or by phone at <b class=\"ltr\">+1 404 209 3434</b> (dial 711 for relay service)", "Print Delta's Mobility Device Handling Form from delta.com (Wheelchairs, Scooters & Assistive Devices), fill it in with the details from this file, and attach it to your scooter", "At the gate, take removable parts with you onto the plane, and keep this file with you"], "deadline": "At least 48 hours before your flight", "note": "Delta says lithium-ion devices follow its standard wheelchair steps.", "ver": 1, "soft": false}, "united": {"send": ["Contact United Accessibility Services at <b class=\"ltr\">united.com</b>, under Special Needs, or through the reservations phone line", "Tell them you travel with a folding mobility scooter that has a removable lithium-ion battery", "Ask which documents they need and send them this file"], "deadline": "About 48 hours before your flight. Check with United", "note": "", "ver": 0, "soft": false}, "southwest": {"send": ["In <b class=\"ltr\">southwest.com</b>, open Manage Reservation and add your scooter", "Southwest's Wheelchair / Mobility Aid Information Form is already filled in for you (page 3). Give it to the agent at check-in, or attach it to your scooter", "A Customer Service Agent checks the scooter and the battery at the ticket counter or the gate", "At check-in, choose if you want the scooter returned at the gate or at baggage claim"], "deadline": "Before you fly. Southwest gives no fixed deadline. Tell Southwest when you book, or in Manage Reservation", "note": "Southwest requires the lithium-ion battery to come out without tools and fly with you in the cabin. The battery label must be readable and in English.", "ver": 1, "soft": true}, "alaska": {"send": ["Call Alaska Airlines Special Assistance at <b class=\"ltr\">1 800 503 0101</b> (dial 711 for relay service)", "Fill in Alaska's wheelchair information form before you arrive, and hand it to an employee", "Share the battery details from this file"], "deadline": "Book early. Be checked in 2 hours before departure and ready to board 45 minutes early", "note": "Alaska needs one clear way to stop the scooter from turning on by accident, such as taking out the key or switching it off. The battery label must be readable and in English.", "ver": 1, "soft": true}, "jetblue": {"send": ["Contact JetBlue Accessibility or Special Assistance before you fly, at <b class=\"ltr\">jetblue.com</b> or by phone", "JetBlue accepts mobility aid batteries with restrictions. Ask JetBlue to confirm that your scooter and battery are accepted", "Share the battery details from this file: lithium-ion, removable, 249.6 Wh, UN 38.3 tested"], "deadline": "As early as possible. JetBlue gives no fixed notice period", "note": "JetBlue does not accept a damaged or recalled battery. Spare lithium batteries stay with you in the cabin.", "ver": 1, "soft": true}, "frontier": {"send": ["Contact Frontier Customer Care before you travel: on <b class=\"ltr\">flyfrontier.com</b>, in the app, or with the Accessibility Request Form", "Have ready: battery type, Wh rating, that it is removable, the device weight and the manufacturer instructions (all in this file)", "If the battery cannot be protected inside the scooter, Frontier asks you to take it out and carry it in your carry-on", "At the airport, tell a Frontier representative about your scooter"], "deadline": "Before you fly. Frontier gives no fixed notice period, and suggests arriving early", "note": "Switch the scooter off and protect the battery terminals. The battery must have no visible damage.", "ver": 1, "soft": true}, "allegiant": {"send": ["Contact Allegiant Customer Care at <b class=\"ltr\">+1 702 505 8888</b>, or use the Customer Request For Assistance Form and choose Disability & Wheelchair Assistance", "Allegiant says a battery powered scooter cannot be stowed in the cabin. It travels in the cargo hold, and the battery comes out and rides with you", "Share the battery details from this file. The battery label must be clear and in English"], "deadline": "No fixed deadline. Contact Allegiant before you book, and be at the gate 1 hour before departure", "note": "Allegiant does not allow a battery powered scooter in the cabin. Contact them before you book to check how your folded scooter will be handled.", "ver": 1, "soft": true}, "suncountry": {"send": ["Contact Sun Country before you fly, at <b class=\"ltr\">suncountry.com</b> or by phone, and ask them to note your scooter", "Bring written instructions for folding the scooter and for taking out the battery. The flight day page in this file helps", "Be at the departure gate at least 1 hour before departure"], "deadline": "No fixed notice period. Check in at least 1 hour before departure", "note": "", "ver": 1, "soft": true}, "breeze": {"send": ["Tell Breeze about your scooter before you fly, through the Guest Empowerment Team on <b class=\"ltr\">flybreeze.com</b> (email or text)", "Breeze carries folding powered scooters at no extra charge", "Check in at the ticket counter at least 1 hour before the usual check-in time for other guests"], "deadline": "No notice is required. Check in at least 1 hour before the usual check-in time", "note": "", "ver": 1, "soft": true}, "avelo": {"send": ["Add your scooter in the Special assistance area of your booking, or call Avelo at <b class=\"ltr\">+1 346 616 9500</b>", "For a folding device, Avelo requires the lithium-ion battery to be removed and carried in the cabin", "Avelo's Powered Mobility Aid Information Form is already filled in for you (page 3 of your file). Print it and bring it, or attach a copy to your scooter"], "deadline": "No notice is required. Add it in Special assistance on your booking, or call before you fly", "note": "Avelo does not accept a cracked or damaged battery. Battery powered wheelchair users should arrive 1 hour before the usual check-in time.", "ver": 1, "soft": true}, "aircanada": {"send": ["Choose your needs in the Special Assistance section when you book on <b class=\"ltr\">aircanada.com</b>, and tell the Air Canada Medical Assistance Desk about your scooter at least 48 hours before travel", "Air Canada has a Powered Mobility Aid Information Form on aircanada.com. Print two copies: attach one to your scooter and keep the other", "Have the battery details from this file ready: lithium-ion, removable, 249.6 Wh"], "deadline": "At least 48 hours before your flight", "note": "Check in at least 30 minutes before the usual recommended check-in time for your flight.", "ver": 1, "soft": false}, "britishairways": {"send": ["Ask British Airways for assistance at least 48 hours before departure, through the contact us page on britishairways.com", "Give the device details: type, size, weight, number of batteries, battery type, and how to stop it from turning on by accident", "British Airways carries a removed lithium-ion battery in the cabin, in a protective pouch with the terminals covered"], "deadline": "At least 48 hours before your flight", "note": "Details from this file may be needed again at the airport.", "ver": 1, "soft": false}, "lufthansa": {"send": ["Fill in Lufthansa's online electric mobility device form after you book. You need your 6 digit booking code", "Lufthansa must approve the battery. Send the battery safety certificate from this file (UN 38.3) with the form", "A removed lithium-ion battery goes in your carry-on, in a protective bag, with the terminals covered"], "deadline": "As early as you can after booking. Lufthansa must approve the battery", "note": "Keep the completed Lufthansa form with you for the whole trip, printed or on your phone.", "ver": 1, "soft": true}, "airfrance": {"send": ["Tell Air France about your scooter when you book, and give the wheelchair type at least 48 hours before departure", "To keep the folded scooter in the cabin, contact the Saphir assistance service or the check-in counter", "Air France has printable baggage tags for mobility scooters on its site. Print one in color and attach it at the airport"], "deadline": "At least 48 hours before departure", "note": "Arrive 3 hours before a long haul flight, or 2 hours before a short or medium haul flight.", "ver": 1, "soft": false}, "klm": {"send": ["Ask KLM for assistance at least 48 hours before departure, on the assistance request page at <b class=\"ltr\">klm.com</b>, or say so when you book", "Electric mobility devices travel in the hold. KLM may ask you to disconnect the battery and protect the terminals", "Take removable parts, such as the cushion, with you in your hand luggage"], "deadline": "At least 48 hours before departure", "note": "Arrive at least 3 hours before a European flight, or 4 hours before an intercontinental flight.", "ver": 1, "soft": false}, "virgin": {"send": ["Contact Virgin Atlantic Accessibility or Special Assistance, at <b class=\"ltr\">virginatlantic.com</b> or through the reservations phone line", "Tell them you travel with a folding mobility scooter that has a removable lithium-ion battery", "Ask them to note it on your reservation (code WCLB), ask which documents they need, and send them this file"], "deadline": "At least 48 hours before your flight. Check with Virgin Atlantic", "note": "", "ver": 0, "soft": false}, "emirates": {"send": ["Contact Emirates Accessibility or Special Assistance, at <b class=\"ltr\">emirates.com</b> or through the reservations phone line", "Tell them you travel with a folding mobility scooter that has a removable lithium-ion battery", "Ask them to note it on your reservation (code WCLB), ask which documents they need, and send them this file"], "deadline": "At least 48 hours before your flight. Check with Emirates", "note": "", "ver": 0, "soft": false}, "aerlingus": {"send": ["Declare your scooter with the special assistance form on <b class=\"ltr\">aerlingus.com</b>, or by phone, at least 48 hours before departure", "Have ready: device type, weight, size, that the battery is removable, and how to stop it from turning on (all in this file)", "A removed battery must travel in rigid, leak proof packaging. Bring a protective case"], "deadline": "At least 48 hours before departure", "note": "You will be asked to confirm the scooter and battery details at the airport.", "ver": 1, "soft": false}, "qatar": {"send": ["Tell Qatar Airways at least 48 hours before travel that you bring your own mobility aid, through Manage Booking or a Qatar Airways office", "Send the battery details at least 48 hours before travel. Qatar treats battery powered aids as dangerous goods that need approval before you fly", "Qatar carries battery powered mobility aids in the hold. Ask how a folding scooter is handled"], "deadline": "At least 48 hours before your flight", "note": "Qatar Airways refuses a damaged or leaking battery.", "ver": 1, "soft": false}, "other": {"send": ["Contact the airline's Accessibility or Special Assistance team, or the travel agent who booked your ticket", "Tell them you travel with a folding mobility scooter that has a removable lithium-ion battery", "Ask them to note it on your reservation (code WCLB), ask which documents they need, and send them this file"], "deadline": "At least 48 hours before your flight", "note": "", "ver": 0, "soft": false}};
+const SIZES = {};
+
+const HOURS = {};
+const $ = id => document.getElementById(id);
+const fileName = he => i18n.get() === 'he' ? `מסמכי טיסה ATTO ${he.replace(' / ', ' ')}.pdf` : `ATTO flight documents ${(he === 'חברה אחרת' ? 'other airline' : (cardsById(he) || he)).replace(' / ', ' ')}.pdf`;
+const cardsById = he => { const c = Object.values(cards).find(x => x.he === he); return c && c.en; };
+const nm = c => t(c.he);
+const docsUrl = id => i18n.get() === 'he' ? `docs/${id}.pdf` : `docs/${id}.${i18n.get()}.pdf`;
+const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('a11y-still');
+const pad2 = n => String(n).padStart(2, '0');
+const fmt = iso => { if (!iso) return ''; const [y, m, d] = iso.split('-'); return `${m}/${d}/${y}`; };
+const todayISO = () => { const t = new Date(); return `${t.getFullYear()}-${pad2(t.getMonth() + 1)}-${pad2(t.getDate())}`; };
+
+// ---------- airline cards ----------
+const board = $('board'), cards = {};
+AIRLINES.forEach(([id, he, en, logo, color]) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'card'; b.dataset.id = id; b.dataset.q = [he, en, id, ...['en', 'ru', 'ar'].map(l => (I18N[he] || {})[l] || '')].join(' ').toLowerCase();
+  b.setAttribute('aria-pressed', 'false');
+  b.setAttribute('aria-label', he === en ? t(he) : `${t(he)}, ${en}`);
+  b.innerHTML = `<div class="logo">${logo ? `<img src="${logo}" alt="" loading="lazy">` : `<span class="word">${en}</span>`}</div><div class="cname">${he}</div>`;
+  b.addEventListener('click', () => pickAirline(id, true));
+  cards[id] = { el: b, he, en, logo };
+  board.appendChild(b);
+});
+const find = $('find'), none = $('none');
+find.addEventListener('input', () => {
+  const q = find.value.trim().toLowerCase(); let shown = 0;
+  Object.entries(cards).forEach(([id, c]) => {
+    const hit = !q || c.el.dataset.q.includes(q);
+    c.el.hidden = !(hit || id === 'other'); if (hit && id !== 'other') shown++;
+  });
+  none.hidden = !q || shown > 0;
+});
+find.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(); });
+
+// ---------- which steps and fields each airline needs ----------
+function needs(id) {
+  const need = new Set(['name', 'dest', 'dates']);   // always asked: who flies, where and when
+  (FILLMAP[id] || []).forEach(o => {
+    const k = o.t === 'sig' ? 'sig' : o.key;
+    if (k === 'phone_email') { need.add('phone'); need.add('email'); }
+    else if (/flight|^out_|^ret_/.test(k)) need.add('flights');
+    else if (/^ins_/.test(k)) need.add('insurance');
+    else if (k !== 'today') need.add(k);
+  });
+  return need;
+}
+const STEP_KEYS = { personal: ['name', 'phone', 'phone2', 'email'], trip: ['dest', 'booking', 'flights', 'dates', 'route'], insurance: ['insurance'], sign: ['sig'] };
+const STEP_LABEL = { guide: 'Overview', airline: 'חברה', personal: 'פרטים', trip: 'טיסות', insurance: 'ביטוח', sign: 'חתימה', review: 'אישור' };
+const stepLabel = st => t(STEP_LABEL[st]);
+const wform = $('wform'), steps = {};
+document.querySelectorAll('.step').forEach(s => { steps[s.dataset.step] = s; });
+let heroId = null, fid = null, need = new Set(), flow = ['airline'], at = 0, fileUrl = null;
+
+function buildFlow() {
+  flow = ['airline'];
+  if (fid) {
+    flow.push('guide');
+    need = needs(fid);
+    Object.entries(STEP_KEYS).forEach(([st, ks]) => { if (ks.some(k => need.has(k))) flow.push(st); });
+    flow.push('review');
+  }
+  // show only the fields this airline's form has
+  document.querySelectorAll('[data-k]').forEach(el => { el.hidden = !need.has(el.dataset.k); });
+  const prog = $('prog'); prog.innerHTML = '';
+  (fid ? flow : ['airline', 'personal', 'trip', 'review']).forEach(st => {
+    const li = document.createElement('li'); li.innerHTML = `<span>${stepLabel(st)}</span>`; prog.appendChild(li);
+  });
+}
+
+let fromPop = false;
+
+function show(i, focus = true) {
+  if (!fromPop && i !== at && focus) { try { history.pushState({ step: i }, ''); } catch (e) {} }
+  fromPop = false;
+  at = i; const st = flow[at];
+  saveDraft();
+  Object.entries(steps).forEach(([k, el]) => { el.hidden = k !== st; });
+  wform.hidden = st === 'done';
+  $('alert').hidden = true;
+  const total = fid ? flow.length : 4;
+  [...$('prog').children].forEach((li, n) => { li.className = n < at ? 'past' : n === at ? 'on' : ''; });
+  $('count').textContent = t('שלב {0} מתוך {1}: {2}', at + 1, total, stepLabel(st));
+  $('nav').hidden = st === 'airline' && !fid;
+  $('back').hidden = at === 0;
+  $('plainRow').hidden = !fid || st === 'airline' || st === 'guide' || st === 'review';
+  if (st === 'sign') sigUi();
+  if (st === 'guide') renderGuide();
+  { const link = location.origin + location.pathname + (fid ? `?a=${fid}` : '');
+    const msg = t('אפשר לעזור לי להכין את מסמכי הטיסה לקלנועית? הכול באתר הזה: {0}', link);
+    $('famLink').href = `https://wa.me/?text=${encodeURIComponent(msg)}`; }
+  $('next').textContent = st === 'review' ? t('יצירת הקובץ') : t('המשך');
+  const c = fid && cards[fid];
+  $('chip').hidden = !c || st === 'airline';
+  if (c) {
+    $('chipName').textContent = nm(c);
+    if (c.logo) { $('chipLogo').src = c.logo; $('chipLogo').hidden = false; } else $('chipLogo').hidden = true;
+  }
+  if (st === 'sign') sizePad();
+  if (st === 'trip') setupCodes();
+  if (st === 'review') renderReview();
+  if (focus) {
+    $('wiz').scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' });
+    const t = steps[st].querySelector('.st-title'); setTimeout(() => t && t.focus({ preventScroll: true }), reduce() ? 0 : 350);
+  }
+}
+
+function renderGuide() {
+  const c = cards[fid], s = SEND[fid], nd = need;
+  const li = (ul, html) => { const e = document.createElement('li'); e.innerHTML = html; $(ul).appendChild(e); };
+  ['gNeed', 'gMake', 'gDo'].forEach(i => { $(i).innerHTML = ''; });
+  $('gTitle').textContent = 'How it works with ' + nm(c);
+  $('gLead').textContent = fid === 'other' ? 'It takes about 5 minutes. You type your details once, and we place them in your documents. Then you send them to your airline.' : 'It takes about 5 minutes. You type your details once, and we place them in the right spots in your file. Then you send it to ' + nm(c) + '.';
+  li('gNeed', 'Your booking confirmation, with the booking code and flight numbers');
+  li('gNeed', 'Your phone number and email');
+  if (nd.has('sig')) li('gNeed', 'A finger or a mouse to sign on the screen. You can also print the file and sign by hand');
+  if (nd.has('insurance')) li('gNeed', 'Your travel insurance details');
+  li('gMake', 'A short guide for you, with these steps');
+  li('gMake', 'A flight day page to carry with you');
+  li('gMake', 'A notification letter for ' + (fid === 'other' ? 'your airline' : nm(c)) + ', with your details already written in');
+  li('gMake', 'The manufacturer letter and the battery safety approvals');
+  s.send.forEach(x => li('gDo', x));
+  $('gWhen').textContent = 'When: ' + s.deadline;
+  const n = $('gNote'); n.hidden = !s.note; n.textContent = s.note ? '⚠ ' + s.note : '';
+  const v = $('gVer'); v.className = 'ver' + (s.ver ? ' ok' : ' warn');
+  v.textContent = s.ver ? 'Checked against ' + nm(c) + "'s own pages in October 2026. Rules can change, so confirm with the airline before you fly." : (fid === 'other' ? 'Every airline has its own rules. Contact your airline before you fly' : 'We have not checked ' + nm(c) + "'s rules yet. Contact the airline before you fly and ask if they accept a folding scooter with a removable battery.");
+  const lk = LINKS[fid]; $('gLink').hidden = !lk; if (lk) { $('gLink').href = lk; $('gLink').textContent = 'Read the ' + nm(c) + ' page'; }
+}
+function pickAirline(id, go) {
+  fid = id;
+  Object.values(cards).forEach(c => c.el.setAttribute('aria-pressed', String(c.el === cards[id].el)));
+  buildFlow();
+  loadLib().catch(() => {});
+  prefetch(id);
+  if (go) setTimeout(() => show(1), reduce() ? 0 : 220); else show(at, false);
+}
+$('chipChange').addEventListener('click', () => show(0));
+$('back').addEventListener('click', () => show(Math.max(0, at - 1)));
+
+// ---------- flight codes: the two letters at the start of every flight number ----------
+const CODES = {"american": {"c": ["AA"], "n": 100, "to": "ORD"}, "delta": {"c": ["DL"], "n": 235, "to": "ATL"}, "united": {"c": ["UA"], "n": 1234, "to": "EWR"}, "southwest": {"c": ["WN"], "n": 1234, "to": "DEN"}, "alaska": {"c": ["AS"], "n": 1234, "to": "SEA"}, "jetblue": {"c": ["B6"], "n": 1234, "to": "JFK"}, "frontier": {"c": ["F9"], "n": 1234, "to": "DEN"}, "allegiant": {"c": ["G4"], "n": 1234, "to": "LAS"}, "suncountry": {"c": ["SY"], "n": 1234, "to": "MSP"}, "breeze": {"c": ["MX"], "n": 1234, "to": "CHS"}, "avelo": {"c": ["XP"], "n": 1234, "to": "BDL"}, "aircanada": {"c": ["AC"], "n": 1234, "to": "YYZ"}, "britishairways": {"c": ["BA"], "n": 1234, "to": "LHR"}, "lufthansa": {"c": ["LH"], "n": 1234, "to": "FRA"}, "airfrance": {"c": ["AF"], "n": 1234, "to": "CDG"}, "klm": {"c": ["KL"], "n": 1234, "to": "AMS"}, "virgin": {"c": ["VS"], "n": 1234, "to": "LHR"}, "emirates": {"c": ["EK"], "n": 1234, "to": "DXB"}, "aerlingus": {"c": ["EI"], "n": 1234, "to": "DUB"}, "qatar": {"c": ["QR"], "n": 1234, "to": "DOH"}};
+const codesOf = id => (CODES[id] && CODES[id].c) || [];
+const orList = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' ' + t('או') + ' ' + a[a.length - 1];
+function normFlight(raw) {
+  let s = (raw || '').toUpperCase().replace(/\s/g, '');
+  const cs = codesOf(fid);
+  // we prefill the code; if the customer then typed the full number too (6HLY315, 6H6H861), keep what they typed
+  cs.forEach(c => { const rest = s.slice(c.length);
+    if (s.startsWith(c) && /^[A-Z0-9]{2}\d{1,4}[A-Z]?$/.test(rest) && /[A-Z]/.test(rest.slice(0, 2))) s = rest; });
+  if (cs.length === 1 && /^\d{1,4}[A-Z]?$/.test(s)) s = cs[0] + s;   // typed only the digits
+  return s;
+}
+function setupCodes() {
+  const k = CODES[fid], c = fid && cards[fid];
+  const box = $('codeBox'), title = $('codeTitle'), text = $('codeText');
+  const code = x => `<span class="code">${x}</span>`;
+  if (k) {
+    const ex = `${k.c[0]} ${k.n}`, ex2 = `${k.c[0]} ${k.n + 1}`;
+    title.innerHTML = t('מספרי הטיסה של {0} מתחילים באותיות {1}', nm(c), k.c.map(code).join(' ' + t('או') + ' '));
+    text.textContent = k.c.length === 1
+      ? t('לדוגמה {0}. האותיות {1} כבר כתובות בשדה, ומוסיפים רק את המספר.', ex, k.c[0])
+      : t('לדוגמה {0}. כותבים בדיוק כמו באישור ההזמנה.', ex);
+    $('codeEx').textContent = ex; $('codeTo').textContent = k.to;
+    $('fOutNo').placeholder = ex; $('fRetNo').placeholder = ex2;
+    if (c.logo) { $('codeLogo').src = c.logo; $('codeLogo').hidden = false; } else $('codeLogo').hidden = true;
+  } else {
+    title.innerHTML = t('מספר טיסה מתחיל בשתי אותיות של חברת התעופה');
+    text.textContent = t('למשל LY של אל על, ואחריהן מספר: LY 315. כותבים בדיוק כמו באישור ההזמנה.');
+    $('codeEx').textContent = 'AA 1234'; $('codeTo').textContent = 'ORD'; $('codeLogo').hidden = true;
+    $('fOutNo').placeholder = 'AA 1234'; $('fRetNo').placeholder = 'AA 1235';
+  }
+}
+['fOutNo', 'fRetNo'].forEach(id => {
+  const inp = $(id);
+  inp.addEventListener('focus', () => {
+    const cs = codesOf(fid);
+    if (!inp.value && cs.length === 1) { inp.value = cs[0]; requestAnimationFrame(() => { try { inp.setSelectionRange(inp.value.length, inp.value.length); } catch (e) {} }); }
+  });
+  inp.addEventListener('input', () => {
+    const n = normFlight(inp.value);
+    if (n !== inp.value.toUpperCase().replace(/\s/g, '') && n.length < inp.value.replace(/\s/g, '').length) inp.value = n;
+  });
+  inp.addEventListener('blur', () => {
+    const cs = codesOf(fid);
+    if (cs.length === 1 && inp.value.toUpperCase().trim() === cs[0]) { inp.value = ''; return; }
+    if (inp.value) inp.value = normFlight(inp.value);
+  });
+});
+const acked = {};
+function flightWarn(id) {
+  const w = $(id === 'fOutNo' ? 'wOutNo' : 'wRetNo'), s = normFlight(v(id)), cs = codesOf(fid);
+  const bad = s && cs.length && !cs.some(c => s.startsWith(c)) && acked[id] !== s;
+  w.hidden = !bad;
+  if (bad) w.textContent = t('שימו לב: מספרי הטיסה של {0} מתחילים באותיות {1}, וכתבתם {2}. בדקו באישור ההזמנה. אם המספר נכון, לחצו שוב על "המשך".', nm(cards[fid]), orList(cs), s);
+  return bad ? s : null;
+}
+
+window.addEventListener('popstate', e => {
+  if (!steps.done.hidden) return;                 // after finishing, let the browser leave normally
+  const i = e.state && typeof e.state.step === 'number' ? e.state.step : 0;
+  if (i < flow.length) { fromPop = true; show(i); }
+});
+
+// C. keep answers if the page is reloaded by mistake (this tab only, cleared when it closes; no signature)
+const DRAFT = 'atto-draft', DF = ['fDest', 'fFirst', 'fLast', 'fPhone', 'fPhone2', 'fEmail', 'fBooking', 'fOutNo', 'fOutDate', 'fRetNo', 'fRetDate', 'fRoute', 'fInsCo', 'fInsPol', 'fInsEx'];
+let draftReady = false;
+function saveDraft() {
+  if (!draftReady) return;
+  try { const d = { fid, at }; DF.forEach(id => { d[id] = $(id).value; }); sessionStorage.setItem(DRAFT, JSON.stringify(d)); } catch (e) {}
+}
+function loadDraft() { try { return JSON.parse(sessionStorage.getItem(DRAFT) || 'null'); } catch (e) { return null; } }
+function clearDraft() { try { sessionStorage.removeItem(DRAFT); } catch (e) {} }
+DF.forEach(id => $(id).addEventListener('change', saveDraft));
+
+// D. say the chosen date in words, so it is clear which day was picked
+function sayDate(id) {
+  const val = v(id), out = $(id === 'fOutDate' ? 'wOutDate' : 'wRetDate');
+  if (!val) { out.textContent = ''; return; }
+  const [y, m, d] = val.split('-').map(Number), dt = new Date(y, m - 1, d);
+  out.textContent = `✓ ${dt.toLocaleDateString(i18n.loc(), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}`;
+}
+['fOutDate', 'fRetDate'].forEach(id => { $(id).addEventListener('change', () => sayDate(id)); $(id).addEventListener('input', () => sayDate(id)); });
+
+// ---------- validation ----------
+const ASCII = /^[\x20-\x7E]*$/;
+const v = id => $(id).value.trim();
+// Hebrew to English: common names first, then letter by letter, so autofill in Hebrew still gives a usable draft
+const HEN = { 'דוד': 'DAVID', 'דויד': 'DAVID', 'כהן': 'COHEN', 'לוי': 'LEVI', 'מזרחי': 'MIZRAHI', 'פרץ': 'PEREZ', 'ביטון': 'BITON', 'אברהם': 'ABRAHAM', 'יצחק': 'YITZHAK', 'יעקב': 'YAAKOV', 'משה': 'MOSHE', 'יוסף': 'YOSEF', 'שרה': 'SARAH', 'רחל': 'RACHEL', 'לאה': 'LEAH', 'דנה': 'DANA', 'מיכל': 'MICHAL', 'רונית': 'RONIT', 'אילן': 'ILAN', 'אבי': 'AVI', 'דני': 'DANI', 'דניאל': 'DANIEL', 'יוסי': 'YOSSI', 'חיים': 'HAIM', 'שלמה': 'SHLOMO', 'אורי': 'URI', 'רבקה': 'RIVKA', 'מרים': 'MIRIAM', 'עמוס': 'AMOS', 'אליהו': 'ELIYAHU', 'שמעון': 'SHIMON', 'בנימין': 'BINYAMIN', 'גולן': 'GOLAN', 'אזולאי': 'AZULAY', 'דהן': 'DAHAN', 'חדד': 'HADAD', 'מלכה': 'MALKA', 'אוחיון': 'OHAYON', 'פרידמן': 'FRIEDMAN', 'שפירא': 'SHAPIRA', 'כץ': 'KATZ', 'גבאי': 'GABAY', 'אלון': 'ALON', 'עומר': 'OMER' };
+const HLET = { 'א': 'A', 'ב': 'B', 'ג': 'G', 'ד': 'D', 'ה': 'H', 'ו': 'V', 'ז': 'Z', 'ח': 'CH', 'ט': 'T', 'י': 'Y', 'כ': 'K', 'ך': 'CH', 'ל': 'L', 'מ': 'M', 'ם': 'M', 'נ': 'N', 'ן': 'N', 'ס': 'S', 'ע': 'A', 'פ': 'P', 'ף': 'F', 'צ': 'TZ', 'ץ': 'TZ', 'ק': 'K', 'ר': 'R', 'ש': 'SH', 'ת': 'T', "'": '' , '׳': '' , '"': '' };
+const CYR = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya', 'є': 'ye', 'і': 'i', 'ї': 'yi', 'ґ': 'g' };
+const ARB = { 'ا': 'a', 'أ': 'a', 'إ': 'i', 'آ': 'a', 'ء': '', 'ؤ': 'o', 'ئ': 'i', 'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j', 'ح': 'h', 'خ': 'kh', 'د': 'd', 'ذ': 'dh', 'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh', 'ص': 's', 'ض': 'd', 'ط': 't', 'ظ': 'z', 'ع': 'a', 'غ': 'gh', 'ف': 'f', 'ق': 'q', 'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n', 'ه': 'h', 'و': 'w', 'ي': 'y', 'ى': 'a', 'ة': 'a', 'ـ': '' };
+const NONLATIN = /[\u0590-\u05FF\u0400-\u04FF\u0600-\u06FF]/;
+const heToEn = t => t.trim().split(/\s+/).map(w => HEN[w] || w.replace(/[\u0590-\u05FF]/g, c => HLET[c] != null ? HLET[c] : '').replace(/[\u0400-\u04FF]/gi, c => { const l = c.toLowerCase(), r = CYR[l]; return r == null ? '' : r; }).replace(/[\u0600-\u06FF]/g, c => ARB[c] != null ? ARB[c] : '')).join(' ');
+const syncName = () => { $('fName').value = [v('fLast'), v('fFirst')].filter(Boolean).join(' '); };
+['fFirst', 'fLast'].forEach(id => {
+  $(id).addEventListener('input', syncName);
+  $(id).addEventListener('blur', () => {
+    if (NONLATIN.test($(id).value)) { $(id).value = heToEn($(id).value).toUpperCase(); const e = $('hName'); e.classList.add('flash'); setTimeout(() => e.classList.remove('flash'), 2500); }
+    syncName();
+  });
+});
+function setErr(id, msg) {
+  const fld = $(id).closest('.fld'); const e = fld.querySelector('.fe');
+  fld.classList.toggle('bad', !!msg); e.hidden = !msg; e.textContent = msg || '';
+  $(id).setAttribute('aria-invalid', msg ? 'true' : 'false');
+}
+const visible = id => !$(id).closest('[data-k]').hidden;
+const RULES = {
+  fFirst: () => { const s = v('fFirst');
+    if (!s) return t('כתבו את השם הפרטי באנגלית, כמו בדרכון.');
+    if (!/^[A-Za-z][A-Za-z .'\-]*$/.test(s)) return t('כותבים באותיות באנגלית בלבד, כמו בדרכון.'); },
+  fLast: () => { const s = v('fLast');
+    if (!s) return t('כתבו את שם המשפחה באנגלית, כמו בדרכון.');
+    if (!/^[A-Za-z][A-Za-z .'\-]*$/.test(s)) return t('כותבים באותיות באנגלית בלבד, כמו בדרכון.'); },
+  fPhone: () => { const s = v('fPhone');
+    if (!s) return t('כתבו מספר טלפון נייד.');
+    if (!/^[+\d\s()]+$/.test(s) || s.replace(/\D/g, '').length < 9) return t('מספר הטלפון לא נראה תקין. לדוגמה 050 123 4567'); },
+  fPhone2: () => { const s = v('fPhone2');
+    if (s && (!/^[+\d\s()]+$/.test(s) || s.replace(/\D/g, '').length < 9)) return t('מספר הטלפון לא נראה תקין. אפשר גם להשאיר את השדה ריק.'); },
+  fEmail: () => { const s = v('fEmail');
+    if (!s) return t('כתבו כתובת מייל.');
+    if (!ASCII.test(s) || !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(s)) return t('כתובת המייל לא נראית תקינה. בדקו שיש בה @ ונקודה.'); },
+  fBooking: () => { const s = v('fBooking').replace(/\s/g, '');
+    if (!s) return t('כתבו את מספר ההזמנה. הוא מופיע באישור ההזמנה.');
+    if (!/^[A-Za-z0-9]{5,14}$/.test(s)) return t('מספר ההזמנה לא נראה תקין. בדרך כלל 6 אותיות באנגלית ומספרים, לדוגמה ABC123'); },
+  fOutNo: () => { const s = normFlight(v('fOutNo')), cs = codesOf(fid), ex = $('fOutNo').placeholder;
+    if (!s || cs.includes(s)) return t('כתבו את מספר טיסת ההלוך. לדוגמה {0}', ex);
+    if (!/^[A-Z0-9]{2}\d{1,4}[A-Z]?$/.test(s)) return t('מספר טיסה בנוי משתי אותיות ומספר, בלי רווחים. לדוגמה {0}', ex); },
+  fDest: () => { const s = v('fDest'); if (!s) return t('כתבו לאן אתם טסים. לדוגמה יוון'); if (s.length > 60) return t('כתבו רק את שם המדינה.'); },
+  fOutDate: () => { const s = v('fOutDate');
+    if (!s) return t('בחרו את תאריך טיסת ההלוך.');
+    if (s < todayISO()) return t('התאריך כבר עבר. בדקו את תאריך הטיסה.'); },
+  fRetNo: () => { let s = normFlight(v('fRetNo')); if (codesOf(fid).includes(s)) s = '';
+    if (s && !/^[A-Z0-9]{2}\d{1,4}[A-Z]?$/.test(s)) return t('מספר טיסה בנוי משתי אותיות ומספר, בלי רווחים. לדוגמה {0}', $('fRetNo').placeholder);
+    if (!s && v('fRetDate')) return t('כתבו את מספר טיסת החזור, או מחקו את התאריך.'); },
+  fRetDate: () => { const s = v('fRetDate');
+    if (s && v('fOutDate') && s < v('fOutDate')) return t('תאריך החזור לפני תאריך ההלוך. בדקו את התאריכים.');
+    if (!s && v('fRetNo')) return t('בחרו את תאריך טיסת החזור.'); },
+  fRoute: () => { if (!ASCII.test(v('fRoute'))) return t('כותבים באנגלית בלבד. לדוגמה TLV DXB TLV'); },
+  fInsCo: () => { const s = v('fInsCo'); if (!s) return t('כתבו את שם חברת הביטוח באנגלית.'); if (!ASCII.test(s)) return t('כותבים באנגלית בלבד. לדוגמה Harel'); },
+  fInsPol: () => { const s = v('fInsPol'); if (!s) return t('כתבו את מספר הפוליסה.'); if (!ASCII.test(s)) return t('כותבים במספרים ובאנגלית בלבד.'); },
+  fInsEx: () => { if (!ASCII.test(v('fInsEx'))) return t('כותבים במספרים ובאנגלית בלבד. לדוגמה 100 USD'); },
+};
+function checkStep(st) {
+  let first = null;
+  steps[st].querySelectorAll('input[id]').forEach(inp => {
+    const r = RULES[inp.id]; if (!r) return;
+    const msg = visible(inp.id) ? r() : '';
+    setErr(inp.id, msg); if (msg && !first) first = inp;
+  });
+  if (st === 'trip' && !first && need.has('flights')) {
+    const warns = ['fOutNo', 'fRetNo'].map(id => [id, flightWarn(id)]).filter(x => x[1]);
+    if (warns.length) {
+      warns.forEach(([id, val]) => { acked[id] = val; });
+      $(warns[0][0]).focus();
+      $('alert').textContent = t('בדקו את מספר הטיסה המסומן בצהוב. אם הוא נכון, לחצו שוב על "המשך".'); $('alert').hidden = false;
+      return false;
+    }
+  } else if (st === 'trip') { $('wOutNo').hidden = true; $('wRetNo').hidden = true; }
+  if (st === 'sign') {
+    const msg = (ink || handSign) ? '' : t('חסרה חתימה. חתמו בתוך המסגרת.');
+    const e = $('eSig'); e.hidden = !msg; e.textContent = msg; $('sigPad').closest('.fld').classList.toggle('bad', !!msg);
+    if (msg && !first) first = sp;
+  }
+  if (st === 'review') {
+    const ok = $('consent').checked; $('consentBox').classList.toggle('bad', !ok);
+    if (!ok) { $('alert').textContent = t('כדי ליצור את הקובץ, סמנו שקראתם ואתם מאשרים.'); $('alert').hidden = false; first = $('consent'); }
+  }
+  if (first) { first.focus(); if (st !== 'review') { $('alert').textContent = t('יש פרט שצריך לתקן. הוא מסומן באדום.'); $('alert').hidden = false; } return false; }
+  return true;
+}
+document.querySelectorAll('#wform input[id]').forEach(inp => {
+  inp.addEventListener('blur', () => { if (inp.getAttribute('aria-invalid') === 'true' && RULES[inp.id]) setErr(inp.id, RULES[inp.id]()); });
+});
+$('consent').addEventListener('change', () => { $('consentBox').classList.remove('bad'); $('alert').hidden = true; });
+$('fOutDate').min = todayISO(); $('fRetDate').min = todayISO();
+$('fOutDate').addEventListener('change', () => { if (v('fOutDate')) $('fRetDate').min = v('fOutDate'); });
+
+wform.addEventListener('submit', e => {
+  e.preventDefault();
+  const st = flow[at];
+  if (st === 'airline') { if (fid) show(1); return; }
+  if (st === 'guide') { show(at + 1); return; }
+  if (!checkStep(st)) return;
+  if (st === 'review') make(); else show(at + 1);
+});
+
+// ---------- review ----------
+const LABELS = [['name', 'fName', 'שם מלא', 'personal'], ['phone', 'fPhone', 'טלפון', 'personal'], ['phone2', 'fPhone2', 'טלפון נוסף', 'personal'],
+  ['email', 'fEmail', 'מייל', 'personal'], ['booking', 'fBooking', 'מספר הזמנה', 'trip'], ['dest', 'fDest', 'יעד', 'trip'], ['dates', 'out', 'טיסת הלוך', 'trip'],
+  ['dates', 'ret', 'טיסת חזור', 'trip'], ['route', 'fRoute', 'מסלול', 'trip'], ['insurance', 'fInsCo', 'חברת ביטוח', 'insurance'],
+  ['insurance', 'fInsPol', 'מספר פוליסה', 'insurance'], ['insurance', 'fInsEx', 'השתתפות עצמית', 'insurance'], ['sig', 'sig', 'חתימה', 'sign']];
+function renderReview() {
+  const dl = $('review'); dl.innerHTML = '';
+  const row = (label, val, st, html) => {
+    const r = document.createElement('div'); r.className = 'row';
+    const dt = document.createElement('dt'); dt.textContent = t(label);
+    const dd = document.createElement('dd');
+    if (html) dd.appendChild(html); else if (val) dd.textContent = val; else { dd.textContent = t('לא מולא'); dd.className = 'empty'; }
+    if (!html && val) dd.dir = 'ltr', dd.style.textAlign = document.documentElement.dir === 'rtl' ? 'right' : 'left';
+    r.append(dt, dd);
+    if (st) { const b = document.createElement('button'); b.type = 'button'; b.className = 'link edit'; b.textContent = t('תיקון');
+      b.setAttribute('aria-label', t('תיקון {0}', t(label))); b.addEventListener('click', () => show(flow.indexOf(st))); const ed = document.createElement('dd'); ed.className = 'edit-dd'; ed.appendChild(b); r.appendChild(ed); }
+    dl.appendChild(r);
+  };
+  row('חברת תעופה', nm(cards[fid]), 'airline');
+  LABELS.forEach(([k, id, label, st]) => {
+    if (!need.has(k)) return;
+    let val;
+    if (id === 'out') val = [normFlight(v('fOutNo')), fmt(v('fOutDate'))].filter(Boolean).join('  ');
+    else if (id === 'ret') { const r = normFlight(v('fRetNo')); val = [codesOf(fid).includes(r) ? '' : r, fmt(v('fRetDate'))].filter(Boolean).join('  '); }
+    else if (id === 'sig' && handSign && !ink) val = t('חותמים ביד אחרי ההדפסה');
+    else if (id === 'sig') { const img = new Image(); img.alt = t('החתימה שלכם'); img.src = sp.toDataURL('image/png'); row(label, '', st, img); return; }
+    else val = /fName|fBooking|fRoute/.test(id) ? v(id).toUpperCase().replace(/\s+/g, ' ') : v(id);
+    row(label, val, st);
+  });
+}
+
+// ---------- signature pad ----------
+const sp = $('sigPad'), ctx = sp.getContext('2d'), hint = $('sigHint');
+let ink = false, drawing = false, last = null, box = null, handSign = false, lastSigUrl = null;
+function sizePad() {
+  requestAnimationFrame(() => {
+    const r = sp.getBoundingClientRect(); if (!r.width) return;
+    const dpr = window.devicePixelRatio || 1;
+    if (sp.width === Math.round(r.width * dpr) && sp.height === Math.round(r.height * dpr)) return;
+    sp.width = Math.round(r.width * dpr); sp.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); clearPad();
+  });
+}
+function clearPad() {
+  ctx.clearRect(0, 0, sp.width, sp.height); ink = false; box = null; hint.hidden = false;
+  ctx.lineWidth = 2.8; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#0f3380';
+}
+const pt = e => { const r = sp.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+function grow(p) { box = box ? { x0: Math.min(box.x0, p.x), y0: Math.min(box.y0, p.y), x1: Math.max(box.x1, p.x), y1: Math.max(box.y1, p.y) } : { x0: p.x, y0: p.y, x1: p.x, y1: p.y }; }
+sp.addEventListener('pointerdown', e => { e.preventDefault(); drawing = true; last = pt(e); grow(last); try { sp.setPointerCapture(e.pointerId); } catch (x) {} });
+sp.addEventListener('pointermove', e => {
+  if (!drawing) return; const p = pt(e);
+  ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+  last = p; grow(p);
+  if (box && (box.x1 - box.x0 > 12 || box.y1 - box.y0 > 12)) { ink = true; hint.hidden = true; $('eSig').hidden = true; sp.closest('.fld').classList.remove('bad'); }
+});
+['pointerup', 'pointercancel', 'pointerleave'].forEach(t => sp.addEventListener(t, () => { drawing = false; }));
+$('sigClear').addEventListener('click', clearPad);
+window.addEventListener('resize', () => { if (!ink && flow[at] === 'sign') { sp.width = 0; sizePad(); } });
+// signature helpers: sign by hand after printing, or reuse the signature from this visit
+function sigUi() {
+  $('sigPrev').hidden = !lastSigUrl || ink;
+  $('sigHand').hidden = handSign && !ink;
+  $('handNote').hidden = !(handSign && !ink);
+}
+$('sigHand').addEventListener('click', () => { handSign = true; clearPad(); $('eSig').hidden = true; sp.closest('.fld').classList.remove('bad'); sigUi(); $('next').focus(); });
+$('sigPrev').addEventListener('click', () => {
+  const im = new Image(); im.onload = () => {
+    const r = sp.getBoundingClientRect(); clearPad(); ctx.drawImage(im, 0, 0, r.width, r.height);
+    ink = true; handSign = false; hint.hidden = true; $('eSig').hidden = true; sp.closest('.fld').classList.remove('bad'); sigUi();
+  }; im.src = lastSigUrl;
+});
+sp.addEventListener('pointerdown', () => { handSign = false; setTimeout(sigUi, 0); });
+$('sigClear').addEventListener('click', () => setTimeout(sigUi, 0));
+// send the finished file to a family member through the phone's share sheet
+$('shareFamBtn').addEventListener('click', async () => {
+  if (!lastPdf) return;
+  const file = new File([lastPdf], `ATTO flight documents ${(lastData && lastData.name) || cards[fid].en}.pdf`, { type: 'application/pdf' });
+  try { await navigator.share({ files: [file] }); } catch (e) {}
+});
+
+function sigPng() {
+  const dpr = window.devicePixelRatio || 1, m = 6;
+  const x = Math.max(0, (box.x0 - m) * dpr), y = Math.max(0, (box.y0 - m) * dpr);
+  const w = Math.min(sp.width - x, (box.x1 - box.x0 + 2 * m) * dpr), h = Math.min(sp.height - y, (box.y1 - box.y0 + 2 * m) * dpr);
+  const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h));
+  c.getContext('2d').drawImage(sp, x, y, w, h, 0, 0, c.width, c.height);
+  return new Promise(res => c.toBlob(b => b.arrayBuffer().then(res), 'image/png'));
+}
+
+// ---------- travel log: who flies with an ATTO, where and when (for service statistics) ----------
+const LOG = { url: '', key: '' };
+function recordTrip(d) {
+  if (!LOG.url.startsWith('https://')) return;
+  const days = d.outDate && d.retDate ? Math.round((new Date(d.retDate) - new Date(d.outDate)) / 864e5) : null;
+  const row = { airline: fid, passenger_name: d.name || null, phone: v('fPhone') || null, email: v('fEmail') || null,
+    destination: destCanon(v('fDest')) || null, depart_date: d.outDate || null, return_date: d.retDate || null, days_abroad: days };
+  try {
+    fetch(`${LOG.url}/rest/v1/flight_trips`, { method: 'POST', keepalive: true,
+      headers: { apikey: LOG.key, Authorization: `Bearer ${LOG.key}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify(row) }).catch(() => {});
+  } catch (e) {}
+}
+
+// ---------- make the PDF ----------
+const pdfCache = {};
+function prefetch(id) {
+  const ck = id + i18n.get(); if (!pdfCache[ck]) pdfCache[ck] = fetch(docsUrl(id)).then(r => { if (!r.ok) throw new Error('fetch ' + r.status); return r.arrayBuffer(); })
+    .catch(e => { delete pdfCache[ck]; throw e; });
+  pdfCache[ck].catch(() => {});
+  return pdfCache[ck];
+}
+let libP = null;
+function loadLib() {
+  if (window.PDFLib) return Promise.resolve();
+  const add = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  if (!libP) libP = add('pdf-lib.min.js').catch(() => add('https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js')).catch(e => { libP = null; throw e; });
+  return libP;
+}
+// inside the claude.ai preview, files are saved through its save dialog; on the real site it is a normal download
+let dlCapV = null;
+const dlCap = (window.claude && window.claude.use) ? window.claude.use('downloads').then(c => (dlCapV = c), () => null) : Promise.resolve(null);
+async function save(url, name) {
+  const cap = dlCapV || await dlCap;
+  if (cap) {
+    try { const blob = await (await fetch(url)).blob(); await cap.save({ filename: name, data: blob }); }
+    catch (e) { if (!e || e.code !== 'declined') console.warn(e); }
+    return;
+  }
+  const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+// links with a download attribute (download again, the certificates booklet) use the same path in the preview
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[download]');
+  if (!a || !dlCapV) return;
+  e.preventDefault(); save(a.href, a.getAttribute('download') || 'ATTO.pdf');
+});
+
+
+async function make() {
+  const c = cards[fid];
+  const up = id => v(id).toUpperCase().replace(/\s+/g, ' ');
+  const data = { name: up('fName'), phone: v('fPhone'), phone2: v('fPhone2'), email: v('fEmail'), booking: up('fBooking').replace(/\s/g, ''),
+    outNo: normFlight(v('fOutNo')), outDate: v('fOutDate'), retNo: codesOf(fid).includes(normFlight(v('fRetNo'))) ? '' : normFlight(v('fRetNo')), retDate: v('fRetDate'), route: up('fRoute'), dest: v('fDest'),
+    insCompany: v('fInsCo'), insPolicy: v('fInsPol'), insExcess: v('fInsEx') };
+  const keep = { name: ['name'], phone: ['phone'], phone2: ['phone2'], email: ['email'], booking: ['booking'], route: ['route'],
+    flights: ['outNo', 'retNo'], insurance: ['insCompany', 'insPolicy', 'insExcess'] };
+  Object.entries(keep).forEach(([k, fs]) => { if (!need.has(k)) fs.forEach(f => { data[f] = ''; }); });
+
+  const next = $('next'); next.disabled = true;
+  const maker = $('maker'), mkStep = $('mkStep'), bar = maker.querySelector('.mk-bar span');
+  const msgs = ['כותבים את הפרטים שלכם בטופס', need.has('sig') ? 'מוסיפים את החתימה' : 'בודקים שהכול במקום', 'מצרפים את מכתב היצרן ואישורי הסוללה', 'הקובץ כמעט מוכן'].map(x => t(x));
+  let si = 0; mkStep.textContent = msgs[0]; bar.style.width = '12%'; maker.hidden = false;
+  const tick = setInterval(() => { si = Math.min(si + 1, msgs.length - 1); mkStep.textContent = msgs[si]; bar.style.width = `${12 + si * 28}%`; }, 520);
+  const minShow = new Promise(r => setTimeout(r, 2000));
+  try {
+    await loadLib();
+    const base = await prefetch(fid);
+    const sig = need.has('sig') && ink ? await sigPng() : null;
+    const [out] = await Promise.all([ATTOFill.fillPdf(base.slice(0), fid, data, sig), minShow]);
+    bar.style.width = '100%'; mkStep.textContent = t('הקובץ מוכן ✓');
+    await new Promise(r => setTimeout(r, 350));
+    if (fileUrl) URL.revokeObjectURL(fileUrl);
+    lastPdf = out; lastData = data; clearDraft();
+    if (ink) { try { lastSigUrl = sp.toDataURL('image/png'); } catch (e) {} }
+    recordTrip(data);
+    fileUrl = URL.createObjectURL(new Blob([out], { type: 'application/pdf' }));
+    save(fileUrl, fileName(c.he));
+    doneSubKey = 'הקובץ נשמר בתיקיית ההורדות.';
+    renderDone(data);
+  } catch (err) {
+    console.warn(err);
+    $('alert').textContent = t('לא הצלחנו ליצור את הקובץ. בדקו את החיבור לאינטרנט ונסו שוב, או התקשרו אלינו: 073 391 3999');
+    $('alert').hidden = false;
+  } finally {
+    clearInterval(tick); maker.hidden = true; next.disabled = false;
+  }
+}
+
+// ---------- send by email (the customer sends from their own mail app) ----------
+const EMAIL = {};
+const LINKS = {"american": "https://www.aa.com/i18n/travel-info/special-assistance/mobility-and-medical-devices.jsp", "delta": "https://www.delta.com/us/en/accessible-travel-services/wheelchair-services", "southwest": "https://support.southwest.com/helpcenter/article/Battery-powered-wheelchairs-and-mobility-aids", "alaska": "https://www.alaskaair.com/content/travel-info/policies/specialservices-wheelchair.aspx", "jetblue": "https://www.jetblue.com/help/batteries", "frontier": "https://faq.flyfrontier.com/help/can-i-bring-a-battery-powered-wheelchair-or-mobility-aid-on-the-plane", "allegiant": "https://allegiantair.com/passengers-special-needs", "avelo": "https://www.aveloair.com/help/special-services-and-assistance", "britishairways": "https://www.britishairways.com/content/information/disability-assistance/assistance-available", "qatar": "https://www.qatarairways.com/en/services-special/disability-and-medical.html", "klm": "https://www.klm.com/information/assistance-health/own-wheelchair", "airfrance": "https://wwws.airfrance.us/information/passagers/acheter-billet-avion-pmr-autres-handicaps/pmr-handicap-moteur", "lufthansa": "https://www.lufthansa.com/tr/en/wheelchair-batteries", "aerlingus": "https://www.aerlingus.com/support/special-assistance/disability-assistance/", "suncountry": "https://ir.suncountry.com/static-files/0e75bae8-3e47-4c35-8e63-9f78cf003b6b", "aircanada": "https://www.aircanada.com/ca/en/aco/home/plan/accessibility/mobility-aids-and-assistance.html", "breeze": "https://media.flybreeze.com/docs/policies/contractofcarriage.pdf"};
+let lastPdf = null, lastData = null;
+const canShareFiles = () => { try { return !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.pdf', { type: 'application/pdf' })] })); } catch (e) { return false; } };
+function mailText(d) {
+  const c = cards[fid], he = fid === 'elal' || fid === 'israir';
+  const flights = [[d.outNo, fmt(d.outDate)].filter(Boolean).join(' '), [d.retNo, fmt(d.retDate)].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+  const L = (a, b) => b ? `${a}: ${b}` : '';
+  if (he) return {
+    subject: `טופס הטסת קלנועית ATTO, ${d.name}${d.booking ? ', הזמנה ' + d.booking : ''}`,
+    body: ['שלום רב,', '', 'מצורפים טופס ההצהרה והמסמכים להטסת הקלנועית שלי.', '',
+      L('שם הנוסע', d.name), L('מספר הזמנה', d.booking), L('טיסות', flights), L('טלפון', d.phone), L('מייל', d.email), '',
+      'הקלנועית: ATTO מתקפלת של Movinglife LTD. סוללת ליתיום יון נשלפת, 249.6Wh, יבשה, עברה בדיקת UN 38.3 ועומדת בדרישות IATA.',
+      'מצורפים: הטופס הממולא, מכתב יצרן וגיליון הבטיחות של הסוללה (MSDS).', '', 'אודה לאישור קבלה.', 'תודה,', d.name].filter((x, i, a) => x !== '' || a[i - 1] !== '').join('\n') };
+  return {
+    subject: `Mobility aid with lithium battery, ${d.name}${d.booking ? ', booking ' + d.booking : ''}`,
+    body: [`Dear ${c.en} Special Assistance team,`, '', 'Please find attached the completed mobility aid form and documents for my flight.', '',
+      L('Passenger', d.name), L('Booking reference', d.booking), L('Flights', flights), L('Phone', d.phone), L('Email', d.email), '',
+      'Mobility aid: ATTO electric folding mobility scooter (Movinglife LTD).',
+      'Battery: removable lithium-ion, 48V 5.2Ah, 249.6 Wh, dry, UN 38.3 tested, meets IATA requirements.',
+      'Attached: completed form, manufacturer letter, battery safety data sheet (MSDS).', '', 'Please confirm receipt. Thank you,', d.name]
+      .filter((x, i, a) => x !== '' || a[i - 1] !== '').join('\n') };
+}
+function copyTo() {
+  const to = (EMAIL[fid] || []).join(', ');
+  try { navigator.clipboard.writeText(to).then(() => { $('mailCopy').textContent = t('הועתק ✓'); }, () => {}); } catch (e) {}
+}
+$('mailCopy').addEventListener('click', copyTo);
+$('msgCopy').addEventListener('click', () => {
+  if (!lastData) return; const m = mailText(lastData);
+  try { navigator.clipboard.writeText(m.subject + '\n\n' + m.body).then(() => { $('msgCopy').textContent = 'Copied ✓'; }, () => {}); } catch (e) {}
+});
+$('mailBtn').addEventListener('click', async () => {
+  const to = EMAIL[fid]; if (!to || !lastData) return;
+  const { subject, body } = mailText(lastData);
+  copyTo();
+  if (lastPdf && canShareFiles()) {
+    const file = new File([lastPdf], `ATTO flight documents ${lastData.name || cards[fid].en}.pdf`, { type: 'application/pdf' });
+    const iOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const payload = iOS ? { files: [file] } : { files: [file], title: subject, text: `To: ${to.join(', ')}\n\n${body}` };
+    try { await navigator.share(payload); return; }
+    catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  const q = s2 => encodeURIComponent(s2);
+  location.href = `mailto:${to.join(',')}?subject=${q(subject)}&body=${q(body)}`;
+});
+
+let doneSubKey = 'הקובץ נשמר בתיקיית ההורדות.';
+function renderDone(data, quiet) {
+  const c = cards[fid], s = SEND[fid];
+  $('doneTitle').textContent = t('הקובץ של {0} מוכן', nm(c));
+  $('doneSub').textContent = (dlCapV && doneSubKey === 'הקובץ נשמר בתיקיית ההורדות.') ? 'Your file is ready. If a window asks, choose "Save file".' : t(doneSubKey);
+  if (data && handSign && !ink) $('doneSub').textContent = t('הקובץ נשמר בתיקיית ההורדות. מדפיסים וחותמים ביד במקום המסומן.');
+  if (fileUrl) $('again').href = fileUrl; $('again').setAttribute('download', fileName(c.he));
+  const ul = $('doneSend'); ul.innerHTML = '';
+  const esc = x => x.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  // keep phone numbers and addresses in one piece inside Hebrew text
+  const ltr = x => esc(x).replace(/(\*?\+?\d[\d ]{5,}\d|\*\d{3,5}|[\w.+]+@[\w.]+\.\w+|[\w-]+\.[\w.]+\/[\w\/.?=#-]+)/g, '<span class="ltr">$1</span>');
+  s.send.forEach(x => { const li = document.createElement('li'); li.innerHTML = /<b /.test(x) ? x : ltr(t(x)); ul.appendChild(li); });
+  const when = $('doneWhen'); when.classList.remove('late');
+  if (data && data.outDate) {
+    const [y, m, d] = data.outDate.split('-').map(Number);
+    const by = new Date(new Date(y, m - 1, d).getTime() - (HOURS[fid] || 48) * 3600e3);
+    const t0 = new Date(); t0.setHours(0, 0, 0, 0);
+    if (by < t0) { when.textContent = s.soft ? '⏱ Your flight is soon. Contact the airline today so they can note your scooter.' : t('⏱ המועד לשליחה עבר. שלחו היום, והתקשרו לחברת התעופה כדי לוודא שהטופס התקבל.'); when.classList.add('late'); }
+    else if (s.soft) when.textContent = '⏱ No fixed deadline. Best to do it by ' + by.toLocaleDateString('en-US', { weekday: 'long' }) + ', ' + `${pad2(by.getMonth() + 1)}/${pad2(by.getDate())}/${by.getFullYear()}`;
+    else when.textContent = t('⏱ שלחו עד {0}, {1}', by.toLocaleDateString(i18n.loc(), { weekday: 'long' }), `${pad2(by.getMonth() + 1)}/${pad2(by.getDate())}/${by.getFullYear()}`);
+  } else when.textContent = t('⏱ מתי: {0}', t(s.deadline));
+  const note = $('doneNote'); note.hidden = !s.note; note.textContent = s.note ? `⚠ ${t(s.note)}` : '';
+  const mb = $('mailBox'), to = EMAIL[fid];
+  mb.hidden = !(to && data);
+  if (to && data) {
+    $('mailBtn').textContent = t('שליחה במייל ל{0}', nm(c));
+    $('mailTo').textContent = to.join(', '); $('mailCopy').textContent = t('העתקה');
+    $('mailHelp').textContent = canShareFiles()
+      ? t('נפתח חלון שיתוף. בוחרים באפליקציית המייל, והקובץ כבר מצורף. בשורת "אל" מדביקים את הכתובת, שכבר העתקנו בשבילכם.')
+      : t('נפתח מייל מוכן עם הכתובת, הנושא והתוכן. מצרפים את הקובץ מתיקיית ההורדות ולוחצים "שליחה".');
+  }
+  const fb = $('formBox'), lk = LINKS[fid];
+  fb.hidden = !(lk || data);
+  $('formLink').hidden = !lk; if (lk) { $('formLink').href = lk; $('formLink').textContent = 'Open the ' + nm(c) + ' page'; }
+  const vb = $('verBox'); vb.hidden = false; vb.className = 'ver' + (s.ver ? ' ok' : ' warn');
+  vb.textContent = s.ver ? 'Checked against ' + nm(c) + "'s own pages in October 2026. Rules can change, so confirm with the airline before you fly." : (fid === 'other' ? 'Every airline has its own rules. Contact your airline before you fly' : 'We have not checked ' + nm(c) + "'s rules yet. Contact the airline before you fly and ask if they accept a folding scooter with a removable battery.");
+  { const cb = $('copyBox'), ul = $('copyList'); ul.innerHTML = ''; cb.hidden = !data;
+    if (data) {
+      const nameParts = data.name, fl = [[data.outNo, fmt(data.outDate)].filter(Boolean).join(' '), [data.retNo, fmt(data.retDate)].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+      [['Full name', data.name], ['Booking reference', data.booking], ['Destination', data.dest], ['Phone', data.phone], ['Alternate phone', data.phone2], ['Email', data.email], ['Flights', fl],
+       ['Device', 'ATTO folding mobility scooter, Movinglife LTD'], ['Foldable', 'Yes, it folds into a trolley shape'], ['Battery removable', 'Yes, by hand without tools. It travels in the cabin'], ['Stopping it from turning on', 'Switch the power off at the tiller'], ['Weight', '30 kg (66 lb) with battery, 28.2 kg (62 lb) without battery'],
+       ['Folded size', '39 x 42 x 72 cm (15.4 x 16.5 x 28.3 in)'], ['Battery', 'Lithium-ion, removable, 48V 5.2Ah, 249.6 Wh, UN 38.3 tested']].forEach(([lab, val]) => {
+        if (!val) return;
+        const li = document.createElement('li'); li.className = 'cp';
+        const sp = document.createElement('span'); sp.innerHTML = '<b></b><i></i>'; sp.firstChild.textContent = lab; sp.lastChild.textContent = val;
+        const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'link'; bt.textContent = 'Copy'; bt.setAttribute('aria-label', 'Copy ' + lab);
+        bt.addEventListener('click', () => { try { navigator.clipboard.writeText(val).then(() => { bt.textContent = 'Copied ✓'; setTimeout(() => { bt.textContent = 'Copy'; }, 1800); }, () => {}); } catch (e) {} });
+        li.appendChild(sp); li.appendChild(bt); ul.appendChild(li);
+      });
+    } }
+  $('msgCopy').hidden = !data; $('msgCopy').textContent = 'Copy message to paste';
+  $('shareFam').hidden = !(lastPdf && data && canShareFiles());
+  steps.done.hidden = false; wform.hidden = true; $('chip').hidden = true;
+  [...$('prog').children].forEach(li => { li.className = 'past'; });
+  $('count').textContent = t('סיימתם. הקובץ מוכן.');
+  if (quiet) return;
+  $('wiz').scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' });
+  setTimeout(() => $('doneTitle').focus({ preventScroll: true }), 300);
+}
+$('plainBtn').addEventListener('click', () => {
+  const c = cards[fid]; save(docsUrl(fid), fileName(c.he));
+  fileUrl = null; doneSubKey = 'הקובץ ירד בלי פרטים. ממלאים אותו ביד לפי ההסבר בעמוד הראשון.'; renderDone(null); $('again').href = docsUrl(fid);
+});
+$('restart').addEventListener('click', () => {
+  handSign = false; wform.reset(); clearPad(); clearDraft(); sayDate('fOutDate'); sayDate('fRetDate'); Object.keys(acked).forEach(k => delete acked[k]); $('wOutNo').hidden = true; $('wRetNo').hidden = true; document.querySelectorAll('.fld.bad').forEach(f => f.classList.remove('bad'));
+  document.querySelectorAll('.fe').forEach(e => { e.hidden = true; });
+  doneSubKey = 'הקובץ נשמר בתיקיית ההורדות.';
+  fid = null; need = new Set(); Object.values(cards).forEach(c => c.el.setAttribute('aria-pressed', 'false'));
+  buildFlow(); show(0);
+});
+
+// ---------- start ----------
+buildFlow(); show(0, false);
+try { history.replaceState({ step: 0 }, ''); } catch (e) {}
+(function restore() {
+  const d = loadDraft(); if (!d || !d.fid || !cards[d.fid]) { draftReady = true; return; }
+  let qid = ''; try { qid = (new URLSearchParams(location.search).get('a') || '').toLowerCase(); } catch (e) {}
+  if (qid && qid !== d.fid) { draftReady = true; return; }
+  DF.forEach(id => { if (d[id]) $(id).value = d[id]; }); syncName();
+  sayDate('fOutDate'); sayDate('fRetDate');
+  pickAirline(d.fid, false);
+  const i = Math.min(d.at || 1, flow.length - 1);
+  show(Math.max(1, Math.min(i, flow.indexOf('review') > 0 ? flow.indexOf('review') : i)), false);
+})();
+draftReady = true;
+(function () {
+  let id = '';
+  try { id = (new URLSearchParams(location.search).get('a') || '').toLowerCase(); } catch (e) {}
+  if (!id && location.hash.length > 1) id = location.hash.slice(1).toLowerCase();
+  const c = cards[id]; if (!c) return;
+  pickAirline(id, false); show(1, false); heroId = id;
+  const btn = $('heroBtn'); btn.textContent = t('להכנת מסמכי הטיסה ל{0}', nm(c));
+})();
+
+// ---------- video ----------
+// (no video on the US site)
+
+// ---------- accessibility menu ----------
+const html = document.documentElement, a11y = $('a11y'), A11Y_KEY = 'atto-a11y';
+let prefs = { fs: 0 };
+try { prefs = Object.assign(prefs, JSON.parse(localStorage.getItem(A11Y_KEY) || '{}')); } catch (e) {}
+function applyA11y() {
+  html.classList.remove('a11y-fs1', 'a11y-fs2'); if (prefs.fs) html.classList.add(`a11y-fs${prefs.fs}`);
+  a11y.querySelectorAll('[data-fs]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.fs === +prefs.fs)));
+  ['hc', 'links', 'font', 'still', 'cursor'].forEach(k => {
+    html.classList.toggle(`a11y-${k}`, !!prefs[k]);
+    const b = a11y.querySelector(`[data-a="${k}"]`); if (b) b.setAttribute('aria-pressed', String(!!prefs[k]));
+  });
+  if (prefs.still) { try { vid.pause(); } catch (e) {} }
+  try { localStorage.setItem(A11Y_KEY, JSON.stringify(prefs)); } catch (e) {}
+}
+a11y.querySelectorAll('[data-fs]').forEach(b => b.addEventListener('click', () => { prefs.fs = +b.dataset.fs; applyA11y(); }));
+a11y.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', () => { prefs[b.dataset.a] = !prefs[b.dataset.a]; applyA11y(); }));
+$('a11yReset').addEventListener('click', () => { prefs = { fs: 0 }; applyA11y(); });
+let lastFocus = null;
+function openA11y() { lastFocus = document.activeElement; a11y.hidden = false; $('a11yClose').focus(); }
+function closeA11y() { a11y.hidden = true; if (lastFocus) lastFocus.focus(); }
+$('a11yOpen').addEventListener('click', openA11y);
+$('a11yClose').addEventListener('click', closeA11y);
+a11y.addEventListener('click', e => { if (e.target === a11y) closeA11y(); });
+document.addEventListener('keydown', e => {
+  if (a11y.hidden) return;
+  if (e.key === 'Escape') { closeA11y(); return; }
+  if (e.key === 'Tab') {
+    const f = [...a11y.querySelectorAll('button, a')]; const first = f[0], lastEl = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+    else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+  }
+});
+applyA11y();
+
+// ---------- languages ----------
+const COUNTRIES = ["Orlando", "Las Vegas", "New York", "Los Angeles", "Miami", "Chicago", "Honolulu", "San Francisco", "Seattle", "Boston", "Denver", "Atlanta", "Phoenix", "San Diego", "Washington DC", "Anchorage", "Puerto Rico", "Cancun", "Toronto", "London", "Paris", "Dublin", "Amsterdam", "Frankfurt", "Rome", "Dubai", "Doha"];
+const esc2 = x => x.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+function fillCountries() { $('countries').innerHTML = COUNTRIES.map(c => `<option value="${esc2(t(c))}">`).join(''); }
+// the destination is stored in Hebrew whatever language it was typed in, so the statistics group together
+function destCanon(val) {
+  const x = (val || '').trim().toLowerCase(); if (!x) return '';
+  for (const c of COUNTRIES) { if (c === val.trim()) return c; const e = I18N[c] || {}; if (['en', 'ru', 'ar'].some(l => (e[l] || '').toLowerCase() === x)) return c; }
+  return val.trim();
+}
+// ---------- paste a booking confirmation: read it in the browser, nothing leaves the device ----------
+const AP = {"ATL": "Atlanta", "ORD": "Chicago", "MDW": "Chicago", "DFW": "Dallas", "DEN": "Denver", "LAX": "Los Angeles", "JFK": "New York", "LGA": "New York", "EWR": "New York", "MIA": "Miami", "FLL": "Fort Lauderdale", "MCO": "Orlando", "LAS": "Las Vegas", "SEA": "Seattle", "SFO": "San Francisco", "BOS": "Boston", "PHX": "Phoenix", "IAH": "Houston", "HOU": "Houston", "HNL": "Honolulu", "OGG": "Maui", "SAN": "San Diego", "DCA": "Washington DC", "IAD": "Washington DC", "MSP": "Minneapolis", "DTW": "Detroit", "PHL": "Philadelphia", "CLT": "Charlotte", "TPA": "Tampa", "SLC": "Salt Lake City", "PDX": "Portland", "AUS": "Austin", "BNA": "Nashville", "MSY": "New Orleans", "ANC": "Anchorage", "SJU": "Puerto Rico", "YYZ": "Toronto", "LHR": "London", "CDG": "Paris", "DUB": "Dublin", "AMS": "Amsterdam", "FRA": "Frankfurt", "FCO": "Rome", "DXB": "Dubai", "DOH": "Doha", "CUN": "Cancun", "MUC": "Munich", "ZRH": "Zurich"};
+const AIRLINE_CODES = new Set('WN AS B6 F9 G4 SY MX XP VS EI LY IZ 6H W6 W4 FZ AI LX OS LH DL HV TO EK TK A3 FR U2 BA AF KL LO OK SK AY SN AZ IB TP EY QR RJ MS ET UA AA AC TU RO JU OU KM LG SU PC XQ VY EW DY WZ'.split(' '));
+const MONTHS = [
+  ['jan', 'январ', 'ינו', 'يناير|كانون الثاني'], ['feb', 'феврал', 'פבר', 'فبراير|شباط'], ['mar', 'март', 'מרץ|מרס', 'مارس|آذار'], ['apr', 'апрел', 'אפר', 'أبريل|نيسان'],
+  ['may', 'ма[йя]', 'מאי', 'مايو|أيار'], ['jun', 'июн', 'יוני', 'يونيو|حزيران'], ['jul', 'июл', 'יולי', 'يوليو|تموز'], ['aug', 'август', 'אוג', 'أغسطس|آب'],
+  ['sep', 'сентябр', 'ספט', 'سبتمبر|أيلول'], ['oct', 'октябр', 'אוק', 'أكتوبر|تشرين الأول'], ['nov', 'ноябр', 'נוב', 'نوفمبر|تشرين الثاني'], ['dec', 'декабр', 'דצמ', 'ديسمبر|كانون الأول']];
+const MON_RE = MONTHS.map((m, i) => ['(' + m.join('|') + ')', i]);
+const monthOf = w => { w = w.toLowerCase(); for (let i = 0; i < 12; i++) if (new RegExp('^(' + MONTHS[i].join('|') + ')', 'i').test(w)) return i; return -1; };
+const MONWORD = '(?:' + MONTHS.map(m => m.join('|')).join('|') + ')[a-zа-яא-תء-ي]*\\.?';
+function pasteParse(text) {
+  const tx = text.replace(/[‎‏‪-‮]/g, ' ').replace(/[ \t]+/g, ' ');
+  const today = todayISO(), out = {};
+  // dates, with their position in the text
+  const dates = []; const add = (idx, y, m, d, noYear) => {
+    y = +y; m = +m; d = +d; if (m < 1 || m > 12 || d < 1 || d > 31) return;
+    if (y < 100) y += 2000;
+    let iso = `${y}-${pad2(m)}-${pad2(d)}`;
+    if (noYear) { iso = `${new Date().getFullYear()}-${pad2(m)}-${pad2(d)}`; if (iso < today) iso = `${new Date().getFullYear() + 1}-${pad2(m)}-${pad2(d)}`; }
+    if (iso >= today && iso <= `${new Date().getFullYear() + 2}-12-31`) dates.push({ idx, iso });
+  };
+  let r;
+  const rIso = /\b(20\d\d)-(\d\d)-(\d\d)\b/g; while ((r = rIso.exec(tx))) add(r.index, r[1], r[2], r[3]);
+  const rNum = /\b(\d{1,2})[\/.\-](\d{1,2})[\/.\-](20\d\d|\d\d)\b/g; while ((r = rNum.exec(tx))) { if (+r[1] > 12) add(r.index, r[3], r[2], r[1]); else add(r.index, r[3], r[1], r[2]); }
+  const rDm = new RegExp('\\b(\\d{1,2})(?:st|nd|rd|th)?\\s*(?:of\\s+|ב|в\\s+)?(' + MONWORD + ')\\s*,?\\s*(20\\d\\d|\\d\\d\\b)?', 'gi');
+  while ((r = rDm.exec(tx))) { const m = monthOf(r[2]); if (m >= 0) add(r.index, r[3] || 0, m + 1, r[1], !r[3]); }
+  const rMd = new RegExp('\\b(' + MONWORD + ')\\s+(\\d{1,2})(?!\\d)(?:st|nd|rd|th)?\\s*,?\\s*(20\\d\\d)?', 'gi');
+  while ((r = rMd.exec(tx))) { const m = monthOf(r[1]); if (m >= 0 && /^[a-z]/i.test(r[1])) add(r.index, r[3] || 0, m + 1, r[2], !r[3]); }
+  const uniq = [...new Set(dates.map(d => d.iso))].sort();
+  // flights
+  const fl = []; const rF = /(^|[^A-Za-z0-9])([A-Z][A-Z0-9]|[0-9][A-Z])\s?(\d{2,4})(?![\d:.\/])/g;
+  const own = new Set(codesOf(fid));
+  while ((r = rF.exec(tx))) { const code = r[2]; if (AIRLINE_CODES.has(code) || [...own].some(c => c.startsWith(code))) fl.push({ idx: r.index + r[1].length, no: code + r[3] }); rF.lastIndex = r.index + r[0].length - 0; }
+  const near = idx => { let best = null, bd = 1e9; dates.forEach(d => { const dd = Math.abs(d.idx - idx); if (dd < bd) { bd = dd; best = d.iso; } }); return best; };
+  if (uniq.length) { out.outDate = uniq[0]; if (uniq.length > 1) out.retDate = uniq[uniq.length - 1]; }
+  if (fl.length) {
+    const o = (out.outDate && fl.find(f => near(f.idx) === out.outDate)) || fl[0];
+    out.outNo = o.no;
+    const rest = fl.filter(f => f.no !== o.no);
+    const rt = (out.retDate && rest.find(f => near(f.idx) === out.retDate)) || (out.retDate ? rest[0] : null);
+    if (rt) out.retNo = rt.no; else if (out.retDate && !out.retNo) delete out.retDate;
+  }
+  // booking reference
+  const rP = /(?:booking|confirmation|reservation|record locator|PNR|reference|מספר הזמנה|קוד הזמנה|אסמכתא|номер бронирования|код бронирования|бронирован\w*|رقم الحجز)\s*(?:number|no\.?|code|ref\w*|id|#|№|:)?[^A-Za-z0-9\n]{0,20}([A-Za-z0-9]{6})(?![A-Za-z0-9])/gi;
+  while ((r = rP.exec(tx))) { const c = r[1]; if (c === c.toUpperCase() && /[A-Z]/.test(c)) { out.booking = c; break; } }
+  // airports
+  const codes = []; const rA = /\(([A-Z]{3})\)|\b([A-Z]{3})\s*(?:-|–|—|→|>|to)\s*([A-Z]{3})\b/g;
+  while ((r = rA.exec(tx))) [r[1], r[2], r[3]].filter(Boolean).forEach(c => { if (r[1] || AP[c]) codes.push(c); });
+  const seq = codes.filter((c, i) => c !== codes[i - 1]).slice(0, 6);
+  if (seq.length >= 2) out.route = seq.join(' ');
+  const far = [seq[1], ...seq].find(c => AP[c]); if (far) out.dest = AP[far];
+  // passenger
+  let m = /\b([A-Z][A-Z'\-]{1,24})\/([A-Z][A-Z'\- ]{1,24}?)(?:\s?(?:MR|MRS|MS|MSTR|MISS))?(?=\s|$|[.,;])/.exec(tx);
+  if (m) { out.last = m[1]; out.first = m[2].trim().split(' ')[0]; }
+  else if ((m = /\b(?:Mr|Mrs|Ms|Miss|MR|MRS|MS|MISS)\.?\s+([A-Za-z][A-Za-z'\-]+)\s+([A-Za-z][A-Za-z'\-]+)/.exec(tx))) { out.first = m[1].toUpperCase(); out.last = m[2].toUpperCase(); }
+  return out;
+}
+function pasteApply(p) {
+  const done = [];
+  const put = (id, val, label, overwrite = true) => {
+    if (!val || !$(id) || !visible(id)) return;
+    if (!overwrite && v(id)) return;
+    $(id).value = val; $(id).dispatchEvent(new Event('input', { bubbles: true })); $(id).dispatchEvent(new Event('change', { bubbles: true }));
+    if (RULES[id]) setErr(id, RULES[id]());
+    if (label && !done.includes(label)) done.push(label);
+  };
+  put('fBooking', p.booking, 'מספר הזמנה');
+  put('fOutNo', p.outNo, 'טיסת הלוך'); put('fOutDate', p.outDate, 'טיסת הלוך');
+  put('fRetNo', p.retNo, 'טיסת חזור'); put('fRetDate', p.retDate, 'טיסת חזור');
+  put('fRoute', p.route, 'מסלול');
+  if (p.dest) put('fDest', t(p.dest), 'יעד');
+  if (!v('fFirst') && !v('fLast')) { put('fFirst', p.first, 'שם מלא'); put('fLast', p.last, 'שם מלא'); syncName(); }
+  return done;
+}
+let pasteTimer = null;
+$('pasteTxt').addEventListener('input', () => {
+  clearTimeout(pasteTimer);
+  pasteTimer = setTimeout(() => {
+    const s = $('pasteTxt').value; if (s.trim().length < 20) { $('pasteMsg').textContent = ''; return; }
+    const done = pasteApply(pasteParse(s));
+    $('pasteMsg').textContent = done.length ? t('מילאנו: {0}. בדקו שהכול נכון.', done.map(x => t(x)).join(', ')) : t('לא מצאנו פרטים בטקסט. אפשר למלא ידנית.');
+  }, 350);
+});
+const FLAGS = { he: 'עב', en: 'EN', ru: 'RU', ar: 'عربي' };
+const langBtn = $('langBtn'), langMenu = $('langMenu');
+Object.entries(LANGS).forEach(([code, d]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.lang = code; b.dataset.lang = code; b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = `<svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><use href="#flag-${code}"/></svg><span>${d.name}</span>`;
+  b.addEventListener('click', () => { closeLang(); i18n.set(code); langBtn.focus(); });
+  langMenu.appendChild(b);
+});
+function openLang() { langMenu.hidden = false; langBtn.setAttribute('aria-expanded', 'true'); const on = langMenu.querySelector('[aria-pressed="true"]') || langMenu.firstChild; on.focus(); }
+function closeLang() { langMenu.hidden = true; langBtn.setAttribute('aria-expanded', 'false'); }
+langBtn.addEventListener('click', () => { langMenu.hidden ? openLang() : closeLang(); });
+document.addEventListener('click', e => { if (!langMenu.hidden && !$('lang').contains(e.target)) closeLang(); });
+document.addEventListener('keydown', e => {
+  if (langMenu.hidden) return;
+  if (e.key === 'Escape') { closeLang(); langBtn.focus(); return; }
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault(); const bs = [...langMenu.querySelectorAll('button')], i = bs.indexOf(document.activeElement);
+    bs[(i + (e.key === 'ArrowDown' ? 1 : bs.length - 1)) % bs.length].focus();
+  }
+});
+function paintLang() {
+  const l = i18n.get();
+  $('langFlag').innerHTML = `<use href="#flag-${l}"/>`; $('langCode').textContent = FLAGS[l];
+  langMenu.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+}
+i18n.onChange(() => {
+  paintLang(); fillCountries();
+  Object.values(cards).forEach(c => { const id = c.el.dataset.id; c.el.setAttribute('aria-label', c.he === c.en ? t(c.he) : `${t(c.he)}, ${c.en}`); });
+  buildFlow(); if (fid) { setupCodes(); prefetch(fid); }
+  show(at, false);
+  document.querySelectorAll('#wform [aria-invalid="true"]').forEach(inp => { if (RULES[inp.id]) setErr(inp.id, RULES[inp.id]()); });
+  $('alert').hidden = true; ['wOutNo', 'wRetNo'].forEach(id => { $(id).hidden = true; });
+  sayDate('fOutDate'); sayDate('fRetDate');
+  if (heroId && cards[heroId]) $('heroBtn').textContent = t('להכנת מסמכי הטיסה ל{0}', nm(cards[heroId]));
+  if (!steps.done.hidden && fid) renderDone(lastData, true);
+  else if (flow[at] === 'review') renderReview();
+});
+i18n.set('en', true);
+
+// hide the bottom call bar while the wizard is on screen: the wizard has its own help line
+try { new IntersectionObserver(es => es.forEach(e => document.body.classList.toggle('wiz-in', e.isIntersecting)), { threshold: 0.15 }).observe(document.getElementById('wiz')); } catch (e) {}
+</script>
+
+</body>
+</html>

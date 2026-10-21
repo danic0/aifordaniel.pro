@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הצהרת נגישות · טסים עם ATTO</title>
+<link rel="icon" href="img/movinglife.webp">
+<style>
+@font-face { font-family: 'Heebo'; font-weight: 400; font-display: swap; src: url(fonts/heebo-hebrew-400-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 400; font-display: swap; src: url(fonts/heebo-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 500; font-display: swap; src: url(fonts/heebo-hebrew-500-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 500; font-display: swap; src: url(fonts/heebo-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 700; font-display: swap; src: url(fonts/heebo-hebrew-700-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 700; font-display: swap; src: url(fonts/heebo-latin-700-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Heebo'; font-weight: 800; font-display: swap; src: url(fonts/heebo-hebrew-800-normal.woff2) format('woff2'); unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+@font-face { font-family: 'Heebo'; font-weight: 800; font-display: swap; src: url(fonts/heebo-latin-800-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+2122, U+FEFF, U+FFFD; }
+:root { --paper: #ffffff; --ink: #3a3a3d; --muted: #66666b; --hair: #e6e6ea; --blue: #2b77ad; --soft: #f5f8fb;
+  --font: 'Heebo', 'Arial Hebrew', Arial, sans-serif; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-color-scheme: dark) { :root { --paper: #121214; --ink: #ececee; --muted: #b0b0b6; --hair: #2c2d32; --blue: #7bbbe8; --soft: #1c1e22; color-scheme: dark } }
+html.a11y-hc { --paper: #000; --ink: #fff; --muted: #fff; --hair: #fff; --blue: #ffd400; --soft: #000; color-scheme: dark }
+html.a11y-fs1 { font-size: 112%; } html.a11y-fs2 { font-size: 125%; }
+html.a11y-links a { text-decoration: underline !important; }
+html.a11y-font body { font-family: Arial, sans-serif !important; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.1875rem; line-height: 1.75; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 60px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--hair); padding-bottom: 18px; }
+header img { height: 34px; width: auto; display: block; }
+html.a11y-hc header img { background: #fff; padding: 2px; border-radius: 4px; }
+a { color: var(--blue); font-weight: 700; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; line-height: 1.2; margin: 34px 0 6px; text-wrap: balance; }
+.upd { color: var(--muted); margin: 0 0 26px; }
+h2 { font-size: 1.35rem; font-weight: 800; margin: 34px 0 8px; }
+p { margin: 0 0 12px; }
+ul { margin: 0 0 12px; padding-right: 22px; padding-left: 0; }
+li { margin: 4px 0; }
+.box { background: var(--soft); border: 1px solid var(--hair); border-radius: 12px; padding: 16px 18px; }
+.box p { margin: 4px 0; }
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+.langs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 10px; direction: ltr; }
+.langs button { font: inherit; font-size: 15px; border: 1.5px solid #d6dbe3; background: #fff; color: inherit; border-radius: 999px; padding: 6px 14px; min-height: 40px; cursor: pointer; }
+.langs button[aria-pressed="true"] { border-color: #3c8cc4; color: #2b77ad; font-weight: 700; }
+html[dir="ltr"], html[dir="ltr"] body { direction: ltr; text-align: left; }
+html[dir="ltr"] ul { padding-right: 0; padding-left: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html" aria-label="חזרה להכנת מסמכי הטיסה"><img src="img/movinglife.webp" alt="MovingLife"></a>
+    <a href="index.html">חזרה למסמכי הטיסה</a>
+    <nav class="langs" aria-label="Language"><button type="button" data-l="he" lang="he">עברית</button><button type="button" data-l="en" lang="en">English</button><button type="button" data-l="ru" lang="ru">Русский</button><button type="button" data-l="ar" lang="ar">العربية</button></nav>
+</header>
+
+  <main>
+    <h1>הצהרת נגישות</h1>
+    <p class="upd">עודכנה לאחרונה: אוקטובר 2026</p>
+
+    <p>MovingLife רואה חשיבות רבה בכך שכל אדם, כולל אנשים עם מוגבלות ואנשים מבוגרים, יוכל להשתמש באתר "טסים עם ATTO" בקלות ובעצמאות. האתר נבנה כדי להנגיש את הכנת מסמכי הטיסה ללקוחות שטסים עם קלנועית.</p>
+
+    <h2>רמת הנגישות באתר</h2>
+    <p>האתר נבנה במטרה לעמוד בדרישות תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג 2013, ובהנחיות התקן הישראלי ת"י 5568, המבוסס על הנחיות WCAG 2.0 ברמה AA. אנחנו ממשיכים לבדוק ולשפר את האתר.</p>
+
+    <h2>מה עשינו כדי להנגיש את האתר</h2>
+    <ul>
+      <li>תפריט נגישות בכל עמוד: הגדלת טקסט, ניגודיות גבוהה, הדגשת קישורים, גופן קריא, עצירת אנימציות וסמן עכבר גדול. ההגדרות נשמרות במכשיר שלכם.</li>
+      <li>הכנת המסמכים מחולקת לשלבים קצרים, עם שאלה אחת או שתיים בכל שלב, הסבר ליד כל שדה ודוגמה למילוי.</li>
+      <li>הודעות שגיאה ברורות בעברית, מוצגות ליד השדה שצריך לתקן, ומוקראות על ידי קוראי מסך.</li>
+      <li>שלב בדיקה לפני יצירת הקובץ, שבו רואים את כל הפרטים ואפשר לתקן כל פרט.</li>
+      <li>ניווט מלא במקלדת, סימון ברור של הרכיב שנמצא בפוקוס, וקישור "דלגו להכנת מסמכי הטיסה" בתחילת העמוד.</li>
+      <li>כפתורים ושדות גדולים, נוחים ללחיצה גם בטלפון, וטקסט בגודל קריא.</li>
+      <li>ניגודיות צבעים מספקת בין הטקסט לרקע, ותמיכה במצב כהה של המכשיר.</li>
+      <li>תיאור טקסטואלי לתמונות ולרכיבים, ותוויות לכל השדות.</li>
+      <li>כיבוד הגדרת "הפחתת תנועה" של המכשיר.</li>
+      <li>האתר מותאם לטלפונים, לטאבלטים ולמחשבים, ולדפדפנים הנפוצים.</li>
+    </ul>
+
+    <h2>חלקים שאינם נגישים במלואם</h2>
+    <ul>
+      <li>הטפסים של חברות התעופה הם קבצי PDF שהחברות עצמן מפרסמות. ייתכן שחלקם אינם נגישים במלואם לקוראי מסך. בכל קובץ העמוד הראשון שלנו מסביר בעברית פשוטה מה עושים.</li>
+      <li>הסרטון על ערכת הטיסה אינו כולל כתוביות. התוכן שלו מתואר בטקסט שליד הסרטון.</li>
+      <li>החתימה נעשית בציור על המסך. מי שמתקשה בכך יכול להוריד את הקובץ בלי פרטים ולחתום ביד, או לפנות אלינו ונעזור.</li>
+    </ul>
+
+    <h2>כלי עזר בלבד</h2>
+    <p>האתר הוא כלי עזר והנגשה. הקבצים נוצרים אוטומטית לפי הפרטים שהוזנו, וייתכנו בהם טעויות או חוסרים. האחריות לבדוק את הפרטים, להשלים מסמכים חסרים ולשלוח לחברת התעופה היא של המשתמש בלבד. ההחלטה הסופית על הטסת הקלנועית היא של חברת התעופה.</p>
+
+    <h2>נתקלתם בבעיה? אנחנו כאן</h2>
+    <p>אם משהו באתר לא נגיש לכם, או שאתם צריכים עזרה בהכנת המסמכים, פנו אלינו ונשמח לעזור. כדאי לציין באיזה עמוד הייתה הבעיה ומה ניסיתם לעשות.</p>
+    <div class="box">
+      <p><b>רכז/ת הנגישות של MovingLife</b></p>
+      <p><span>טלפון:</span> <a href="tel:+972733913999"><span class="ltr">073 391 3999</span></a></p>
+      <p><span>מייל:</span> <a href="mailto:info@movinglife.com?subject=%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8"><span class="ltr">info@movinglife.com</span></a></p>
+      <p>אנחנו משתדלים לחזור לכל פנייה בתוך כמה ימי עסקים.</p>
+    </div>
+  </main>
+</div>
+<script src="i18n.js"></script>
+<script>
+(function () {
+  var bs = document.querySelectorAll('.langs button');
+  function paint() { bs.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === i18n.get())); }); }
+  bs.forEach(function (b) { b.addEventListener('click', function () { i18n.set(b.dataset.l); }); });
+  i18n.onChange(paint);
+  i18n.set(i18n.initial(), true);
+})();
+</script>
+<script>
+try { const p = JSON.parse(localStorage.getItem('atto-a11y') || '{}');
+  if (p.fs) document.documentElement.classList.add('a11y-fs' + p.fs);
+  ['hc', 'links', 'font'].forEach(k => { if (p[k]) document.documentElement.classList.add('a11y-' + k); });
+} catch (e) {}
+</script>
+</body>
+</html>

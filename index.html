@@ -16,12 +16,20 @@
   h1 { font-size:clamp(2rem,6vw,3rem); font-weight:600; letter-spacing:-.02em; }
   h1 span { color:var(--accent); }
   p { color:var(--muted); margin-top:12px; line-height:1.6; font-size:1.05rem; }
+  .proj { list-style:none; padding:0; margin-top:28px; display:grid; gap:12px; }
+  .proj li { display:flex; flex-direction:column; gap:2px; }
+  .proj a { color:var(--accent); font-weight:600; font-size:1.15rem; text-decoration:underline; text-underline-offset:3px; min-height:44px; display:inline-flex; align-items:center; }
+  .proj span { color:var(--muted); font-size:.95rem; }
 </style>
 </head>
 <body>
 <main>
   <h1>AI for <span>Daniel</span></h1>
   <p>האתר באוויר. כאן יעלו כלים, דפים ופרויקטים שאני בונה.</p>
+  <ul class="proj">
+    <li><a href="atto/">טסים עם ATTO</a><span>מסמכי טיסה לקלנועית, ישראל</span></li>
+    <li><a href="atto-usa/" lang="en" dir="ltr">Fly with ATTO</a><span>Flight documents, USA</span></li>
+  </ul>
 </main>
 </body>
 </html>
