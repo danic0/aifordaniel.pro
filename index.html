@@ -8,6 +8,7 @@
 <meta property="og:title" content="דניאל כהן · פרויקטים">
 <meta property="og:description" content="כלים שבניתי לבעיות שאני פוגש בעבודה">
 <meta property="og:image" content="img/daniel.jpg">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
@@ -111,6 +112,67 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.6rem, 6vw
 .side { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; margin: clamp(16px, 3vw, 28px) 0 0; padding: 18px 24px; background: var(--paper); border-radius: 18px; }
 .side span { color: var(--moss); }
 
+
+/* ===== motion ===== */
+:root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-io: cubic-bezier(0.77, 0, 0.175, 1); }
+
+/* reading progress */
+.progress { position: fixed; inset-inline: 0; top: 0; height: 3px; background: var(--sun); transform-origin: right; transform: scaleX(0); z-index: 20; pointer-events: none; }
+
+/* hero entrance */
+.js .intro .rise { opacity: 0; transform: translateY(18px); filter: blur(6px); animation: rise 900ms var(--ease-out) forwards; }
+.js .intro .rise:nth-child(1) { animation-delay: 80ms; } .js .intro .rise:nth-child(2) { animation-delay: 180ms; } .js .intro .rise:nth-child(3) { animation-delay: 280ms; }
+.js .avatar { opacity: 0; transform: scale(.94); animation: pop 900ms var(--ease-out) 40ms forwards; }
+@keyframes rise { to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes pop { to { opacity: 1; transform: none; } }
+.avatar::before { animation: glow 9s ease-in-out infinite alternate; }
+@keyframes glow { from { transform: translate(0,0) scale(1); } to { transform: translate(-10%, 12%) scale(1.12); } }
+.tags li { opacity: 1; }
+.js .tags li { opacity: 0; transform: translateY(8px); animation: rise 600ms var(--ease-out) forwards; }
+.js .tags li:nth-child(1) { animation-delay: 420ms; } .js .tags li:nth-child(2) { animation-delay: 480ms; } .js .tags li:nth-child(3) { animation-delay: 540ms; }
+
+/* scroll reveal */
+.js [data-reveal] { opacity: 0; transform: translateY(32px); filter: blur(4px); transition: opacity 800ms var(--ease-out), transform 900ms var(--ease-out), filter 800ms var(--ease-out); transition-delay: var(--d, 0ms); }
+.js [data-reveal].in { opacity: 1; transform: none; filter: blur(0); }
+/* headline wipe */
+.wipe > span { display: inline-block; }
+.js .wipe > span { clip-path: inset(0 0 100% 0); transform: translateY(40%); transition: clip-path 900ms var(--ease-io), transform 900ms var(--ease-out); }
+.js .wipe.in > span { clip-path: inset(-10% -4% -20% -4%); transform: none; }
+.head .line { display: block; height: 2px; background: var(--line); transform-origin: right; flex-basis: 100%; }
+.js .head .line { transform: scaleX(0); transition: transform 1200ms var(--ease-io) 150ms; }
+.js .head.in .line { transform: scaleX(1); }
+/* screenshots unveil from the bottom up inside each stage */
+.js .tile .phone img { clip-path: inset(100% 0 0 0); transition: clip-path 1100ms var(--ease-io) calc(var(--d, 0ms) + 200ms); }
+.js .tile.in .phone img { clip-path: inset(0 0 0 0); }
+.phone { will-change: transform; }
+
+/* hover and press */
+.tile, .card { transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -22px rgba(28,42,36,.45); }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -20px rgba(28,42,36,.4); }
+  .card:hover .ico { transform: rotate(-8deg) scale(1.06); }
+}
+.ico { transition: transform 300ms var(--ease-out); }
+.tile:has(a.cover):active { transform: scale(.985); transition-duration: 120ms; }
+
+/* counter */
+.count { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .intro .rise, .js .avatar, .js .tags li { animation: fade 300ms ease forwards; transform: none; filter: none; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  .avatar::before { animation: none; }
+  .js [data-reveal] { transform: none; filter: none; transition: opacity 400ms ease; }
+  .js .wipe > span { clip-path: none; transform: none; opacity: 0; transition: opacity 400ms ease; }
+  .js .wipe.in > span { opacity: 1; }
+  .js .head .line { transform: none; }
+  .js .tile .phone img { clip-path: none; }
+  .tile, .card, .ico { transition: none; }
+  .tile:hover, .card:hover { transform: none; }
+  .progress { display: none; }
+}
+
 footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top: 1px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) { .js .chat .msg { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
@@ -131,13 +193,14 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
 </head>
 <body>
 <a class="skip" href="#projects">דילוג לפרויקטים</a>
+<div class="progress" aria-hidden="true"></div>
 
 <main>
   <header class="wrap intro">
     <div class="avatar"><img src="img/daniel.webp" width="817" height="1165" alt="דניאל כהן"></div>
     <div>
-      <h1>דניאל כהן</h1>
-      <p class="bio">מתאם הדגמות ב <b>MovingLife</b> ומוביל צוות שטח. כשמשהו בעבודה חוזר על עצמו או מבלבל לקוחות, אני בונה לו כלי. אלה הפרויקטים.</p>
+      <h1 class="rise">דניאל כהן</h1>
+      <p class="bio rise">מתאם הדגמות ב <b>MovingLife</b> ומוביל צוות שטח. כשמשהו בעבודה חוזר על עצמו או מבלבל לקוחות, אני בונה לו כלי. אלה הפרויקטים.</p>
       <ul class="tags" aria-label="בקצרה">
         <li>בונה בעזרת AI</li>
         <li><span dir="ltr">HTML · JavaScript · Node.js</span></li>
@@ -147,12 +210,12 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
   </header>
 
   <section class="wrap projects" id="projects" aria-labelledby="pTitle">
-    <div class="head"><h2 id="pTitle">פרויקטים</h2><span>6 כלים שרצים היום</span></div>
-    <h3 class="sub" style="margin-top:0">ללקוחות</h3>
-    <p class="subnote">אתרים שלקוחות של MovingLife משתמשים בהם.</p>
+    <div class="head" data-head><h2 id="pTitle" class="wipe"><span>פרויקטים</span></h2><span><span class="count" data-to="6">6</span> כלים שרצים היום</span><i class="line" aria-hidden="true"></i></div>
+    <h3 class="sub wipe" style="margin-top:0"><span>ללקוחות</span></h3>
+    <p class="subnote" data-reveal>אתרים שלקוחות של MovingLife משתמשים בהם.</p>
 
     <div class="grid">
-      <article class="tile">
+      <article data-reveal class="tile">
         <div class="stage s1" aria-hidden="true">
           <div class="phone"><img src="img/atto-il-hero.webp" alt="" width="780" height="1688"></div>
           <div class="phone"><img src="img/atto-il-board.webp" alt="" loading="lazy" width="780" height="1688"></div>
@@ -167,7 +230,7 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
         <a class="cover" href="atto/" aria-label="לפתוח את האתר טסים עם ATTO"></a>
       </article>
 
-      <article class="tile">
+      <article data-reveal class="tile">
         <div class="stage s2" aria-hidden="true">
           <div class="phone"><img src="img/atto-us-board.webp" alt="" loading="lazy" width="780" height="1688"></div>
           <div class="phone"><img src="img/atto-us-step.webp" alt="" loading="lazy" width="780" height="1688"></div>
@@ -185,11 +248,11 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
 
     </div>
 
-    <h3 class="sub">לצוות</h3>
-    <p class="subnote">כלים פנימיים של MovingLife, בלי קישור ציבורי.</p>
+    <h3 class="sub wipe"><span>לצוות</span></h3>
+    <p class="subnote" data-reveal>כלים פנימיים של MovingLife, בלי קישור ציבורי.</p>
     <div class="grid">
 
-      <article class="tile wide">
+      <article data-reveal class="tile wide">
         <div class="stage s3 chat" id="chat" role="img" aria-label="המחשה של שיחה: לקוח מבקש הדגמה, והבוט מציע מועדים וקובע פגישה ביומן">
           <p class="cap" aria-hidden="true">המחשה</p>
           <div class="msg in" aria-hidden="true">היי, אפשר לקבוע הדגמה של ה ATTO?</div>
@@ -210,21 +273,21 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
     </div>
 
     <div class="cards">
-      <article class="card">
+      <article data-reveal class="card">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div>
         <span class="meta">לסוכנים בדרכים</span>
         <h3>אפליקציה לסוכני השטח</h3>
         <p>כל ההדגמות של היום בטלפון. מצב נהיגה עם כפתורים גדולים, הודעת וואטסאפ מוכנה ללקוח, ואישור הגעה בלחיצה.</p>
         <ul class="chips"><li>מצב נהיגה</li><li>וואטסאפ</li><li>טופס הוראת קבע</li></ul>
       </article>
-      <article class="card">
+      <article data-reveal class="card">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="3.5" rx="1"/><path d="M8.5 13h0M12 13h0M15.5 13h0M8.5 16.5h0M12 16.5h0M15.5 16.5h0" stroke-width="2.4"/></svg></div>
         <span class="meta">לסוכני השטח</span>
         <h3>מחשבון עמלות לסוכנים</h3>
         <p>הסוכן מזין כל מכירה שסגר, ובסוף החודש רואה כמה הוא הולך לקבל. בלי הפתעות בתלוש.</p>
         <ul class="chips"><li>מותאם לטלפון</li><li>סיכום חודשי</li></ul>
       </article>
-      <article class="card">
+      <article data-reveal class="card">
         <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2.5H7A2.5 2.5 0 0 0 4.5 5v14A2.5 2.5 0 0 0 7 21.5h10a2.5 2.5 0 0 0 2.5-2.5V8z"/><path d="M14 2.5V8h5.5"/><path d="M8 12.5h8M8 16h8M12 11v7"/></svg></div>
         <span class="meta">תוכנה למק ולווינדוס</span>
         <h3>חישוב עמלות בסוף החודש</h3>
@@ -233,20 +296,69 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
       </article>
     </div>
 
-    <p class="side"><b>וגם לעצמי:</b> <span>כלי שמתרגם בזמן אמת את הדיבור במשחקי מחשב לכתוביות בעברית, עם זיהוי דיבור ו AI.</span></p>
+    <p class="side" data-reveal><b>וגם לעצמי:</b> <span>כלי שמתרגם בזמן אמת את הדיבור במשחקי מחשב לכתוביות בעברית, עם זיהוי דיבור ו AI.</span></p>
   </section>
 </main>
 
 <footer class="wrap">דניאל כהן · aifordaniel.pro</footer>
 
 <script>
-document.documentElement.classList.add('js');
 (function () {
   var chat = document.getElementById('chat'); if (!chat) return;
   chat.querySelectorAll('.msg').forEach(function (m, i) { m.style.transitionDelay = (i * 0.45) + 's'; });
   if (!('IntersectionObserver' in window)) { chat.classList.add('play'); return; }
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { chat.classList.add('play'); io.disconnect(); } }); }, { threshold: 0.35 });
   io.observe(chat);
+})();
+</script>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // stagger siblings inside each grid
+  document.querySelectorAll('.grid, .cards').forEach(function (g) {
+    Array.prototype.forEach.call(g.children, function (el, i) { el.style.setProperty('--d', (i % 3) * 90 + 'ms'); });
+  });
+  var targets = document.querySelectorAll('[data-reveal], .wipe, [data-head]');
+  if (!('IntersectionObserver' in window)) { targets.forEach(function (t) { t.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in'); io.unobserve(e.target);
+      if (e.target.hasAttribute('data-head')) countUp(e.target.querySelector('.count'));
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  targets.forEach(function (t) { io.observe(t); });
+
+  function countUp(el) {
+    if (!el || reduce) return;
+    var to = +el.dataset.to, t0 = null;
+    function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 900); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }
+    el.textContent = '0'; requestAnimationFrame(step);
+  }
+
+  // scroll progress and phone parallax, transform only, one rAF per frame
+  var bar = document.querySelector('.progress');
+  var phones = Array.prototype.slice.call(document.querySelectorAll('.stage .phone'));
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var h = document.documentElement.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    if (reduce) return;
+    phones.forEach(function (ph, i) {
+      var r = ph.parentNode.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      var k = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; // -1..1
+      var depth = (i % 2) ? 46 : 22;
+      var base = (i % 2) ? 26 : 0;
+      ph.style.transform = 'translateY(' + (base + k * depth).toFixed(1) + 'px)';
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  frame();
 })();
 </script>
 </body>
