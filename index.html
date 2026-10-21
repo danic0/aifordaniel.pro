@@ -116,8 +116,6 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.6rem, 6vw
 /* ===== motion ===== */
 :root { --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-io: cubic-bezier(0.77, 0, 0.175, 1); }
 
-/* reading progress */
-.progress { position: fixed; inset-inline: 0; top: 0; height: 3px; background: var(--sun); transform-origin: right; transform: scaleX(0); z-index: 20; pointer-events: none; }
 
 /* hero entrance */
 .js .intro .rise { opacity: 0; transform: translateY(18px); filter: blur(6px); animation: rise 900ms var(--ease-out) forwards; }
@@ -170,7 +168,6 @@ h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.6rem, 6vw
   .js .tile .phone img { clip-path: none; }
   .tile, .card, .ico { transition: none; }
   .tile:hover, .card:hover { transform: none; }
-  .progress { display: none; }
 }
 
 footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top: 1px solid var(--line); }
@@ -193,7 +190,6 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
 </head>
 <body>
 <a class="skip" href="#projects">דילוג לפרויקטים</a>
-<div class="progress" aria-hidden="true"></div>
 
 <main>
   <header class="wrap intro">
@@ -337,14 +333,11 @@ footer { padding: 28px 0 44px; color: var(--moss); font-size: .95rem; border-top
     el.textContent = '0'; requestAnimationFrame(step);
   }
 
-  // scroll progress and phone parallax, transform only, one rAF per frame
-  var bar = document.querySelector('.progress');
+  // phone parallax, transform only, one rAF per frame
   var phones = Array.prototype.slice.call(document.querySelectorAll('.stage .phone'));
   var ticking = false;
   function frame() {
     ticking = false;
-    var h = document.documentElement.scrollHeight - innerHeight;
-    if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
     if (reduce) return;
     phones.forEach(function (ph, i) {
       var r = ph.parentNode.getBoundingClientRect();
