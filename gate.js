@@ -1,5 +1,5 @@
 (function () {
-  var HASH = 'a1c3033ba8bc1ff614e6263e6b4df89ef28678730aac0244fc971151a7a81ed1';
+  var HASH = 'd4d9697ab78873b1ca7154554d701f278de4ab4abe26595c8556d3159f9727e7';
   var KEY = 'afd_gate';
   var root = document.documentElement;
 
@@ -37,11 +37,11 @@
       '<div style="font-size:42px;margin-bottom:12px">🔒</div>' +
       '<h1 style="font-size:22px;font-weight:600;margin:0 0 6px">האתר סגור</h1>' +
       '<p style="margin:0 0 20px;color:#9aa0a6;font-size:15px">הכנס סיסמה כדי להמשיך</p>' +
-      '<input id="afd-pw" type="password" inputmode="numeric" autocomplete="off" autofocus placeholder="סיסמה" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:1px solid #2d3036;background:#17181c;color:#fff;font-size:18px;text-align:center;outline:none">' +
+      '<input id="afd-pw" type="password" inputmode="numeric" maxlength="8" autocomplete="off" autofocus placeholder="סיסמה" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:1px solid #2d3036;background:#17181c;color:#fff;font-size:18px;text-align:center;outline:none">' +
       '<button type="submit" style="width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;background:#f3f3f3;color:#0e0f12;font-size:17px;font-weight:600;cursor:pointer">כניסה</button>' +
       '<p id="afd-err" style="min-height:20px;margin:12px 0 0;color:#ff6b6b;font-size:14px"></p>' +
       '</form>';
-    document.body.appendChild(o);
+    root.appendChild(o);
     var pw = document.getElementById('afd-pw');
     var err = document.getElementById('afd-err');
     pw.focus();
