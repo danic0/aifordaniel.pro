@@ -30,7 +30,11 @@
   .hero h1{margin:0;font-size:30px;font-weight:800;letter-spacing:-.3px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
   .hero p{margin:4px 0 0;font-size:15px;opacity:.9}
 
-  .progress{position:relative;z-index:3;margin:-22px 14px 0;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:14px 16px}
+  .ask{position:relative;z-index:3;margin:-22px 14px 0;background:linear-gradient(135deg,#fff3bf,#ffe8cc);color:#5a3a00;border:2px solid #f59f00;border-radius:18px;padding:14px 16px;box-shadow:var(--shadow)}
+  .ask-t{font-weight:800;font-size:18px;margin-bottom:4px}
+  .ask-b{font-size:17px;line-height:1.5}
+  .tick{display:inline-grid;place-content:center;width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;font-weight:800;font-size:14px;vertical-align:middle}
+  .progress{position:relative;z-index:3;margin:12px 14px 0;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:14px 16px}
   .prow{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
   .prow b{font-size:20px}
   .prow span{color:var(--mute);font-size:14px}
@@ -58,7 +62,7 @@
   .row:active{background:var(--chip)}
   .row .em{font-size:22px;width:28px;text-align:center;flex:none}
   .row .nm{flex:1}
-  .row .st{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--chip);color:var(--mute);flex:none}
+  .row .st{white-space:nowrap;font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--chip);color:var(--mute);flex:none}
   .box{flex:none;width:28px;height:28px;border:2px solid #c9c1b2;border-radius:50%;display:grid;place-content:center;color:transparent;font-size:17px;font-weight:800;transition:all .15s}
   .row.has{background:var(--okbg)}
   .row.has .nm{color:var(--mute);text-decoration:line-through;text-decoration-thickness:1.5px}
@@ -93,9 +97,14 @@
     <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Healthy_Chicken_and_Vegetables_Stir_Fry.jpg?width=1200" alt="מוקפץ עוף וירקות" onerror="this.remove()">
     <figcaption class="txt">
       <h1>🥘 קניות למוקפץ</h1>
-      <p>מסמנים מה שיש במקרר – השאר זה מה שקונים</p>
+      <p>בודקים במקרר ובארון ורושמים מה יש בבית</p>
     </figcaption>
   </figure>
+
+  <section class="ask" id="ask">
+    <div class="ask-t">👋 אמא, תעשי לי טובה:</div>
+    <div class="ask-b">עברי על הרשימה וסמני <span class="tick">✓</span> ליד <b>כל מה שיש לך בבית</b>.<br>מה שלא מסומן – אני אקנה.</div>
+  </section>
 
   <section class="progress">
     <div class="prow"><b id="pTitle">יש בבית 0 מתוך 0</b><span id="pPct">0%</span></div>
@@ -106,8 +115,8 @@
 
   <nav class="seg" id="seg">
     <button data-f="all" class="on">הכול <small id="nAll"></small></button>
-    <button data-f="need">חסר <small id="nNeed"></small></button>
-    <button data-f="have">יש <small id="nHave"></small></button>
+    <button data-f="need">אין בבית <small id="nNeed"></small></button>
+    <button data-f="have">יש בבית <small id="nHave"></small></button>
   </nav>
 
   <div id="list"></div>
@@ -126,7 +135,7 @@
 </div>
 
 <div class="dock"><div class="in">
-  <button class="wa" id="waBtn">📲 שלח בוואטסאפ מה שחסר</button>
+  <button class="wa" id="waBtn">📲 סיימתי – שלחי לדניאל בוואטסאפ</button>
   <button class="cp" id="cpBtn" aria-label="העתק">📋</button>
 </div></div>
 <div class="toast" id="toast"></div>
@@ -191,11 +200,11 @@ function allItems(){
 function render(){
   const items=allItems(), total=items.length, have=items.filter(i=>S.checked[i.n]).length, need=total-have;
   const pct=total?Math.round(have/total*100):0;
-  $("pTitle").textContent=`יש בבית ${have} מתוך ${total}`;
+  $("pTitle").textContent=`סומנו ${have} מתוך ${total} – יש בבית`;
   $("pPct").textContent=pct+"%"; $("pBar").style.width=pct+"%";
   const nl=$("needLine");
   nl.className="need"+(need===0?" done":"");
-  nl.textContent=need===0?"🎉 הכול יש בבית – אפשר להתחיל לבשל!":`🛒 חסר לקנות: ${need}`;
+  nl.textContent=need===0?"🎉 הכול יש בבית – אפשר להתחיל לבשל!":(have===0?"עוד לא סומן כלום – מתחילים מלמעלה 👇":`🛒 עוד לא סומן / חסר: ${need}`);
   $("nAll").textContent=total; $("nNeed").textContent=need; $("nHave").textContent=have;
   document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.f===S.filter));
 
@@ -219,7 +228,7 @@ function render(){
     vis.forEach(i=>{
       const on=!!S.checked[i.n];
       const r=document.createElement("button"); r.className="row"+(on?" has":"");
-      r.innerHTML=`<span class="box">✓</span><span class="em">${i.e}</span><span class="nm"></span><span class="st">${on?"יש":"חסר"}</span>`;
+      r.innerHTML=`<span class="box">✓</span><span class="em">${i.e}</span><span class="nm"></span><span class="st">${on?"יש בבית":"אין"}</span>`;
       r.querySelector(".nm").textContent=i.n;
       r.onclick=()=>{
         if(S.checked[i.n]) delete S.checked[i.n]; else S.checked[i.n]=true;
