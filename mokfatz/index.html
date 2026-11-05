@@ -38,6 +38,7 @@
   .bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent2),var(--ok));transition:width .35s ease}
   .need{margin-top:10px;font-weight:700;color:var(--accent);font-size:15px}
   .need.done{color:var(--ok)}
+  .sync{margin-top:6px;font-size:12px;color:var(--mute)}
 
   .seg{display:flex;gap:6px;margin:16px 14px 8px;background:var(--chip);padding:4px;border-radius:14px;position:sticky;top:8px;z-index:4;box-shadow:var(--shadow)}
   .seg button{flex:1;border:0;background:transparent;padding:9px 6px;border-radius:10px;font-weight:600;font-size:14px;color:var(--mute)}
@@ -100,6 +101,7 @@
     <div class="prow"><b id="pTitle">יש בבית 0 מתוך 0</b><span id="pPct">0%</span></div>
     <div class="bar"><i id="pBar"></i></div>
     <div class="need" id="needLine"></div>
+    <div class="sync" id="sync"></div>
   </section>
 
   <nav class="seg" id="seg">
@@ -120,7 +122,7 @@
     <button id="uncheckAll">נקה את כל הסימונים</button>
   </div>
 
-  <footer>הסימונים נשמרים במכשיר הזה · תמונה: FitTasteTic, <a href="https://commons.wikimedia.org/wiki/File:Healthy_Chicken_and_Vegetables_Stir_Fry.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></footer>
+  <footer>הסימונים משותפים בין כל מי שפותח את הדף · תמונה: FitTasteTic, <a href="https://commons.wikimedia.org/wiki/File:Healthy_Chicken_and_Vegetables_Stir_Fry.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></footer>
 </div>
 
 <div class="dock"><div class="in">
@@ -143,6 +145,39 @@ S.checked=S.checked||{}; S.extra=S.extra||[]; S.collapsed=S.collapsed||{}; S.fil
 S.extra=S.extra.map(x=>typeof x==="string"?{n:x,g:"veg"}:x);
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({checked:S.checked,extra:S.extra,collapsed:S.collapsed}))}catch(e){}};
 const $=id=>document.getElementById(id);
+
+// ---- shared sync (Supabase REST) ----
+const SB="https://qvibizfwjcxrmrxdcpse.supabase.co/rest/v1";
+const KEYP="sb_publishable_Wx7w1psSEU7A5CYq_RwFrg_QOFg5ssa";
+let writes=0, writeSeq=0, online=false;
+function setSync(){const e=$("sync");if(e)e.textContent=online?"🟢 מסונכרן – כולם רואים את אותם סימונים":"⚪ לא מחובר – השינויים נשמרים רק במכשיר הזה"}
+async function api(path,opt){
+  const r=await fetch(SB+path,Object.assign({},opt,{headers:Object.assign({apikey:KEYP,"Content-Type":"application/json"},(opt&&opt.headers)||{})}));
+  if(!r.ok) throw new Error(r.status);
+  online=true; setSync();
+  return r.status===204?null:r.json().catch(()=>null);
+}
+async function push(path,opt){
+  writes++; writeSeq++;
+  try{ await api(path,opt); }
+  catch(e){ online=false; setSync(); toast("לא נשמר בשרת – בדוק חיבור"); }
+  finally{ writes--; }
+  pull();
+}
+async function pull(){
+  if(writes>0) return;
+  const seq=writeSeq;
+  try{
+    const [it,ex]=await Promise.all([api("/mokfatz_items?select=name,have"),api("/mokfatz_extra?select=name,grp&order=created_at")]);
+    if(writes>0||seq!==writeSeq) return;
+    const c={}; it.forEach(r=>{if(r.have)c[r.name]=true});
+    const ne=ex.map(r=>({n:r.name,g:r.grp}));
+    if(JSON.stringify(c)!==JSON.stringify(S.checked)||JSON.stringify(ne)!==JSON.stringify(S.extra)){
+      S.checked=c; S.extra=ne; save(); render();
+    }
+  }catch(e){ online=false; setSync(); }
+}
+const up=(name,have)=>push("/mokfatz_items",{method:"POST",headers:{Prefer:"resolution=merge-duplicates,return=minimal"},body:JSON.stringify({name,have})});
 
 function allItems(){
   const out=[];
@@ -190,10 +225,12 @@ function render(){
         if(S.checked[i.n]) delete S.checked[i.n]; else S.checked[i.n]=true;
         if(navigator.vibrate) navigator.vibrate(12);
         save(); render();
+        up(i.n,!!S.checked[i.n]);
       };
       if(i.custom){
         const d=document.createElement("span"); d.className="del"; d.textContent="✕"; d.setAttribute("role","button"); d.setAttribute("aria-label","מחק");
-        d.onclick=ev=>{ev.stopPropagation();S.extra=S.extra.filter(x=>x.n!==i.n);delete S.checked[i.n];save();render()};
+        d.onclick=ev=>{ev.stopPropagation();S.extra=S.extra.filter(x=>x.n!==i.n);delete S.checked[i.n];save();render();
+          push("/mokfatz_extra?name=eq."+encodeURIComponent(i.n),{method:"DELETE"}); up(i.n,false)};
         r.appendChild(d);
       }
       wrap.appendChild(r);
@@ -225,17 +262,19 @@ $("cpBtn").onclick=async()=>{
   try{await navigator.clipboard.writeText(missingText());toast("הרשימה הועתקה ✓")}
   catch(e){const ta=document.createElement("textarea");ta.value=missingText();document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("הרשימה הועתקה ✓")}
 };
-$("uncheckAll").onclick=()=>{ if(confirm("לנקות את כל הסימונים?")){S.checked={};save();render();toast("הסימונים נוקו")} };
+$("uncheckAll").onclick=()=>{ if(confirm("לנקות את כל הסימונים (אצל כולם)?")){S.checked={};save();render();toast("הסימונים נוקו");push("/mokfatz_items?have=eq.true",{method:"PATCH",body:JSON.stringify({have:false})})} };
 
 const sel=$("addGroup");
 GROUPS.forEach(g=>{const o=document.createElement("option");o.value=g.id;o.textContent=g.e+" "+g.t;sel.appendChild(o)});
 $("addForm").onsubmit=e=>{
   e.preventDefault();
   const v=$("addInput").value.trim(); if(!v) return;
-  if(!allItems().some(i=>i.n===v)){S.extra.push({n:v,g:sel.value});save();toast("נוסף ✓")} else toast("כבר ברשימה");
+  if(!allItems().some(i=>i.n===v)){S.extra.push({n:v,g:sel.value});save();toast("נוסף ✓");push("/mokfatz_extra",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify({name:v,grp:sel.value})})} else toast("כבר ברשימה");
   $("addInput").value=""; render();
 };
-render();
+render(); setSync(); pull();
+setInterval(()=>{if(!document.hidden)pull()},4000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)pull()});
 </script>
 </body>
 </html>
