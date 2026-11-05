@@ -2,114 +2,238 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>רשימת קניות – מוקפץ</title>
+<meta name="theme-color" content="#d9480f">
+<title>קניות למוקפץ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#faf7f2;--card:#fff;--ink:#1f2328;--mute:#6b7280;--line:#e8e2d8;--ok:#1f9d55;--okbg:#e8f6ee;--accent:#d9480f}
+  :root{
+    --bg:#faf7f2;--card:#fff;--ink:#1f2328;--mute:#6b7280;--line:#ece5d9;
+    --ok:#1f9d55;--okbg:#e9f7ef;--accent:#d9480f;--accent2:#f08c00;--chip:#f3eee5;--shadow:0 6px 20px rgba(80,50,10,.08)
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#14120f;--card:#1e1b17;--ink:#f3efe8;--mute:#a39b8d;--line:#2e2a24;--okbg:#14291d;--chip:#2a261f;--shadow:0 6px 20px rgba(0,0,0,.4)}
+  }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.4}
-  header{position:sticky;top:0;z-index:5;background:var(--bg);padding:16px 16px 10px;border-bottom:1px solid var(--line)}
-  h1{margin:0 0 4px;font-size:24px}
-  .sub{margin:0 0 10px;color:var(--mute);font-size:14px}
-  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .count{flex:1;font-weight:700;color:var(--accent);font-size:16px}
-  button{font:inherit;border:1px solid var(--line);background:var(--card);padding:8px 12px;border-radius:10px;cursor:pointer}
-  button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-  main{padding:12px 16px 80px;max-width:640px;margin:0 auto}
-  section{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 0 14px;overflow:hidden}
-  h2{margin:0;padding:10px 14px;font-size:15px;background:#f3eee5;color:#5b5346}
-  label{display:flex;align-items:center;gap:12px;padding:13px 14px;border-top:1px solid var(--line);font-size:18px;cursor:pointer;user-select:none}
-  label:first-of-type{border-top:0}
-  input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;border:2px solid #c9c1b2;border-radius:8px;background:#fff;display:grid;place-content:center;margin:0}
-  input[type=checkbox]:checked{background:var(--ok);border-color:var(--ok)}
-  input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:20px;font-weight:700;line-height:1}
-  label.done{background:var(--okbg);color:#4b6b58}
-  label.done .name{text-decoration:line-through}
-  .hint{font-size:13px;color:var(--mute)}
-  .add{display:flex;gap:8px;margin:0 0 14px}
-  .add input{flex:1;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-  .hero{margin:0 0 14px;padding:0;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(217,72,15,.15)}
-  .hero img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#f3eee5}
-  .hero figcaption{background:#fff;padding:6px 12px;font-size:11px;color:var(--mute)}
-  .hero figcaption a{color:inherit}
-  .hidden{display:none!important}
-  footer{text-align:center;color:var(--mute);font-size:13px;padding:0 16px 30px}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.4;padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  .wrap{max-width:620px;margin:0 auto}
+  button{font:inherit;color:inherit;cursor:pointer}
+
+  .hero{position:relative;margin:0;height:230px;background:#3a2a1a;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,12,4,.85),rgba(20,12,4,.15) 65%,rgba(20,12,4,.35))}
+  .hero .txt{position:absolute;z-index:2;right:0;left:0;bottom:0;padding:18px 18px 28px;color:#fff}
+  .hero h1{margin:0;font-size:30px;font-weight:800;letter-spacing:-.3px;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .hero p{margin:4px 0 0;font-size:15px;opacity:.9}
+
+  .progress{position:relative;z-index:3;margin:-22px 14px 0;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:14px 16px}
+  .prow{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .prow b{font-size:20px}
+  .prow span{color:var(--mute);font-size:14px}
+  .bar{height:10px;border-radius:99px;background:var(--chip);margin-top:10px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent2),var(--ok));transition:width .35s ease}
+  .need{margin-top:10px;font-weight:700;color:var(--accent);font-size:15px}
+  .need.done{color:var(--ok)}
+
+  .seg{display:flex;gap:6px;margin:16px 14px 8px;background:var(--chip);padding:4px;border-radius:14px;position:sticky;top:8px;z-index:4;box-shadow:var(--shadow)}
+  .seg button{flex:1;border:0;background:transparent;padding:9px 6px;border-radius:10px;font-weight:600;font-size:14px;color:var(--mute)}
+  .seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+  .seg small{opacity:.7;font-weight:500}
+
+  .group{margin:12px 14px;background:var(--card);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .ghead{width:100%;display:flex;align-items:center;gap:10px;padding:13px 16px;border:0;background:transparent;text-align:right}
+  .ghead .ge{font-size:22px}
+  .ghead .gt{flex:1;font-size:16px;font-weight:700}
+  .ghead .gc{font-size:13px;color:var(--mute);background:var(--chip);padding:2px 10px;border-radius:99px}
+  .ghead .gc.full{background:var(--okbg);color:var(--ok);font-weight:700}
+  .ghead .chev{color:var(--mute);transition:transform .2s;font-size:12px}
+  .group.collapsed .chev{transform:rotate(90deg)}
+  .group.collapsed .items{display:none}
+  .row{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border:0;border-top:1px solid var(--line);background:transparent;text-align:right;font-size:18px;transition:background .15s}
+  .row:active{background:var(--chip)}
+  .row .em{font-size:22px;width:28px;text-align:center;flex:none}
+  .row .nm{flex:1}
+  .row .st{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--chip);color:var(--mute);flex:none}
+  .box{flex:none;width:28px;height:28px;border:2px solid #c9c1b2;border-radius:50%;display:grid;place-content:center;color:transparent;font-size:17px;font-weight:800;transition:all .15s}
+  .row.has{background:var(--okbg)}
+  .row.has .nm{color:var(--mute);text-decoration:line-through;text-decoration-thickness:1.5px}
+  .row.has .box{background:var(--ok);border-color:var(--ok);color:#fff;transform:scale(1.05)}
+  .row.has .st{background:var(--ok);color:#fff}
+  .del{flex:none;border:0;background:transparent;color:var(--mute);font-size:20px;padding:4px 8px}
+  .empty{text-align:center;color:var(--mute);padding:34px 20px}
+
+  .add{display:flex;gap:8px;margin:14px}
+  .add input,.add select{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink)}
+  .add input{flex:1;min-width:0}
+  .add select{max-width:116px}
+  .add button{border:0;background:var(--ink);color:var(--bg);border-radius:14px;padding:0 16px;font-weight:700}
+
+  .tools{display:flex;gap:8px;margin:6px 14px 0}
+  .tools button{flex:1;border:1px solid var(--line);background:var(--card);padding:10px;border-radius:12px;font-size:14px;color:var(--mute)}
+
+  .dock{position:fixed;z-index:10;right:0;left:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,transparent)}
+  .dock .in{max-width:620px;margin:0 auto;display:flex;gap:8px}
+  .dock button{border:0;border-radius:16px;padding:15px;font-weight:800;font-size:17px;box-shadow:var(--shadow)}
+  .wa{flex:1;background:#25d366;color:#06361a}
+  .cp{background:var(--card);color:var(--ink);padding:15px 18px!important}
+  .toast{position:fixed;z-index:20;left:50%;bottom:90px;transform:translate(-50%,20px);background:#1f2328;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:all .25s}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  footer{text-align:center;color:var(--mute);font-size:12px;padding:18px 16px 0}
+  footer a{color:inherit}
 </style>
 </head>
 <body>
-<header>
-  <h1>🥘 קניות למוקפץ</h1>
-  <p class="sub">מסמנים ✓ על מה שיש במקרר. מה שנשאר בלי וי – צריך לקנות.</p>
-  <div class="bar">
-    <span class="count" id="count"></span>
-    <button id="onlyMissing">רק מה שחסר</button>
-    <button id="reset">איפוס</button>
-  </div>
-</header>
-<main>
+<div class="wrap">
   <figure class="hero">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Healthy_Chicken_and_Vegetables_Stir_Fry.jpg?width=1200" alt="מוקפץ עוף וירקות" loading="eager" onerror="this.closest('figure').classList.add('hidden')">
-    <figcaption>צילום: FitTasteTic · <a href="https://commons.wikimedia.org/wiki/File:Healthy_Chicken_and_Vegetables_Stir_Fry.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a> · Wikimedia Commons</figcaption>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Healthy_Chicken_and_Vegetables_Stir_Fry.jpg?width=1200" alt="מוקפץ עוף וירקות" onerror="this.remove()">
+    <figcaption class="txt">
+      <h1>🥘 קניות למוקפץ</h1>
+      <p>מסמנים מה שיש במקרר – השאר זה מה שקונים</p>
+    </figcaption>
   </figure>
+
+  <section class="progress">
+    <div class="prow"><b id="pTitle">יש בבית 0 מתוך 0</b><span id="pPct">0%</span></div>
+    <div class="bar"><i id="pBar"></i></div>
+    <div class="need" id="needLine"></div>
+  </section>
+
+  <nav class="seg" id="seg">
+    <button data-f="all" class="on">הכול <small id="nAll"></small></button>
+    <button data-f="need">חסר <small id="nNeed"></small></button>
+    <button data-f="have">יש <small id="nHave"></small></button>
+  </nav>
+
+  <div id="list"></div>
+
   <form class="add" id="addForm">
-    <input id="addInput" placeholder="להוסיף פריט לרשימה…" autocomplete="off">
+    <input id="addInput" placeholder="להוסיף פריט…" autocomplete="off" enterkeyhint="done">
+    <select id="addGroup" aria-label="קטגוריה"></select>
     <button type="submit">הוסף</button>
   </form>
-  <div id="list"></div>
-</main>
-<footer>הסימונים נשמרים במכשיר הזה</footer>
+
+  <div class="tools">
+    <button id="uncheckAll">נקה את כל הסימונים</button>
+  </div>
+
+  <footer>הסימונים נשמרים במכשיר הזה · תמונה: FitTasteTic, <a href="https://commons.wikimedia.org/wiki/File:Healthy_Chicken_and_Vegetables_Stir_Fry.jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></footer>
+</div>
+
+<div class="dock"><div class="in">
+  <button class="wa" id="waBtn">📲 שלח בוואטסאפ מה שחסר</button>
+  <button class="cp" id="cpBtn" aria-label="העתק">📋</button>
+</div></div>
+<div class="toast" id="toast"></div>
 
 <script>
-const DEFAULTS = {
-  "🥕 ירקות": ["בצל","שום","גזר","פלפל אדום","פלפל צהוב","כרוב","ברוקולי","קישואים","פטריות","בצל ירוק","שעועית ירוקה","ג׳ינג׳ר טרי","תירס מיני","נבטים"],
-  "🍗 חלבון": ["חזה עוף / סטייק","טופו","ביצים"],
-  "🍜 בסיס": ["אטריות","אורז"],
-  "🧂 רטבים ותבלינים": ["סויה","שמן שומשום","שמן לטיגון","רוטב צ׳ילי מתוק","רוטב צדפות","עמילן תירס (קורנפלור)","סוכר / דבש","שומשום","קשיו / בוטנים"]
-};
-const KEY = "mokfatz_v1";
-let state;
-try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ state = {}; }
-state.checked = state.checked || {};
-state.extra = state.extra || [];
-state.onlyMissing = !!state.onlyMissing;
+const GROUPS = [
+  {id:"veg",  t:"ירקות",          e:"🥕", items:[["בצל","🧅"],["שום","🧄"],["גזר","🥕"],["פלפל אדום","🫑"],["פלפל צהוב","🫑"],["כרוב","🥬"],["ברוקולי","🥦"],["קישואים","🥒"],["פטריות","🍄"],["בצל ירוק","🌿"],["שעועית ירוקה","🫛"],["ג׳ינג׳ר טרי","🫚"],["תירס מיני","🌽"],["נבטים","🌱"]]},
+  {id:"pro",  t:"חלבון",          e:"🍗", items:[["חזה עוף / סטייק","🍗"],["טופו","🧈"],["ביצים","🥚"]]},
+  {id:"base", t:"בסיס",           e:"🍜", items:[["אטריות","🍜"],["אורז","🍚"]]},
+  {id:"sauce",t:"רטבים ותבלינים", e:"🧂", items:[["סויה","🍶"],["שמן שומשום","🫙"],["שמן לטיגון","🫒"],["רוטב צ׳ילי מתוק","🌶️"],["רוטב צדפות","🫙"],["עמילן תירס (קורנפלור)","🥄"],["סוכר / דבש","🍯"],["שומשום","⚪"],["קשיו / בוטנים","🥜"]]}
+];
+const KEY="mokfatz_v1";
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+S.checked=S.checked||{}; S.extra=S.extra||[]; S.collapsed=S.collapsed||{}; S.filter="all";
+S.extra=S.extra.map(x=>typeof x==="string"?{n:x,g:"veg"}:x);
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify({checked:S.checked,extra:S.extra,collapsed:S.collapsed}))}catch(e){}};
+const $=id=>document.getElementById(id);
 
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
-
-function render(){
-  const list = document.getElementById("list");
-  list.innerHTML = "";
-  const groups = Object.assign({}, DEFAULTS);
-  if (state.extra.length) groups["➕ תוספות"] = state.extra;
-  let total = 0, have = 0;
-  for (const [title, items] of Object.entries(groups)) {
-    const sec = document.createElement("section");
-    const h = document.createElement("h2"); h.textContent = title; sec.appendChild(h);
-    items.forEach(name => {
-      total++;
-      const isOn = !!state.checked[name]; if (isOn) have++;
-      const lab = document.createElement("label");
-      if (isOn) lab.className = "done";
-      if (isOn && state.onlyMissing) lab.classList.add("hidden");
-      const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = isOn;
-      cb.onchange = () => { state.checked[name] = cb.checked; save(); render(); };
-      const sp = document.createElement("span"); sp.className = "name"; sp.textContent = name;
-      lab.append(cb, sp); sec.appendChild(lab);
-    });
-    list.appendChild(sec);
-  }
-  document.getElementById("count").textContent = total - have === 0 ? "✅ הכול יש בבית!" : `חסר לקנות: ${total - have} מתוך ${total}`;
-  document.getElementById("onlyMissing").classList.toggle("on", state.onlyMissing);
+function allItems(){
+  const out=[];
+  GROUPS.forEach(g=>{
+    g.items.forEach(([n,e])=>out.push({n,e,g:g.id,custom:false}));
+    S.extra.filter(x=>x.g===g.id).forEach(x=>out.push({n:x.n,e:"🔸",g:g.id,custom:true}));
+  });
+  return out;
 }
 
-document.getElementById("onlyMissing").onclick = () => { state.onlyMissing = !state.onlyMissing; save(); render(); };
-document.getElementById("reset").onclick = () => { if (confirm("לאפס את כל הסימונים?")) { state.checked = {}; save(); render(); } };
-document.getElementById("addForm").onsubmit = e => {
+function render(){
+  const items=allItems(), total=items.length, have=items.filter(i=>S.checked[i.n]).length, need=total-have;
+  const pct=total?Math.round(have/total*100):0;
+  $("pTitle").textContent=`יש בבית ${have} מתוך ${total}`;
+  $("pPct").textContent=pct+"%"; $("pBar").style.width=pct+"%";
+  const nl=$("needLine");
+  nl.className="need"+(need===0?" done":"");
+  nl.textContent=need===0?"🎉 הכול יש בבית – אפשר להתחיל לבשל!":`🛒 חסר לקנות: ${need}`;
+  $("nAll").textContent=total; $("nNeed").textContent=need; $("nHave").textContent=have;
+  document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.f===S.filter));
+
+  const list=$("list"); list.innerHTML="";
+  let shown=0;
+  GROUPS.forEach(g=>{
+    let gi=items.filter(i=>i.g===g.id);
+    if(!gi.length) return;
+    const gHave=gi.filter(i=>S.checked[i.n]).length;
+    gi=[...gi.filter(i=>!S.checked[i.n]),...gi.filter(i=>S.checked[i.n])];
+    const vis=gi.filter(i=>S.filter==="all"||(S.filter==="need"&&!S.checked[i.n])||(S.filter==="have"&&S.checked[i.n]));
+    if(!vis.length) return;
+    shown+=vis.length;
+    const box=document.createElement("section");
+    box.className="group"+(S.collapsed[g.id]&&S.filter==="all"?" collapsed":"");
+    const head=document.createElement("button"); head.className="ghead";
+    head.innerHTML=`<span class="ge">${g.e}</span><span class="gt">${g.t}</span><span class="gc${gHave===gi.length?" full":""}">${gHave}/${gi.length}</span><span class="chev">▼</span>`;
+    head.onclick=()=>{S.collapsed[g.id]=!S.collapsed[g.id];save();render()};
+    box.appendChild(head);
+    const wrap=document.createElement("div"); wrap.className="items";
+    vis.forEach(i=>{
+      const on=!!S.checked[i.n];
+      const r=document.createElement("button"); r.className="row"+(on?" has":"");
+      r.innerHTML=`<span class="box">✓</span><span class="em">${i.e}</span><span class="nm"></span><span class="st">${on?"יש":"חסר"}</span>`;
+      r.querySelector(".nm").textContent=i.n;
+      r.onclick=()=>{
+        if(S.checked[i.n]) delete S.checked[i.n]; else S.checked[i.n]=true;
+        if(navigator.vibrate) navigator.vibrate(12);
+        save(); render();
+      };
+      if(i.custom){
+        const d=document.createElement("span"); d.className="del"; d.textContent="✕"; d.setAttribute("role","button"); d.setAttribute("aria-label","מחק");
+        d.onclick=ev=>{ev.stopPropagation();S.extra=S.extra.filter(x=>x.n!==i.n);delete S.checked[i.n];save();render()};
+        r.appendChild(d);
+      }
+      wrap.appendChild(r);
+    });
+    box.appendChild(wrap); list.appendChild(box);
+  });
+  if(!shown){
+    const e=document.createElement("div"); e.className="empty";
+    e.textContent=S.filter==="need"?"אין מה לקנות 🎉":"עוד לא סומן כלום";
+    list.appendChild(e);
+  }
+}
+
+function missingText(){
+  const m=allItems().filter(i=>!S.checked[i.n]);
+  if(!m.length) return "הכול יש בבית למוקפץ 🎉";
+  let t="🛒 חסר לי למוקפץ:\n";
+  GROUPS.forEach(g=>{
+    const gi=m.filter(i=>i.g===g.id); if(!gi.length) return;
+    t+=`\n${g.e} ${g.t}\n`+gi.map(i=>"• "+i.n).join("\n")+"\n";
+  });
+  return t.trim();
+}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),1800)}
+
+$("seg").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.filter=b.dataset.f;render()};
+$("waBtn").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(missingText()),"_blank");
+$("cpBtn").onclick=async()=>{
+  try{await navigator.clipboard.writeText(missingText());toast("הרשימה הועתקה ✓")}
+  catch(e){const ta=document.createElement("textarea");ta.value=missingText();document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("הרשימה הועתקה ✓")}
+};
+$("uncheckAll").onclick=()=>{ if(confirm("לנקות את כל הסימונים?")){S.checked={};save();render();toast("הסימונים נוקו")} };
+
+const sel=$("addGroup");
+GROUPS.forEach(g=>{const o=document.createElement("option");o.value=g.id;o.textContent=g.e+" "+g.t;sel.appendChild(o)});
+$("addForm").onsubmit=e=>{
   e.preventDefault();
-  const v = document.getElementById("addInput").value.trim();
-  if (v && !state.extra.includes(v)) { state.extra.push(v); save(); }
-  document.getElementById("addInput").value = "";
-  render();
+  const v=$("addInput").value.trim(); if(!v) return;
+  if(!allItems().some(i=>i.n===v)){S.extra.push({n:v,g:sel.value});save();toast("נוסף ✓")} else toast("כבר ברשימה");
+  $("addInput").value=""; render();
 };
 render();
 </script>
