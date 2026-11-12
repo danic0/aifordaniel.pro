@@ -160,6 +160,19 @@
   .rail__end h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 8px; }
   .rail__end p { color: var(--sc-ink-soft); margin: 0; }
 
+  /* ================= 05 · mozart listening game (flow) ================= */
+  .mozart { background: var(--sc-canvas); padding-block: clamp(80px, 12vw, 150px) clamp(40px, 6vw, 80px); }
+  .mozart__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  .mozart .sc-display { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1.05; }
+  .mozart__copy .lede { font-size: 1.2rem; color: var(--sc-ink-soft); margin: 0 0 26px; max-width: 32ch; }
+  .mozart__art { margin: 0; }
+  .mozart__art img { display: block; width: 100%; height: auto; }
+  @media (max-width: 820px) {
+    .mozart__grid { grid-template-columns: 1fr; }
+    .mozart__art { order: -1; max-width: 520px; margin-inline: auto; }
+    .mozart__copy .lede { font-size: 1rem; margin-bottom: 12px; }
+  }
+
   /* ================= close · colophon, set like a label ================= */
   .colophon { background: var(--sc-canvas); padding-block: clamp(80px, 12vw, 160px) 48px; }
   .colophon__plate { max-width: 40rem; margin-inline: auto; background: var(--sc-surface); border-radius: 22px; padding: clamp(24px, 4vw, 40px); box-shadow: var(--sc-e1), var(--sc-edge); }
@@ -219,6 +232,7 @@
     <li><a href="#us" lang="en">Fly with ATTO</a></li>
     <li><a href="#bot">בוט ההדגמות</a></li>
     <li><a href="#team">לצוות</a></li>
+    <li><a href="#mozart">מוצרט</a></li>
   </ol>
 </nav>
 
@@ -382,6 +396,26 @@
     </div>
   </section>
 
+  <!-- 05 · MOZART: a listening game made for Dr. Eitan. -->
+  <section id="mozart" class="mozart" data-sc-act="flow" aria-labelledby="h-mozart">
+    <div class="sc-wrap mozart__grid">
+      <div class="mozart__copy" data-sc-in data-sc-stagger="70">
+        <p class="obj-tag">עבור ד״ר איתן</p>
+        <h2 id="h-mozart" class="sc-display obj-name">הסערה בלב ובצלילים</h2>
+        <p class="lede">משחק האזנה פעילה לאריה "מלכת הלילה" של מוצרט. מקשיבים לקטע, מנחשים איזה דימוי מתאים לו, ומגלים מה קורה במוזיקה.</p>
+        <dl class="label">
+          <dt>למי</dt><dd>ד״ר איתן והתלמידים שלו</dd>
+          <dt>מה זה עושה</dt><dd>6 קטעים קצרים מהאריה, עם משוב והסבר מוזיקלי אחרי כל ניחוש</dd>
+          <dt>תוכן</dt><dd>יוליה אליאשוב, מכללת לוינסקי-וינגייט</dd>
+          <dt>איפה</dt><dd><a class="more" href="dr-eitan/">לפתוח את המשחק</a></dd>
+        </dl>
+      </div>
+      <figure class="mozart__art" data-sc-in>
+        <img src="assets/mozart-cards.webp" width="1371" height="769" alt="שלוש כרטיסיות מהמשחק: תווים, קשת כינור ופסנתר" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
   <!-- CLOSE: a colophon plate, typeset like the labels. Holds. -->
   <section class="colophon" data-sc-act="flow" aria-labelledby="h-end">
     <div class="sc-wrap">
@@ -398,6 +432,7 @@
             <li><a href="#us" lang="en">Fly with ATTO</a></li>
             <li><a href="#bot">בוט ההדגמות</a></li>
             <li><a href="#team">לצוות</a></li>
+            <li><a href="#mozart">מוצרט</a></li>
           </ol>
         </nav>
       </div>

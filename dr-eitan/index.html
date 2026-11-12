@@ -264,6 +264,39 @@ kbd{font-family:var(--f-ui);font-size:.78rem;border:1px solid var(--line-2);bord
 @media(max-width:860px){.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.results{gap:10px}.tile .t{padding:10px 12px 12px}.tile .t span{font-size:.82rem}}
 
+/* Visualizer: colour follows pitch */
+.visual{position:relative;isolation:isolate}
+.visual::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 55% at 50% 50%,hsl(var(--hue,40) 80% 60% / .45),transparent 72%);opacity:var(--energy,0);transition:opacity .12s linear}
+.viz{height:64px;margin-top:10px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--line);overflow:hidden;transition:height .3s var(--ease-out)}
+.viz canvas{display:block;width:100%;height:100%}
+.viz-bar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.86rem;color:var(--ink-3)}
+.pitch{display:inline-flex;align-items:center;gap:8px;margin-inline-end:auto}
+.pitch i{width:12px;height:12px;border-radius:50%;background:hsl(var(--hue,40) 72% 52%);box-shadow:0 0 0 3px hsl(var(--hue,40) 72% 52% / .22)}
+.tool-btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--ctl);background:var(--surface);color:var(--ink-2);font-size:.86rem;font-weight:500;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+.tool-btn:active{transform:scale(.97)}
+.tool-btn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+@media (hover:hover) and (pointer:fine){.tool-btn:hover:not([aria-pressed="true"]){border-color:var(--ink-3);color:var(--ink)}}
+/* Listening mode: only the picture, the music and the player */
+.focus-note{display:none;margin:14px 0 0;color:var(--ink-3);font-size:.92rem}
+.card.focus .lead,.card.focus .ask,.card.focus .options,.card.focus #fb,.card.focus #refl,.card.focus .nav{display:none}
+.card.focus .focus-note{display:block}
+.card.focus .viz{height:clamp(120px,24vh,220px)}
+.card.focus .panel{justify-content:center}
+body.focus-on .counter,body.focus-on .kbd{visibility:hidden}
+/* Reflection: no right or wrong */
+.reflect{margin-top:14px;padding:16px 18px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--line);animation:rise .3s var(--ease-out) .08s both}
+.reflect h3{margin:0;font-size:1rem}
+.reflect .note{margin:2px 0 4px;font-size:.88rem;color:var(--ink-3)}
+.reflect .q{margin:12px 0 8px;font-size:.92rem;font-weight:700;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-b{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--ctl);background:var(--surface);color:var(--ink);font-size:.92rem;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+.chip-b:active{transform:scale(.96)}
+.chip-b[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.chip-b .sw{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.tile .t .feel{color:var(--ink-3);font-size:.84rem}
+.lg{display:inline}
+@media(max-width:480px){.lg{display:none}}
+
 footer{border-top:1px solid var(--line);padding:16px;text-align:center;font-size:.88rem;color:var(--ink-3)}
 footer b{color:var(--ink-2);font-weight:500}
 
@@ -287,6 +320,11 @@ footer b{color:var(--ink-2);font-weight:500}
  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M9 6l6 6l-6 6"/></symbol>
  <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"/></symbol>
  <symbol id="i-keyboard" viewBox="0 0 24 24"><path d="M2 6m0 2a2 2 0 0 1 2 -2h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2z"/><path d="M6 10l0 .01"/><path d="M10 10l0 .01"/><path d="M14 10l0 .01"/><path d="M18 10l0 .01"/><path d="M6 14l0 .01"/><path d="M18 14l0 .01"/><path d="M10 14l4 .01"/></symbol>
+ <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M5 12l6 6"/><path d="M5 12l6 -6"/></symbol>
+ <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12l14 0"/><path d="M13 18l6 -6"/><path d="M13 6l6 6"/></symbol>
+ <symbol id="i-download" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"/><path d="M7 11l5 5l5 -5"/><path d="M12 4l0 12"/></symbol>
+ <symbol id="i-wave" viewBox="0 0 24 24"><path d="M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2"/></symbol>
+ <symbol id="i-bars" viewBox="0 0 24 24"><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"/><path d="M4 20h14"/></symbol>
  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"/></symbol>
  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z"/><path d="M17 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z"/></symbol>
  <symbol id="i-star" viewBox="0 0 24 24"><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"/></symbol>
@@ -302,10 +340,10 @@ footer b{color:var(--ink-2);font-weight:500}
    <ol class="how" aria-label="איך משחקים">
     <li><span class="hi"><svg class="ic ic-o"><use href="#i-ear"/></svg></span><div><b>מקשיבים</b><span>לוחצים על כפתור ההשמעה ומאזינים לקטע קצר מהאריה.</span></div></li>
     <li><span class="hi"><svg class="ic ic-o"><use href="#i-music"/></svg></span><div><b>מנחשים</b><span>בוחרים את הדימוי שהכי מתאים למה ששמעתם.</span></div></li>
-    <li><span class="hi"><svg class="ic ic-o"><use href="#i-bulb"/></svg></span><div><b>מגלים</b><span>רואים מה קורה במוזיקה ולמה זה נשמע כך.</span></div></li>
+    <li><span class="hi"><svg class="ic ic-o"><use href="#i-bulb"/></svg></span><div><b>מגלים ומרגישים</b><span>רואים מה קורה במוזיקה, ובוחרים איפה הרגשתם אותה ובאיזה צבע.</span></div></li>
    </ol>
    <div class="cta">
-    <button class="btn btn-primary" id="startBtn" onclick="startGame()">מתחילים להאזין<svg class="ic ic-o"><use href="#i-next"/></svg></button>
+    <button class="btn btn-primary" id="startBtn" onclick="startGame()">מתחילים להאזין<svg class="ic ic-o"><use href="#i-arrow-l"/></svg></button>
     <small><svg class="ic ic-o"><use href="#i-headphones"/></svg><span id="metaCount"></span></small>
    </div>
    <p class="credit"><b>יוצרת הכלי: יוליה אליאשוב</b> | מכללת לוינסקי-וינגייט</p>
@@ -346,16 +384,24 @@ footer b{color:var(--ink-2);font-weight:500}
       <div class="bar" id="bar" role="slider" tabindex="0" aria-label="מיקום בקטע" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00"><div class="fill" id="fill"></div><div class="knob" id="knob"></div></div>
      </div>
     </div>
+    <div class="viz" aria-hidden="true"><canvas id="vizc"></canvas></div>
+    <div class="viz-bar">
+     <span class="pitch"><i aria-hidden="true"></i><span id="pitchTxt">הצבע משתנה לפי גובה הצליל</span></span>
+     <button class="tool-btn" id="modeBtn" onclick="cycleMode()"></button>
+     <button class="tool-btn" id="focusBtn" aria-pressed="false" onclick="toggleFocus()"><svg class="ic ic-o" aria-hidden="true"><use href="#i-headphones"/></svg>מצב האזנה</button>
+    </div>
+    <p class="focus-note">מצב האזנה: רק המוזיקה והתמונה. כדי לחזור למשחק לוחצים שוב על "מצב האזנה" או על <kbd>Esc</kbd>.</p>
     <div class="ask"><span id="askQ">איזה דימוי מתאים למוזיקה?</span><span class="hint" id="askHint">בחרו תשובה אחת</span></div>
     <div class="options" id="options" role="group" aria-labelledby="askQ"></div>
     <div id="fb" aria-live="polite"></div>
+    <div id="refl"></div>
     <div class="nav">
-     <button class="btn btn-ghost" id="prev" onclick="prevCard()"><svg class="ic ic-o"><use href="#i-prev"/></svg>הקודם</button>
-     <button class="btn btn-primary" id="next" onclick="nextCard()"><span id="nextLbl">הבא</span><svg class="ic ic-o"><use href="#i-next"/></svg></button>
+     <button class="btn btn-ghost" id="prev" onclick="prevCard()"><svg class="ic ic-o" aria-hidden="true"><use href="#i-arrow-r"/></svg><span><span class="lg">כרטיסייה </span>קודמת</span></button>
+     <button class="btn btn-primary" id="next" onclick="nextCard()"><span id="nextLbl"><span class="lg">כרטיסייה </span>הבאה</span><svg class="ic ic-o" aria-hidden="true"><use href="#i-arrow-l"/></svg></button>
     </div>
    </div>
   </article>
-  <p class="kbd"><svg class="ic ic-o"><use href="#i-keyboard"/></svg>אפשר גם במקלדת: <kbd>רווח</kbd> להשמעה, <kbd>1</kbd> או <kbd>2</kbd> לבחירה, <kbd>←</kbd> <kbd>→</kbd> למעבר</p>
+  <p class="kbd"><svg class="ic ic-o"><use href="#i-keyboard"/></svg>אפשר גם במקלדת: <kbd>רווח</kbd> להשמעה, <kbd>1</kbd> או <kbd>2</kbd> לבחירה, <kbd>←</kbd> <kbd>→</kbd> למעבר, <kbd>Esc</kbd> ליציאה ממצב האזנה</p>
  </main>
 </div>
 
@@ -395,19 +441,21 @@ function paint(){
   $('bar').setAttribute('aria-valuetext',fmt(t)+' מתוך '+fmt(d));
   $('time').textContent=fmt(t)+' / '+fmt(d);
 }
-function tick(){paint(); if(!audio.paused) raf=requestAnimationFrame(tick)}
+function tick(){paint(); drawViz(audio.paused); if(!audio.paused) raf=requestAnimationFrame(tick)}
 audio.addEventListener('play',()=>{setPlayUI();tick()});
-audio.addEventListener('pause',setPlayUI);
+audio.addEventListener('pause',()=>{setPlayUI();drawViz(true)});
 audio.addEventListener('loadedmetadata',paint);
 audio.addEventListener('ended',()=>{heard[cur]=true;paint();setPlayUI()});
 function togglePlay(){
+  ensureGraph();
   if(audio.paused){ if(audio.ended||audio.currentTime>=audio.duration-0.05) audio.currentTime=0; audio.play().catch(()=>{}); }
   else audio.pause();
 }
 function loadAudio(autoplay){
   audio.pause(); cancelAnimationFrame(raf);
   audio.src=cards[cur].audio; audio.load();
-  if(autoplay) audio.play().catch(()=>{});
+  if(autoplay){ensureGraph(); audio.play().catch(()=>{});}
+  drawViz(true);
 }
 (function seek(){
   const bar=$('bar'); let drag=false;
@@ -467,7 +515,8 @@ function renderAnswer(justNow){
       (good?'':'<p class="fb-ans">הדימוי המתאים: <b>'+c.options[c.correct]+'</b></p>')+
       '<div class="learn">'+icon('bulb')+'<h3>מה קורה במוזיקה?</h3><p class="seg">'+c.segment+'</p><p>'+c.desc+'</p></div></div>';
   } else $('fb').innerHTML='';
-  $('nextLbl').textContent=cur===N-1?'לסיכום':'הבא';
+  $('nextLbl').innerHTML=cur===N-1?'לסיכום':'<span class="lg">כרטיסייה </span>הבאה';
+  renderReflect();
   $('next').classList.toggle('nudge',ans&&justNow);
 }
 function choose(i){
@@ -494,7 +543,7 @@ function show(id){$('foot').hidden=id==='intro'; $('intro').hidden=id!=='intro';
 function startGame(){go(0,true); $('play').focus({preventScroll:true})}
 function toIntro(){audio.pause(); show('intro'); window.scrollTo(0,0); $('startBtn').focus()}
 function finish(){
-  audio.pause(); cancelAnimationFrame(raf);
+  toggleFocus(false); audio.pause(); cancelAnimationFrame(raf);
   const s=score(), pct=s/N;
   const msg=pct===1?['מושלם! אוזן של מוזיקאים','זיהיתם את כל הדימויים. מוצרט היה גאה בכם.']:
            pct>=.67?['כל הכבוד! סיימתם את מסע ההאזנה','הקשבתם היטב. שווה לחזור לקטעים שפספסתם ולהאזין שוב.']:
@@ -507,23 +556,116 @@ function finish(){
     const p=picked[i], st=p===undefined?'none':(p===c.correct?'ok':'bad');
     const res=st==='ok'?'נכון':st==='bad'?'שגוי':'לא נענה';
     h+='<li><button class="tile" onclick="go('+i+')" aria-label="כרטיסייה '+(i+1)+': '+c.title+'. '+res+'. מעבר לכרטיסייה"><span class="thumb"><img src="'+c.image+'" alt=""><span class="mark '+st+'" aria-hidden="true">'+(st==='ok'?icon('check'):st==='bad'?icon('x'):'')+'</span></span><span class="t"><small>'+c.bars+'</small><b>'+c.title+'</b>'+
-      (p===undefined?'<span>לא נבחרה תשובה</span>':'<span>בחרתם: '+c.options[p]+'</span>'+(st==='bad'?'<span class="fix">המתאים: '+c.options[c.correct]+'</span>':''))+'</span></button></li>';
+      (p===undefined?'<span>לא נבחרה תשובה</span>':'<span>בחרתם: '+c.options[p]+'</span>'+(st==='bad'?'<span class="fix">המתאים: '+c.options[c.correct]+'</span>':''))+feelLine(i)+'</span></button></li>';
   });
-  h+='</ul><div class="end-actions"><button class="btn btn-primary" onclick="restart()">'+icon('replay')+'שחקו שוב</button><button class="btn btn-ghost" onclick="go(0)">'+icon('music')+'חזרה לכרטיסיות</button></div>';
+  h+='</ul><div class="end-actions"><button class="btn btn-primary" onclick="restart()">'+icon('replay')+'שחקו שוב</button><button class="btn btn-ghost" onclick="saveSummary()">'+icon('download')+'שמירת הסיכום שלי</button><button class="btn btn-ghost" onclick="go(0)">'+icon('music')+'חזרה לכרטיסיות</button></div>';
   $('endBody').innerHTML=h; show('end'); window.scrollTo(0,0); $('endTitle').focus({preventScroll:true});
   requestAnimationFrame(()=>requestAnimationFrame(()=>{$('ringFg').style.strokeDashoffset=C*(1-pct)}));
 }
-function restart(){for(const k in picked) delete picked[k]; for(const k in heard) delete heard[k]; go(0)}
+function restart(){for(const k in refl) delete refl[k]; for(const k in picked) delete picked[k]; for(const k in heard) delete heard[k]; go(0)}
 
 /* ---------- keyboard ---------- */
 document.addEventListener('keydown',e=>{
   if($('game').hidden||e.altKey||e.ctrlKey||e.metaKey) return;
-  const tg=e.target.tagName, onBar=e.target.id==='bar';
+  const tg=e.target.tagName, onBar=e.target.id==='bar', focus=$('card').classList.contains('focus');
+  if(e.key==='Escape'&&focus){toggleFocus(false);return}
   if(e.key===' '&&tg!=='BUTTON'){e.preventDefault();togglePlay()}
-  else if(/^[1-9]$/.test(e.key)){const i=+e.key-1; if(i<cards[cur].options.length) choose(i)}
+  else if(/^[1-9]$/.test(e.key)&&!focus){const i=+e.key-1; if(i<cards[cur].options.length) choose(i)}
   else if(e.key==='ArrowLeft'&&!onBar){nextCard()}
   else if(e.key==='ArrowRight'&&!onBar){prevCard()}
 });
+
+/* ---------- visualizer: colour follows pitch (low = red, high = violet) ---------- */
+let actx=null, an=null, freq=null, wave=null, hue=40, mode=0, lastPitch='';
+const MODES=[['bars','עמודות'],['wave','גלים']];
+const cv=$('vizc'), cx=cv.getContext('2d');
+function ensureGraph(){
+  if(actx){ if(actx.state==='suspended') actx.resume(); return; }
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
+    actx=new AC(); const src=actx.createMediaElementSource(audio);
+    an=actx.createAnalyser(); an.fftSize=2048; an.smoothingTimeConstant=.78;
+    src.connect(an); an.connect(actx.destination);
+    freq=new Uint8Array(an.frequencyBinCount); wave=new Uint8Array(an.fftSize);
+  }catch(e){ an=null; }
+}
+function fitCanvas(){const r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1,w=Math.round(r.width*d),h=Math.round(r.height*d); if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h} return [w,h]}
+function setMode(){const m=MODES[mode]; $('modeBtn').innerHTML=icon(m[0]==='bars'?'bars':'wave')+m[1]; $('modeBtn').setAttribute('aria-label','סוג התצוגה: '+m[1]+'. לחיצה מחליפה')}
+function cycleMode(){mode=(mode+1)%MODES.length; setMode(); drawViz(audio.paused)}
+function drawViz(idle){
+  if(!cv.offsetParent) return;
+  const [W,H]=fitCanvas(); cx.clearRect(0,0,W,H);
+  const card=$('card'), live=an&&!idle;
+  let level=0;
+  if(live){
+    an.getByteFrequencyData(freq);
+    const binHz=actx.sampleRate/an.fftSize, maxBin=Math.min(freq.length,Math.floor(5000/binHz));
+    let s=0,w=0; for(let i=2;i<maxBin;i++){s+=freq[i]*i*binHz; w+=freq[i];}
+    level=Math.min(1,w/(maxBin*255)*3.2);
+    if(w>0){const c=s/w, t=Math.min(1,Math.max(0,(Math.log2(c)-Math.log2(180))/(Math.log2(2600)-Math.log2(180)))); hue+=(t*275-hue)*.12;
+      const lbl=t<.34?'צליל נמוך':t<.67?'צליל בינוני':'צליל גבוה'; if(lbl!==lastPitch){lastPitch=lbl; $('pitchTxt').textContent=lbl}}
+  }
+  card.style.setProperty('--hue',Math.round(hue)); card.style.setProperty('--energy',live?level.toFixed(2):0);
+  const col='hsl('+Math.round(hue)+' 72% 52%)', dim=getComputedStyle(document.body).getPropertyValue('--line-2')||'#c3c8d8';
+  if(MODES[mode][0]==='bars'){
+    const n=Math.max(24,Math.min(64,Math.floor(W/(14*(window.devicePixelRatio||1))))), gap=W/n*.28, bw=W/n-gap;
+    for(let i=0;i<n;i++){
+      let v=.1;
+      if(live){const f0=60*Math.pow(5000/60,i/n), f1=60*Math.pow(5000/60,(i+1)/n), b0=Math.floor(f0*an.fftSize/actx.sampleRate), b1=Math.max(b0+1,Math.floor(f1*an.fftSize/actx.sampleRate)); let m=0; for(let k=b0;k<b1&&k<freq.length;k++) m=Math.max(m,freq[k]); v=Math.max(.04,m/255);}
+      const h=v*(H-8), x=i*(bw+gap)+gap/2;
+      cx.fillStyle=live?'hsl('+Math.round(hue-30+60*i/n)+' 72% 52%)':dim; cx.beginPath();
+      if(cx.roundRect) cx.roundRect(x,H-4-h,bw,h,Math.min(bw/2,6)); else cx.rect(x,H-4-h,bw,h); cx.fill();
+    }
+  } else {
+    cx.lineWidth=Math.max(2,H/30); cx.strokeStyle=live?col:dim; cx.lineJoin='round'; cx.beginPath();
+    if(live){an.getByteTimeDomainData(wave); const step=wave.length/W; for(let x=0;x<W;x++){const y=(wave[Math.floor(x*step)]/255)*H; x?cx.lineTo(x,y):cx.moveTo(x,y)}}
+    else {cx.moveTo(0,H/2); cx.lineTo(W,H/2)}
+    cx.stroke();
+  }
+  if(!live&&!lastPitch) $('pitchTxt').textContent='הצבע משתנה לפי גובה הצליל';
+}
+window.addEventListener('resize',()=>drawViz(audio.paused));
+
+/* ---------- listening mode ---------- */
+function toggleFocus(force){
+  const on=force!==undefined?force:!$('card').classList.contains('focus');
+  $('card').classList.toggle('focus',on); document.body.classList.toggle('focus-on',on);
+  $('focusBtn').setAttribute('aria-pressed',String(on));
+  requestAnimationFrame(()=>drawViz(audio.paused));
+}
+
+/* ---------- reflection: where in the body, which colour ---------- */
+const refl={};
+const BODY=['ראש','לב','בטן','ידיים','רגליים','כל הגוף'];
+const COLORS=[['אדום','#d64545'],['כתום','#ec8a2f'],['צהוב','#e8c53a'],['ירוק','#3fa463'],['כחול','#3b6fd8'],['סגול','#8a4fc9'],['שחור','#2b2b33'],['לבן','#f4f4f6']];
+function renderReflect(){
+  const box=$('refl'); if(picked[cur]===undefined){box.innerHTML='';return}
+  const r=refl[cur]||{};
+  let h='<div class="reflect"><h3>ועכשיו, בלי נכון ולא נכון</h3><p class="note">אין כאן תשובה נכונה. מה שתבחרו יופיע בסיכום.</p><p class="q" id="rq1">איפה הרגשתם את זה בגוף?</p><div class="chips" role="group" aria-labelledby="rq1">';
+  BODY.forEach(b=>{h+='<button class="chip-b" aria-pressed="'+(r.body===b)+'" onclick="feel(\'body\',this,\''+b+'\')">'+b+'</button>'});
+  h+='</div><p class="q" id="rq2">איזה צבע זה בשבילכם?</p><div class="chips" role="group" aria-labelledby="rq2">';
+  COLORS.forEach(([n,c])=>{h+='<button class="chip-b" aria-pressed="'+(r.color===n)+'" onclick="feel(\'color\',this,\''+n+'\')"><span class="sw" style="background:'+c+'" aria-hidden="true"></span>'+n+'</button>'});
+  box.innerHTML=h+'</div></div>';
+}
+function feel(k,btn,v){
+  const r=refl[cur]=refl[cur]||{}; r[k]=r[k]===v?undefined:v;
+  btn.parentNode.querySelectorAll('.chip-b').forEach(b=>b.setAttribute('aria-pressed',String(b===btn&&r[k]===v)));
+}
+function feelLine(i){const r=refl[i]||{}; const a=[]; if(r.body)a.push('בגוף: '+r.body); if(r.color)a.push('צבע: '+r.color); return a.length?'<span class="feel">'+a.join(', ')+'</span>':''}
+
+/* ---------- save my summary (text file) ---------- */
+function saveSummary(){
+  let t='הסערה בלב ובצלילים: הסיכום שלי\n'+new Date().toLocaleDateString('he-IL')+'\nניחושים נכונים: '+score()+' מתוך '+N+'\n\n';
+  cards.forEach((c,i)=>{const p=picked[i], r=refl[i]||{};
+    t+=(i+1)+'. '+c.title+' ('+c.bars+')\n';
+    t+='   בחרתי: '+(p===undefined?'לא נבחרה תשובה':c.options[p])+(p!==undefined&&p!==c.correct?'  |  הדימוי המתאים: '+c.options[c.correct]:'')+'\n';
+    t+='   איפה הרגשתי בגוף: '+(r.body||'לא נבחר')+'  |  הצבע שלי: '+(r.color||'לא נבחר')+'\n\n';
+  });
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['﻿'+t],{type:'text/plain;charset=utf-8'}));
+  a.download='mozart-my-summary.txt'; document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove()},500);
+}
+setMode();
 
 /* ---------- intro visual: three real cards, titles masked where needed ---------- */
 (function fan(){
