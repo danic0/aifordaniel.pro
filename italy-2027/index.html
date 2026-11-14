@@ -265,7 +265,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <button id="fsDown" aria-label="הקטן טקסט">א-</button>
 <button id="hcBtn" aria-pressed="false" aria-label="ניגודיות גבוהה">ניגוד</button>
 <button id="rmBtn" aria-pressed="false" aria-label="הפחת תנועה">תנועה</button>
-<button id="musicBtn" aria-pressed="false" aria-label="מוזיקת רקע, כבויה">מוזיקה</button>
+
 </div>
 
 <header class="hero">
@@ -601,7 +601,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <a href="https://cdn.fodors.com/world/europe/italy/sicily/siracusa-and-the-southeast/siracusa/restaurants">Fodor's, מסעדות בסירקוזה</a>
 <a href="https://www.frommers.com/destinations/syracuse-and-ortygia-island/restaurants/">Frommer's, מסעדות בסירקוזה</a>
 <a href="https://wanderlog.com/list/geoCategory/74680/restaurants">Wanderlog, מסעדות בנוטו</a>
-<p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. המוזיקה נוצרת בדפדפן ואינה קובץ מוקלט. גרסת פירנצה ובולוניה נשמרת בהיסטוריה של האתר.</p>
+<p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. גרסת פירנצה ובולוניה נשמרת בהיסטוריה של האתר.</p>
 </div>
 </div></section>
 
@@ -676,15 +676,6 @@ if(m[k]){var a=document.querySelector('.ov a[href="#'+m[k]+'"]');if(a){a.classLi
 (function(){var els=document.querySelectorAll('.fc'),s=document.getElementById('fcs');if(!els.length||!window.fetch)return;
 fetch('https://api.open-meteo.com/v1/forecast?latitude=37.07&longitude=15.29&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=Europe%2FRome&forecast_days=16').then(function(r){return r.json()}).then(function(j){var d=j.daily,n=0;if(!d)return;els.forEach(function(e){var i=d.time.indexOf(e.dataset.date);if(i>-1){n++;e.textContent='תחזית חיה: '+Math.round(d.temperature_2m_max[i])+'° / '+Math.round(d.temperature_2m_min[i])+'°, גשם '+d.precipitation_probability_max[i]+'%, רוח '+Math.round(d.wind_speed_10m_max[i])+' קמ״ש'}});
 if(s)s.textContent=n?'התחזית החיה מתעדכנת מ-Open-Meteo.':'התחזית החיה תופיע כשהתאריכים יהיו בטווח של 16 ימים.'}).catch(function(){})})();
-// music, generated in the browser, off by default
-var mb=document.getElementById('musicBtn'),ctx=null,master=null,timer=null,playing=false,step=0;
-var N=[293.66,349.23,440,523.25,587.33,440,349.23,261.63,311.13,392,466.16,587.33,466.16,392,311.13,233.08];
-function pluck(f,t){var o=ctx.createOscillator(),o2=ctx.createOscillator(),g=ctx.createGain();o.type='triangle';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+.01);g.gain.exponentialRampToValueAtTime(.0008,t+1.4);o.connect(g);o2.connect(g);g.connect(master);o.start(t);o2.start(t);o.stop(t+1.5);o2.stop(t+1.5)}
-function sched(){var t=ctx.currentTime+.05,bar=Math.floor(step/4)%4,base=[N[0],N[7],N[8],N[7]][bar];if(step%4===0)pluck(base/2,t);pluck(N[(step*3+bar*2)%N.length],t+.02);step++}
-function startM(){var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!ctx){ctx=new AC();master=ctx.createGain();master.gain.value=.12;var d=ctx.createDelay(1);d.delayTime.value=.33;var fb=ctx.createGain();fb.gain.value=.4;d.connect(fb);fb.connect(d);master.connect(d);d.connect(ctx.destination);master.connect(ctx.destination)}ctx.resume();timer=setInterval(sched,420);playing=true;mb.setAttribute('aria-pressed','true');mb.setAttribute('aria-label','מוזיקת רקע, פועלת. לחצו לכיבוי')}
-function stopM(){clearInterval(timer);if(ctx)ctx.suspend();playing=false;mb.setAttribute('aria-pressed','false');mb.setAttribute('aria-label','מוזיקת רקע, כבויה. לחצו להפעלה')}
-mb.onclick=function(){playing?stopM():startM()};
-document.addEventListener('visibilitychange',function(){if(document.hidden&&playing)stopM()});
 })();
 </script>
 </body>
