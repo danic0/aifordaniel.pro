@@ -331,12 +331,13 @@ section{scroll-margin-top:60px}
 @media(prefers-reduced-motion:reduce){.dbar{transition:none}}
 html.rm .dbar{transition:none}
 @media print{.dbar{display:none}}
-</style>
+.tools:not(.open) button:not(.tg){display:none}.tools .tg{font-size:.85rem;padding:0 14px}.tools{opacity:.94}</style>
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
 <div class="progress" aria-hidden="true"></div>
 <div class="tools" role="toolbar" aria-label="התאמות נגישות">
+<button class="tg" id="tg" aria-expanded="false" aria-label="פתיחת התאמות נגישות">נגישות</button>
 <button id="fsUp" aria-label="הגדל טקסט">א+</button>
 <button id="fsDown" aria-label="הקטן טקסט">א-</button>
 <button id="hcBtn" aria-pressed="false" aria-label="ניגודיות גבוהה">ניגוד</button>
@@ -871,6 +872,7 @@ function upd(){
 var tk=false;addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd()})}},{passive:true});
 upd();
 })();
+(function(){var t=document.querySelector('.tools'),b=document.getElementById('tg');b.addEventListener('click',function(){var o=t.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'סגור':'נגישות'})})();
 // live forecast
 (function(){var els=document.querySelectorAll('.fc'),s=document.getElementById('fcs');if(!els.length||!window.fetch)return;
 fetch('https://api.open-meteo.com/v1/forecast?latitude=37.07&longitude=15.29&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=Europe%2FRome&forecast_days=16').then(function(r){return r.json()}).then(function(j){var d=j.daily,n=0;if(!d)return;els.forEach(function(e){var i=d.time.indexOf(e.dataset.date);if(i>-1){n++;e.textContent='תחזית חיה: '+Math.round(d.temperature_2m_max[i])+'° / '+Math.round(d.temperature_2m_min[i])+'°, גשם '+d.precipitation_probability_max[i]+'%, רוח '+Math.round(d.wind_speed_10m_max[i])+' קמ״ש'}});
