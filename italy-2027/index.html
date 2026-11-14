@@ -6,230 +6,386 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>איטליה · 25–30 בינואר 2027 · פירנצה ובולוניה</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f6f1ea">
+<meta name="theme-color" content="#2b1d17">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f1ea;--card:#fff;--ink:#1f1d1a;--soft:#6a655d;--acc:#b5442f;--acc2:#2f6b5a;--line:#e5ddd1;--warn:#fff4d6;--ok:#e4f2ec}
+:root{--bg:#f7f2ea;--card:#fff;--ink:#231f1b;--soft:#5d574f;--acc:#a73a26;--acc2:#1f6350;--gold:#c8962e;--line:#e6dccd;--warn:#fff1c9;--ok:#dff1e8;--why:#f1e9dc;--fs:100%}
+html.hc{--bg:#fff;--card:#fff;--ink:#000;--soft:#222;--acc:#8a1c0a;--acc2:#004d3a;--line:#000;--warn:#fff3b0;--ok:#d2f5e4;--why:#eee}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:17px;line-height:1.6}
-.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
-header.hero{position:relative;color:#fff;min-height:300px;display:flex;align-items:flex-end;background:#3a2a22}
-header.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62}
-header.hero .in{position:relative;padding:28px 16px;max-width:760px;margin:0 auto;width:100%}
-h1{font-size:2rem;line-height:1.15;margin:0 0 8px;font-weight:800}
-.sub{opacity:.95;margin:0}
-nav.days{position:sticky;top:0;z-index:5;background:rgba(246,241,234,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding:8px 12px}
-nav.days a{display:inline-block;padding:7px 13px;margin-inline-end:6px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:500}
-section{margin-top:28px}
-h2{font-size:1.5rem;margin:0 0 10px;font-weight:800}
-h3{font-size:1.1rem;margin:18px 0 6px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:14px 0}
-.card .body{padding:16px 18px}
-.card img.ph{display:block;width:100%;height:210px;object-fit:cover;background:#e9e1d4}
-.cap{font-size:.75rem;color:var(--soft);padding:4px 18px 0}
-.day-h{display:flex;gap:12px;align-items:center;margin-bottom:6px}
-.badge{background:var(--acc);color:#fff;border-radius:12px;padding:3px 11px;font-weight:700;font-size:.85rem;white-space:nowrap}
-.slot{display:flex;gap:12px;padding:10px 0;border-top:1px dashed var(--line)}
-.slot:first-of-type{border-top:0}
-.t{min-width:58px;font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
-.why,.acc,.warn,.ok{border-radius:12px;padding:11px 14px;margin:12px 0;font-size:.95rem}
-.why{background:#f1ece3}
-.acc{background:var(--ok)}
-.warn{background:var(--warn)}
-.why b,.acc b,.warn b{display:block;margin-bottom:2px}
-.pill{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:99px;background:#eee;color:#555;margin-inline-start:4px}
-.pill.v{background:#d8efe4;color:#1f5a46}.pill.c{background:#ffe9b8;color:#7a5400}
-table{width:100%;border-collapse:collapse;font-size:.92rem}
-td,th{border-bottom:1px solid var(--line);padding:8px 6px;text-align:start;vertical-align:top}
-ul{padding-inline-start:20px;margin:6px 0}
-li{margin:4px 0}
+html{scroll-behavior:smooth;font-size:var(--fs)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:1.06rem;line-height:1.7}
+h1,h2,.serif{font-family:"Frank Ruhl Libre",Heebo,serif}
+:focus-visible{outline:3px solid #0b57d0;outline-offset:3px;border-radius:6px}
+.skip{position:absolute;inset-inline-start:8px;top:-60px;background:#000;color:#fff;padding:10px 16px;border-radius:8px;z-index:100;transition:top .2s}
+.skip:focus{top:8px}
+/* toolbar */
+.tools{position:fixed;inset-inline-start:10px;bottom:10px;z-index:50;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100vw - 20px)}
+.tools button{min-width:48px;min-height:48px;border-radius:99px;border:2px solid var(--ink);background:var(--card);color:var(--ink);font:700 1rem Heebo,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.18);padding:0 14px}
+.tools button[aria-pressed=true]{background:var(--ink);color:var(--card)}
+/* hero */
+.hero{position:relative;min-height:92vh;display:grid;place-items:end start;color:#fff;overflow:hidden;background:#2b1d17;isolation:isolate}
+.hero .bg{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;z-index:-2;will-change:transform;filter:saturate(1.1)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(25,14,10,.35) 0%,rgba(25,14,10,.15) 35%,rgba(25,14,10,.88) 100%)}
+.hero .in{padding:0 20px 42px;max-width:820px;margin-inline:auto;width:100%}
+.kicker{letter-spacing:.14em;font-size:.85rem;opacity:.9;text-transform:uppercase;font-weight:700;color:#f3cf86}
+h1{font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.02;margin:6px 0 12px;font-weight:900;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero p{margin:0;font-size:1.12rem;max-width:34em;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);padding:6px 14px;border-radius:99px;font-weight:500;font-size:.95rem}
+.count{font-variant-numeric:tabular-nums;font-weight:800;color:#f3cf86}
+.scrollhint{position:absolute;bottom:10px;inset-inline-end:20px;font-size:1.6rem;animation:bob 1.8s ease-in-out infinite;opacity:.8}
+@keyframes bob{50%{transform:translateY(8px)}}
+/* nav */
+nav.days{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding:8px 12px;scrollbar-width:thin}
+nav.days a{display:inline-flex;align-items:center;min-height:44px;padding:0 15px;margin-inline-end:6px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.92rem;font-weight:700}
+nav.days a.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.progress{position:fixed;top:0;inset-inline:0;height:4px;z-index:60;background:linear-gradient(90deg,var(--gold),var(--acc));transform-origin:right;transform:scaleX(0)}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 120px}
+section{margin-top:44px;scroll-margin-top:70px}
+h2{font-size:clamp(1.6rem,5vw,2.2rem);margin:0 0 12px;font-weight:900;line-height:1.15}
+h3{font-size:1.15rem;margin:20px 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin:16px 0;box-shadow:0 10px 30px -18px rgba(60,30,10,.35)}
+.card .body{padding:18px 20px 20px}
+.ph{position:relative;overflow:hidden;height:240px;background:linear-gradient(135deg,#e9ddc8,#d8c4a3)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s ease}
+.card:hover .ph img{transform:scale(1.05)}
+.cap{font-size:.78rem;color:var(--soft);padding:6px 20px 0}
+.day-h{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.badge{background:var(--acc);color:#fff;border-radius:99px;padding:3px 14px;font-weight:800;font-size:.9rem;white-space:nowrap}
+.meter{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--soft);margin:2px 0 10px}
+.dots{display:inline-flex;gap:4px}.dots i{width:14px;height:14px;border-radius:50%;background:var(--line);border:1px solid var(--soft)}.dots i.f{background:var(--gold);border-color:var(--gold)}
+.tl{position:relative;margin:8px 0;padding-inline-start:26px}
+.tl::before{content:"";position:absolute;inset-inline-start:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.slot{position:relative;display:flex;gap:12px;padding:10px 0}
+.slot::before{content:"";position:absolute;inset-inline-start:-24px;top:17px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--card)}
+.t{min-width:62px;font-weight:800;color:var(--acc);font-variant-numeric:tabular-nums}
+.slot a.map{display:inline-block;margin-top:4px;font-size:.85rem;font-weight:700;color:var(--acc2);text-decoration:none;border:1.5px solid var(--acc2);border-radius:99px;padding:3px 12px;min-height:32px}
+.box{border-radius:14px;padding:12px 16px;margin:12px 0;font-size:.97rem}
+.box b{display:block;margin-bottom:2px}
+.why{background:var(--why)}.acc{background:var(--ok)}.warn{background:var(--warn)}
+html.hc .box{border:2px solid #000}
+details{background:var(--why);border-radius:14px;padding:4px 16px;margin:12px 0}
+summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.pill{display:inline-block;font-size:.78rem;padding:1px 10px;border-radius:99px;background:#eee;color:#333;margin-inline-start:4px;font-weight:700}
+.pill.v{background:#cdeedd;color:#124b39}.pill.c{background:#ffe3a1;color:#664600}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+td,th{border-bottom:1px solid var(--line);padding:10px 6px;text-align:start;vertical-align:top}
+ul{padding-inline-start:22px;margin:6px 0}li{margin:6px 0}
 a{color:var(--acc2)}
-.flight{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.flight div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.flight{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flight div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.flight b{font-size:1.1rem}
 .flight small{color:var(--soft)}
-footer{margin-top:40px;color:var(--soft);font-size:.85rem}
-@media print{nav.days{display:none}.card{break-inside:avoid}}
+.check li{list-style:none;margin-inline-start:-22px}
+.check label{display:flex;gap:12px;align-items:flex-start;min-height:44px;cursor:pointer;padding:4px 0}
+.check input{width:26px;height:26px;margin-top:4px;accent-color:var(--acc2);flex:none}
+.check input:checked + span{text-decoration:line-through;opacity:.55}
+.big{font-size:2rem}
+footer{margin-top:50px;text-align:center;color:var(--soft);font-size:.9rem}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (max-width:520px){.flight{grid-template-columns:1fr}.ph{height:200px}}
+@media print{nav.days,.tools,.progress,.scrollhint{display:none}.reveal{opacity:1;transform:none}.card{break-inside:avoid}}
 </style>
 </head>
 <body>
-<header class="hero">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Florence_Duomo_from_Michelangelo_hill.jpg?width=1100" alt="" onerror="this.remove()">
-<div class="in">
-<h1>איטליה בלי רומא 🇮🇹<br>פירנצה + בולוניה</h1>
-<p class="sub">דניאל ויוליה · 25–30 בינואר 2027 · מסלול מותאם לקלנועית ולחורף</p>
-</div>
-</header>
-<nav class="days">
-<a href="#why">למה כאן</a><a href="#d0">ב׳ 25.1</a><a href="#d1">ג׳ 26.1</a><a href="#d2">ד׳ 27.1</a><a href="#d3">ה׳ 28.1</a><a href="#d4">ו׳ 29.1</a><a href="#d5">ש׳ 30.1</a><a href="#book">להזמין מראש</a><a href="#pack">מזג אוויר</a><a href="#src">מקורות</a>
-</nav>
-<div class="wrap">
+<a class="skip" href="#main">דלג לתוכן</a>
+<div class="progress" id="prog" aria-hidden="true"></div>
 
-<section id="flight">
-<div class="flight">
-<div><b>הלוך · LY383</b><br>25.1 · ת״א 18:15 ← פיומיצ׳ינו 21:00<br><small>מושב 38K · מזוודה 1</small></div>
-<div><b>חזור · LY384</b><br>30.1 · פיומיצ׳ינו 21:55 ← ת״א 02:15<br><small>מושב 42K · מזוודה 1</small></div>
+<div class="tools" role="toolbar" aria-label="כלי נגישות והתאמה">
+<button id="fsUp" aria-label="הגדל טקסט">א+</button>
+<button id="fsDown" aria-label="הקטן טקסט">א−</button>
+<button id="hcBtn" aria-pressed="false" aria-label="ניגודיות גבוהה">◐</button>
+<button id="musicBtn" aria-pressed="false" aria-label="מוזיקת רקע, כבויה">♪</button>
 </div>
-<p style="color:var(--soft);font-size:.9rem">הטיסות נוחתות ומוצאות מרומא, אבל את הימים עצמם מבלים בפירנצה ובולוניה. רומא היא רק תחנת מעבר.</p>
+
+<header class="hero">
+<img class="bg" id="heroImg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Florence_Duomo_from_Michelangelo_hill.jpg?width=1400" alt="נוף של הדואומו בפירנצה מהגבעה" onerror="this.remove()">
+<div class="in">
+<div class="kicker">Toscana · Emilia-Romagna</div>
+<h1>איטליה<br>בלי רומא</h1>
+<p>חמישה ימים של אוכל, אמנות ורחובות שטוחים. מסלול לדניאל וליוליה, בנוי סביב קלנועית וחורף.</p>
+<div class="chips">
+<span class="chip">25–30 בינואר 2027</span>
+<span class="chip">פירנצה + בולוניה</span>
+<span class="chip" id="cd" aria-live="off">…</span>
+</div>
+</div>
+<span class="scrollhint" aria-hidden="true">⌄</span>
+</header>
+
+<nav class="days" aria-label="ניווט במסלול" id="nav">
+<a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#book">להזמין</a><a href="#pack">ציוד</a><a href="#src">מקורות</a>
+</nav>
+
+<main class="wrap" id="main">
+
+<section class="reveal" aria-label="טיסות">
+<div class="flight">
+<div><b>✈ הלוך · LY383</b><br>25.1 · ת״א 18:15 ← רומא 21:00<br><small>מושב 38K · מזוודה 1 · פיומיצ׳ינו, טרמינל 3</small></div>
+<div><b>✈ חזור · LY384</b><br>30.1 · רומא 21:55 ← ת״א 02:15<br><small>מושב 42K · מזוודה 1 · פיומיצ׳ינו, טרמינל 3</small></div>
+</div>
 </section>
 
-<section id="why">
-<h2>למה פירנצה + בולוניה (ולא ערים אחרות)</h2>
+<section id="why" class="reveal">
+<h2>למה פירנצה ובולוניה</h2>
 <div class="card"><div class="body">
-<p>הקריטריונים שלי היו: <b>שטוח, קרוב, יבש מתחת לגג בגשם, וקל להגיע אליו מהשדה ברכבת</b>. יוליה בקלנועית, בינואר יורד גשם ויש רק ~9 שעות אור, ויש לנו 4 ימים מלאים בלבד. לא כדאי לבזבז אותם על נסיעות.</p>
+<p>הקריטריונים: <b>שטוח, קרוב, יבש מתחת לגג כשיורד גשם, וקל להגיע אליו ברכבת</b>. יוליה בקלנועית, בינואר יורד גשם והיום קצר, ויש לנו רק ארבעה ימים מלאים. לא כדאי לבזבז אותם על נסיעות.</p>
 <ul>
-<li><b>פירנצה:</b> מרכז קטן ושטוח, כמעט כל האטרקציות במרחק קצר זו מזו. האופפיצי והאקדמיה בחינם למוגבל ולמלווה אחד. בינואר אין תורים. <span class="pill c">חיסרון: אבני ריצוף</span></li>
-<li><b>בולוניה:</b> האזור השטוח ביותר באיטליה, והמרכז מכוסה ב״פורטיקו״ (מדרכות מקורות) שמגנות מהגשם. 35 דקות מפירנצה ברכבת מהירה. אוכל מצוין.</li>
-<li><b>רכבת ישירה מהשדה:</b> פרצ׳ארוסה יוצאת ישירות משדה התעופה פיומיצ׳ינו לפירנצה ולבולוניה, בלי לעבור ברומא. זה חוסך עוד העברת מזוודה וקלנועית.</li>
+<li><b>פירנצה:</b> מרכז קטן וכמעט בלי שיפועים, וכמעט כל האטרקציות קרובות זו לזו. האופפיצי והאקדמיה בחינם למוגבל ולמלווה אחד. בינואר אין תורים. <span class="pill c">חיסרון: אבני ריצוף</span></li>
+<li><b>בולוניה:</b> האזור השטוח ביותר באיטליה, ורוב המרכז מכוסה ב״פורטיקו״ (מדרכות מקורות). 35 דקות מפירנצה. אוכל מצוין.</li>
+<li><b>רכבת ישירה מהשדה:</b> פרצ׳ארוסה מחברת את פיומיצ׳ינו ישר לפירנצה ולבולוניה, בלי לעבור דרך רומא.</li>
 </ul>
-<h3>מה פסלתי ולמה</h3>
+<details><summary>מה פסלתי ולמה</summary>
 <table>
-<tr><td><b>רומא</b></td><td>ביקשת בלי. בנוסף: הרבה אבני ריצוף ותחבורה ציבורית לא נוחה.</td></tr>
-<tr><td><b>ונציה</b></td><td>גשרים עם מדרגות, שיטפונות בחורף, ו״ואפורטו״ (סירת תחבורה) עם פער בין הסירה לרציף.</td></tr>
-<tr><td><b>אמלפי / נאפולי</b></td><td>הרבה מדרגות ושיפועים, ומסעדות ושירותי סירה סגורים בחורף. קו החוף ״הימור אמיתי״ בינואר.</td></tr>
-<tr><td><b>סיינה, סן ג׳ימיניאנו, צ׳ינקווה טרה</b></td><td>עיירות על גבעות עם מדרגות. לא לקלנועית.</td></tr>
+<tr><td><b>רומא</b></td><td>ביקשת בלי. ועוד: הרבה אבני ריצוף.</td></tr>
+<tr><td><b>ונציה</b></td><td>גשרים עם מדרגות, ופער בין סירות התחבורה לרציף שמקשה על קלנועית.</td></tr>
+<tr><td><b>אמלפי / נאפולי</b></td><td>מדרגות ושיפועים, וחלק מהשירותים סגורים בחורף. קו החוף בינואר הוא הימור.</td></tr>
+<tr><td><b>סיינה, סן ג׳ימיניאנו, צ׳ינקווה טרה</b></td><td>עיירות על גבעות, עם מדרגות.</td></tr>
 </table>
+</details>
 </div></div>
 </section>
 
-<section id="d0">
+<section id="d0" class="reveal">
 <div class="card">
 <div class="body">
 <div class="day-h"><span class="badge">יום 0 · ב׳ 25.1</span><h2 style="margin:0">נחיתה ולילה ליד טרמיני</h2></div>
-<div class="slot"><span class="t">21:00</span><div>נחיתה בפיומיצ׳ינו. מבקשים סיוע משדה התעופה (PRM) שיוביל ליציאה ולרכבת.</div></div>
-<div class="slot"><span class="t">~22:00</span><div><b>רכבת Leonardo Express</b> לתחנת Roma Termini: 32 דקות, נגישה, עם מקום לכיסא גלגלים ועלייה בגובה הרציף.</div></div>
-<div class="slot"><span class="t">לילה</span><div>מלון <b>צמוד לתחנת טרמיני</b> (בלי נסיעה נוספת). ישנים, ובבוקר רכבת לפירנצה.</div></div>
-<div class="why"><b>למה לא ישר לפירנצה?</b>הנחיתה ב-21:00 ועד שיוצאים מהשדה כבר מאוחר. הרכבות הישירות המאוחרות לפירנצה כנראה לא יתאימו (לא אימתתי לוח זמנים, כדאי לבדוק ב-lefrecce.it). לילה אחד קרוב לתחנה זה הכי פחות מתיש.</div>
-<div class="warn"><b>בדקו לפני שמזמינים מלון</b>במלונות באיטליה ה״מעלית״ יכולה להיות אחרי 2–3 מדרגות. לשאול במפורש: <i>״step-free from street to elevator, and a roll-in shower?״</i></div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="1 מתוך 5"><i class="f"></i><i></i><i></i><i></i><i></i></span></div>
+<div class="tl">
+<div class="slot"><span class="t">21:00</span><div>נחיתה בפיומיצ׳ינו. מבקשים סיוע משדה התעופה (PRM) לדרך ליציאה ולרכבת.</div></div>
+<div class="slot"><span class="t">~22:00</span><div><b>Leonardo Express</b> לתחנת Roma Termini: 32 דקות, נגישה, עם מקום לכיסא גלגלים ורמפה לעלייה.</div></div>
+<div class="slot"><span class="t">לילה</span><div>מלון <b>צמוד לתחנת טרמיני</b>. ישנים, ובבוקר רכבת לפירנצה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Roma+Termini" target="_blank" rel="noopener">מפה: Roma Termini ↗</a></div></div>
+</div>
+<div class="box why"><b>למה לא ישר לפירנצה?</b>נוחתים ב-21:00 ועד שיוצאים מהשדה כבר מאוחר, וסביר שאין רכבת ישירה מתאימה בשעה כזו (לא אימתתי לוח זמנים, כדאי לבדוק ב-lefrecce.it). לילה אחד קרוב לתחנה הוא הכי פחות מתיש.</div>
+<div class="box warn"><b>לפני שמזמינים מלון</b>באיטליה ה״מעלית״ לפעמים אחרי 2–3 מדרגות. לשאול: <i>step-free from street to elevator, and a roll-in shower?</i></div>
 </div>
 </div>
 </section>
 
-<section id="d1">
+<section id="d1" class="reveal">
 <div class="card">
-<img class="ph" src="https://commons.wikimedia.org/wiki/Special:FilePath/Stazione_Santa_Maria_Novella_2.JPG?width=1100" alt="תחנת סנטה מריה נובלה" onerror="this.remove()">
-<div class="cap">תחנת Santa Maria Novella בפירנצה</div>
+<div class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Stazione_Santa_Maria_Novella_2.JPG?width=1400" alt="תחנת סנטה מריה נובלה בפירנצה" loading="lazy" onerror="this.remove()"></div>
+<div class="cap">תחנת Santa Maria Novella, פירנצה</div>
 <div class="body">
-<div class="day-h"><span class="badge">יום 1 · ג׳ 26.1</span><h2 style="margin:0">רכבת לפירנצה והכרות עם המרכז</h2></div>
-<div class="slot"><span class="t">בוקר</span><div>Frecciarossa מ-Termini לפירנצה SMN, כ-1:30 שעות. ברכבת יש מקומות ייעודיים לכיסא גלגלים. <b>מזמינים סיוע Sala Blu מראש</b> (ראו למטה).</div></div>
-<div class="slot"><span class="t">צהריים</span><div>צ׳ק-אין במלון <b>ליד תחנת SMN</b> ופיצה/פסטה קלה באזור.</div></div>
-<div class="slot"><span class="t">אחה״צ</span><div>טיול קצר בלב העיר: <b>הדואומו</b> (קתדרלה) מבחוץ ומבפנים, הבפטיסטריום, ופיאצה דלה רפובליקה. כ-1.5 ק״מ בסך הכל בלי שיפועים.</div></div>
-<div class="slot"><span class="t">ערב</span><div>ארוחה קרובה למלון ולילה מוקדם. (מחר יום מלא.)</div></div>
-<div class="why"><b>למה כך?</b>היום הראשון קצר בכוונה: נסיעה, מזוודה וקלנועית שמתרגלת לריצוף. הקתדרלה במרחק קצר מהתחנה, ולפי בלוגר שנסע בכיסא גלגלים היא נגישה. אל תעלו לכיפה: אין מעלית ואין נגישות. מומלץ ללון קרוב לתחנה: לפי הסקירות הרחובות באזור התחנה והאקדמיה חלקים יותר.</div>
+<div class="day-h"><span class="badge">יום 1 · ג׳ 26.1</span><h2 style="margin:0">רכבת לפירנצה והיכרות עם המרכז</h2></div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="2 מתוך 5"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></div>
+<div class="tl">
+<div class="slot"><span class="t">בוקר</span><div>Frecciarossa מטרמיני לפירנצה, כ-1:30 שעות. בקרון יש מקומות ייעודיים לכיסא גלגלים. <b>מזמינים סיוע Sala Blu מראש.</b></div></div>
+<div class="slot"><span class="t">צהריים</span><div>צ׳ק-אין במלון <b>ליד תחנת SMN</b>, וארוחה קלה באזור.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Firenze+Santa+Maria+Novella+station" target="_blank" rel="noopener">מפה: תחנת SMN ↗</a></div></div>
+<div class="slot"><span class="t">אחה״צ</span><div>טיול קצר: <b>הדואומו</b> (קתדרלה) מבחוץ ומבפנים, הבפטיסטריום, ופיאצה דלה רפובליקה. כ-1.5 ק״מ בלי שיפועים.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Duomo+Florence" target="_blank" rel="noopener">מפה: הדואומו ↗</a></div></div>
+<div class="slot"><span class="t">ערב</span><div>ארוחה קרובה למלון ולילה מוקדם. מחר יום מלא.</div></div>
+</div>
+<div class="box why"><b>למה כך?</b>היום הראשון קצר בכוונה: נסיעה, מזוודה, והקלנועית מתרגלת לריצוף. הקתדרלה קרובה לתחנה, ולפי בלוגר שנסע בכיסא גלגלים היא נגישה. <b>לא עולים לכיפה</b>: אין שם מעלית.</div>
 </div>
 </div>
 </section>
 
-<section id="d2">
+<section id="d2" class="reveal">
 <div class="card">
-<img class="ph" src="https://commons.wikimedia.org/wiki/Special:FilePath/Piazzale_degli_Uffizi_perspective_view%2C_Florence%2C_Italy%2C_August_2025.jpg?width=1100" alt="הרחבה של האופפיצי" onerror="this.remove()">
+<div class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Piazzale_degli_Uffizi_perspective_view%2C_Florence%2C_Italy%2C_August_2025.jpg?width=1400" alt="הרחבה של גלריית האופפיצי" loading="lazy" onerror="this.remove()"></div>
 <div class="cap">Piazzale degli Uffizi</div>
 <div class="body">
-<div class="day-h"><span class="badge">יום 2 · ד׳ 27.1</span><h2 style="margin:0">אופפיצי, סיניוריה, פונטה וקיו</h2></div>
-<div class="slot"><span class="t">09:00</span><div><b>גלריית האופפיצי</b> (סגורה בימי שני, ולכן היום). הזמנה מראש. כניסה <b>חינם</b> למוגבל ולמלווה אחד. 2–3 שעות.</div></div>
-<div class="slot"><span class="t">12:30</span><div>צהריים באזור פיאצה דלה סיניוריה. אפשר לראות את הפסלים תחת הלוג׳ה בחינם, כולל עותק של ה״דוד״.</div></div>
-<div class="slot"><span class="t">14:30</span><div><b>פונטה וקיו</b>, הגשר המפורסם. נגיש. פשוט עוברים, צילום, וקפה חם.</div></div>
-<div class="slot"><span class="t">16:30</span><div>סנטה קרוצ׳ה והפיאצה סביבה (ריצוף חלק יחסית), ג׳לטו, ובחזרה למלון לפני החושך.</div></div>
-<div class="why"><b>למה כך?</b>המוזיאון הכי חשוב בפירנצה, ובינואר אפשר להיכנס בלי תור ארוך ובשעות הבוקר כשיוליה הכי רעננה. הכל באזור אחד (דרום-מרכז העיר), אז לא מבזבזים אנרגיה בנסיעות. הפחתי את ארמון פיטי כי ההליכה אליו עולה ומסתבכת.</div>
-<div class="acc"><b>נגישות</b>את הכרטיסים צריך לאסוף בצד המערבי של החצר, ושם יש מדרגות. אחד מכם אוסף, והשני מחכה ליד הרמפה בפינה הצפון-מזרחית, קרוב לפאלאצו וקיו. את מסדרון ואזארי (Vasari) מדלגים: אין בו נגישות.</div>
+<div class="day-h"><span class="badge">יום 2 · ד׳ 27.1</span><h2 style="margin:0">אופפיצי, סיניוריה ופונטה וקיו</h2></div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="3 מתוך 5"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></div>
+<div class="tl">
+<div class="slot"><span class="t">09:00</span><div><b>גלריית האופפיצי</b> (סגורה בימי שני, ולכן היום). הזמנה מראש, וכניסה <b>חינם</b> למוגבל ולמלווה. 2–3 שעות.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Uffizi+Gallery+Florence" target="_blank" rel="noopener">מפה: אופפיצי ↗</a></div></div>
+<div class="slot"><span class="t">12:30</span><div>צהריים ליד פיאצה דלה סיניוריה. הפסלים תחת הלוג׳ה בחינם, כולל עותק של ה״דוד״.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+della+Signoria+Florence" target="_blank" rel="noopener">מפה: סיניוריה ↗</a></div></div>
+<div class="slot"><span class="t">14:30</span><div><b>פונטה וקיו</b>, הגשר המפורסם. נגיש. עוברים, מצלמים, וקפה חם.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Ponte+Vecchio+Florence" target="_blank" rel="noopener">מפה: פונטה וקיו ↗</a></div></div>
+<div class="slot"><span class="t">16:30</span><div>סנטה קרוצ׳ה והפיאצה סביבה, ג׳לטו, ובחזרה למלון לפני החושך.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+Santa+Croce+Florence" target="_blank" rel="noopener">מפה: סנטה קרוצ׳ה ↗</a></div></div>
+</div>
+<div class="box why"><b>למה כך?</b>המוזיאון החשוב בפירנצה, ובינואר אפשר להיכנס בלי תור ארוך ובשעות שיוליה הכי רעננה. הכל באותו אזור, ולכן אין נסיעות. את ארמון פיטי דילגתי: ההליכה אליו עולה.</div>
+<div class="box acc"><b>♿ נגישות</b>הכרטיסים נאספים בצד המערבי של החצר, ושם יש מדרגות. אחד מכם אוסף, והשני מחכה ליד הרמפה בפינה הצפון-מזרחית, קרוב לפאלאצו וקיו. את מסדרון ואזארי מדלגים: אין בו נגישות.</div>
 </div>
 </div>
 </section>
 
-<section id="d3">
+<section id="d3" class="reveal">
 <div class="card">
-<img class="ph" src="https://commons.wikimedia.org/wiki/Special:FilePath/Piazza_Maggiore.._Bologna.jpg?width=1100" alt="פיאצה מג׳ורה בבולוניה" onerror="this.remove()">
+<div class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Piazza_Maggiore.._Bologna.jpg?width=1400" alt="פיאצה מג׳ורה בבולוניה" loading="lazy" onerror="this.remove()"></div>
 <div class="cap">Piazza Maggiore, בולוניה</div>
 <div class="body">
 <div class="day-h"><span class="badge">יום 3 · ה׳ 28.1</span><h2 style="margin:0">יום בבולוניה</h2></div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="2 מתוך 5"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></span></div>
+<div class="tl">
 <div class="slot"><span class="t">08:45</span><div>רכבת מהירה מפירנצה לבולוניה: <b>35 דקות</b>. סיוע Sala Blu בשני הקצוות.</div></div>
-<div class="slot"><span class="t">10:00</span><div>מהתחנה למרכז כ-1.5 ק״מ: עם קלנועית זה בסדר, ובמזג אוויר רע אפשר מונית.</div></div>
-<div class="slot"><span class="t">10:30</span><div><b>פיאצה מג׳ורה</b>, הבזיליקה <b>סן פטרוניו</b> (כניסה ברמפה), ומזרקת נפטון.</div></div>
-<div class="slot"><span class="t">13:00</span><div>ארוחת צהריים: טורטליני, טליאטלה בראגו ומרק עוף. אזור השוק (Quadrilatero) ליד הפיאצה, והמון מקומות עם גג.</div></div>
-<div class="slot"><span class="t">15:00</span><div><b>שתי המגדלים</b> (Due Torri) מבחוץ, ושוטטות בפורטיקו. בחזרה לרכבת לפני 17:00.</div></div>
-<div class="why"><b>למה בולוניה?</b>זה היום שמתאים לגשם: כמעט כל הרחובות מכוסים בפורטיקו, האזור שטוח לגמרי, ובינואר אין עומס תיירים. זה גם יום אוכל אמיתי, והוא שובר את הריצוף של פירנצה.</div>
-<div class="acc"><b>נגישות</b>הרחובות במרכז שטוחים. יש ריצוף אבן במרכז, אבל לפי הסקירה הוא לא מאוד לא-אחיד ולא אמור להפריע. <b>לא עולים</b> לפורטיקו של סן לוקה (גבעה ארוכה) ולא למגדל אסינלי (מדרגות).</div>
+<div class="slot"><span class="t">10:00</span><div>מהתחנה למרכז כ-1.5 ק״מ. בקלנועית זה בסדר, ובגשם אפשר מונית.</div></div>
+<div class="slot"><span class="t">10:30</span><div><b>פיאצה מג׳ורה</b>, הבזיליקה <b>סן פטרוניו</b> (כניסה ברמפה) ומזרקת נפטון.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+Maggiore+Bologna" target="_blank" rel="noopener">מפה: פיאצה מג׳ורה ↗</a></div></div>
+<div class="slot"><span class="t">13:00</span><div>צהריים: טורטליני, טליאטלה בראגו ומרק עוף. אזור הקוואדרילטרו (Quadrilatero) ליד הפיאצה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Quadrilatero+Bologna" target="_blank" rel="noopener">מפה: Quadrilatero ↗</a></div></div>
+<div class="slot"><span class="t">15:00</span><div><b>שני המגדלים</b> מבחוץ ושוטטות בפורטיקו. חוזרים לרכבת לפני 17:00.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Due+Torri+Bologna" target="_blank" rel="noopener">מפה: Due Torri ↗</a></div></div>
+</div>
+<div class="box why"><b>למה בולוניה?</b>זה היום שמתאים לגשם: רוב הרחובות מכוסים, הכל שטוח, ובינואר אין עומס. זה גם יום אוכל, והוא נותן הפסקה מהריצוף של פירנצה.</div>
+<div class="box acc"><b>♿ נגישות</b>הרחובות במרכז שטוחים. יש ריצוף אבן, אבל לפי הסקירה הוא לא אמור להפריע. <b>לא עולים</b> לפורטיקו של סן לוקה (גבעה ארוכה) ולא למגדל אסינלי (מדרגות).</div>
 </div>
 </div>
 </section>
 
-<section id="d4">
+<section id="d4" class="reveal">
 <div class="card">
-<img class="ph" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mercato_centrale_di_san_lorenzo_02.jpg?width=1100" alt="השוק המרכזי של סן לורנצו" onerror="this.remove()">
+<div class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mercato_centrale_di_san_lorenzo_02.jpg?width=1400" alt="השוק המרכזי של סן לורנצו" loading="lazy" onerror="this.remove()"></div>
 <div class="cap">Mercato Centrale, פירנצה</div>
 <div class="body">
 <div class="day-h"><span class="badge">יום 4 · ו׳ 29.1</span><h2 style="margin:0">דוד, שוק מקורה ותצפית</h2></div>
-<div class="slot"><span class="t">09:00</span><div><b>גלריית האקדמיה</b> ושם <b>ה״דוד״</b> של מיכלאנג׳לו. ביקור קצר, פחות משעה עם הזמנה. כניסה בחינם למוגבל ולמלווה.</div></div>
-<div class="slot"><span class="t">11:00</span><div>סן לורנצו: השוק המרכזי המקורה (Mercato Centrale) לארוחת צהריים, ושוק העור בחוץ.</div></div>
-<div class="slot"><span class="t">14:00</span><div>מנוחה במלון, חימום, טעינת הקלנועית.</div></div>
-<div class="slot"><span class="t">16:00</span><div><b>פיאצ׳לה מיכלאנג׳לו</b>, תצפית על העיר לפני השקיעה (~17:15), <b>רק אם השמיים בהירים</b>. עולים במונית או באוטובוס נגיש מהתחנה.</div></div>
-<div class="why"><b>למה כך?</b>האקדמיה והשוק צמודים לאזור התחנה, ובפירנצה זה האזור הנוח ביותר. את התצפית שמרתי לסוף כי היא תלויה במזג האוויר ונמצאת על גבעה, אז עושים אותה רק בשמיים נקיים ועולים במונית.</div>
-<div class="warn"><b>אם יורד גשם</b>מדלגים על התצפית: מוזיאון סן מרקו, סנטה מריה נובלה (הכנסייה), או פשוט בית קפה עם שוקו חם.</div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="3 מתוך 5"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span></div>
+<div class="tl">
+<div class="slot"><span class="t">09:00</span><div><b>גלריית האקדמיה</b> וה<b>דוד</b> של מיכלאנג׳לו. פחות משעה עם הזמנה, וכניסה חינם למוגבל ולמלווה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Galleria+dell%27Accademia+Florence" target="_blank" rel="noopener">מפה: האקדמיה ↗</a></div></div>
+<div class="slot"><span class="t">11:00</span><div>סן לורנצו: השוק המרכזי המקורה לצהריים, ושוק העור בחוץ.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Mercato+Centrale+Firenze" target="_blank" rel="noopener">מפה: Mercato Centrale ↗</a></div></div>
+<div class="slot"><span class="t">14:00</span><div>מנוחה במלון, חימום וטעינת הקלנועית.</div></div>
+<div class="slot"><span class="t">16:00</span><div><b>פיאצ׳לה מיכלאנג׳לו</b>: תצפית על העיר לפני השקיעה (~17:15), <b>רק אם השמיים בהירים</b>. עולים במונית או באוטובוס נגיש מהתחנה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazzale+Michelangelo+Florence" target="_blank" rel="noopener">מפה: פיאצ׳לה מיכלאנג׳לו ↗</a></div></div>
+</div>
+<div class="box why"><b>למה כך?</b>האקדמיה והשוק קרובים לתחנה, והאזור שם הכי נוח בפירנצה. את התצפית שמרתי לסוף כי היא תלויה במזג האוויר ונמצאת על גבעה.</div>
+<details><summary>☔ תוכנית גשם</summary>
+<p>מדלגים על התצפית ועושים מוזיאון סן מרקו, כנסיית סנטה מריה נובלה, או בית קפה עם שוקו חם. הכל באזור התחנה.</p>
+</details>
 </div>
 </div>
 </section>
 
-<section id="d5">
+<section id="d5" class="reveal">
 <div class="card">
-<img class="ph" src="https://commons.wikimedia.org/wiki/Special:FilePath/Frecciarossa_1000_-_Milano_Centrale.jpg?width=1100" alt="פרצ׳ארוסה" onerror="this.remove()">
+<div class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Frecciarossa_1000_-_Milano_Centrale.jpg?width=1400" alt="רכבת פרצ׳ארוסה" loading="lazy" onerror="this.remove()"></div>
 <div class="cap">Frecciarossa</div>
 <div class="body">
 <div class="day-h"><span class="badge">יום 5 · ש׳ 30.1</span><h2 style="margin:0">בוקר רגוע ונסיעה לשדה</h2></div>
-<div class="slot"><span class="t">בוקר</span><div>ארוחת בוקר ארוכה, קניות אחרונות (שבת, הרבה חנויות פתוחות).</div></div>
-<div class="slot"><span class="t">~13:30</span><div>צ׳ק-אאוט ורכבת <b>ישירה</b> מפירנצה לשדה התעופה פיומיצ׳ינו. כ-2 שעות, בלי החלפה.</div></div>
-<div class="slot"><span class="t">~16:30</span><div>הגעה לשדה עם מרווח גדול. צ׳ק-אין של אל על (מומלץ להגיע <b>כ-3 שעות לפני</b>, בערך 18:45) והסיוע מהשדה.</div></div>
-<div class="why"><b>למה בלי תוכניות גדולות?</b>הטיסה ב-21:55 ובדיקות הביטחון של אל על ארוכות. מרווח בטחון גדול עדיף על עוד אתר. אם בא לכם עוד שעה בפירנצה, זה הבופר.</div>
+<div class="meter">מאמץ ניידות <span class="dots" aria-label="1 מתוך 5"><i class="f"></i><i></i><i></i><i></i><i></i></span></div>
+<div class="tl">
+<div class="slot"><span class="t">בוקר</span><div>ארוחת בוקר ארוכה וקניות אחרונות.</div></div>
+<div class="slot"><span class="t">~13:30</span><div>צ׳ק-אאוט ורכבת <b>ישירה</b> מפירנצה לשדה התעופה, כ-2 שעות בלי החלפה.</div></div>
+<div class="slot"><span class="t">~16:30</span><div>מגיעים לשדה עם מרווח. צ׳ק-אין של אל על (מומלץ להגיע <b>כ-3 שעות לפני</b>, בערך 18:45) וסיוע מהשדה.</div></div>
+</div>
+<div class="box why"><b>למה בלי תוכניות גדולות?</b>הטיסה ב-21:55 ובדיקות הביטחון של אל על ארוכות. מרווח גדול עדיף על עוד אתר. אם נשאר זמן, זו שעה נוספת בפירנצה.</div>
 </div>
 </div>
 </section>
 
-<section id="book">
-<h2>להזמין מראש (בלי זה המסלול לא יעבוד)</h2>
+<section id="book" class="reveal">
+<h2>להזמין מראש</h2>
 <div class="card"><div class="body">
-<ul>
-<li><b>סיוע ברכבת (Sala Blu)</b> לכל רכבת: טרמיני→פירנצה, פירנצה↔בולוניה, פירנצה→שדה. להזמין לפחות 24 שעות מראש באתר salablu.rfi.it. <span class="pill v">נבדק</span></li>
-<li><b>מקום לכיסא גלגלים בקרון:</b> בפרצ׳ארוסה יש 2 מקומות לכיסא גלגלים ועוד 2 למלווים, בהתאם לזמינות. מזמינים עם הכרטיס. <span class="pill v">נבדק</span></li>
-<li><b>אופפיצי + אקדמיה:</b> להזמין שעה, ולהצהיר על המוגבלות לכרטיס חינם ל-2. כדאי לשמור אישור רפואי בטלפון למקרה שיבקשו. <span class="pill v">נבדק</span></li>
-<li><b>אל על:</b> להודיע על הקלנועית (סוללת ליתיום) ולבקש סיוע מיוחד בשני הכיוונים. לברר אם היא נוסעת מקופלת בתא או כציוד ניידות. <span class="pill c">לבדוק מול אל על</span></li>
-<li><b>מלונות:</b> שני מלונות (ליד טרמיני ובפירנצה) עם כניסה ללא מדרגות ומקלחת ללא סף. <span class="pill c">לאמת בטלפון</span></li>
-<li><b>ביטוח נסיעות</b> שמכסה ציוד ניידות.</li>
+<p style="margin-top:0">אפשר לסמן, והסימונים נשמרים במכשיר.</p>
+<ul class="check">
+<li><label><input type="checkbox" data-k="b1"><span><b>סיוע ברכבת (Sala Blu)</b> לכל קטע: טרמיני→פירנצה, פירנצה↔בולוניה, פירנצה→שדה. לפחות 24 שעות מראש באתר salablu.rfi.it. <span class="pill v">נבדק</span></span></label></li>
+<li><label><input type="checkbox" data-k="b2"><span><b>מקום לכיסא גלגלים בקרון:</b> בפרצ׳ארוסה 2 מקומות לכיסא גלגלים ועוד 2 למלווים, לפי זמינות. <span class="pill v">נבדק</span></span></label></li>
+<li><label><input type="checkbox" data-k="b3"><span><b>אופפיצי + אקדמיה:</b> הזמנת שעה, והצהרה על מוגבלות לכרטיס חינם לשניים. כדאי אישור רפואי בטלפון. <span class="pill v">נבדק</span></span></label></li>
+<li><label><input type="checkbox" data-k="b4"><span><b>אל על:</b> להודיע על הקלנועית (סוללת ליתיום) ולבקש סיוע בשני הכיוונים. <span class="pill c">לבדוק מול אל על</span></span></label></li>
+<li><label><input type="checkbox" data-k="b5"><span><b>מלונות</b> ליד טרמיני ובפירנצה, עם כניסה בלי מדרגות ומקלחת בלי סף. <span class="pill c">לאמת בטלפון</span></span></label></li>
+<li><label><input type="checkbox" data-k="b6"><span><b>ביטוח נסיעות</b> שמכסה ציוד ניידות.</span></label></li>
 </ul>
 </div></div>
 </section>
 
-<section id="pack">
+<section id="pack" class="reveal">
 <h2>מזג אוויר וציוד</h2>
 <div class="card"><div class="body">
 <ul>
-<li><b>פירנצה:</b> בערך 1–3° בלילה ו-8–11° ביום. ~11 ימי גשם בחודש, שמיים מעוננים, ולעיתים קל ערפל.</li>
-<li><b>בולוניה:</b> קר יותר, ערפל בבקרים. הפורטיקו מגן.</li>
-<li><b>אור:</b> השקיעה בסביבות 17:15. לתכנן את הדברים החשובים בבוקר ובצהריים.</li>
-<li><b>לקחת:</b> שכבות, מעיל חם ועמיד, כפפות וכובע, כיסוי גשם לקלנועית, מטען, ונעליים עם אחיזה.</li>
-<li><b>נוחות:</b> חימום ידיים/רגליים נייד לכסא, מטרייה מתקפלת קטנה.</li>
+<li><b>פירנצה:</b> כ-1–3° בלילה ו-8–11° ביום, כ-11 ימי גשם בחודש, שמיים מעוננים.</li>
+<li><b>בולוניה:</b> קר יותר, עם ערפל בבקרים. הפורטיקו מגן.</li>
+<li><b>אור:</b> השקיעה בסביבות 17:15, לכן התוכניות החשובות בבוקר ובצהריים.</li>
 </ul>
-<div class="warn"><b>אזהרת ריצוף</b>רוב פירנצה מרוצפת אבן. קלנועית עם גלגלים קטנים מרגישה כל נקודה, לכן מתכננים מסלולים קצרים ומשאירים זמן. אם משהו לא מתאים, מונית היא הפתרון.</div>
+<h3>לקחת</h3>
+<ul class="check">
+<li><label><input type="checkbox" data-k="p1"><span>מעיל חם ושכבות, כפפות וכובע</span></label></li>
+<li><label><input type="checkbox" data-k="p2"><span>כיסוי גשם לקלנועית ומטרייה מתקפלת</span></label></li>
+<li><label><input type="checkbox" data-k="p3"><span>מטען לקלנועית ומתאם לשקע איטלקי</span></label></li>
+<li><label><input type="checkbox" data-k="p4"><span>נעליים עם אחיזה, ושמיכה קטנה לכיסא</span></label></li>
+<li><label><input type="checkbox" data-k="p5"><span>אישורים: ביטוח, אישור רפואי, אישורי הזמנה</span></label></li>
+</ul>
+<div class="box warn"><b>ריצוף</b>רוב פירנצה מרוצפת אבן. מתכננים מסלולים קצרים, משאירים זמן, ואם משהו קשה: מונית.</div>
 </div></div>
 </section>
 
-<section id="src">
-<h2>מקורות ושקיפות</h2>
+<section id="src" class="reveal">
+<h2>מקורות</h2>
 <div class="card"><div class="body">
-<p style="font-size:.9rem">נבדקו: Sage Traveling (מדריכי נגישות לפירנצה ובולוניה), Trenitalia ו-RFI (סיוע ורכבות), אתרי מזג אוויר ותיירות לינואר, קהילת Rick Steves ו-Fodor's, ופרויקטי GitHub של מסלולי איטליה. לא הצלחתי לגשת ל-Reddit מהכלים שלי, אז <b>אין כאן ציטוטים משם</b>. אם יש שרשור שאתם סומכים עליו, אפשר להוסיף.</p>
-<ul style="font-size:.9rem">
+<p style="font-size:.95rem;margin-top:0">נבדקו: Sage Traveling (נגישות בפירנצה ובבולוניה), Trenitalia ו-RFI, אתרי מזג אוויר ותיירות, קהילת Rick Steves ו-Fodor's, ופרויקטי GitHub של מסלולי איטליה. לא הצלחתי לגשת ל-Reddit, ולכן <b>אין כאן ציטוטים משם</b>.</p>
+<ul style="font-size:.95rem">
 <li><a href="https://www.sagetraveling.com/?p=3704">Disabled Access Review of Florence</a></li>
 <li><a href="https://www.sagetraveling.com/?p=3249">11 Florence Wheelchair Accessible Travel Tips</a></li>
 <li><a href="https://www.sagetraveling.com/?p=27731">Disabled Access Review of Bologna</a></li>
-<li><a href="https://www.trenitalia.com/en/information/passengers-with-disabilities-or-reduced-mobility.html">Trenitalia · passengers with reduced mobility</a></li>
+<li><a href="https://www.trenitalia.com/en/information/passengers-with-disabilities-or-reduced-mobility.html">Trenitalia · reduced mobility</a></li>
 <li><a href="https://wheelchairtravel.org/rome-italy-airport/">Wheelchair access at Rome Fiumicino</a></li>
 <li><a href="https://untolditaly.com/italy-in-january/">Italy in January</a></li>
-<li><a href="https://community.ricksteves.com/travel-forum/italy/italy-for-other-abled-person-reliant-on-scooter">Rick Steves forum · scooter in Italy</a></li>
 </ul>
-<p style="font-size:.8rem;color:var(--soft)">תמונות: Wikimedia Commons.</p>
+<p style="font-size:.8rem;color:var(--soft)">תמונות: Wikimedia Commons. המוזיקה נוצרת בדפדפן ואינה קובץ מוקלט.</p>
 </div></div>
 </section>
-<footer>נבנה בשביל יוליה ודניאל · פרטי</footer>
-</div>
+<footer>נבנה בשביל יוליה ודניאל ♥</footer>
+</main>
+
+<script>
+(function(){
+var R=document.documentElement;
+function sg(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function ss(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+// font size
+var fs=parseInt(sg('it_fs')||'100',10);
+function setFs(v){fs=Math.max(90,Math.min(150,v));R.style.setProperty('--fs',fs+'%');ss('it_fs',fs)}
+setFs(fs);
+document.getElementById('fsUp').onclick=function(){setFs(fs+10)};
+document.getElementById('fsDown').onclick=function(){setFs(fs-10)};
+// contrast
+var hc=document.getElementById('hcBtn');
+function setHc(on){R.classList.toggle('hc',on);hc.setAttribute('aria-pressed',on);ss('it_hc',on?'1':'0')}
+setHc(sg('it_hc')==='1');
+hc.onclick=function(){setHc(!R.classList.contains('hc'))};
+// reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+// progress + parallax + nav highlight
+var prog=document.getElementById('prog'),img=document.getElementById('heroImg');
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var links=[].slice.call(document.querySelectorAll('#nav a'));
+var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+function onScroll(){
+ var h=document.documentElement.scrollHeight-innerHeight;
+ prog.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+ if(img&&!rm&&scrollY<innerHeight)img.style.transform='translateY('+(scrollY*.25)+'px)';
+ var cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});
+ links.forEach(function(a,i){var on=i===cur;a.classList.toggle('on',on);if(on)a.removeAttribute('aria-current');if(on)a.setAttribute('aria-current','true')});
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+// countdown
+var cd=document.getElementById('cd');
+function tick(){var t=new Date('2027-01-25T18:15:00+02:00')-new Date();
+ if(t<0){cd.textContent='בדרך!';return}
+ var d=Math.floor(t/864e5);cd.innerHTML='עוד <span class="count">'+d+'</span> ימים לטיסה'}
+tick();
+// checklist
+document.querySelectorAll('.check input').forEach(function(c){
+ c.checked=sg('it_c_'+c.dataset.k)==='1';
+ c.addEventListener('change',function(){ss('it_c_'+c.dataset.k,c.checked?'1':'0')});
+});
+// music: generated in-browser, off by default
+var mb=document.getElementById('musicBtn'),ctx=null,master=null,timer=null,playing=false,step=0;
+var N=[293.66,349.23,440,523.25,587.33,440,349.23,261.63,311.13,392,466.16,587.33,466.16,392,311.13,233.08];
+function pluck(f,t){
+ var o=ctx.createOscillator(),g=ctx.createGain(),o2=ctx.createOscillator();
+ o.type='triangle';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2;
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+.01);g.gain.exponentialRampToValueAtTime(.0008,t+1.4);
+ o.connect(g);o2.connect(g);g.connect(master);o.start(t);o2.start(t);o.stop(t+1.5);o2.stop(t+1.5);
+}
+function sched(){
+ var t=ctx.currentTime+.05,bar=Math.floor(step/4)%4;
+ var base=[N[0],N[7],N[8],N[7]][bar];
+ if(step%4===0)pluck(base/2,t);
+ pluck(N[(step*3+bar*2)%N.length]*(step%8<4?1:1),t+.02);
+ step++;
+}
+function startMusic(){
+ var AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+ if(!ctx){ctx=new AC();master=ctx.createGain();master.gain.value=.12;
+  var d=ctx.createDelay(1);d.delayTime.value=.33;var fb=ctx.createGain();fb.gain.value=.4;
+  d.connect(fb);fb.connect(d);master.connect(d);d.connect(ctx.destination);master.connect(ctx.destination);}
+ ctx.resume();timer=setInterval(sched,420);playing=true;
+ mb.setAttribute('aria-pressed','true');mb.setAttribute('aria-label','מוזיקת רקע, פועלת. לחצו לכיבוי');mb.textContent='♫';ss('it_m','1');
+}
+function stopMusic(){clearInterval(timer);if(ctx)ctx.suspend();playing=false;
+ mb.setAttribute('aria-pressed','false');mb.setAttribute('aria-label','מוזיקת רקע, כבויה. לחצו להפעלה');mb.textContent='♪';ss('it_m','0')}
+mb.onclick=function(){playing?stopMusic():startMusic()};
+document.addEventListener('visibilitychange',function(){if(document.hidden&&playing)stopMusic()});
+})();
+</script>
 </body>
 </html>
