@@ -268,6 +268,69 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 .mx{width:100%;border-collapse:collapse;margin-top:10px}
 .tips{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 22px}
 .tips h3{margin:0 0 8px}.tips ul{margin:0;padding-inline-start:20px;display:grid;gap:8px}
+
+/* build9: palette, day identity, bar, beware, history */
+:root{--bg:#edf1f3;--card:#fbfcfd;--ink:#0e1c26;--soft:#3f5260;--line:#d1dbe0;--acc:#0b5fa5;--on-acc:#fff;--tint:#e0eaf0;--warn:#f6ebcf;--slate:#12303f;--bw:#b4501e;--navh:61px;--dc0:#5d6e7c;--dc1:#2f7fb5;--dc2:#17806f;--dc3:#6f8a1f;--dc4:#a8741a;--dc5:#86528f;}
+@media (prefers-color-scheme:dark){:root{--bg:#0a1319;--card:#121e27;--ink:#e6eef2;--soft:#9fb3bf;--line:#22343f;--acc:#7fb8f0;--on-acc:#06131f;--tint:#172833;--warn:#3a3118;--slate:#0a1319;--bw:#f0a07a;--dc0:#a9b9c6;--dc1:#7fb8e6;--dc2:#5fc7b3;--dc3:#b4cf63;--dc4:#e6b462;--dc5:#cf9ad8;}}
+html.hc{--bg:#fff;--card:#fff;--ink:#000;--soft:#1a1a1a;--line:#000;--acc:#003f7a;--on-acc:#fff;--tint:#eee;--warn:#fff2b3;--bw:#7a2600}
+@media (prefers-color-scheme:dark){html.hc{--bg:#000;--card:#000;--ink:#fff;--soft:#f0f0f0;--line:#fff;--acc:#a9d1ff;--on-acc:#000;--tint:#111;--warn:#2b2400;--bw:#ffb08a}}
+.hero small{color:#bcdcff}
+.day,#history .hcard,.sc{scroll-margin-top:132px}
+section{scroll-margin-top:60px}
+#d0{--dc:var(--dc0)}#d1{--dc:var(--dc1)}#d2{--dc:var(--dc2)}#d3{--dc:var(--dc3)}#d4{--dc:var(--dc4)}#d5{--dc:var(--dc5)}
+.day{border-top:0;position:relative}
+.day::before{content:"";position:absolute;inset-inline:0;top:0;height:5px;background:var(--dc)}
+.day .dnum{color:var(--dc)}
+.dmeta .w::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--dc);margin-inline-end:8px}
+.ov a:nth-child(1){--dc:var(--dc0)}.ov a:nth-child(2){--dc:var(--dc1)}.ov a:nth-child(3){--dc:var(--dc2)}.ov a:nth-child(4){--dc:var(--dc3)}.ov a:nth-child(5){--dc:var(--dc4)}.ov a:nth-child(6){--dc:var(--dc5)}
+.ov a{border-top:5px solid var(--dc)}
+.ov a .d{color:var(--dc)}
+.dbar{position:fixed;top:var(--navh);inset-inline:0;z-index:65;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transform:translateY(-110%);opacity:0;transition:transform .24s var(--out),opacity .24s var(--out);pointer-events:none}
+.dbar.on{transform:none;opacity:1;pointer-events:auto}
+.dbar .in{max-width:1120px;margin:0 auto;padding:6px 18px 8px;display:grid;gap:4px}
+.dbar .chips2{display:flex;gap:6px}
+.dbar .chips2 a{flex:1;min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:12px;color:var(--ink);text-decoration:none;font:700 .9rem Rubik;border:1.5px solid var(--line);background:var(--card);transition:transform .16s var(--out),background .16s}
+.dbar .chips2 a:active{transform:scale(.96)}
+.dbar .chips2 a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.dbar .chips2 a[aria-current]{background:var(--c);color:#fff;border-color:var(--c)}
+.dbar .chips2 a[aria-current]::before{background:#fff}
+.dbar .lab{font:600 .86rem Heebo;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbar .lab b{color:var(--ink);font-family:Rubik}
+@media(max-width:520px){.dbar .chips2 a{font-size:.82rem;gap:4px}}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.quick a{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border-radius:99px;border:1.5px solid var(--dc);color:var(--ink);text-decoration:none;font:700 .9rem Rubik;background:var(--card);transition:transform .16s var(--out)}
+.quick a:active{transform:scale(.96)}
+.quick a.bw{border-color:var(--bw)}
+.bwb{border-radius:16px;padding:14px 18px;margin:16px 0;background:var(--card);border:1.5px solid var(--bw);border-inline-start-width:6px}
+.bwb b{display:block;font:800 .95rem Rubik;color:var(--bw);margin-bottom:4px}
+.bwb ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;font-size:.97rem}
+.bwb a{font-weight:700}
+.dpn{display:flex;justify-content:space-between;gap:10px;margin-top:30px}
+.dpn a{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:99px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font:700 .95rem Rubik;transition:transform .16s var(--out),background .16s}
+.dpn a:active{transform:scale(.97)}
+@media(hover:hover){.dpn a:hover{background:var(--ink);color:var(--bg)}}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-top:16px}
+.sc header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sc h3{margin:0}
+.dtags{display:flex;gap:6px}
+.dtag{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:28px;padding:0 8px;border-radius:99px;background:var(--c);color:#fff;font:800 .8rem Rubik;text-decoration:none}
+.sc table{width:100%;border-collapse:collapse;font-size:.96rem}
+.sc td,.sc th{padding:10px 10px;border-top:1px solid var(--line);vertical-align:top;text-align:start}
+.sc th{font:700 .8rem Rubik;color:var(--soft);border-top:0}
+.sc td:first-child{font-weight:700;min-width:7.5em}
+@media(max-width:700px){.sc table,.sc tbody,.sc tr,.sc td{display:block}.sc thead{display:none}.sc tr{border-top:1px solid var(--line);padding:10px 0}.sc td{border:0;padding:3px 0}.sc td:nth-child(2)::before{content:"מה קורה: ";font-weight:700;color:var(--bw)}.sc td:nth-child(3)::before{content:"מה עושים: ";font-weight:700;color:var(--acc)}}
+.sc .tip{margin:10px 0 0;padding:10px 14px;border-radius:12px;background:var(--tint);font-size:.95rem}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:16px}
+.tp{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.tp h3{margin:0 0 8px}.tp ul{margin:0;padding-inline-start:20px;display:grid;gap:7px;font-size:.96rem}
+.hcard{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--dc);border-radius:var(--r);padding:20px 22px;margin-top:16px}
+.hcard .hd{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.hcard .hd a{min-width:40px;height:40px;border-radius:12px;background:var(--dc);color:#fff;display:inline-flex;align-items:center;justify-content:center;font:900 1rem Rubik;text-decoration:none}
+.hcard h3{margin:0}
+.hcard p{margin:.4rem 0;max-width:46em}
+@media(prefers-reduced-motion:reduce){.dbar{transition:none}}
+html.rm .dbar{transition:none}
+@media print{.dbar{display:none}}
 </style>
 </head>
 <body>
@@ -297,7 +360,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 </header>
 
 <nav class="rail" aria-label="ניווט במסלול"><div class="wrap" id="nav">
-<a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#wx">מזג אוויר</a><a href="#near">מרחקים</a><a href="#walk">הליכה</a><a href="#food">אוכל</a><a href="#eat">מסעדות</a><a href="#dishes">מנות</a><a href="#night">חיי לילה</a><a href="#voice">שירה</a><a href="#lines">קווים</a><a href="#book">הזמנות</a><a href="#pack">מזג אוויר וציוד</a><a href="#src">מקורות</a>
+<a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#wx">מזג אוויר</a><a href="#near">מרחקים</a><a href="#walk">הליכה</a><a href="#food">אוכל</a><a href="#eat">מסעדות</a><a href="#dishes">מנות</a><a href="#night">חיי לילה</a><a href="#voice">שירה</a><a href="#scams">להיזהר</a><a href="#history">היסטוריה</a><a href="#lines">קווים</a><a href="#book">הזמנות</a><a href="#pack">מזג אוויר וציוד</a><a href="#src">מקורות</a>
 </div></nav>
 
 <main id="main">
@@ -308,6 +371,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 </div>
 </div>
 
+<div class="dbar" id="dbar" aria-label="באיזה יום אני"><div class="in"><div class="chips2"><a href="#d0" data-d="0" style="--c:var(--dc0)">25</a><a href="#d1" data-d="1" style="--c:var(--dc1)">26</a><a href="#d2" data-d="2" style="--c:var(--dc2)">27</a><a href="#d3" data-d="3" style="--c:var(--dc3)">28</a><a href="#d4" data-d="4" style="--c:var(--dc4)">29</a><a href="#d5" data-d="5" style="--c:var(--dc5)">30</a></div><div class="lab" id="dlab" aria-live="polite"></div></div></div>
 <section id="why"><div class="wrap">
 <h2 class="rv">למה סירקוזה ולא כל האי</h2>
 <p class="lead rv">סיציליה גדולה, ובינואר היום קצר והכבישים ארוכים. במקום להסתובב בין ערים, בסיס אחד באורטיג׳יה, אי קטן ושטוח בעיר סירקוזה, ושני טיולי יום קצרים ממנו.</p>
@@ -355,6 +419,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 
 <article class="day" id="d0"><div class="wrap">
 <div class="dh rv"><span class="dnum d">25</span><div class="dmeta"><span class="w">יום שני, ינואר</span><h2>נחיתה ולילה ליד השדה</h2></div></div>
+<div class="quick rv"><a href="#h-d0">היסטוריה של המקום</a><a class="bw" href="#s-fco">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <div class="cols">
 <ul class="tl rv">
 <li><span class="t">21:00</span><div>נחיתה בפיומיצ׳ינו. מבקשים סיוע משדה התעופה (PRM) עד היציאה.</div></li>
@@ -365,10 +430,13 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="note w"><b>לפני שמזמינים מלון</b>באיטליה המעלית לפעמים קטנה מדי לקלנועית. לשאול בכתב: כניסה בלי מדרגות מהרחוב, מידות המעלית בס״מ ומקלחת בלי סף. אם הקלנועית מתקפלת, מודדים אותה מקופלת.</div>
 </div>
 </div>
+<div class="bwb rv"><b>להיזהר היום</b><ul><li>בהגעה, נהגים ללא רישיון ("Taxi? Taxi?") ניגשים בטרמינל. עולים רק למונית לבנה רשמית מהתור, או להסעה של המלון שהוזמנה מראש.</li><li>שירות הסיוע PRM בשדה ניתן ללא תשלום. אם מישהו מבקש כסף על "עזרה" עם הקלנועית, אפשר לסרב.</li></ul><p style="margin:8px 0 0"><a href="#s-fco">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d1">יום הבא: 26.1</a></div>
 </div></article>
 
 <article class="day" id="d1"><div class="wrap">
 <div class="dh rv"><span class="dnum d">26</span><div class="dmeta"><span class="w">יום שלישי, ינואר</span><h2>טיסה לקטניה ואוטובוס לסירקוזה</h2></div></div>
+<div class="quick rv"><a href="#h-d1">היסטוריה של המקום</a><a class="bw" href="#s-catania">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <figure class="shot banner rv"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View_of_Syracuse_and_Mount_Etna_from_Lungomare_Di_Levante_Ortigia._Sicily%2C_Italy.jpg?width=1800" alt="נוף של סירקוזה והר אטנה" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>הנוף מהמזח של אורטיג׳יה, ובצד אטנה</figcaption></figure>
 <div class="cols">
 <ul class="tl rv">
@@ -381,10 +449,13 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="note w"><b>לא מאומת</b>לוח הזמנים החורפי של אינטרבוס: הנתונים שמצאתי הם של הקיץ. בודקים את התאריך ב-booking.interbus.it ושואלים את הנהג על הרמפה. אם האוטובוס לא מתאים, מונית מהשדה לסירקוזה היא הגיבוי.</div>
 </div>
 </div>
-<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">ערב</span><div><b>Agape</b>, ליד תחנת האוטובוס, ניוקי וטונה. הזמנה מראש, סגור בימי רביעי <a class="map" href="#r-agape">פרטים</a></div></li><li><span class="mt">אחרי</span><div><b>Mangiafico</b>, גלידת לימון או גרניטה, פתוח עד מאוחר <a class="map" href="#r-mangiafico">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>קונים את כרטיס האינטרבוס מראש באתר או באפליקציה ולא אצל הנהג. מחיר כ-6.20 יורו לכיוון לפי אתר מידע.</li><li>תחנת הירידה Corso Umberto, ליד Agape ו-Vinoteca. מעבירים את המזוודה למלון במונית.</li><li>היום קצר, הערב מתחיל כבר ב-17:20. עושים ערב רגוע ולא מעמיסים.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Vinoteca</b>, יין בכוס ליד Agape, בדיוק כשנוח אחרי נסיעה <a class="map" href="#n-vinoteca">פרטים</a></li><li><b>Il Club</b>, אם נשארת אנרגיה, ספיקיזי באורטיג׳יה. מונית מהמלון <a class="map" href="#n-ilclub">פרטים</a></li></ul></div></div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">ערב</span><div><b>Agape</b>, ליד תחנת האוטובוס, ניוקי וטונה. הזמנה מראש, סגור בימי רביעי <a class="map" href="#r-agape">פרטים</a></div></li><li><span class="mt">אחרי</span><div><b>Mangiafico</b>, גלידת לימון או גרניטה, פתוח עד מאוחר <a class="map" href="#r-mangiafico">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>קונים את כרטיס האינטרבוס מראש באתר או באפליקציה ולא אצל הנהג. מחיר כ-6.20 יורו לכיוון לפי אתר מידע.</li><li>תחנת הירידה Corso Umberto, ליד Agape ו-Vinoteca. מעבירים את המזוודה למלון במונית.</li><li>היום קצר, הערב מתחיל כבר ב-17:20. עושים ערב רגוע ולא מעמיסים.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Vinoteca</b>, יין בכוס ליד Agape, בדיוק כשנוח אחרי נסיעה <a class="map" href="#n-vinoteca">פרטים</a></li><li><b>Il Club</b>, אם נשארת אנרגיה, ספיקיזי באורטיג׳יה. מונית מהמלון <a class="map" href="#n-ilclub">פרטים</a></li></ul></div><div class="bwb rv"><b>להיזהר היום</b><ul><li>באוטובוס ובשדה: כיסים וסיכות במקומות צפופים. תיק קדימה, ולא בכיס האחורי.</li><li>מכונות המשיכה: כשהמסוף שואל אם לחייב בשקלים או באירו, בוחרים תמיד אירו. ההמרה "הנוחה" יקרה יותר.</li></ul><p style="margin:8px 0 0"><a href="#s-catania">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d0">יום קודם: 25.1</a><a href="#d2">יום הבא: 27.1</a></div>
+</div></article>
 
 <article class="day" id="d2"><div class="wrap">
 <div class="dh rv"><span class="dnum d">27</span><div class="dmeta"><span class="w">יום רביעי, ינואר</span><h2>אורטיג׳יה: דואומו, מעיין, שוק</h2></div></div>
+<div class="quick rv"><a href="#h-d2">היסטוריה של המקום</a><a class="bw" href="#s-ortigia">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <div class="mosaic" style="margin-bottom:30px">
 <figure class="shot rv"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Piazza_Duomo_Siracusa_-_2.jpg?width=1600" alt="פיאצה דואומו" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>פיאצה דואומו</figcaption></figure>
 <figure class="shot rv" style="--i:1"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lungomare_Alfeo_and_Fonte_Aretusa._Siracusa%2C_Italy.jpg?width=1200" alt="מעיין ארטוזה והטיילת" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>מעיין ארטוזה</figcaption></figure>
@@ -408,10 +479,13 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <details><summary>תוכנית גשם</summary><p>בגשם נשארים בתוך הדואומו, בשוק המקורה ובבתי קפה. את הטירה והטיילת דוחים ליום אחר.</p></details>
 </div>
 </div>
-<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Apollo</b>, גרניטה שקדים ובריוש מול המקדש, סגור בימי שלישי <a class="map" href="#r-apollo">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Da Michelone</b>, בתוך השוק, פסטה וקנולי <a class="map" href="#r-michelone">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>La Pigna</b>, מנת הטעימות La Pigna, להזמין <a class="map" href="#r-pigna">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>שוק אורטיג׳יה פעיל בבוקר, והכי כיף לעבור בו בין 9:30 ל-12:00.</li><li>Castello Maniace פתוח לפי מקורות בבוקר בלבד, בערך עד 13:30, ועולה כמה יורו. מגיעים בבוקר, והדרך מהדואומו כרבע שעה.</li><li>כנסיית Santa Lucia alla Badia עם הציור של קרווג׳ו: פתוחה לפי אתר אחד בימים ג׳ עד א׳ בין 11:00 ל-16:00, כ-6 יורו.</li><li>הליכה על Fonte Aretusa בתשלום של כ-5 יורו לפי אתר. שואלים ליד הכניסה.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Verga Courtyard</b>, החצר המוארת, קוקטיילים וברושטות. להזמין <a class="map" href="#n-verga">פרטים</a></li><li><b>BOATS</b>, קוקטייל מול מקדש אפולו, אם לא קר מדי <a class="map" href="#n-boats">פרטים</a></li><li><b>La Bodeguita</b>, מוקדם, אמפנדס ויין, עד 22:30 <a class="map" href="#n-bodeguita">פרטים</a></li></ul></div></div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Apollo</b>, גרניטה שקדים ובריוש מול המקדש, סגור בימי שלישי <a class="map" href="#r-apollo">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Da Michelone</b>, בתוך השוק, פסטה וקנולי <a class="map" href="#r-michelone">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>La Pigna</b>, מנת הטעימות La Pigna, להזמין <a class="map" href="#r-pigna">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>שוק אורטיג׳יה פעיל בבוקר, והכי כיף לעבור בו בין 9:30 ל-12:00.</li><li>Castello Maniace פתוח לפי מקורות בבוקר בלבד, בערך עד 13:30, ועולה כמה יורו. מגיעים בבוקר, והדרך מהדואומו כרבע שעה.</li><li>כנסיית Santa Lucia alla Badia עם הציור של קרווג׳ו: פתוחה לפי אתר אחד בימים ג׳ עד א׳ בין 11:00 ל-16:00, כ-6 יורו.</li><li>הליכה על Fonte Aretusa בתשלום של כ-5 יורו לפי אתר. שואלים ליד הכניסה.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Verga Courtyard</b>, החצר המוארת, קוקטיילים וברושטות. להזמין <a class="map" href="#n-verga">פרטים</a></li><li><b>BOATS</b>, קוקטייל מול מקדש אפולו, אם לא קר מדי <a class="map" href="#n-boats">פרטים</a></li><li><b>La Bodeguita</b>, מוקדם, אמפנדס ויין, עד 22:30 <a class="map" href="#n-bodeguita">פרטים</a></li></ul></div><div class="bwb rv"><b>להיזהר היום</b><ul><li>מסעדות על פיאצה דואומו ועל שפת הים: בודקים מחיר לפני שיושבים. דג נמכר לפי משקל, ושואלים כמה עולים 100 גרם.</li><li>מי ששם צמיד או ורד ביד ואומר "מתנה" יבקש כסף אחר כך. מסרבים וממשיכים.</li></ul><p style="margin:8px 0 0"><a href="#s-ortigia">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d1">יום קודם: 26.1</a><a href="#d3">יום הבא: 28.1</a></div>
+</div></article>
 
 <article class="day" id="d3"><div class="wrap">
 <div class="dh rv"><span class="dnum d">28</span><div class="dmeta"><span class="w">יום חמישי, ינואר</span><h2>הפארק הארכאולוגי ניאפוליס</h2></div></div>
+<div class="quick rv"><a href="#h-d3">היסטוריה של המקום</a><a class="bw" href="#s-neapolis">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <div class="duo" style="margin-bottom:28px">
 <figure class="shot rv"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Orecchio_di_Dionisio_%28Syracuse%29_01_%28js%29.jpg?width=1400" alt="האוזן של דיוניסיוס" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>האוזן של דיוניסיוס</figcaption></figure>
 <figure class="shot rv" style="--i:1"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Syracuse%2C_bridge_Umbertino_for_Ortigia.jpg?width=1400" alt="הגשר לאורטיג׳יה" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>הגשר בין אורטיג׳יה ליבשת</figcaption></figure>
@@ -428,10 +502,13 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="note w"><b>לא מאומת</b>לפי אתר מידע, הפארק פתוח בחורף מ-8:30 עד 17:00 או 17:30, והכרטיס כ-10 יורו לפי אתר אחד וכ-17 לפי אחר, ולכן בודקים בקופה. משטחי הסלע לא אחידים, והמלצה שם היא קלנועית חשמלית ולא כיסא ידני. שביל האוזן יורד, ולכן שואלים בקופה איזה קטע נגיש. מגיעים סביב 9:30 כדי לא להיות בלחץ לפני הסגירה.</div>
 </div>
 </div>
-<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Mangiafico או Caffè Apollo</b>, ארטלה סגור ביום חמישי <a class="map" href="#r-mangiafico">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Antica Giudecca</b>, ארנצ׳ינו רגו ב-2 יורו אחרי הפארק <a class="map" href="#r-giudecca">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Antica Locanda</b>, דגי היום על הגריל, להזמין <a class="map" href="#r-locanda">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>Neapolis: תיאטרון יווני, אמפיתיאטרון רומי, אוזן דיוניסיוס. מקצים לפחות 90 דקות, ויש נתיבים לא אחידים.</li><li>אם יוליה רוצה, מנסים צליל שקט באוזן, כי ההד שם מורגש גם בלחישה.</li><li>מונית הלוך וחזור מאורטיג׳יה, כ-10 דקות. מבקשים מהנהג לחכות או לחזור בשעה קבועה.</li><li>מחר נוטו, ולכן ערב מוקדם יחסית.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Evoè</b>, בר יין עם קיר בקבוקים. הכי טוב בדירוג <a class="map" href="#n-evoe">פרטים</a></li><li><b>Verga Courtyard</b>, אפשרות שנייה בחצר <a class="map" href="#n-verga">פרטים</a></li><li><b>Barcollo</b>, אם רוצים להמשיך אחרי חצות, פתוח עד 02:00 <a class="map" href="#n-barcollo">פרטים</a></li></ul></div></div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Mangiafico או Caffè Apollo</b>, ארטלה סגור ביום חמישי <a class="map" href="#r-mangiafico">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Antica Giudecca</b>, ארנצ׳ינו רגו ב-2 יורו אחרי הפארק <a class="map" href="#r-giudecca">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Antica Locanda</b>, דגי היום על הגריל, להזמין <a class="map" href="#r-locanda">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>Neapolis: תיאטרון יווני, אמפיתיאטרון רומי, אוזן דיוניסיוס. מקצים לפחות 90 דקות, ויש נתיבים לא אחידים.</li><li>אם יוליה רוצה, מנסים צליל שקט באוזן, כי ההד שם מורגש גם בלחישה.</li><li>מונית הלוך וחזור מאורטיג׳יה, כ-10 דקות. מבקשים מהנהג לחכות או לחזור בשעה קבועה.</li><li>מחר נוטו, ולכן ערב מוקדם יחסית.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Evoè</b>, בר יין עם קיר בקבוקים. הכי טוב בדירוג <a class="map" href="#n-evoe">פרטים</a></li><li><b>Verga Courtyard</b>, אפשרות שנייה בחצר <a class="map" href="#n-verga">פרטים</a></li><li><b>Barcollo</b>, אם רוצים להמשיך אחרי חצות, פתוח עד 02:00 <a class="map" href="#n-barcollo">פרטים</a></li></ul></div><div class="bwb rv"><b>להיזהר היום</b><ul><li>ליד הכניסה לפארק אנשים מציעים "סיור בלי תור". כרטיס קונים בקופה הרשמית בלבד.</li><li>בעמידה בתור ובמדרגות אל המערה: כיסים וסיכות. הכל קרוב לקהל של קבוצות.</li></ul><p style="margin:8px 0 0"><a href="#s-neapolis">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d2">יום קודם: 27.1</a><a href="#d4">יום הבא: 29.1</a></div>
+</div></article>
 
 <article class="day" id="d4"><div class="wrap">
 <div class="dh rv"><span class="dnum d">29</span><div class="dmeta"><span class="w">יום שישי, ינואר</span><h2>נוטו, עיר הבארוק</h2></div></div>
+<div class="quick rv"><a href="#h-d4">היסטוריה של המקום</a><a class="bw" href="#s-noto">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <div class="snap rv" style="margin-bottom:30px" tabindex="0" aria-label="גלריית נוטו, גללו הצידה">
 <figure class="shot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Noto%2C_Via_Nicolaci_%281%29.jpg?width=1200" alt="רחוב ניקולצ׳י בנוטו" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>Via Nicolaci</figcaption></figure>
 <figure class="shot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Noto_-_Cattedrale_San_Nicol%C3%B2_-_4.jpg?width=1200" alt="הקתדרלה של נוטו" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>הקתדרלה</figcaption></figure>
@@ -453,10 +530,13 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <details><summary>תוכנית גשם</summary><p>דוחים את נוטו ליום אחר בשבוע, או עושים יום קל באורטיג׳יה עם קפה, מוזיאון ושוק.</p></details>
 </div>
 </div>
-<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Sicilia בנוטו</b>, גרניטה שקדים או גלידת פיסטוק וריקוטה <a class="map" href="#r-sicilia">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Retablo</b>, סיציליאנית מסורתית. לשאול על המדרגות <a class="map" href="#r-retablo">פרטים</a></div></li><li><span class="mt">חלופה</span><div><b>Sabbinirica</b>, כריכים מהירים ברחוב <a class="map" href="#r-putia">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Cod da Saretta</b>, מחיר נמוך, בלי הזמנות, מגיעים מוקדם <a class="map" href="#r-saretta">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>נוטו: מתחילים בשער Porta Reale, ואת הרחוב Via Nicolaci רואים מלמטה.</li><li>האוטובוס חוזר לסירקוזה בערב, אבל את השעה האחרונה בחורף לא מצאתי. מתכננים לחזור לפני החשיכה, ובגיבוי מונית.</li><li>ארוחת הערב ב-Cod da Saretta היא בלי הזמנות, ולכן מגיעים מוקדם.</li><li>יום שישי הוא הערב עם הכי הרבה סיכוי למוזיקה חיה, לפי הביקורות.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Taverna Il Covo</b>, פאב עם מוזיקה חיה, ד׳ עד א׳. מחוץ לאי, מונית <a class="map" href="#n-covo">פרטים</a></li><li><b>BOATS</b>, קוקטיילים אם רוצים משהו שקט <a class="map" href="#n-boats">פרטים</a></li><li><b>Madness</b>, מוזיקה חיה בימי שישי, אבל ביקורות מעורבות על השירות <a class="map" href="#n-madness">פרטים</a></li></ul></div></div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Sicilia בנוטו</b>, גרניטה שקדים או גלידת פיסטוק וריקוטה <a class="map" href="#r-sicilia">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Retablo</b>, סיציליאנית מסורתית. לשאול על המדרגות <a class="map" href="#r-retablo">פרטים</a></div></li><li><span class="mt">חלופה</span><div><b>Sabbinirica</b>, כריכים מהירים ברחוב <a class="map" href="#r-putia">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Cod da Saretta</b>, מחיר נמוך, בלי הזמנות, מגיעים מוקדם <a class="map" href="#r-saretta">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>נוטו: מתחילים בשער Porta Reale, ואת הרחוב Via Nicolaci רואים מלמטה.</li><li>האוטובוס חוזר לסירקוזה בערב, אבל את השעה האחרונה בחורף לא מצאתי. מתכננים לחזור לפני החשיכה, ובגיבוי מונית.</li><li>ארוחת הערב ב-Cod da Saretta היא בלי הזמנות, ולכן מגיעים מוקדם.</li><li>יום שישי הוא הערב עם הכי הרבה סיכוי למוזיקה חיה, לפי הביקורות.</li></ul></div><div class="tips night rv"><h3>ערב ולילה</h3><ul><li><b>Taverna Il Covo</b>, פאב עם מוזיקה חיה, ד׳ עד א׳. מחוץ לאי, מונית <a class="map" href="#n-covo">פרטים</a></li><li><b>BOATS</b>, קוקטיילים אם רוצים משהו שקט <a class="map" href="#n-boats">פרטים</a></li><li><b>Madness</b>, מוזיקה חיה בימי שישי, אבל ביקורות מעורבות על השירות <a class="map" href="#n-madness">פרטים</a></li></ul></div><div class="bwb rv"><b>להיזהר היום</b><ul><li>בנוטו, מסעדה שמושכת מהרחוב עם תפריט ענק ותמונות היא סימן להימנע. נכנסים רק למקום שבחרתם מראש.</li><li>מי שמגיע במונית מסכים על המחיר לפני הנסיעה.</li></ul><p style="margin:8px 0 0"><a href="#s-noto">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d3">יום קודם: 28.1</a><a href="#d5">יום הבא: 30.1</a></div>
+</div></article>
 
 <article class="day" id="d5"><div class="wrap">
 <div class="dh rv"><span class="dnum d">30</span><div class="dmeta"><span class="w">יום שבת, ינואר</span><h2>בוקר רגוע ונסיעה לטיסה</h2></div></div>
+<div class="quick rv"><a href="#h-d5">היסטוריה של המקום</a><a class="bw" href="#s-ortigia">להיזהר</a><a href="#eat">מסעדות</a><a href="#wx">מזג אוויר</a></div>
 <div class="split">
 <ul class="tl rv">
 <li><span class="t">בוקר</span><div>ארוחת בוקר ארוכה, גרניטה עם בריוש, וצ׳ק-אאוט.</div></li>
@@ -468,7 +548,9 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="note rv"><b>למה בלי תוכניות?</b>היום תלוי בשעת הטיסה לרומא, ולכן לא אימתתי אותו. בוחרים טיסה שנוחתת ברומא לפחות ארבע שעות לפני 21:55, כי בדיקות הביטחון של אל על ארוכות.</div>
 </div>
 </div>
-<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Pasticceria Artale</b>, גרניטה ריקוטה או פיסטוק וקנולי, פתוח עד 16:00 <a class="map" href="#r-artale">פרטים</a></div></li><li><span class="mt">אם נשאר זמן</span><div><b>Da Nuccio בקטניה</b>, צהריים עם פסטה אלה נורמה, פתוח בשבת <a class="map" href="#r-nuccio">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>בבוקר רגוע ואז אינטרבוס לשדה, לפחות שלוש שעות לפני הטיסה לרומא.</li><li>טיסת הערב מרומא ב-21:55. אחרי הנחיתה בפיומיצ׳ינו אין זמן ללילה.</li><li>אם נשאר זמן לפני הנסיעה, קפה אחרון בכיכר הדואומו.</li></ul></div></div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Pasticceria Artale</b>, גרניטה ריקוטה או פיסטוק וקנולי, פתוח עד 16:00 <a class="map" href="#r-artale">פרטים</a></div></li><li><span class="mt">אם נשאר זמן</span><div><b>Da Nuccio בקטניה</b>, צהריים עם פסטה אלה נורמה, פתוח בשבת <a class="map" href="#r-nuccio">פרטים</a></div></li></ul></div><div class="tips rv"><h3>טיפים של היום</h3><ul><li>בבוקר רגוע ואז אינטרבוס לשדה, לפחות שלוש שעות לפני הטיסה לרומא.</li><li>טיסת הערב מרומא ב-21:55. אחרי הנחיתה בפיומיצ׳ינו אין זמן ללילה.</li><li>אם נשאר זמן לפני הנסיעה, קפה אחרון בכיכר הדואומו.</li></ul></div><div class="bwb rv"><b>להיזהר היום</b><ul><li>בדרך לשדה: מסכימים על מחיר המונית מראש או מזמינים הסעה רשמית. לא עולים על רכב שלא סומן.</li><li>לפני החזרה: מוודאים בחשבון המסעדה מה חויב (כיסוי, לחם, מים) וביקשו קבלה.</li></ul><p style="margin:8px 0 0"><a href="#s-ortigia">כל התרמיות והטיפים למקום</a></p></div>
+<div class="dpn"><a href="#d4">יום קודם: 29.1</a></div>
+</div></article>
 
 <section id="food"><div class="wrap">
 <div class="food">
@@ -569,6 +651,40 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 </div>
 <div class="note a rv"><b>אם הם מעוניינים בהופעה</b>עונת האופרה הקרובה בקטניה היא מרץ 2027, ועונת התיאטרון היווני בסירקוזה (INDA) היא באפריל עד יוני. שני הדברים אחרי הטיול, ולכן אפשר לשמור למועד אחר.</div>
 </div></section>
+<section id="history"><div class="wrap">
+<h2 class="rv">היסטוריה קצרה לפי יום</h2>
+<p class="lead rv">מקור השם ואיך המקום נוצר, בקצרה ובלי להיכנס לעומק. הכרטיס הצבעוני מקביל ליום במסלול.</p>
+<article class="hcard rv" id="h-d0" style="--dc:var(--dc0)"><div class="hd"><a href="#d0" aria-label="לחזור ליום 25.1">25</a><h3>פיומיצ׳ינו, שדה התעופה של רומא</h3></div><p>פיומיצ׳ינו פירושו "נהר קטן", על שם ערוץ של הטיבר שמגיע לים באזור.</p><p>השדה נקרא רשמית על שם ליאונרדו דה וינצ׳י ופועל מראשית שנות ה-60.</p><p>רומא עצמה לא במסלול הפעם, והשדה רחוק ממנה, כחצי שעה נסיעה.</p></article>
+<article class="hcard rv" id="h-d1" style="--dc:var(--dc1)"><div class="hd"><a href="#d1" aria-label="לחזור ליום 26.1">26</a><h3>קטניה והדרך לסירקוזה</h3></div><p>קטניה נוסדה כ-729 לפני הספירה על ידי יוונים מהאי נאקסוס.</p><p>שמה היווני Katane.</p><p>יש הסבר עממי שמקשר אותו למילה היוונית ל"פומפייה" (katane, כלי גירוד), אבל המקור אינו וודאי.</p><p>העיר ספגה פעמים רבות התפרצויות של אטנה ורעידת אדמה ב-1693, ולכן הרבה מבנים בנויים מאבן לבה כהה.</p><p>המלחין וינצ׳נצו בליני נולד בה ב-1801.</p><p>סירקוזה, שאליה אתם נוסעים, נוסדה על ידי יוונים מקורינתוס כ-734 לפני הספירה.</p></article>
+<article class="hcard rv" id="h-d2" style="--dc:var(--dc2)"><div class="hd"><a href="#d2" aria-label="לחזור ליום 27.1">27</a><h3>אורטיג׳יה: האי שבו הכל התחיל</h3></div><p>אורטיג׳יה היא המקום שבו המתיישבים היוונים התחילו.</p><p>השם, כך מקובל לומר, קשור למילה היוונית לשליו (ortyx), "אי השליו".</p><p>הוא ארוך כקילומטר ורחב כ-600 מטר.</p><p>לפי המיתוס, הנימפה ארתוזה ברחה מהאל אלפיוס ואלת הציד ארטמיס הפכה אותה למעיין שבתוך האי.</p><p>עד היום יש שם מעיין מים מתוקים ליד הים, עם צמחי פפירוס.</p><p>הדואומו בנוי על מקדש יווני של אתנה מהמאה החמישית לפני הספירה, ועמודי המקדש נראים עדיין בקירות.</p><p>החזית הבארוקית שלו נבנתה במאה ה-18.</p><p>קסטלו מאניצ׳ה, בקצה האי, נבנה במאה ה-13 על ידי פרידריך השני, ושמו מגיע מהמצביא הביזנטי ג׳ורג׳ מאניאקס שכבש את האזור ב-1038.</p><p>סנטה לוצ׳יה, הקדושה הפטרונית של העיר, נהרגה בסירקוזה לפי המסורת בשנת 304.</p><p>החג שלה ב-13 בדצמבר, ושמה פירושו "אור".</p></article>
+<article class="hcard rv" id="h-d3" style="--dc:var(--dc3)"><div class="hd"><a href="#d3" aria-label="לחזור ליום 28.1">28</a><h3>ניאפוליס: העיר החדשה של היוונים</h3></div><p>Neapolis פירושו "עיר חדשה" ביוונית.</p><p>כשהעיר גדלה מעבר לאורטיג׳יה היא התפשטה ליבשה, ושם נמצא התיאטרון היווני החצוב בסלע, מהמאה החמישית לפני הספירה.</p><p>סירקוזה הייתה אז אחת הערים הגדולות בעולם היווני.</p><p>העריץ דיוניסיוס שלט בה, ולפי המסורת האזין לאסירים במערה.</p><p>השם "האוזן של דיוניסיוס" ניתן על ידי הצייר קרוואג׳ו כשביקר שם ב-1608.</p><p>ארכימדס, המדען המפורסם, גר בעיר ונהרג ב-212 לפנה״ס כשהרומאים כבשו אותה.</p></article>
+<article class="hcard rv" id="h-d4" style="--dc:var(--dc4)"><div class="hd"><a href="#d4" aria-label="לחזור ליום 29.1">29</a><h3>נוטו: עיר שנבנתה מחדש</h3></div><p>ב-1693 רעידת אדמה חזקה הרסה את נוטו הישנה.</p><p>תושבים בנו עיר חדשה כמה קילומטרים משם, בסגנון בארוק מאוחר, באבן בהירה שמקבלת צבע זהב בשקיעה.</p><p>הקתדרלה והארמונות נבנו מאותה אבן.</p><p>כיפת הקתדרלה קרסה ב-1996 ונפתחה מחדש ב-2007.</p><p>נוטו וערים נוספות באזור נכללות במורשת עולמית של אונסק״ו.</p><p>מקור השם נוטו עתיק, ואין לו הסבר אחד מוסכם.</p></article>
+<article class="hcard rv" id="h-d5" style="--dc:var(--dc5)"><div class="hd"><a href="#d5" aria-label="לחזור ליום 30.1">30</a><h3>סיום ונסיעה הביתה</h3></div><p>סירקוזה, על פי המסורת, נוסדה ב-734 לפנה״ס.</p><p>שמה Syrakousai, וקרוב לוודאי שהוא קשור לביצה בשם Syrako שהייתה באזור.</p><p>זה הסבר נפוץ, אבל לא וודאי.</p><p>בימי השיא היא התחרתה בערים הגדולות של העולם היווני, והיום היא עיר קטנה ורגועה עם עבר גדול.</p><p>אם נשאר זמן, מסיימים בטיול קצר על הטיילת באורטיג׳יה.</p></article>
+<p class="rv" style="color:var(--soft);font-size:.9rem">מקורות כלליים: ויקיפדיה, אתרי אונסק״ו ומדריכי תיירות. שמות ותאריכים עתיקים הם לפי המסורת המקובלת.</p>
+</div></section>
+
+<section id="scams"><div class="wrap">
+<h2 class="rv">להיזהר: תרמיות ומלכודות תיירים</h2>
+<p class="lead rv">סירקוזה ונוטו נחשבות בטוחות יחסית, והבעיות הנפוצות קטנות: מחיר מנופח, נדנוד ברחוב, כיסים בצפיפות. בכל מקום מופיע מה קורה ומה עושים. אני מסכם דיווחי מדריכים ותיירים. לא כל פרט נבדק בשטח, ולכן שעות ומחירים כדאי לאמת במקום.</p>
+<article class="sc rv" id="s-fco"><header><h3>שדה התעופה בפיומיצ׳ינו (רומא)</h3><div class="dtags"><a class="dtag" href="#d0" style="--c:var(--dc0)" aria-label="יום 25.1">25</a></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>מונית לא רשמית</td><td>נהגים בטרמינל מציעים נסיעה בלי מונה ומבקשים מחיר גבוה.</td><td>מונית לבנה רשמית בתור, או הסעה שהזמנתם מראש מהמלון. מסכימים על מחיר או מוודאים שהמונה פועל.</td></tr><tr><td>"עזרה" עם הקלנועית</td><td>אנשים מציעים לסחוב את הציוד ואז דורשים כסף.</td><td>סיוע PRM ניתן ללא תשלום. מקבלים עזרה רק מהצוות הרשמי של השדה או החברה.</td></tr><tr><td>כרטיסי רכבת ואוטובוס</td><td>מי שמציע "לעזור" ליד מכונת הכרטיסים ומבקש כסף.</td><td>קונים במכונה או בקופה הרשמית, ללא מתווכים.</td></tr></tbody></table></div><p class="tip">אם מזמינים מלון ליד השדה, הסעה מראש היא הדרך הפשוטה והמוגנת.</p></article>
+<article class="sc rv" id="s-catania"><header><h3>קטניה והדרך לסירקוזה</h3><div class="dtags"><a class="dtag" href="#d1" style="--c:var(--dc1)" aria-label="יום 26.1">26</a></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>מוניות בשדה</td><td>מדווח שנהגים ניגשים לפני התור הרשמי עם מחיר "מיוחד".</td><td>אוטובוס רשמי או מונית מהתור. אם יש מונית, מבקשים מחיר סגור מראש.</td></tr><tr><td>צפיפות בשוק הדגים (La Pescheria)</td><td>כיסים, תיקים פתוחים, ודוכנים שמקפיצים מחיר לתיירים.</td><td>תיק קדימה, מזומן קטן בכיס, ובודקים מחיר לפני ששוקלים.</td></tr><tr><td>טיולים להר אטנה</td><td>מוכרים ברחוב מציעים סיורים לא ברורים.</td><td>מזמינים רק בחברה רשומה, עם אישור כתוב על המחיר.</td></tr></tbody></table></div><p class="tip">הרכבת קטניה-סירקוזה סגורה עד 31.1.2027, ולכן האוטובוס הוא המסלול. לא עולים על "הסעה פרטית" מהרחוב.</p></article>
+<article class="sc rv" id="s-ortigia"><header><h3>אורטיג׳יה (סירקוזה)</h3><div class="dtags"><a class="dtag" href="#d2" style="--c:var(--dc2)" aria-label="יום 27.1">27</a><a class="dtag" href="#d5" style="--c:var(--dc5)" aria-label="יום 30.1">30</a></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>דגים לפי משקל</td><td>בתפריט כתוב "pesce del giorno" בלי מחיר, והחשבון מגיע גבוה.</td><td>שואלים מחיר ל-100 גרם, מבקשים לראות את הדג ולשקול לפני הבישול.</td></tr><tr><td>פיאצה דואומו וחוף הים</td><td>מנות יקרות יותר, פעמים רבות באיכות בינונית.</td><td>אוכלים בסמטאות הצד, ובודקים את הדירוגים בעמוד המסעדות.</td></tr><tr><td>כיסוי ולחם</td><td>"coperto" של 1 עד 3 אירו לאדם הוא חוקי, אבל מחוייב גם על לחם שלא הוזמן.</td><td>בודקים את התפריט, ומבקשים קבלה מפורטת ("scontrino").</td></tr><tr><td>צמידים, ורדים, חתימות</td><td>מישהו שם דבר בידך ומבקש תרומה. עצומה עם לוח כתיבה היא תרמית ידועה.</td><td>לא מקבלים כלום ביד. מסרבים בנימוס וממשיכים.</td></tr><tr><td>ערב בסמטאות</td><td>פיסות אור חלשות ואנשים שסוטים מהמסלול.</td><td>הולכים ברחובות המוארים, ואחרי חצות מזמינים מונית מהבר.</td></tr></tbody></table></div><p class="tip">הסמטאות מרוצפות אבן שנעשית חלקלקה בגשם. זו הערה פרקטית לקלנועית, לא תרמית.</p></article>
+<article class="sc rv" id="s-neapolis"><header><h3>הפארק הארכאולוגי ניאפוליס</h3><div class="dtags"><a class="dtag" href="#d3" style="--c:var(--dc3)" aria-label="יום 28.1">28</a></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>"סיור בלי תור"</td><td>אנשים מחוץ לכניסה מציעים מדריך או כרטיס מקוצר.</td><td>כרטיס בקופה הרשמית. מדריך רק אם הזמנתם מראש.</td></tr><tr><td>"עזרה" בגישה למערה</td><td>מי שמציע לדחוף או לצלם ואז דורש כסף.</td><td>מבקשים עזרה מצוות הפארק, ומסרבים בנימוס לאחרים.</td></tr><tr><td>הבדל במחיר הכרטיס</td><td>במקורות שונים מצאתי מחיר שונה, כ-10 ו-17 אירו.</td><td>בודקים את המחיר בקופה, ולא משלמים עמלה על "הזמנה" שלא ביקשתם.</td></tr></tbody></table></div><p class="tip">רצוי לבוא בבוקר או שעה לפני הסגירה, כשיש פחות קהל ופחות אנשים שפונים אליכם.</p></article>
+<article class="sc rv" id="s-noto"><header><h3>נוטו</h3><div class="dtags"><a class="dtag" href="#d4" style="--c:var(--dc4)" aria-label="יום 29.1">29</a></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>רחוב ראשי תיירותי</td><td>מסעדות על Corso Vittorio Emanuele מציעות "תפריט תיירים" בתוספת.</td><td>שתי סמטאות הצידה, ותפריט עם מחירים כתובים.</td></tr><tr><td>נסיעה במונית</td><td>נהגים שאינם משתמשים במונה בנסיעות קצרות.</td><td>מבקשים להפעיל את המונה, או מסכימים על מחיר לפני הנסיעה.</td></tr><tr><td>גלידה צבעונית</td><td>ערימות בצבעי ניאון הן סימן לאיכות נמוכה, ובדרך כלל גם יקרות.</td><td>גלידה אמיתית נראית בצבעים רגועים ומוגשת מתוך מיכלים סגורים.</td></tr></tbody></table></div><p class="tip">העיר נבנתה אחרי רעידת אדמה, ולכן היא מדורגת. חלק מהרחובות עולים בשיפוע קל, ולכן מתכננים מנוחות.</p></article>
+<article class="sc rv" id="s-food"><header><h3>מסעדות ובתי קפה (בכל מקום)</h3><div class="dtags"></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>"coperto" ושירות</td><td>תוספת קבועה לשולחן, ולפעמים גם "servizio" נוסף.</td><td>מוצאים בתפריט את שורת ה-coperto, ומבקשים את הקבלה.</td></tr><tr><td>בר או שולחן</td><td>קפה ליד הדלפק זול יותר מקפה בישיבה ובצד השולחן.</td><td>שותים בעמידה בבקרים, וישיבה בערב או כשצריך.</td></tr><tr><td>קפה אחרי ארוחה</td><td>לא תרמית, אלא מנהג: קפוצ׳ינו נשתה בבוקר, ואחרי ארוחה מזמינים אספרסו.</td><td>מזמינים אספרסו אחרי הארוחה.</td></tr></tbody></table></div><p class="tip">טיפ לא חובה. משאירים כמה אירו כשהשירות טוב.</p></article>
+<article class="sc rv" id="s-money"><header><h3>כסף, כרטיסים ובטחון</h3><div class="dtags"></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>המרת מטבע בקופה</td><td>מסוף שמציע לחייב בשקלים במקום באירו.</td><td>תמיד אירו. הבנק שלכם עושה את ההמרה בשער טוב יותר.</td></tr><tr><td>כספומטים</td><td>מכשירים עם מתקן להעתקת כרטיס, או כאלה שעומדים לבד ברחוב.</td><td>משתמשים בכספומט בתוך סניף בנק, בשעות היום.</td></tr><tr><td>אוטובוסים וקווים</td><td>כרטיס שלא נסרק מקבל קנס מהמפקח.</td><td>קונים בקיוסק או באפליקציה, ומאמתים את הכרטיס אם נדרש.</td></tr></tbody></table></div><p class="tip">מחזיקים צילום של המסמכים בנפרד מהמקור. תיק קדימה בכל מקום צפוף.</p></article>
+<article class="sc rv" id="s-night"><header><h3>ערב ולילה</h3><div class="dtags"></div></header><div class="tw"><table><thead><tr><th>סוג</th><th>מה קורה</th><th>מה עושים</th></tr></thead><tbody><tr><td>מחירי קוקטיילים</td><td>בחלק מהברים אין מחירון על השולחן.</td><td>שואלים מחיר לפני שמזמינים. מחירים לפי גוגל מופיעים בכרטיסי הברים בפרק חיי הלילה.</td></tr><tr><td>שתייה בלי השגחה</td><td>כמו בכל עיר, כוס נשארת על השולחן ואנשים ניגשים.</td><td>לא משאירים כוס פתוחה. אם יש ספק, מזמינים חדשה.</td></tr><tr><td>חזרה לבית</td><td>סמטאות חשוכות בשעה מאוחרת.</td><td>מזמינים מונית דרך הבר או אפליקציה, ולא עוצרים מונית אקראית.</td></tr></tbody></table></div><p class="tip">מדריכים מתארים את סירקוזה כעיר בטוחה יחסית. רוב הבעיות קטנות ונמנעות בהיגיון.</p></article>
+
+<h2 class="rv" style="margin-top:56px;font-size:clamp(1.4rem,4vw,2rem)">טיפים מהשטח לפי אזור</h2>
+<p class="lead rv">מה תיירים ומקומיים מציינים שוב ושוב על כל מקום.</p>
+<div class="g2"><div class="tp rv"><h3>אורטיג׳יה <span class="dtags" style="display:inline-flex;vertical-align:middle"><a class="dtag" href="#d2" style="--c:var(--dc2)" aria-label="יום 27.1">27</a><a class="dtag" href="#d5" style="--c:var(--dc5)" aria-label="יום 30.1">30</a></span></h3><ul><li>לפי מדריכים השוק פעיל בבוקר ונסגר בצהריים. מגיעים לפני כן.</li><li>החנויות והמאפיות נסגרות פעמים רבות בין 13:00 ל-16:00. מתכננים ארוחת צהריים בהתאם.</li><li>ארוחת ערב בדרך כלל מתחילה סביב 19:30 ומאוחר יותר. בשעה מוקדמת פחות מסעדות פתוחות.</li><li>הטיילת ליד Fonte Aretusa היא ההליכה הנוחה ביותר בקלנועית. הסמטאות מרוצפות ופחות נוחות.</li><li>שחפים בנמל גונבים אוכל מהיד. מכסים את הצלחת.</li></ul></div>
+<div class="tp rv"><h3>פארק ניאפוליס <span class="dtags" style="display:inline-flex;vertical-align:middle"><a class="dtag" href="#d3" style="--c:var(--dc3)" aria-label="יום 28.1">28</a></span></h3><ul><li>חלק מהשבילים לא סלולים. שואלים בקופה על מסלול נגיש לפני שיוצאים.</li><li>האוזן של דיוניסיוס ידועה באקוסטיקה. שואלים את הצוות אם מותר לשיר שם בשקט.</li></ul></div>
+<div class="tp rv"><h3>נוטו <span class="dtags" style="display:inline-flex;vertical-align:middle"><a class="dtag" href="#d4" style="--c:var(--dc4)" aria-label="יום 29.1">29</a></span></h3><ul><li>השעה הכי יפה היא לפנות ערב, כשהאבן הבהירה מקבלת צבע זהב.</li><li>כנסיות רבות עם מדרגות בכניסה. בודקים לפני שעולים.</li><li>הרחוב הראשי מישורי יחסית. הסמטאות שמסביבו עולות.</li></ul></div>
+<div class="tp rv"><h3>קטניה והשדה <span class="dtags" style="display:inline-flex;vertical-align:middle"><a class="dtag" href="#d1" style="--c:var(--dc1)" aria-label="יום 26.1">26</a></span></h3><ul><li>הרכבת סגורה, ולכן האוטובוס מהשדה הוא המסלול. את לוח החורף לא אימתתי, ולכן בודקים לפני הנסיעה.</li><li>שואלים את חברת האוטובוסים מראש על קלנועית מתקפלת ועל המידות המותרות.</li></ul></div>
+<div class="tp rv"><h3>תיאטרון וערב <span class="dtags" style="display:inline-flex;vertical-align:middle"><a class="dtag" href="#d2" style="--c:var(--dc2)" aria-label="יום 27.1">27</a><a class="dtag" href="#d3" style="--c:var(--dc3)" aria-label="יום 28.1">28</a><a class="dtag" href="#d4" style="--c:var(--dc4)" aria-label="יום 29.1">29</a></span></h3><ul><li>חיי הלילה מתרכזים באורטיג׳יה. שעות הפתיחה בחורף לא אומתו, ולכן בודקים באינסטגרם של הבר לפני שיוצאים.</li><li>לפני ערב עם מוזיקה חיה, בודקים אם יש אירוע באותו יום.</li></ul></div>
+</div>
+</div></section>
+
 <section id="lines"><div class="wrap">
 <h2 class="rv">איזה קו לקחת</h2>
 <div class="cols" style="margin-top:20px">
@@ -648,6 +764,11 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <a href="https://cdn.fodors.com/world/europe/italy/sicily/siracusa-and-the-southeast/siracusa/restaurants">Fodor's, מסעדות בסירקוזה</a>
 <a href="https://www.frommers.com/destinations/syracuse-and-ortygia-island/restaurants/">Frommer's, מסעדות בסירקוזה</a>
 <a href="https://wanderlog.com/list/geoCategory/74680/restaurants">Wanderlog, מסעדות בנוטו</a>
+<a href="https://www.fodors.com/world/europe/italy/sicily/siracusa-and-the-southeast">Fodor's, סירקוזה והדרום-מזרח</a>
+<a href="https://www.wikipedia.org/">Wikipedia, סירקוזה, אורטיג׳יה, נוטו וקטניה (היסטוריה ושמות)</a>
+<a href="https://whc.unesco.org/en/list/1024">אונסק״ו, ערי הבארוק של Val di Noto</a>
+<a href="https://www.wantedinrome.com/">Wanted in Rome, תרמיות תיירים נפוצות באיטליה</a>
+<a href="https://www.mapnook.com/">Mapnook, טיפים לסיציליה</a>
 <p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. גרסת פירנצה ובולוניה נשמרת בהיסטוריה של האתר.</p>
 </div>
 </div></section>
@@ -724,6 +845,32 @@ if(m[k]){var a=document.querySelector('.ov a[href="#'+m[k]+'"]');if(a){a.classLi
 (function(){var ncs=[].slice.call(document.querySelectorAll('.nc'));
 document.querySelectorAll('.chips[data-f="ty"]').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});ncs.forEach(function(c){c.hidden=!(b.dataset.v==='all'||c.dataset.ty===b.dataset.v)})})});
 document.querySelectorAll('a[href^="#n-"]').forEach(function(a){a.addEventListener('click',function(e){var c=document.querySelector(a.getAttribute('href'));if(!c)return;e.preventDefault();if(c.hidden){ncs.forEach(function(x){x.hidden=false});document.querySelectorAll('.chips[data-f="ty"] button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v==='all')})}c.classList.add('in');c.scrollIntoView({behavior:'smooth',block:'center'})})})})();
+
+// day bar
+(function(){
+var nav=document.querySelector('nav.rail'),bar=document.getElementById('dbar'),lab=document.getElementById('dlab');
+if(!bar)return;
+function nh(){document.documentElement.style.setProperty('--navh',(nav?nav.offsetHeight:61)+'px')}
+nh();addEventListener('resize',nh);
+var T={0:'ב׳ 25.1 · נחיתה ולילה ליד השדה',1:'ג׳ 26.1 · טיסה לקטניה ואוטובוס לסירקוזה',2:'ד׳ 27.1 · אורטיג׳יה: דואומו, מעיין, שוק',3:'ה׳ 28.1 · הפארק הארכאולוגי ניאפוליס',4:'ו׳ 29.1 · נוטו, עיר הבארוק',5:'ש׳ 30.1 · בוקר רגוע ונסיעה לטיסה'};
+var chips=[].slice.call(bar.querySelectorAll('.chips2 a'));
+var cur=-1;
+function set(n){
+ if(n===cur)return;cur=n;
+ if(n<0){bar.classList.remove('on');return}
+ bar.classList.add('on');
+ chips.forEach(function(c){if(+c.dataset.d===n)c.setAttribute('aria-current','true');else c.removeAttribute('aria-current')});
+ lab.innerHTML='<b>יום '+(n+1)+' מתוך 6</b> · '+T[n];
+}
+var days=[0,1,2,3,4,5].map(function(i){return document.getElementById('d'+i)}).filter(Boolean);
+function upd(){
+ var y=(nav?nav.offsetHeight:61)+80,found=-1;
+ days.forEach(function(el,i){var r=el.getBoundingClientRect();if(r.top<=y&&r.bottom>y)found=+el.id.slice(1)});
+ set(found);
+}
+var tk=false;addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd()})}},{passive:true});
+upd();
+})();
 // live forecast
 (function(){var els=document.querySelectorAll('.fc'),s=document.getElementById('fcs');if(!els.length||!window.fetch)return;
 fetch('https://api.open-meteo.com/v1/forecast?latitude=37.07&longitude=15.29&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=Europe%2FRome&forecast_days=16').then(function(r){return r.json()}).then(function(j){var d=j.daily,n=0;if(!d)return;els.forEach(function(e){var i=d.time.indexOf(e.dataset.date);if(i>-1){n++;e.textContent='תחזית חיה: '+Math.round(d.temperature_2m_max[i])+'° / '+Math.round(d.temperature_2m_min[i])+'°, גשם '+d.precipitation_probability_max[i]+'%, רוח '+Math.round(d.wind_speed_10m_max[i])+' קמ״ש'}});
