@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <script src="/gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>סיציליה, 25-30 בינואר 2027 | סירקוזה ונוטו</title>
-<meta name="description" content="מסלול ששה ימים בסירקוזה ובנוטו, מותאם לקלנועית ולחורף.">
+<title>איטליה, 25-30 בינואר 2027 | פירנצה ובולוניה</title>
+<meta name="description" content="מסלול חמישה ימים בפירנצה ובולוניה, מותאם לקלנועית ולחורף.">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#0f1a23">
@@ -14,14 +14,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#eceeea;--card:#fafbf9;--ink:#0f1a23;--soft:#46545e;--line:#d3d9d5;--acc:#0b5fa5;--on-acc:#fff;
+ --bg:#eceeea;--card:#fafbf9;--ink:#0f1a23;--soft:#46545e;--line:#d3d9d5;--acc:#b8431f;--on-acc:#fff;
  --tint:#e1e7e4;--warn:#f3e6c8;--slate:#1c2e3b;--fs:100%;
  --out:cubic-bezier(.23,1,.32,1);--io:cubic-bezier(.77,0,.175,1);
  --r:20px;
 }
-@media (prefers-color-scheme:dark){:root{--bg:#0b1218;--card:#131d25;--ink:#e8eeea;--soft:#9db0ba;--line:#243541;--acc:#7fb8f0;--on-acc:#061423;--tint:#182630;--warn:#3a3118;--slate:#0f1a23}}
-html.hc{--bg:#fff;--card:#fff;--ink:#000;--soft:#1a1a1a;--line:#000;--acc:#003f7a;--on-acc:#fff;--tint:#eee;--warn:#fff2b3;--slate:#000}
-@media (prefers-color-scheme:dark){html.hc{--bg:#000;--card:#000;--ink:#fff;--soft:#f0f0f0;--line:#fff;--acc:#a9d1ff;--on-acc:#000;--tint:#111;--warn:#2b2400;--slate:#000}}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1218;--card:#131d25;--ink:#e8eeea;--soft:#9db0ba;--line:#243541;--acc:#ff875a;--on-acc:#1a0d06;--tint:#182630;--warn:#3a3118;--slate:#0f1a23}}
+html.hc{--bg:#fff;--card:#fff;--ink:#000;--soft:#1a1a1a;--line:#000;--acc:#8c2400;--on-acc:#fff;--tint:#eee;--warn:#fff2b3;--slate:#000}
+@media (prefers-color-scheme:dark){html.hc{--bg:#000;--card:#000;--ink:#fff;--soft:#f0f0f0;--line:#fff;--acc:#ffb199;--on-acc:#000;--tint:#111;--warn:#2b2400;--slate:#000}}
 *{box-sizing:border-box}
 html{font-size:var(--fs);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.75 Heebo,system-ui,sans-serif}
@@ -50,7 +50,7 @@ a{color:var(--acc)}
 @supports (animation-timeline:scroll()){.hero img{animation:par linear both;animation-timeline:scroll(root);animation-range:0 100vh}@keyframes par{to{transform:translateY(12%)}}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,14,20,.55) 0%,rgba(8,14,20,.1) 38%,rgba(8,14,20,.88) 100%)}
 .hero .in{width:100%;max-width:1120px;margin:0 auto;padding:0 18px 56px}
-.hero small{font:700 .85rem Rubik;letter-spacing:.12em;color:#9cc9f2;text-transform:uppercase}
+.hero small{font:700 .85rem Rubik;letter-spacing:.12em;color:#ffb199;text-transform:uppercase}
 h1{font-size:clamp(3rem,13vw,8rem);line-height:.92;margin:.3rem 0 1rem;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
 .hero p{max-width:30em;font-size:1.15rem;margin:0}
 .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
@@ -197,6 +197,49 @@ html.rm *,html.rm *::before{animation:none!important;transition:none!important}
 html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 @media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv,.shot.rv{opacity:1;transform:none;clip-path:none}}
 @media print{.tools,.progress,nav.rail,.lb{display:none}.rv,.shot.rv{opacity:1;transform:none;clip-path:none}.day{break-inside:avoid}}
+
+/* eat */
+.rfil{position:sticky;top:60px;z-index:60;display:grid;gap:8px;padding:10px 0;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips button{flex:none;min-height:44px;padding:0 16px;border-radius:99px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 .9rem Rubik,sans-serif;cursor:pointer;transition:background .16s,color .16s,transform .16s var(--out)}
+.chips button:active{transform:scale(.96)}
+.chips button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.rcount{margin:0;color:var(--soft);font-size:.88rem}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:18px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:8px;align-content:start}
+.rc[hidden]{display:none}
+.rc header{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.rc h3{margin:0;font:800 1.15rem/1.25 Rubik}
+.rc p{margin:0;font-size:.95rem}
+.rate{display:grid;justify-items:center;flex:none;min-width:58px;padding:4px 10px;border-radius:12px;background:var(--ink);color:var(--bg);font:800 1.15rem/1.1 Rubik}
+.rate small{font:500 .68rem Heebo;opacity:.8}
+.rmeta{color:var(--soft);font-size:.88rem!important}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags .pill{margin:0}
+.picks{display:flex;gap:6px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.picks li{font-size:.85rem;padding:3px 12px;border-radius:99px;background:var(--tint)}
+.rc .watch{background:var(--warn);border-radius:12px;padding:8px 12px}
+.rc .map{justify-self:start}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:20px}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:8px;align-content:start}
+.dish h3{margin:0;font:800 1.15rem Rubik}
+.dish p{margin:0;font-size:.95rem}
+.cp{min-height:44px;padding:6px 14px;border-radius:12px;border:1.5px dashed var(--ink);background:transparent;color:var(--ink);font:500 .92rem Heebo,sans-serif;cursor:copy;text-align:start;transition:background .16s,transform .16s var(--out)}
+.cp:active{transform:scale(.98)}
+.cp.ok{background:var(--ink);color:var(--bg)}
+@media(hover:hover){.cp:hover{background:var(--tint)}}
+.phr{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.phr .cp{width:100%;display:grid;gap:2px;border-style:solid;border-color:var(--line);background:var(--card)}
+.phr small{color:var(--soft);font-size:.85rem}
+.phr .cp.ok small{color:inherit}
+.meals{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 22px}
+.meals h3{margin:0 0 6px}
+.meals ul{list-style:none;margin:0;padding:0}
+.meals li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.meals .mt{font:800 .9rem Rubik;color:var(--acc)}
+.ov a.today{border-color:var(--acc);box-shadow:inset 0 0 0 1.5px var(--acc)}
+.ov .td{font:700 .75rem Rubik;color:var(--acc)}
+@media(max-width:860px){.rfil{top:56px}.rgrid,.dgrid,.phr{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -226,7 +269,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 </header>
 
 <nav class="rail" aria-label="ניווט במסלול"><div class="wrap" id="nav">
-<a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#food">אוכל</a><a href="#lines">קווים</a><a href="#book">הזמנות</a><a href="#pack">מזג אוויר וציוד</a><a href="#src">מקורות</a>
+<a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#food">אוכל</a><a href="#eat">מסעדות</a><a href="#dishes">מנות</a><a href="#lines">קווים</a><a href="#book">הזמנות</a><a href="#pack">מזג אוויר וציוד</a><a href="#src">מקורות</a>
 </div></nav>
 
 <main id="main">
@@ -245,9 +288,9 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <h3>אורטיג׳יה</h3>
 <p>כל האטרקציות במרחק הליכה או נסיעה קצרה, והאי שטוח. הריצוף אבן, ולכן מתכננים מסלולים קצרים. בלילה ובימי ראשון יש אזור תנועה מוגבלת, וכדאי לשאול את המלון איפה מורידים מזוודות.</p>
 <h3>הכניסה דרך קטניה</h3>
-<p>טסים מרומא לקטניה ונוסעים לסירקוזה באוטובוס אינטרבוס, כ-70 דקות, עם אזור לכיסא גלגלים לפי האתר שלהם.</p>
+<p>טסים מרומא לקטניה ונוסעים לסירקוזה באוטובוס אינטרבוס ישיר, שעה עד שעה ועשר דקות, ובאתר מכירת כרטיסים הוא מסומן כנגיש לכיסא גלגלים.</p>
 <h3>למה לא הרכבת</h3>
-<p>לפי תוצאת חיפוש, קו הרכבת קטניה-סירקוזה סגור עד סוף ינואר 2027. לא הצלחתי לפתוח את העמוד עצמו, ולכן זה <b>לא מאומת</b>. בודקים באתר Trenitalia לפני הנסיעה.</p>
+<p>RFI הודיעה שבין Bicocca לסירקוזה מרכזית אין רכבות מ-1.10.2026 עד 31.1.2027, והאוטובוסים החלופיים לוקחים כשעתיים עד קטניה מרכזית. הנסיעה שלנו חופפת לתאריכים, וזה <b>אומת בכמה מקורות חדשותיים</b>, ולכן נוסעים באינטרבוס.</p>
 </div>
 <div class="rv">
 <div class="stat">
@@ -290,7 +333,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <li><span class="t">לילה</span><div>מלון ליד השדה, ישנים, ומחר בבוקר טיסה לקטניה. לא נכנסים לרומא.</div></li>
 </ul>
 <div class="rv">
-<div class="note"><b>למה לילה ליד השדה?</b>הנחיתה ב-21:00, וטיסות הפנים האחרונות לסיציליה יוצאות לפני כן. לא אימתתי את לוח הטיסות של ינואר 2027. כדאי לבדוק טיסה בבוקר מפיומיצ׳ינו לקטניה (CTA) באתר של ITA Airways או Ryanair ולהזמין לפי השעה.</div>
+<div class="note"><b>למה לילה ליד השדה?</b>הנחיתה ב-21:00, וטיסות הפנים האחרונות לסיציליה יוצאות לפני כן. בין רומא לקטניה יש כ-12 עד 13 טיסות ישירות ביום (ITA, Ryanair ועוד), כשעה ורבע עד שעה וחצי. לוח הטיסות של ינואר 2027 לא מצאתי, ולכן השעות כאן המלצה בלבד. בוחרים טיסה בבוקר, כי לפי נתוני Expedia טיסות לפני הצהריים מתבטלות פחות.</div>
 <div class="note w"><b>לפני שמזמינים מלון</b>באיטליה המעלית לפעמים קטנה מדי לקלנועית. לשאול בכתב: כניסה בלי מדרגות מהרחוב, מידות המעלית בס״מ ומקלחת בלי סף. אם הקלנועית מתקפלת, מודדים אותה מקופלת.</div>
 </div>
 </div>
@@ -302,15 +345,15 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="cols">
 <ul class="tl rv">
 <li><span class="t">בוקר</span><div>טיסה פנימית מרומא לקטניה, כשעה וחצי. מזמינים סיוע מראש בשני הקצוות.</div></li>
-<li><span class="t">אחה״צ</span><div><b>אוטובוס אינטרבוס</b> משדה התעופה לסירקוזה, כ-70 דקות, בערך פעם בשעה. יורדים סמוך לאורטיג׳יה ונוסעים במונית למלון.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Catania+Airport+Fontanarossa" target="_blank" rel="noopener">מפה: שדה התעופה בקטניה</a></div></li>
+<li><span class="t">אחה״צ</span><div><b>אוטובוס אינטרבוס</b> משדה התעופה לסירקוזה, שעה עד שעה ועשר דקות, ישיר וללא החלפה. התחנה בשדה בקומת הקרקע, ליד חניון ההשכרה R1. יורדים בתחנת Corso Umberto ליד הגשר לאורטיג׳יה, ומשם מונית קצרה למלון. לפי נתוני הקיץ יש יציאה בערך כל חצי שעה בין 07:10 ל-23:10.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Catania+Airport+Fontanarossa" target="_blank" rel="noopener">מפה: שדה התעופה בקטניה</a></div></li>
 <li><span class="t">ערב</span><div>צ׳ק-אין, ארוחה קרובה למלון, ולילה מוקדם. אם נשאר כוח, הליכה קצרה לפיאצה דואומו.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+Duomo+Siracusa" target="_blank" rel="noopener">מפה: פיאצה דואומו</a></div></li>
 </ul>
 <div class="rv">
 <div class="note"><b>למה כך?</b>יום תחבורה, בלי תוכניות גדולות. הקלנועית מתרגלת לריצוף, ויום מלא מתחיל מחר.</div>
-<div class="note w"><b>לא מאומת</b>לוח הזמנים החורפי של אינטרבוס ושל הטיסות. לפני כן בודקים באתר של אינטרבוס, ושואלים את הנהג על הרמפה או הליפט לכיסא גלגלים. אם האוטובוס לא מתאים, מונית מהשדה לסירקוזה היא הגיבוי.</div>
+<div class="note w"><b>לא מאומת</b>לוח הזמנים החורפי של אינטרבוס: הנתונים שמצאתי הם של הקיץ. בודקים את התאריך ב-booking.interbus.it ושואלים את הנהג על הרמפה. אם האוטובוס לא מתאים, מונית מהשדה לסירקוזה היא הגיבוי.</div>
 </div>
 </div>
-</div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">ערב</span><div><b>Agape</b>, ליד תחנת האוטובוס, ניוקי וטונה. הזמנה מראש, סגור בימי רביעי <a class="map" href="#r-agape">פרטים</a></div></li><li><span class="mt">אחרי</span><div><b>Mangiafico</b>, גלידת לימון או גרניטה, פתוח עד מאוחר <a class="map" href="#r-mangiafico">פרטים</a></div></li></ul></div></div></article>
 
 <article class="day" id="d2"><div class="wrap">
 <div class="dh rv"><span class="dnum d">27</span><div class="dmeta"><span class="w">יום רביעי, ינואר</span><h2>אורטיג׳יה: דואומו, מעיין, שוק</h2></div></div>
@@ -337,7 +380,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <details><summary>תוכנית גשם</summary><p>בגשם נשארים בתוך הדואומו, בשוק המקורה ובבתי קפה. את הטירה והטיילת דוחים ליום אחר.</p></details>
 </div>
 </div>
-</div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Apollo</b>, גרניטה שקדים ובריוש מול המקדש, סגור בימי שלישי <a class="map" href="#r-apollo">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Da Michelone</b>, בתוך השוק, פסטה וקנולי <a class="map" href="#r-michelone">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>La Pigna</b>, מנת הטעימות La Pigna, להזמין <a class="map" href="#r-pigna">פרטים</a></div></li></ul></div></div></article>
 
 <article class="day" id="d3"><div class="wrap">
 <div class="dh rv"><span class="dnum d">28</span><div class="dmeta"><span class="w">יום חמישי, ינואר</span><h2>הפארק הארכאולוגי ניאפוליס</h2></div></div>
@@ -354,10 +397,10 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 </ul>
 <div class="rv">
 <div class="note"><b>למה כך?</b>זה האתר הגדול של האזור, והוא ליד העיר. מחוץ לשעות שיא בינואר יש מעט אנשים.</div>
-<div class="note w"><b>לא מאומת</b>המסלולים בתוך הפארק עפר ואבן, ויש שביל שיורד אל האוזן. שואלים בקופה איזה חלק נגיש לקלנועית, ומוותרים על חלק אם צריך. השעות ומחיר הכרטיס משתנים, ולכן בודקים בכניסה.</div>
+<div class="note w"><b>לא מאומת</b>לפי אתר מידע, הפארק פתוח בחורף מ-8:30 עד 17:00 או 17:30, והכרטיס הרגיל כ-17 יורו. משטחי הסלע לא אחידים, והמלצה שם היא קלנועית חשמלית ולא כיסא ידני. שביל האוזן יורד, ולכן שואלים בקופה איזה קטע נגיש. מגיעים סביב 9:30 כדי לא להיות בלחץ לפני הסגירה.</div>
 </div>
 </div>
-</div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Mangiafico או Caffè Apollo</b>, ארטלה סגור ביום חמישי <a class="map" href="#r-mangiafico">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Antica Giudecca</b>, ארנצ׳ינו רגו ב-2 יורו אחרי הפארק <a class="map" href="#r-giudecca">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Antica Locanda</b>, דגי היום על הגריל, להזמין <a class="map" href="#r-locanda">פרטים</a></div></li></ul></div></div></article>
 
 <article class="day" id="d4"><div class="wrap">
 <div class="dh rv"><span class="dnum d">29</span><div class="dmeta"><span class="w">יום שישי, ינואר</span><h2>נוטו, עיר הבארוק</h2></div></div>
@@ -371,25 +414,25 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div>
 <ul class="tl rv">
 <li><span class="t">09:00</span><div>אוטובוס מסירקוזה לנוטו, כשעה. יורדים בפיאצ׳לה מרקוני, בקצה העיר.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazzale+Marconi+Noto" target="_blank" rel="noopener">מפה: פיאצ׳לה מרקוני</a></div></li>
-<li><span class="t">10:30</span><div>הרחוב הראשי <b>Corso Vittorio Emanuele</b>: הקתדרלה, פיאצה המוניציפליות וחזיתות הבארוק מאבן חמה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Cattedrale+di+Noto" target="_blank" rel="noopener">מפה: הקתדרלה</a></div></li>
+<li><span class="t">10:30</span><div>הרחוב הראשי <b>Corso Vittorio Emanuele</b>, מתחילים בשער Porta Reale: הקתדרלה, פיאצה המוניציפליות וחזיתות הבארוק מאבן חמה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Cattedrale+di+Noto" target="_blank" rel="noopener">מפה: הקתדרלה</a></div></li>
 <li><span class="t">13:00</span><div>צהריים, וקינוח: קנולי או גרניטה.</div></li>
 <li><span class="t">15:30</span><div>אוטובוס חזרה לסירקוזה, והגעה לפני החושך.</div></li>
 </ul>
 </div>
 <div class="rv">
 <div class="note"><b>למה נוטו?</b>העיר הכי יפה והכי קלה לטיול ביום אחד באזור, עם רחוב ראשי אחד שאפשר ללכת בו לאט.</div>
-<div class="note w"><b>לא מאומת</b>לוח האוטובוסים בחורף וחיבור נגיש. בודקים באינטרבוס או ב-AST, ואם אין קו נוח, מונית הלוך וחזור. הרחוב הראשי עולה מעט, והכניסה לקתדרלה בעלייה.</div>
+<div class="note w"><b>מקורות לא מסכימים</b>אחד מתאר את הרחוב הראשי כרחב ושטוח, ואחר כשיפוע עם מדרגות. הקתדרלה עומדת בראש גרם מדרגות רחב, ולפי אתר נגישות יש לה כניסה עם רמפה. את רחוב Via Nicolaci, בלוק תלול, רואים מלמטה ולא עולים. לוח האוטובוסים בחורף לא אומת, ואם אין קו נוח, מונית הלוך וחזור.</div>
 <details><summary>תוכנית גשם</summary><p>דוחים את נוטו ליום אחר בשבוע, או עושים יום קל באורטיג׳יה עם קפה, מוזיאון ושוק.</p></details>
 </div>
 </div>
-</div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Caffè Sicilia בנוטו</b>, גרניטה שקדים או גלידת פיסטוק וריקוטה <a class="map" href="#r-sicilia">פרטים</a></div></li><li><span class="mt">צהריים</span><div><b>Retablo</b>, סיציליאנית מסורתית. לשאול על המדרגות <a class="map" href="#r-retablo">פרטים</a></div></li><li><span class="mt">חלופה</span><div><b>Sabbinirica</b>, כריכים מהירים ברחוב <a class="map" href="#r-putia">פרטים</a></div></li><li><span class="mt">ערב</span><div><b>Cod da Saretta</b>, מחיר נמוך, בלי הזמנות, מגיעים מוקדם <a class="map" href="#r-saretta">פרטים</a></div></li></ul></div></div></article>
 
 <article class="day" id="d5"><div class="wrap">
 <div class="dh rv"><span class="dnum d">30</span><div class="dmeta"><span class="w">יום שבת, ינואר</span><h2>בוקר רגוע ונסיעה לטיסה</h2></div></div>
 <div class="split">
 <ul class="tl rv">
 <li><span class="t">בוקר</span><div>ארוחת בוקר ארוכה, גרניטה עם בריוש, וצ׳ק-אאוט.</div></li>
-<li><span class="t">אחר כך</span><div>מונית לתחנה, ואוטובוס לשדה התעופה בקטניה. מגיעים עם מרווח גדול.</div></li>
+<li><span class="t">אחר כך</span><div>מונית לתחנת Corso Umberto ואוטובוס אינטרבוס לשדה בקטניה, כשעה. עולים על אוטובוס שמגיע לשדה לפחות שלוש שעות לפני הטיסה לרומא.</div></li>
 <li><span class="t">טיסה</span><div>טיסה פנימית לפיומיצ׳ינו, ומשם הטיסה של אל על בשעה 21:55 עם צ׳ק-אין כ-3 שעות מראש.</div></li>
 </ul>
 <div>
@@ -397,7 +440,7 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <div class="note rv"><b>למה בלי תוכניות?</b>היום תלוי בשעת הטיסה לרומא, ולכן לא אימתתי אותו. בוחרים טיסה שנוחתת ברומא לפחות ארבע שעות לפני 21:55, כי בדיקות הביטחון של אל על ארוכות.</div>
 </div>
 </div>
-</div></article>
+<div class="meals rv"><h3>איפה לאכול היום</h3><ul><li><span class="mt">בוקר</span><div><b>Pasticceria Artale</b>, גרניטה ריקוטה או פיסטוק וקנולי, פתוח עד 16:00 <a class="map" href="#r-artale">פרטים</a></div></li><li><span class="mt">אם נשאר זמן</span><div><b>Da Nuccio בקטניה</b>, צהריים עם פסטה אלה נורמה, פתוח בשבת <a class="map" href="#r-nuccio">פרטים</a></div></li></ul></div></div></article>
 
 <section id="food"><div class="wrap">
 <div class="food">
@@ -412,19 +455,67 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <figure class="shot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pasta_Norma_Villa_Principe_di_Belmonte_Ispica_2017.jpg?width=1000" alt="פסטה אלה נורמה" loading="lazy" onerror="this.closest('figure').remove()"><figcaption><b>פסטה אלה נורמה</b>חצילים, עגבניות וריקוטה מלוחה</figcaption></figure>
 <figure class="shot"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pescespada_al_mercato_di_Ortigia%2C_Siracusa_-_Foto_Giovanni_Dall%27Orto%2C_20_marzo_2014.jpg?width=1000" alt="דג חרב בשוק" loading="lazy" onerror="this.closest('figure').remove()"><figcaption><b>דג חרב</b>טרי מהשוק, צלוי</figcaption></figure>
 </div></div>
-<div class="wrap"><p class="rv" style="margin-top:18px;font-size:.95rem;opacity:.85">שמות מסעדות ספציפיות לא אומתו כאן, ולכן לא כתבתי אותם. בוחרים מקום ליד המלון ובודקים את הדירוג והשעות בגוגל מפות. בחורף חלק מהמסעדות סגורות יום אחד בשבוע.</p></div>
+<div class="wrap"><p class="rv" style="margin-top:18px"><a class="btn" href="#eat">למסעדות ולביקורות</a></p></div>
 </div>
 </div></section>
 
+<section id="eat"><div class="wrap">
+<h2 class="rv">איפה לאכול</h2>
+<p class="lead rv">בחרתי לפי דירוג גוגל, כמות ביקורות וקריאת הביקורות עצמן, כולל הרעות. רוב המקומות באורטיג׳יה, כי שם נשארים. הכל בעברית, אבל שמות המקומות בלועזית כדי שאפשר יהיה להקליד אותם במפה.</p>
+<div class="note w rv"><b>איך לקרוא</b>הדירוגים ושעות הפתיחה נלקחו מגוגל מפות ב-14.11.2026 ועלולים להשתנות עד ינואר. בחורף הרבה מסעדות סוגרות יום אחד בשבוע, והימים כתובים בכל כרטיס. כל מסעדה קטנה מזמינים בטלפון. לא בדקתי נגישות פיזית של כל מסעדה, ולכן כל מקום ששואלים אותו מראש: <span dir="ltr">Avete un ingresso senza gradini?</span></div>
+<div class="rfil rv" role="group" aria-label="סינון מסעדות">
+<div class="chips" data-f="area"><button type="button" aria-pressed="true" data-v="all">כל האזורים</button><button type="button" aria-pressed="false" data-v="ortigia">אורטיג׳יה</button><button type="button" aria-pressed="false" data-v="mainland">סירקוזה, מחוץ לאי</button><button type="button" aria-pressed="false" data-v="noto">נוטו</button><button type="button" aria-pressed="false" data-v="catania">קטניה</button></div>
+<div class="chips" data-f="kind"><button type="button" aria-pressed="true" data-v="all">הכל</button><button type="button" aria-pressed="false" data-v="dinner">ערב</button><button type="button" aria-pressed="false" data-v="lunch">צהריים</button><button type="button" aria-pressed="false" data-v="street">חטיף</button><button type="button" aria-pressed="false" data-v="sweet">בוקר ומתוקים</button></div>
+<p class="rcount" id="rcount" aria-live="polite"></p>
+</div>
+<div class="rgrid">
+<article class="rc rv" id="r-pigna" data-area="ortigia" data-kind="dinner"><header><h3>Trattoria La Pigna</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 1,046 ביקורות"><b>4.8</b><small>1,046</small></span></header><p class="rmeta">אורטיג׳יה · €€€ · Via della Conciliazione 12 · סגור בימי ב׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>La Pigna, מנת טעימות סיציליאניות</li><li>ספגטי ללובסטר</li><li>פילה לברק</li><li>אורז עם פירות ים</li></ul><p><b>מה אומרים הסועדים</b> מקום משפחתי קטן: הבעל בשירות והאישה במטבח, עם דגש על דגים טריים. מנת הפתיחה נחשבת לחובה, ויש שחזרו אליה יומיים ברציפות.</p><p class="watch"><b>לשים לב</b> קטן מאוד ולכן מזמינים. סועדת אחת הזמינה דרך קישור של גוגל ונפלה על מסעדה באותו שם בורונה, אז מוודאים שהכתובת היא סירקוזה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+La+Pigna+Siracusa" target="_blank" rel="noopener">מפה: Trattoria La Pigna</a></article>
+<article class="rc rv" id="r-ciauru" data-area="ortigia" data-kind="dinner"><header><h3>Ciauru Anticu (דניאלה ג׳נובזה)</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 426 ביקורות"><b>4.8</b><small>426</small></span></header><p class="rmeta">אורטיג׳יה · €€€ · Via Vittorio Veneto 199 · פתוח כל יום</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>תמנון צלוי על פחם</li><li>מולים</li><li>יין גריו בבקבוק</li></ul><p><b>מה אומרים הסועדים</b> מסעדה של זוג עם כשבעה שולחנות. השף יוצא לשולחנות, המנות גדולות, והתמנון והמולים הוזכרו כנקודות שיא.</p><p class="watch"><b>לשים לב</b> נפתחת ב-19:30. יין רק בבקבוק, ואפשר לקחת את השאריות. קטנה, ולכן הזמנה כמעט הכרחית.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Ciauru+Anticu+Ortigia+Restaurant+Siracusa" target="_blank" rel="noopener">מפה: Ciauru Anticu</a></article>
+<article class="rc rv" id="r-locanda" data-area="ortigia" data-kind="dinner"><header><h3>Antica Locanda</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 786 ביקורות"><b>4.5</b><small>786</small></span></header><p class="rmeta">אורטיג׳יה · €€€ · Via Vittorio Veneto 189 · סגור בימי ב׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מומלץ להזמין</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>מגש דגי היום לצלייה</li><li>פאצ׳רי עם דג חרב ופסטו פיסטוק</li><li>ראביולי דג גרופר</li><li>קנולי מפורק</li></ul><p><b>מה אומרים הסועדים</b> מקום שהמלונות ממליצים עליו, פחות תיירותי מרוב אורטיג׳יה. הבעלים מגיש ומדבר עם האורחים, והדג מוצג על מגש לפני הצלייה.</p><p class="watch"><b>לשים לב</b> הדירוג נמוך במעט מהשאר, והמחיר בינוני-גבוה. מבקשים לראות את מחיר הדג לפני שמזמינים.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Antica+Locanda+Ortigia+Siracusa" target="_blank" rel="noopener">מפה: Antica Locanda</a></article>
+<article class="rc rv" id="r-michelone" data-area="ortigia" data-kind="dinner,lunch"><header><h3>Trattoria Da Michelone</h3><span class="rate" aria-label="דירוג גוגל 4.7 מתוך 5, 594 ביקורות"><b>4.7</b><small>594</small></span></header><p class="rmeta">אורטיג׳יה · €€ · Via de Benedictis 5, בתוך השוק · פתוח כל יום</p><div class="tags"><span class="pill">ערב</span><span class="pill">צהריים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>פסטה עם וונגולה</li><li>ריזוטו פירות ים</li><li>פסטה עם ביצי קיפוד ים (בעונה)</li><li>תמנון צלוי</li><li>קנולי</li></ul><p><b>מה אומרים הסועדים</b> יושבים בתוך שוק הדגים, והדגים טריים. רוב הסועדים מתלהבים מהפסטות ומהריזוטו.</p><p class="watch"><b>לשים לב</b> ביקורת אחת נתנה שלושה כוכבים, בטענה שהמחיר גבוה והקבלה לא חמה. רועש כי זה שוק. שואלים על המחיר של הדג לפני ההזמנה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+Da+Michelone+Siracusa" target="_blank" rel="noopener">מפה: Trattoria Da Michelone</a></article>
+<article class="rc rv" id="r-saretta" data-area="ortigia" data-kind="dinner,lunch"><header><h3>Cod da Saretta, מרלוצו פריטו</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 2,022 ביקורות"><b>4.8</b><small>2,022</small></span></header><p class="rmeta">אורטיג׳יה · €€ · Via Maestranza 134 · סגור בימי ה׳</p><div class="tags"><span class="pill">ערב</span><span class="pill">צהריים</span><span class="pill">בלי הזמנות, בא מוקדם</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>תמנון צלוי</li><li>מיקס דגים מטוגנים</li><li>ספגטי דגים</li><li>יין הבית בליטר</li></ul><p><b>מה אומרים הסועדים</b> מקום פשוט ואותנטי עם מנות ענקיות ומחיר נמוך, ושירות מהיר. מתאר אותו סועד אחד כמקום שבו מרגישים את הים.</p><p class="watch"><b>לשים לב</b> אין הזמנות ויש תור, לכן מגיעים מוקדם. הישיבה בחוץ נעימה יותר מבפנים, והקפונטה הוגדרה פחות מרשימה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Cod+da+Saretta+Merluzzo+fritto+Siracusa" target="_blank" rel="noopener">מפה: Cod da Saretta, מרלוצו פריטו</a></article>
+<article class="rc rv" id="r-oz" data-area="ortigia" data-kind="dinner,lunch"><header><h3>Oz Ortigia</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 982 ביקורות"><b>4.8</b><small>982</small></span></header><p class="rmeta">אורטיג׳יה · €€ · Via Santa Teresa 9 · פתוח כל יום</p><div class="tags"><span class="pill">ערב</span><span class="pill">צהריים</span><span class="pill c">מזמינים לישיבה בחוץ</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>שוק חזיר מבושל לאט עם פירה</li><li>פסטה עם פיסטוק</li><li>טרטר טונה</li><li>קסטה ותירמיסו ביתי</li></ul><p><b>מה אומרים הסועדים</b> כמה סועדים כתבו שזו הארוחה הטובה של השבוע בסיציליה, ושוק החזיר מתפרק מהעצם.</p><p class="watch"><b>לשים לב</b> ביקורות מעורבות על כדורי הבשר הרכים מדי ועל המתנה ארוכה בהתחלה. בשעה 20:00 עמוס, ולכן מזמינים.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Oz+Ortigia+Siracusa" target="_blank" rel="noopener">מפה: Oz Ortigia</a></article>
+<article class="rc rv" id="r-foglia" data-area="ortigia" data-kind="dinner"><header><h3>Trattoria La Foglia</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 1,293 ביקורות"><b>4.5</b><small>1,293</small></span></header><p class="rmeta">אורטיג׳יה · €€ · Via Capodieci 29 · סגור בימי ה׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>דג חרב מעושן בפירורי לחם</li><li>פסטה של היום</li><li>נקניקיית סלסיצ׳ה</li><li>סופלה פיסטוק (תלוי ביום)</li></ul><p><b>מה אומרים הסועדים</b> עיצוב כפרי ומיוחד עם כריות גדולות. יש סועדים שחזרו למחרת בגלל הפסטה, והדג החרב המעושן עורר התלהבות.</p><p class="watch"><b>לשים לב</b> הסופלה משתנה לפי היום, ולכן שואלים מה יש. מזמינים כי צפוף.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+La+Foglia+Siracusa" target="_blank" rel="noopener">מפה: Trattoria La Foglia</a></article>
+<article class="rc rv" id="r-apollonion" data-area="ortigia" data-kind="dinner"><header><h3>Apollonion Osteria da Carlo</h3><span class="rate" aria-label="דירוג גוגל 4.6 מתוך 5, 1,421 ביקורות"><b>4.6</b><small>1,421</small></span></header><p class="rmeta">אורטיג׳יה · €€€ · Via Carmelo Campisi 18 · סגור בימי א׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>תפריט טעימות דגים</li><li>שרימפס ואנשובי נא</li><li>טונה צלויה עם בצל מתוק</li><li>מולים עם שקדים ונענע</li></ul><p><b>מה אומרים הסועדים</b> מסעדת דגים בלבד. תפריט הטעימות מוזכר כאחד הטובים, ובלוג אוכל מוכר ממליץ עליה.</p><p class="watch"><b>לשים לב</b> ביקורת אחת מצאה את האוכל סביר ובלי אווירה איטלקית. התפריט משתנה, והמחיר גבוה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Apollonion+Osteria+da+Carlo+Siracusa" target="_blank" rel="noopener">מפה: Apollonion Osteria da Carlo</a></article>
+<article class="rc rv" id="r-pindaro" data-area="ortigia" data-kind="dinner"><header><h3>Pindaro</h3><span class="rate" aria-label="דירוג גוגל 4.7 מתוך 5, 2,049 ביקורות"><b>4.7</b><small>2,049</small></span></header><p class="rmeta">אורטיג׳יה · €€ · Largo Aretusa 2 · פתוח כל יום</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מומלץ לשקיעה</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ספגטי פירות ים</li><li>קרבונרה</li><li>סלט תמנון</li><li>תירמיסו</li></ul><p><b>מה אומרים הסועדים</b> בחירה בגלל המיקום: שקיעה מול הים ליד מעיין ארטוזה.</p><p class="watch"><b>לשים לב</b> המחירים מעט גבוהים, השירות מהיר ולפעמים נחפז, ולפי סועד אחד הבשר היה קשה. בוחרים אותו בשביל הנוף ולא בשביל האוכל הכי טוב.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Pindaro+Ristorante+Bistrot+Siracusa" target="_blank" rel="noopener">מפה: Pindaro</a></article>
+<article class="rc rv" id="r-agape" data-area="mainland" data-kind="dinner"><header><h3>Agape</h3><span class="rate" aria-label="דירוג גוגל 4.9 מתוך 5, 798 ביקורות"><b>4.9</b><small>798</small></span></header><p class="rmeta">סירקוזה, מחוץ לאי · €€€ · Corso Umberto I 50 · סגור בימי ד׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים באינטרנט</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ניוקי</li><li>טונה</li><li>מנות פתיחה לפי המלצת הבעלים</li></ul><p><b>מה אומרים הסועדים</b> מסעדה חמה עם בעלים שמסבירים את התפריט ועוזרים לבחור, כולל אפשרויות צמחוניות. שוכנת ליד תחנת האוטובוס, ולכן מתאימה לערב הנחיתה.</p><p class="watch"><b>לשים לב</b> הכי קרובה לתחנה, אבל כבר מחוץ לאי. הזמנה מראש.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Agape+Corso+Umberto+Siracusa" target="_blank" rel="noopener">מפה: Agape</a></article>
+<article class="rc rv" id="r-astrattu" data-area="mainland" data-kind="dinner"><header><h3>Astrattu</h3><span class="rate" aria-label="דירוג גוגל 4.9 מתוך 5, 248 ביקורות"><b>4.9</b><small>248</small></span></header><p class="rmeta">סירקוזה, מחוץ לאי · €€€ · Via del Porto Grande 6 · סגור בימי א׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ראביולי ריקוטה עם שלושה סוגי עגבניות</li><li>תמנון צלוי עם תפוחי אדמה ופסטו פיסטוק</li><li>פרחי דלעת ממולאים</li><li>פיצה עבה בסגנון פוקאצ׳ה</li></ul><p><b>מה אומרים הסועדים</b> בעלת הבית מסבירה את התפריט ומדברת אנגלית, והמנות זכו לשבחים. הפיצה כאן עבה ורכה, לא נפוליטנית.</p><p class="watch"><b>לשים לב</b> דירוג גבוה אבל מעט ביקורות. אם מצפים לפיצה דקה, זה לא זה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Astrattu+Siracusa" target="_blank" rel="noopener">מפה: Astrattu</a></article>
+<article class="rc rv" id="r-fuori" data-area="mainland" data-kind="dinner"><header><h3>Ristorante Fuori Ortigia</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 916 ביקורות"><b>4.8</b><small>916</small></span></header><p class="rmeta">סירקוזה, מחוץ לאי · €€ · Via Tripoli 6 · סגור בימי ב׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>מולים ומרק המולים</li><li>פסטה פירות ים</li><li>תמנון צלוי</li><li>תירמיסו תפוז</li></ul><p><b>מה אומרים הסועדים</b> סועדים כותבים שהמולים והמרק מצוינים, ושהשירות ידידותי. מקום של תושבים יותר מתיירים.</p><p class="watch"><b>לשים לב</b> גובים כ-2.50 יורו לאדם עבור כיסוי שולחן ושירות, לפי סועד. הריזוטו קיבל ביקורת על מעט שרימפס.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Fuori+Ortigia+Siracusa" target="_blank" rel="noopener">מפה: Ristorante Fuori Ortigia</a></article>
+<article class="rc rv" id="r-apollo" data-area="ortigia" data-kind="sweet,street"><header><h3>Caffè Apollo</h3><span class="rate" aria-label="דירוג גוגל 4.3 מתוך 5, 725 ביקורות"><b>4.3</b><small>725</small></span></header><p class="rmeta">אורטיג׳יה · € · Largo XXV Luglio 13, מול מקדש אפולו · סגור בימי ג׳</p><div class="tags"><span class="pill">בוקר ומתוקים</span><span class="pill">חטיף</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>גרניטה שקדים עם בריוש</li><li>גרניטה לימון עם קרואסון</li><li>קנולי</li><li>מיץ תפוזים סחוט</li><li>ארנצ׳יני</li></ul><p><b>מה אומרים הסועדים</b> בית קפה מול שרידי המקדש. סועדים משבחים את הקנולי ואת ארוחת הבוקר הסיציליאנית, ואחד כותב שחוזר לשם בכל ביקור.</p><p class="watch"><b>לשים לב</b> מחיר גרניטה שקדים כ-3.50 יורו לפי בלוג (לא אומת). בית הקפה הסמוך Caffè d'Ortigia קיבל תלונה על 12 יורו לשני מאפים ושני קפה, כך שבמקום עם נוף למקדש יש פרמיה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Caffe+Apollo+Largo+XXV+Luglio+Siracusa" target="_blank" rel="noopener">מפה: Caffè Apollo</a></article>
+<article class="rc rv" id="r-artale" data-area="ortigia" data-kind="sweet,street"><header><h3>Pasticceria Artale</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 1,534 ביקורות"><b>4.5</b><small>1,534</small></span></header><p class="rmeta">אורטיג׳יה · € · Via Landolina 32 · סגור בימי ה׳</p><div class="tags"><span class="pill">בוקר ומתוקים</span><span class="pill">חטיף</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>גרניטה פיסטוק (נבחרה כטובה בסיציליה על ידי סועד)</li><li>גרניטה ריקוטה</li><li>קנולי קלאסי (כ-2.50 יורו לפי ביקורת מאוקטובר 2026)</li><li>בריוש פיסטוק וריקוטה</li><li>קורנטו עם קרם</li></ul><p><b>מה אומרים הסועדים</b> המתוק לא מתוק מדי, הריקוטה איכותית, והקפה טוב. כמה סועדים חזרו כמעט כל בוקר.</p><p class="watch"><b>לשים לב</b> נסגר ב-16:00 וסגור בימי חמישי. מתאים לבוקר האחרון, ב-30.1.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Pasticceria+Artale+Siracusa" target="_blank" rel="noopener">מפה: Pasticceria Artale</a></article>
+<article class="rc rv" id="r-mangiafico" data-area="mainland" data-kind="sweet,street"><header><h3>Mangiafico Voglia Matta</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 3,091 ביקורות"><b>4.5</b><small>3,091</small></span></header><p class="rmeta">סירקוזה, מחוץ לאי · € · Corso Umberto I 34 · פתוח עד אחרי חצות</p><div class="tags"><span class="pill">בוקר ומתוקים</span><span class="pill">חטיף</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>גרניטה ובריוש</li><li>גלידת לימון</li><li>קנולי (יש גם נטול גלוטן)</li><li>עוגת פיסטוק</li></ul><p><b>מה אומרים הסועדים</b> מקום מאוד מבוקר עם תור שזז מהר, גלידה קרמית, ומחירים הוגנים לאזור תיירותי.</p><p class="watch"><b>לשים לב</b> שירות לפעמים לא מתואם. נמצא ליד תחנת האוטובוס, ולכן נוח לעצירה ראשונה ואחרונה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Mangiafico+Voglia+Matta+Siracusa" target="_blank" rel="noopener">מפה: Mangiafico Voglia Matta</a></article>
+<article class="rc rv" id="r-giudecca" data-area="ortigia" data-kind="street,lunch"><header><h3>Antica Giudecca</h3><span class="rate" aria-label="דירוג גוגל 4.7 מתוך 5, 1,243 ביקורות"><b>4.7</b><small>1,243</small></span></header><p class="rmeta">אורטיג׳יה · € · Via della Giudecca 26 · סגור בימי א׳</p><div class="tags"><span class="pill">חטיף</span><span class="pill">צהריים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ארנצ׳ינו רגו (כ-2 יורו)</li><li>לזניה</li><li>פרוסות פיצה</li><li>ביסקוטי</li></ul><p><b>מה אומרים הסועדים</b> מקום מקומי זול עם ארנצ׳יני חמים ופריכים. סועדים שחזרו אליו שוב ושוב ולא חיפשו אחר.</p><p class="watch"><b>לשים לב</b> הארנצ׳ינו גדול, ולפעמים מספיק לחלוק אותו.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Antica+Giudecca+Siracusa+arancini" target="_blank" rel="noopener">מפה: Antica Giudecca</a></article>
+<article class="rc rv" id="r-delights" data-area="ortigia" data-kind="street,lunch"><header><h3>The Sicilian Delights</h3><span class="rate" aria-label="דירוג גוגל 4.6 מתוך 5, 422 ביקורות"><b>4.6</b><small>422</small></span></header><p class="rmeta">אורטיג׳יה · € · Via Cavour 17 · סגור בימי ד׳</p><div class="tags"><span class="pill">חטיף</span><span class="pill">צהריים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ארנצ׳יני עם בורטה</li><li>ארנצ׳יני רגו, ספינט ונורמה</li><li>קלמרי</li></ul><p><b>מה אומרים הסועדים</b> הארנצ׳יני מוגשים חמים עם קרום פריך, והבעלים מקבל בחום. מעט שולחנות.</p><p class="watch"><b>לשים לב</b> מקום קטן מאוד, שירות בדלפק אבל לפעמים מושיבים.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=The+sicilian+delights+arancini+Via+Cavour+Siracusa" target="_blank" rel="noopener">מפה: The Sicilian Delights</a></article>
+<article class="rc rv" id="r-borderi" data-area="ortigia" data-kind="street,lunch"><header><h3>Caseificio Borderi</h3></header><p class="rmeta">אורטיג׳יה · € · Via de Benedictis 6, בשוק · סגור בימי א׳, בלי ערב</p><div class="tags"><span class="pill">חטיף</span><span class="pill">צהריים</span><span class="pill">בלי הזמנות, בא מוקדם</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>כריך שמורכב לפי הזמנה</li><li>גבינות סיציליאניות</li><li>מה שיש בשוק באותו בוקר</li></ul><p><b>מה אומרים הסועדים</b> מוזכר ב-Fodor's וב-Frommer's כמקום שחייבים לעצור בו בשוק.</p><p class="watch"><b>לשים לב</b> דירוג גוגל לא נבדק. התור ארוך כי הוא נהיה מפורסם, ולכן באים בתחילת הבוקר.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Caseificio+Borderi+Siracusa" target="_blank" rel="noopener">מפה: Caseificio Borderi</a></article>
+<article class="rc rv" id="r-retablo" data-area="noto" data-kind="lunch,dinner"><header><h3>Retablo</h3><span class="rate" aria-label="דירוג גוגל 4.8 מתוך 5, 965 ביקורות"><b>4.8</b><small>965</small></span></header><p class="rmeta">נוטו · €€€ · Via Baccarini 4/6 · פתוח כל יום</p><div class="tags"><span class="pill">צהריים</span><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>קפונטה חמה</li><li>דג חרב</li><li>ראביולי של היום</li><li>טרטר טונה על תפוח</li><li>לחיי עגל</li></ul><p><b>מה אומרים הסועדים</b> מסעדה סיציליאנית מסורתית בלי פיצה. הבעלים מדברת כמה שפות ומסבירה את המנות.</p><p class="watch"><b>לשים לב</b> בכניסה כמה מדרגות, ויש ישיבה בשתי קומות. שואלים מראש איפה לשבת עם קלנועית. שעות הצהריים קצרות, עד 14:00.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Retablo+Ristorante+Noto" target="_blank" rel="noopener">מפה: Retablo</a></article>
+<article class="rc rv" id="r-villadorata" data-area="noto" data-kind="dinner"><header><h3>Osteria Villadorata</h3><span class="rate" aria-label="דירוג גוגל 4.7 מתוך 5, 224 ביקורות"><b>4.7</b><small>224</small></span></header><p class="rmeta">נוטו · €€€ · Via Rocco Pirri 19 · סגור בימי ג׳, ערב בלבד</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>מנת חצילים</li><li>טרטר דגים</li><li>פסטות</li></ul><p><b>מה אומרים הסועדים</b> מקום קטן עם שירות מדהים לפי כמה סועדים, וגם ב-Fodor's.</p><p class="watch"><b>לשים לב</b> נפתח רק ב-19:00, לכן לא מתאים לנסיעה היומית שלנו אלא אם חוזרים במונית. מנות לא גדולות.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Osteria+Villadorata+Noto" target="_blank" rel="noopener">מפה: Osteria Villadorata</a></article>
+<article class="rc rv" id="r-come" data-area="noto" data-kind="lunch,dinner"><header><h3>COMÈ</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 289 ביקורות"><b>4.5</b><small>289</small></span></header><p class="rmeta">נוטו · €€€ · Via Ducezio 158 · סגור בימי ה׳</p><div class="tags"><span class="pill">צהריים</span><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>ארנצ׳ינו דיו דיונון</li><li>מרק דגים</li><li>פטוצ׳יני פטריות</li></ul><p><b>מה אומרים הסועדים</b> מסעדה שסועדים עם ילדים אהבו, וכתבו שהיא לא מלכודת תיירים.</p><p class="watch"><b>לשים לב</b> סועד אחד תיאר קבלת פנים קרה בשעת הפתיחה, לכן מגיעים מעט אחרי שנפתחים.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Ristorante+COME+Noto" target="_blank" rel="noopener">מפה: COMÈ</a></article>
+<article class="rc rv" id="r-putia" data-area="noto" data-kind="lunch,street"><header><h3>Sabbinirica a Putia d'Ercole</h3><span class="rate" aria-label="דירוג גוגל 4.4 מתוך 5, 935 ביקורות"><b>4.4</b><small>935</small></span></header><p class="rmeta">נוטו · €€ · Corso Vittorio Emanuele 93 · סגור בימי ב׳</p><div class="tags"><span class="pill">צהריים</span><span class="pill">חטיף</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>כריך תמנון</li><li>קפונטה</li><li>כריך פורקטה</li></ul><p><b>מה אומרים הסועדים</b> כריכים ענקיים וטריים. מתאים לצהריים מהירים כשקלנועית מעכבת ישיבה במסעדה.</p><p class="watch"><b>לשים לב</b> הטעם בעיני אחד הסועדים לא מתובל מספיק, ויש הבדלי דעות.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Sabbinirica+a+Putia+d%27Ercole+Noto" target="_blank" rel="noopener">מפה: Sabbinirica a Putia d'Ercole</a></article>
+<article class="rc rv" id="r-sicilia" data-area="noto" data-kind="sweet,street"><header><h3>Caffè Sicilia</h3><span class="rate" aria-label="דירוג גוגל 4.1 מתוך 5, 4,753 ביקורות"><b>4.1</b><small>4,753</small></span></header><p class="rmeta">נוטו · €€ · Corso Vittorio Emanuele 125</p><div class="tags"><span class="pill">בוקר ומתוקים</span><span class="pill">חטיף</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>גרניטה שקדים עם בריוש</li><li>גלידת פיסטוק וריקוטה</li><li>קסטינה</li><li>סבוליאטו</li></ul><p><b>מה אומרים הסועדים</b> בית קפה היסטורי שהקונדיטוריה בו נעשית כמה דורות. סועדים רבים התלהבו מהגרניטה ומהגלידה.</p><p class="watch"><b>לשים לב</b> הדירוג נמוך בגלל הרבה תיירים והייפ מסדרה, והוסיפו תוספת שירות. הגרניטה והגלידה נחשבות טובות.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Caffe+Sicilia+Noto" target="_blank" rel="noopener">מפה: Caffè Sicilia</a></article>
+<article class="rc rv" id="r-ercole" data-area="noto" data-kind="lunch,dinner"><header><h3>Trattoria Fontana d'Ercole</h3><span class="rate" aria-label="דירוג גוגל 4.3 מתוך 5, ~1,400 ביקורות"><b>4.3</b><small>~1,400</small></span></header><p class="rmeta">נוטו · €€ · ליד מזרקת הרקולס</p><div class="tags"><span class="pill">צהריים</span><span class="pill">ערב</span><span class="pill c">מזמינים</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>פסטה אלה נורמה</li><li>פסטה עם פיסטוק ווונגולה</li><li>קפונטת דגים</li></ul><p><b>מה אומרים הסועדים</b> בעלים שמקבל בחום, והנורמה זכתה לשבחים רבים. אתר נגישות אחד מציין כניסה נגישה.</p><p class="watch"><b>לשים לב</b> הדירוג מאתר Wanderlog ולא מהחיפוש שלי בגוגל. חלק מהמנות קטנות, כמו הטליאטה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+Fontana+d%27Ercole+Noto" target="_blank" rel="noopener">מפה: Trattoria Fontana d'Ercole</a></article>
+<article class="rc rv" id="r-nuccio" data-area="catania" data-kind="lunch,dinner"><header><h3>Trattoria Da Nuccio</h3><span class="rate" aria-label="דירוג גוגל 4.4 מתוך 5, 950 ביקורות"><b>4.4</b><small>950</small></span></header><p class="rmeta">קטניה · €€ · Via Penninello 34 · סגור בימי ב׳</p><div class="tags"><span class="pill">צהריים</span><span class="pill">ערב</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>פסטה אלה נורמה</li><li>קפונטה</li><li>מולים (28 ביחידות כ-8 יורו לפי ביקורת)</li></ul><p><b>מה אומרים הסועדים</b> מקום משפחתי של תושבים, כ-20 יורו לאדם עם פסטה, קינוח ויין, ופירות ים טריים.</p><p class="watch"><b>לשים לב</b> רלוונטי רק אם יש זמן בקטניה לפני הטיסה. פתוח בשבת בצהריים.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+Da+Nuccio+Catania" target="_blank" rel="noopener">מפה: Trattoria Da Nuccio</a></article>
+<article class="rc rv" id="r-sorano" data-area="catania" data-kind="lunch,dinner"><header><h3>Trattoria Sorano</h3><span class="rate" aria-label="דירוג גוגל 4.7 מתוך 5, 1,287 ביקורות"><b>4.7</b><small>1,287</small></span></header><p class="rmeta">קטניה · €€ · Via Garibaldi 51 · סגור בימי א׳</p><div class="tags"><span class="pill">צהריים</span><span class="pill">ערב</span><span class="pill c">מומלץ</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>פסטה ביתית</li><li>קציצות</li></ul><p><b>מה אומרים הסועדים</b> שקט יחסית מהרעש של מרכז העיר, והשירות מהיר גם לקבוצה.</p><p class="watch"><b>לשים לב</b> ביקורת אחת התלוננה על כך שחלק מהפסטה הביתית נדבקה זו לזו.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+Sorano+Catania" target="_blank" rel="noopener">מפה: Trattoria Sorano</a></article>
+<article class="rc rv" id="r-mario" data-area="catania" data-kind="dinner"><header><h3>Trattoria da Mario</h3><span class="rate" aria-label="דירוג גוגל 4.5 מתוך 5, 3,459 ביקורות"><b>4.5</b><small>3,459</small></span></header><p class="rmeta">קטניה · €€ · Via Crociferi 29 · סגור בימי א׳</p><div class="tags"><span class="pill">ערב</span><span class="pill c">מגיעים ב-19:00</span></div><p><b>מה להזמין</b></p><ul class="picks"><li>תפריט קבוע עם מנות פתיחה, מנה עיקרית ושתייה (כ-20 יורו)</li><li>בשר בקר</li></ul><p><b>מה אומרים הסועדים</b> ערך מצוין לכסף, הרבה מנות פתיחה ושתייה כלולה.</p><p class="watch"><b>לשים לב</b> הרבה מנות מטוגנות, והאיכות לדעת סועד אחד נפגעת בגלל הכמות. זו חוויה עממית ולא גסטרונומיה.</p><a class="map" href="https://www.google.com/maps/search/?api=1&query=Trattoria+da+Mario+Catania" target="_blank" rel="noopener">מפה: Trattoria da Mario</a></article>
+</div>
+<details class="rv"><summary>מה לא הכנסתי ולמה</summary>
+<table>
+<tr><td><b>Cortes (נוטו)</b></td><td>ביקורות קיצוניות לשני הכיוונים: סועד אחד כתב שזו החוויה הגרועה ביותר, אחר שאהב. לא מספיק עקבי.</td></tr>
+<tr><td><b>CIAURU street food</b></td><td>דירוג 4.7 אבל סועד אחד כתב שהאוכל יצא מאריזות קפואות. מעורב, ולכן יש ארנצ׳יני טובים יותר.</td></tr>
+<tr><td><b>Arancina</b></td><td>דירוג 3.7. נחשב טוב רק לנטולי גלוטן, ולא ממליץ לאחרים.</td></tr>
+<tr><td><b>U Fucularu (קטניה)</b></td><td>סועד כתב שהמחירים הוכפלו והמקום נהיה לתיירים.</td></tr>
+<tr><td><b>ישיבה בפיאצה דואומו</b></td><td>בלוג אוכל מקומי ממליץ לא לאכול שם ארוחה מלאה. בפיאצה הכי נעים לשתות קפה, לא לאכול.</td></tr>
+</table></details>
+</div></section>
+<section id="dishes"><div class="wrap"><h2 class="rv">מילון מנות</h2><p class="lead rv">מה זה, איך מזמינים ומה כדאי לבדוק. אפשר ללחוץ על השם האיטלקי כדי להעתיק אותו ולהראות למלצר.</p><div class="dgrid"><article class="dish rv"><h3>גרניטה עם בריוש</h3><button type="button" class="cp" data-cp="Granita di mandorla con brioche col tuppo" dir="ltr">Granita di mandorla con brioche col tuppo</button><p>קרח מתוק וגרגירי, בלי חלב וביצה, שאוכלים לארוחת בוקר עם לחמנייה מתוקה.</p><p><b>איך מזמינים</b> בוחרים שקדים (לבן), קפה, לימון או פיסטוק. גרניטה פיסטוק אמיתית בצבע חום-ירקרק עמום, וירוק זוהר מעיד על צבע מלאכותי. קורעים את הכובע (tuppo) של הלחמנייה וטובלים בו.</p><p class="rmeta">כ-3 עד 5 יורו. ארטלה, קפה אפולו, מנג׳פיקו.</p></article><article class="dish rv"><h3>ארנצ׳ינו</h3><button type="button" class="cp" data-cp="Arancino al ragù / burro / spinaci / alla Norma" dir="ltr">Arancino al ragù / burro / spinaci / alla Norma</button><p>כדור אורז ממולא ומטוגן. ג׳ירו של ארוחת צהריים זולה ונפוצה.</p><p><b>איך מזמינים</b> רגו (בשר ורוטב עגבניות), בורו (חמאה וגבינה), ספינצ׳י, נורמה. הפנים חם מאוד, אז נותנים לו דקה.</p><p class="rmeta">כ-2 יורו באנטיקה ג׳ודקה. אחד גדול מספיק לארוחה קלה.</p></article><article class="dish rv"><h3>קנולי</h3><button type="button" class="cp" data-cp="Cannolo siciliano" dir="ltr">Cannolo siciliano</button><p>שפופרת פריכה במילוי ריקוטה מתוקה.</p><p><b>איך מזמינים</b> ממלאים אחרי ההזמנה, לא לוקחים כזה שמילאו מראש כי הקליפה נרטבת. מבקשים לא מתוק מדי אם צריך. ארטלה מוכר קלאסי כ-2.50 יורו.</p><p class="rmeta">כ-2.50 עד 4 יורו.</p></article><article class="dish rv"><h3>פסטה אלה נורמה</h3><button type="button" class="cp" data-cp="Pasta alla Norma" dir="ltr">Pasta alla Norma</button><p>פסטה עם עגבניות, חציל מטוגן, ריקוטה מלוחה ובזיליקום. מקורה בקטניה.</p><p><b>איך מזמינים</b> ריקוטה סלטה (מלוחה ויבשה) היא החלק החשוב. תבדקו שאין חציל שמנוני.</p><p class="rmeta">כ-12 עד 16 יורו. טראטוריה דה נוצ׳ו בקטניה, ג׳ובי באורטיג׳יה.</p></article><article class="dish rv"><h3>פסטה אלה סירקוזנה</h3><button type="button" class="cp" data-cp="Pasta alla Siracusana" dir="ltr">Pasta alla Siracusana</button><p>פסטה עם אנשובי, עגבניות, זיתים וקפרים ופירורי לחם קלויים.</p><p><b>איך מזמינים</b> מנה ביתית עניה. סועדת אחת ציינה שבמסעדה מסוימת הפירורים ספגו את הרוטב והפסטה יצאה יבשה, לכן מבקשים שיוסיפו רוטב.</p><p class="rmeta">כ-12 עד 15 יורו.</p></article><article class="dish rv"><h3>פסטה עם קיפוד ים</h3><button type="button" class="cp" data-cp="Spaghetti ai ricci di mare" dir="ltr">Spaghetti ai ricci di mare</button><p>פסטה עם ביצי קיפוד ים גולמיות, טעם מלוח ומעט עז.</p><p><b>איך מזמינים</b> העונה ביוני עד אפריל לפי בלוג אוכל, ולכן ינואר דווקא הזמן. בקיץ מגישים קפוא. מחיר מעל 25 יורו, ולכן שואלים את המחיר לפני.</p><p class="rmeta">כ-25 יורו ומעלה. לא כל מסעדה מגישה.</p></article><article class="dish rv"><h3>תמנון צלוי</h3><button type="button" class="cp" data-cp="Polpo alla griglia" dir="ltr">Polpo alla griglia</button><p>תמנון על גריל, רך מבפנים ושרוף קלות מבחוץ.</p><p><b>איך מזמינים</b> הוזכר בכמה מסעדות כנקודת שיא. מבקשים עם פירה או תפוחי אדמה.</p><p class="rmeta">כ-14 עד 20 יורו.</p></article><article class="dish rv"><h3>טיגון דגים מעורב</h3><button type="button" class="cp" data-cp="Frittura mista / paranza" dir="ltr">Frittura mista / paranza</button><p>דגים קטנים, דיונונים ושרימפס מטוגנים בקליפה דקה.</p><p><b>איך מזמינים</b> מעדיפים מקום שמטגן אחרי ההזמנה. סועד אחד התלונן על 12 יורו לטיגון שמן שיצא מקרום קפוא ברחוב.</p><p class="rmeta">כ-10 עד 18 יורו.</p></article><article class="dish rv"><h3>דג חרב</h3><button type="button" class="cp" data-cp="Pesce spada" dir="ltr">Pesce spada</button><p>דג החרב של האזור, צלוי או בפירורי לחם או גלילים (involtini).</p><p><b>איך מזמינים</b> שואלים אם טרי היום.</p><p class="rmeta">כ-15 עד 22 יורו.</p></article><article class="dish rv"><h3>קפונטה</h3><button type="button" class="cp" data-cp="Caponata" dir="ltr">Caponata</button><p>תבשיל חציל חמצמץ-מתוק עם סלרי, זיתים וקפרים.</p><p><b>איך מזמינים</b> בנוטו מגישים גרסה עם שוקולד מריר ברטבלו. אחד הסועדים אמר שקפונטה בסודה זו הכי טובה שאכל.</p><p class="rmeta">כ-8 עד 10 יורו.</p></article><article class="dish rv"><h3>פסטה פיסטוק</h3><button type="button" class="cp" data-cp="Pasta al pesto di pistacchio" dir="ltr">Pasta al pesto di pistacchio</button><p>פסטה עם פסטו פיסטוק, לפעמים עם שרימפס או בייקון.</p><p><b>איך מזמינים</b> הביקורות מעורבות: יש מי שאמר שהכי טעים בחיים, ויש מי שאמר שרק סביר. לא מזמינים כל פעם.</p><p class="rmeta">כ-13 עד 18 יורו.</p></article><article class="dish rv"><h3>יין ושתייה</h3><button type="button" class="cp" data-cp="Etna Bianco, Grillo, limoncello" dir="ltr">Etna Bianco, Grillo, limoncello</button><p>יינות לבנים של הר אטנה וגריו, וליקר לימון ביתי.</p><p><b>איך מזמינים</b> במסעדות קטנות יש יין הבית בקנקן או בליטר, והוא בדרך כלל סביר. יש מקומות שמוכרים רק בקבוק.</p><p class="rmeta">כ-4 עד 6 יורו לכוס.</p></article><article class="dish rv"><h3>דג לפי משקל</h3><button type="button" class="cp" data-cp="Pesce al peso / al chilo" dir="ltr">Pesce al peso / al chilo</button><p>בחלק מהמסעדות המחיר רשום לפי קילו או לפי 100 גרם.</p><p><b>איך מזמינים</b> שואלים את המחיר הסופי לפני ההזמנה. זו טעות נפוצה שמקבלים חשבון גבוה.</p><p class="rmeta">משתנה לפי הדג.</p></article></div><div class="note a rv"><b>עלויות נוספות</b>כיסוי שולחן ושירות (coperto, servizio) של כ-2 עד 2.50 יורו לאדם הוא נפוץ וקיים בכמה מהמסעדות שנסקרו. בדרך כלל אין חובת טיפ.</div><h3 class="rv" style="margin-top:34px">משפטים שימושיים, לחיצה מעתיקה</h3><ul class="phr"><li class="rv"><button type="button" class="cp" data-cp="Avete un ingresso senza gradini?"><span dir="ltr">Avete un ingresso senza gradini?</span><small>יש לכם כניסה בלי מדרגות?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Abbiamo uno scooter elettrico pieghevole. C&#x27;è spazio?"><span dir="ltr">Abbiamo uno scooter elettrico pieghevole. C'è spazio?</span><small>יש לנו קלנועית מתקפלת. יש מקום?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Possiamo prenotare per due alle otto?"><span dir="ltr">Possiamo prenotare per due alle otto?</span><small>אפשר להזמין לשניים בשמונה?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Quanto costa il pesce al chilo?"><span dir="ltr">Quanto costa il pesce al chilo?</span><small>כמה עולה הדג לקילו?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Che cosa consiglia oggi?"><span dir="ltr">Che cosa consiglia oggi?</span><small>מה אתם ממליצים היום?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Il conto, per favore."><span dir="ltr">Il conto, per favore.</span><small>החשבון, בבקשה.</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Dov&#x27;è il bagno accessibile?"><span dir="ltr">Dov'è il bagno accessibile?</span><small>איפה השירותים הנגישים?</small></button></li><li class="rv"><button type="button" class="cp" data-cp="Può chiamarmi un taxi con rampa?"><span dir="ltr">Può chiamarmi un taxi con rampa?</span><small>אפשר להזמין מונית עם רמפה?</small></button></li></ul></div></section>
 <section id="lines"><div class="wrap">
 <h2 class="rv">איזה קו לקחת</h2>
 <div class="cols" style="margin-top:20px">
 <div class="rv">
 <table>
-<tr><td><b>שדה קטניה לסירקוזה</b></td><td>אינטרבוס, כ-70 דקות, פעם בשעה בערך. אזור לכיסא גלגלים, לפי האתר.</td></tr>
+<tr><td><b>שדה קטניה לסירקוזה</b></td><td>אינטרבוס ישיר, שעה עד שעה ועשר דקות. התחנה בשדה בקומת הקרקע, ליד חניון ההשכרה R1. יורדים ב-Corso Umberto. מוודאים עם הנהג לגבי הרמפה.</td></tr>
 <tr><td><b>סירקוזה לנוטו</b></td><td>אוטובוס, כשעה, ויורדים בפיאצ׳לה מרקוני.</td></tr>
 <tr><td><b>אורטיג׳יה לניאפוליס</b></td><td>מונית, כ-10 דקות.</td></tr>
-<tr><td><b>קטניה לסירקוזה ברכבת</b></td><td>סגור לפי תוצאת חיפוש עד 31.1.2027. לא מאומת.</td></tr>
+<tr><td><b>קטניה לסירקוזה ברכבת</b></td><td>סגורה עד 31.1.2027, והחלופה אוטובוס כשעתיים מקטניה מרכזית. לא משתמשים. <span class="pill v">אומת</span></td></tr><tr><td><b>סירקוזה לנוטו ברכבת</b></td><td>הקו הזה פתוח, אבל התחנה בנוטו 10 עד 15 דקות בעלייה מהמרכז, ולכן אוטובוס עדיף.</td></tr>
 </table>
 </div>
 <div class="rv">
@@ -442,10 +533,10 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <li><label><input type="checkbox" data-k="b2"><span><b>טיסות הפנים</b> מרומא לקטניה ובחזרה: בוחרים טיסה בבוקר ביום הלוך, ובחזרה כזו שנוחתת לפחות ארבע שעות לפני 21:55. מודיעים על הקלנועית גם לחברה הזו, כי המדיניות שונה.<span class="pill c">לבדוק</span></span></label></li>
 <li><label><input type="checkbox" data-k="b3"><span><b>סיוע בשדה התעופה (PRM)</b> ברומא ובקטניה, מראש.<span class="pill c">לבדוק</span></span></label></li>
 <li><label><input type="checkbox" data-k="b4"><span><b>אינטרבוס:</b> לוח זמנים של החורף ואיך עולים עם קלנועית.<span class="pill c">לבדוק</span></span></label></li>
-<li><label><input type="checkbox" data-k="b5"><span><b>הרכבת קטניה-סירקוזה:</b> אם נפתחה מחדש, אפשר להשתמש בה. אחרת אוטובוס.<span class="pill c">לבדוק</span></span></label></li>
+<li><label><input type="checkbox" data-k="b5"><span><b>הרכבת קטניה-סירקוזה</b> סגורה עד 31.1.2027, לכן לא מזמינים רכבת. אם יהיה שינוי, RFI תפרסם.<span class="pill v">אומת</span></span></label></li>
 <li><label><input type="checkbox" data-k="b6"><span><b>מלונות</b> ליד השדה ברומא ובאורטיג׳יה, עם כניסה בלי מדרגות, מעלית מתאימה ומקלחת בלי סף.<span class="pill c">לאמת בטלפון</span></span></label></li>
 <li><label><input type="checkbox" data-k="b7"><span><b>שביתות:</b> באיטליה יש שביתות תחבורה לעיתים, גם בטיסות ובאוטובוסים. בודקים שבוע לפני.<span class="pill c">לבדוק שבוע לפני</span></span></label></li>
-<li><label><input type="checkbox" data-k="b8"><span><b>ביטוח נסיעות</b> שמכסה ציוד ניידות.</span></label></li>
+<li><label><input type="checkbox" data-k="b9"><span><b>מסעדות קטנות:</b> La Pigna, Ciauru Anticu, Agape, Antica Locanda ו-Retablo מזמינים בטלפון או באתר, כשבוע מראש.</span></label></li><li><label><input type="checkbox" data-k="b8"><span><b>ביטוח נסיעות</b> שמכסה ציוד ניידות.</span></label></li>
 </ul></div>
 </div></section>
 
@@ -453,10 +544,10 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <h2 class="rv">מזג אוויר וציוד</h2>
 <div class="cols" style="margin-top:20px">
 <div class="rv">
-<p><b>טמפרטורה:</b> בסירקוזה בסוף ינואר כ-9 עד 10 מעלות בלילה וכ-15 ביום. זו הערכה כללית לפי אקלים החודש, ולא תחזית.</p>
-<p><b>גשם:</b> ינואר הוא מהחודשים הגשומים בסיציליה, ובכל זאת יש הרבה ימים בהירים. הגשם בא במטחים.</p>
-<p><b>ים ורוח:</b> הים קר מכדי לשחות, ולפעמים יש רוח בצד הים.</p>
-<p><b>אור:</b> השקיעה בסביבות 17:20, לכן התוכניות החשובות בבוקר ובצהריים.</p>
+<p><b>טמפרטורה:</b> בסירקוזה מקסימום ממוצע כ-15 מעלות ומינימום כ-8 עד 12, לפי כמה אתרי אקלים. הים כ-16 מעלות. זה ממוצע חודשי ולא תחזית.</p>
+<p><b>גשם ושמש:</b> בממוצע כ-10 ימים עם גשם בחודש ו-70 עד 80 מ״מ, ולפי אחד האתרים כ-4 שעות שמש ביום. המקורות לא תמיד מסכימים, ולכן לכל יום יש חלופת גשם.</p>
+<p><b>רוח:</b> ממוצע של כ-29 קמ״ש לפי אתר תחזית, ולכן שכבה חוסמת רוח וכיסוי לקלנועית. הים קר מכדי לשחות.</p>
+<p><b>אור:</b> כ-10 שעות אור, ושקיעה בסביבות 17:15 עד 17:25. התוכניות החשובות בבוקר ובצהריים.</p>
 <p style="color:var(--soft);font-size:.9rem">לתחזית מדויקת, בודקים שבוע לפני.</p>
 <div class="note w"><b>ריצוף</b>רוב אורטיג׳יה ונוטו מרוצפות אבן. מתכננים מסלולים קצרים, משאירים זמן, ואם משהו קשה: מונית.</div>
 </div>
@@ -476,11 +567,26 @@ html.rm .rv,html.rm .shot.rv{opacity:1;transform:none;clip-path:none}
 <section id="src"><div class="wrap">
 <h2 class="rv">מקורות</h2>
 <div class="card rv src">
-<p style="margin-top:0">המסלול נבנה לפי חיפוש באתרי תחבורה ותיירות ובקהילות נסיעות. לא הצלחתי לגשת ל-Reddit, ולכן אין כאן ציטוטים משם. מה שלא אומת מסומן בדף. מספרי מזג האוויר הם הערכה כללית.</p>
-<a href="https://www.everyrail.com/">EveryRail, מידע על קו קטניה-סירקוזה (לא נפתח לבדיקה)</a>
-<a href="https://www.interbus.it/">Interbus, אוטובוסים בסיציליה</a>
-<a href="https://www.trenitalia.com/en/information/passengers-with-disabilities-or-reduced-mobility.html">Trenitalia, נוסעים עם מוגבלות</a>
-<p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. המוזיקה נוצרת בדפדפן ואינה קובץ מוקלט. גרסת פירנצה ובולוניה הקודמת נשמרת בהיסטוריה של האתר.</p>
+<p style="margin-top:0">הדירוגים ושעות הפתיחה של המסעדות מגוגל מפות ב-14.11.2026. הביקורות מסוכמות במילים שלי, ללא ציטוטים. לא הצלחתי לגשת ל-Reddit. מה שלא אומת מסומן בדף.</p>
+<a href="https://www.quotidianodiragusa.it/2026/09/28/sicilia/treni-catania-siracusa-sospesi-lavori/">Quotidiano di Ragusa, הרכבת קטניה-סירקוזה סגורה עד 31.1.2027</a>
+<a href="https://everyrail.com/italy/syracuse/">EveryRail, תחנות סירקוזה ואוטובוסים חלופיים</a>
+<a href="https://bluekeys.it/blog/catania-airport-to-siracusa-transfer">BlueKeys, אוטובוס משדה קטניה לסירקוזה</a>
+<a href="https://www.tiqets.com/en/catania-attractions-c71461/tickets-for-catania-fontanarossa-airport-bus-transfer-to-siracuse-by-interbus-p1124219">Tiqets, אינטרבוס, תחנה בשדה ונגישות</a>
+<a href="https://audiala.com/en/italy/syracuse/syracuse">Audiala, שעות ונגישות בפארק Neapolis</a>
+<a href="https://www.sagetraveling.com/?p=17812">Sage Traveling, סיור נגיש בסירקוזה</a>
+<a href="https://www.disabledholidays.com/search/europe-l27/italy-l45/sicily-l524/syracuse-l6411/">Disabled Holidays, נגישות באורטיג׳יה</a>
+<a href="https://accesstravel.com/en-US/Story/Index/3256">Access Travel, מסלול נגיש בנוטו</a>
+<a href="https://bluekeys.it/destinations/noto">BlueKeys, נוטו ושיפועים</a>
+<a href="https://reidsitaly.com/destinations/sicily/southeast_sicily/noto/sights.html">Reid's Italy, נוטו</a>
+<a href="https://weather2travel.com/sicily/syracuse/august/">Weather2Travel, אקלים סירקוזה</a>
+<a href="https://www.easeweather.com/europe/italy/sicily/provincia-di-siracusa/siracusa/january">EaseWeather, ינואר בסירקוזה</a>
+<a href="https://www.amsterdamfoodie.nl/2025/ortigia-restaurants/">Amsterdam Foodie, מסעדות באורטיג׳יה</a>
+<a href="https://www.elizabethminchilli.com/?p=28622">Elizabeth Minchilli, איפה לאכול באורטיג׳יה</a>
+<a href="https://doeatbetterexperience.com/blog/what-to-eat-in-syracuse-sicily/">Do Eat Better, מה לאכול בסירקוזה</a>
+<a href="https://cdn.fodors.com/world/europe/italy/sicily/siracusa-and-the-southeast/siracusa/restaurants">Fodor's, מסעדות בסירקוזה</a>
+<a href="https://www.frommers.com/destinations/syracuse-and-ortygia-island/restaurants/">Frommer's, מסעדות בסירקוזה</a>
+<a href="https://wanderlog.com/list/geoCategory/74680/restaurants">Wanderlog, מסעדות בנוטו</a>
+<p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. המוזיקה נוצרת בדפדפן ואינה קובץ מוקלט. גרסת פירנצה ובולוניה נשמרת בהיסטוריה של האתר.</p>
 </div>
 </div></section>
 
@@ -536,6 +642,20 @@ document.getElementById('lbP').onclick=function(){show(idx+1)};
 document.getElementById('lbN').onclick=function(){show(idx-1)};
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 lb.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(idx+1);if(e.key==='ArrowRight')show(idx-1)});
+
+// filters
+(function(){var rc=[].slice.call(document.querySelectorAll('.rc')),st={area:'all',kind:'all'},out=document.getElementById('rcount');
+function ap(){var n=0;rc.forEach(function(c){var ok=(st.area==='all'||c.dataset.area===st.area)&&(st.kind==='all'||c.dataset.kind.split(',').indexOf(st.kind)>-1);c.hidden=!ok;if(ok)n++});out.textContent='מוצגים '+n+' מתוך '+rc.length}
+document.querySelectorAll('.chips').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});st[g.dataset.f]=b.dataset.v;ap()})});ap();
+// meals link to cards: reveal the card even if filtered out
+document.querySelectorAll('.meals a.map').forEach(function(a){a.addEventListener('click',function(e){var c=document.querySelector(a.getAttribute('href'));if(!c)return;e.preventDefault();if(c.hidden){st={area:'all',kind:'all'};document.querySelectorAll('.chips').forEach(function(g){g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v==='all')})});ap()}c.classList.add('in');c.scrollIntoView({behavior:'smooth',block:'center'})})});
+// copy
+document.querySelectorAll('.cp').forEach(function(b){b.addEventListener('click',function(){var t=b.dataset.cp||b.querySelector('span').textContent;function done(){b.classList.add('ok');setTimeout(function(){b.classList.remove('ok')},1200)}
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){})}else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(ta)}})});
+// today
+var d=new Date(),k=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(),m={'2027-1-25':'d0','2027-1-26':'d1','2027-1-27':'d2','2027-1-28':'d3','2027-1-29':'d4','2027-1-30':'d5'};
+if(m[k]){var a=document.querySelector('.ov a[href="#'+m[k]+'"]');if(a){a.classList.add('today');a.insertAdjacentHTML('beforeend','<span class="td">היום</span>')}}
+})();
 // music, generated in the browser, off by default
 var mb=document.getElementById('musicBtn'),ctx=null,master=null,timer=null,playing=false,step=0;
 var N=[293.66,349.23,440,523.25,587.33,440,349.23,261.63,311.13,392,466.16,587.33,466.16,392,311.13,233.08];
