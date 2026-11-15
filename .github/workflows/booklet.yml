@@ -1,0 +1,55 @@
+name: Rebuild Sicily booklet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'italy-2027/index.html'
+      - 'italy-2027/booklet/make.py'
+      - 'italy-2027/booklet/package.json'
+  workflow_dispatch:
+
+concurrency:
+  group: booklet
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        working-directory: italy-2027/booklet
+        run: |
+          npm install --no-audit --no-fund
+          pip install beautifulsoup4 qrcode playwright
+          playwright install --with-deps chromium
+      - name: Build PDF
+        working-directory: italy-2027/booklet
+        run: python3 make.py
+      - name: Commit PDF if changed
+        id: commit
+        run: |
+          git config user.name "booklet-bot"
+          git config user.email "booklet-bot@users.noreply.github.com"
+          git add italy-2027/sicily-booklet.pdf
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -m "Rebuild Sicily booklet PDF from index.html"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Trigger Pages build
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

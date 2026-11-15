@@ -1,0 +1,4 @@
+{
+ "private": true,
+ "dependencies": {"@fontsource/heebo": "5.2.5", "@fontsource/rubik": "5.2.5"}
+}
