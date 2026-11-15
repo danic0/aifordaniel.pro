@@ -19,17 +19,17 @@ DATE=['25','26','27','28','29','30']
 def gmaps(q): return 'https://www.google.com/maps/search/?api=1&query='+UP.quote_plus(q)
 # names -> google maps url, taken from the restaurant and bar cards on the page
 CARD={}
-for r in s.select('tr.rrow'):
-    m=r.select_one('a.map'); b=r.select_one('td b')
-    if not m or not b: continue
-    CARD['#'+r['id']]=m['href']; nm=re.split(r'[\u0590-\u05FF]',b.get_text().strip())[0].strip(' ,.')
-    if len(nm)>=4: CARD[nm]=m['href']
-for c in s.select('article.rc, article.nc'):
-    m=c.select_one('a.map'); 
+for c in s.select('a.gc'):
+    url=c['href']; h3=c.select_one('h3')
+    if c.get('id'): CARD['#'+c['id']]=url
+    nm=re.split(r'[,،]|[\u0590-\u05FF]',h3.get_text().strip())[0].strip()
+    if len(nm)>=4: CARD[nm]=url
+for c in s.select('article.nc'):
+    m=c.select_one('a.map')
     if not m: continue
-    url=m['href']; h3=c.select_one('h3'); 
+    url=m['href']; h3=c.select_one('h3')
     for sp in h3.select('.rk'): sp.decompose()
-    nm=re.split(r'[,،]|[֐-׿]',h3.get_text().strip())[0].strip()
+    nm=re.split(r'[,،]|[\u0590-\u05FF]',h3.get_text().strip())[0].strip()
     CARD['#'+c['id']]=url
     if len(nm)>=4: CARD[nm]=url
 NAMES={}
@@ -134,6 +134,66 @@ for i in range(6):
 <footer><span>סירקוזה, ינואר 2027</span><span>{DATE[i]}.1</span></footer>
 </section>''')
 
+# ---------- restaurants, pizza, booking, prep ----------
+TYPE={'street':'רחוב','pizza':'פיצה','tratt':'טרטוריה','cafe':'בוקר'}
+def rrows(areas):
+    cs=[c for c in s.select('a.gc') if c['data-a'] in areas]
+    cs.sort(key=lambda c:(-float(c['data-v']),-float(c['data-r'])))
+    out=''
+    for c in cs:
+        nm=txt(c.select_one('h3')); g=c.select_one('.gg')
+        rt=txt(g.select_one('b')); cnt=txt(g.select_one('small')).replace(' ביקורות','')
+        dish=txt(c.select_one('.gd b')); v=txt(c.select_one('.gv b')).replace('/10','')
+        cl=txt(c.select_one('.gcl')); pr='€'*int(c['data-p'])
+        out+=f'<tr><td><a class="pl" href="{E(c["href"])}">{E(nm)}</a></td><td>{TYPE[c["data-t"]]}</td><td>{pr}</td><td><b>{E(rt)}</b> <small>({E(cnt)})</small></td><td><b>{E(v)}</b>/10</td><td>{E(dish)}</td><td><small>{E(cl)}</small></td></tr>'
+    return out
+TH='<thead><tr><th>מקום</th><th>סוג</th><th>מחיר</th><th>גוגל</th><th>תמורה</th><th>מנה</th><th>מתי סגור</th></tr></thead>'
+def rpage(title,sub,parts):
+    body=''.join(f'<div class="bx"><h3>{E(t)}</h3><table class="rt">{TH}<tbody>{rrows(a)}</tbody></table></div>' for t,a in parts)
+    return f'<section class="pg ess" style="--c:#0b5fa5"><header class="eh"><h2>{E(title)}</h2><p class="sm">{E(sub)}</p></header><div class="cols one"><div class="col">{body}</div></div><footer><span>שם המקום לחיץ ופותח את גוגל מפות</span><span>aifordaniel.pro/italy-2027</span></footer></section>'
+SUB='ממוין לפי תמורה למחיר. תמורה: ציון שלנו מ-1 עד 10. מנה: מחיר משוער לאדם, בלי שתייה.'
+pages.append(rpage('מסעדות באורטיג׳יה',SUB,[('אורטיג׳יה',['o'])]))
+pages.append(rpage('מסעדות בסירקוזה, נוטו וקטניה',SUB,[('סירקוזה, ליד הגשר והתחנה',['s']),('נוטו',['n']),('קטניה, אם עוברים בה',['c'])]))
+pz=''
+for a in s.select('#pizza article.pz'):
+    nm=txt(a.select_one('h3')); bd=txt(a.select_one('.pzb')); area=txt(a.select_one('.gsub'))
+    nums=[txt(x.select_one('b')) for x in a.select('.pzn div')]
+    mp=a.select_one('a.gm2:not(.tel)')['href']; tel=txt(a.select_one('a.tel')).replace('חיוג ','')
+    pz+=f'<li><a class="pl" href="{E(mp)}">{E(nm)}</a> · {E(bd)}<br><small>{E(area)} · גוגל {E(nums[0])} · פיצה {E(nums[1])} · הזמנה {E(nums[2])} · <span dir="ltr">{E(tel)}</span></small></li>'
+rs=''
+for li in s.select('#reserve li.rs'):
+    nm=txt(li.select_one('.rsm b')); meta=txt(li.select_one('.rsm span')); w=txt(li.select_one('.rsw b'))
+    tel=li.select_one('a.tel'); t=(tel['href'].replace('tel:','') if tel else 'באינטרנט')
+    mp=li.select_one('a.gm2:not(.tel)')['href']
+    rs+=f'<li><a class="pl" href="{E(mp)}">{E(nm)}</a> · {E(w)}<br><small>{E(meta)} · <span dir="ltr">{E(t)}</span></small></li>'
+say=txt(s.select_one('#reserve .say p')); sayh=txt(s.select_one('#reserve .say small'))
+noq=''.join(f'<li><b>{E(txt(x.select_one("b")))}</b> {E(txt(x)[len(txt(x.select_one("b"))):])}</li>' for x in s.select('#reserve ul.local li'))
+pzt=ul([txt(x) for x in s.select('#pizza .pzt li')])
+pages.append('<section class="pg ess" style="--c:#c0392b"><header class="eh"><h2>פיצה, ומסעדות שמזמינים בהן מקום</h2></header>'
+ f'<div class="cols"><div class="col"><div class="bx"><h3>פיצה איטלקית אמיתית</h3><ul class="pzl">{pz}</ul></div>'
+ f'<div class="bx"><h3>איך אוכלים פיצה כמו סיציליאנים</h3>{pzt}</div></div>'
+ f'<div class="col"><div class="bx"><h3>להזמין מקום מראש</h3><ul class="pzl">{rs}</ul></div>'
+ f'<div class="bx"><h3>מה אומרים בטלפון</h3><p dir="ltr" style="text-align:left;font-weight:700;margin:0">{E(say)}</p><p class="sm">{E(sayh)}</p></div>'
+ f'<div class="bx"><h3>לא מזמינים, מגיעים מוקדם</h3><ul>{noq}</ul></div></div></div>'
+ '<footer><span>שם המקום לחיץ ופותח את גוגל מפות</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
+sl=''
+for a in s.select('#sleep article.sl'):
+    when=' '.join(txt(x) for x in a.select('.sln b, .sln span')); h3=txt(a.select_one('h3')); p=txt(a.select_one('.slb p'))
+    mp=a.select_one('a.gm2')['href']
+    sl+=f'<li><b>{E(when)}: <a class="pl" href="{E(mp)}">{E(h3)}</a></b><br>{E(p)}</li>'
+chk=', '.join(txt(x) for x in s.select('#sleep .slc li b'))
+apps=''.join(f'<li><b>{E(txt(a.select_one("h3")))}</b> · {E(txt(a.select_one(".arole")))} <small>({E(txt(a.select_one(".alvl")))})</small></li>' for a in s.select('#ready article.app'))
+es=''.join(f'<li><b>{E(txt(x.select_one("b")))}</b> {E(txt(x.select_one("span")))} · {E(txt(x.select_one("strong")))}</li>' for x in s.select('#ready .eo'))
+todo=''
+for g in s.select('#ready .chk'):
+    todo+=f'<h4>{E(txt(g.select_one("h4")))}</h4><ul class="cb">'+''.join(f'<li>{E(txt(x))}</li>' for x in g.select('label span'))+'</ul>'
+pages.append('<section class="pg ess" style="--c:#17806f"><header class="eh"><h2>לפני הטיסה: לינה, אפליקציות ומשימות</h2></header>'
+ f'<div class="cols"><div class="col"><div class="bx"><h3>איפה ישנים</h3><ul class="pzl">{sl}</ul><p class="sm">לבדוק לפני שמזמינים: {E(chk)}.</p></div>'
+ f'<div class="bx"><h3>אפליקציות להוריד</h3><ul>{apps}</ul></div>'
+ f'<div class="bx"><h3>eSIM לגלישה</h3><ul>{es}</ul></div></div>'
+ f'<div class="col"><div class="bx"><h3>משימות לפי זמן</h3>{todo}</div></div></div>'
+ '<footer><span>לסמן בעט</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
+
 # ---------- essentials ----------
 ph=[]
 for li in s.select('#it .pgrp li')[:12]:
@@ -197,6 +257,16 @@ ul{margin:0;padding-inline-start:1.1em}li{margin:.18em 0}
 .ph{list-style:none;padding:0}.ph li{display:grid;padding:1.2mm 0;border-top:1px solid #e6ecef}.ph b{font-family:Rubik;text-align:right}.ph span{font-size:.9em;color:#3f5260}
 .fill{display:grid;grid-template-columns:24mm 1fr;align-items:end;gap:2mm;margin-top:3.5mm}.fill i{border-bottom:1px solid #8a9aa5;height:5mm}
 .sm{font-size:.88em;color:#3f5260;margin:1mm 0 0}
+.one{grid-template-columns:1fr}
+.rt{width:100%;border-collapse:collapse;font-size:.86em}
+.rt th{font:700 7.6pt Rubik;color:#3f5260;text-align:start;padding:1mm 1.2mm;border-bottom:1.5px solid #c9d4da}
+.rt td{padding:1.05mm 1.2mm;border-bottom:1px solid #e6ecef;vertical-align:top}
+.rt td:first-child{font-weight:700}
+.rt small{color:#3f5260}
+.pzl{list-style:none;padding:0}.pzl li{padding:1.3mm 0;border-top:1px solid #e6ecef}.pzl li:first-child{border-top:0}
+.cb{list-style:none;padding:0}.cb li{padding:.9mm 0;padding-inline-start:6mm;position:relative}.cb li::before{content:"";position:absolute;inset-inline-start:0;top:1.6mm;width:3.2mm;height:3.2mm;border:1.3px solid #3f5260;border-radius:.8mm}
+h4{font:800 9.5pt Rubik;margin:2.5mm 0 .5mm;color:var(--c)}
+.ess .eh p{margin:1mm 0 0}
 a.pl{color:inherit;text-decoration:underline;text-decoration-color:var(--c,#0b5fa5);text-decoration-thickness:1.5px;text-underline-offset:1.2mm;font-weight:700}
 '''
 doc=f'<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><title>סירקוזה וסיציליה, חוברת טיול ינואר 2027</title><style>{CSS}</style></head><body>{"".join(pages)}</body></html>'
@@ -216,7 +286,7 @@ async def main():
         await pg.pdf(path=OUT,format='A4',print_background=True,prefer_css_page_size=True)
         print('links in pdf:',LINKS)
         if os.environ.get('SHOTS'):
-            for k in range(8):
+            for k in range(len(await pg.query_selector_all('.pg'))):
                 el=(await pg.query_selector_all('.pg'))[k]
                 await el.screenshot(path=f'/tmp/p{k}.png')
         await b.close()
