@@ -828,7 +828,7 @@ html.hc .app::before{background:currentColor}
 .scam>div>b{font:800 1rem Rubik}.scam p{margin:4px 0 0;font-size:.9rem;line-height:1.55}
 .chk2{margin-top:14px;background:var(--tint);border-radius:var(--r);padding:14px 18px}
 .chk2 h3{margin:0 0 6px;font:800 1.02rem Rubik}.chk2 ol{margin:0;padding-inline-start:1.3em;display:grid;gap:4px;font-size:.92rem}
-</style>
+.tiles-dark{filter:invert(1) hue-rotate(180deg) brightness(.95) contrast(.9)}</style>
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -1593,7 +1593,7 @@ function dot(color,label,cls){return L.divIcon({className:'mk '+(cls||''),html:'
 function init(){if(map)return Promise.resolve(map);return load().then(function(Lx){L=Lx;el.innerHTML='';
  var dark=matchMedia('(prefers-color-scheme:dark)').matches;
  map=L.map(el,{zoomControl:true,attributionControl:true,tap:true}).fitBounds(BB.o);
- L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/'+(dark?'dark_all':'voyager')+'/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
+ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',className:dark?'tiles-dark':''}).addTo(map);
  layers.r=L.layerGroup();layers.s=L.layerGroup();layers.t=L.layerGroup();layers.z=L.layerGroup();
  D.r.forEach(function(p){var s=window.placeStatus?window.placeStatus(p.h):null;
   var html='<div class="pp"><b>'+esc(p.n)+'</b><span>'+TN[p.t]+' · '+'€'.repeat(p.p)+'</span><div class="ppn"><span>גוגל <b>'+p.r.toFixed(1)+'</b></span><span>תמורה <b>'+p.v+'/10</b></span><span>מנה <b>'+esc(p.d)+'</b></span></div>'+(s?'<em class="'+(s.open?'is-open':'is-closed')+'">'+esc(s.txt)+'</em>':'<em>'+esc(p.cl)+'</em>')+'<div class="ppl"><a href="'+nav(p.la,p.ln,p.pid)+'" target="_blank" rel="noopener">ניווט</a><a href="#'+p.id+'" class="ppcard">לכרטיס</a></div></div>';
