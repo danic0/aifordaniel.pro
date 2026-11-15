@@ -475,6 +475,30 @@ nav.rail .wrap{align-items:center}
 @media(prefers-reduced-motion:reduce){.toc,.toc::backdrop,.totop{transition:none}}
 html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 @media print{.toc,.totop,.menub{display:none!important}}
+
+/* build12 */
+.rule{background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--acc);border-radius:16px;padding:14px 18px;margin-top:16px}
+.rule b{font:800 1rem Rubik}.rule ul{margin:6px 0 0;padding-inline-start:20px;display:grid;gap:4px}
+.legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:16px}
+.leg{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--dc);border-radius:var(--r);padding:18px 20px;display:grid;gap:10px;align-content:start}
+.leg header{display:flex;gap:10px;align-items:center}.leg h3{margin:0;font-size:1.08rem}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.op{border-radius:14px;padding:10px 12px;display:grid;gap:2px;font-size:.88rem;background:var(--tint)}
+.op b{font:800 .95rem Rubik}.op span{color:var(--soft)}.op strong{font:900 1rem Rubik;margin-top:4px}
+.op.bus{background:color-mix(in srgb,var(--dc) 12%,var(--card));box-shadow:inset 0 0 0 1.5px var(--dc)}
+.rec{margin:0;font-size:.95rem}.rec b{font-family:Rubik;color:var(--dc);margin-inline-end:6px}
+.leg ul{margin:0;padding-inline-start:20px;display:grid;gap:4px;font-size:.92rem;color:var(--soft)}
+.save{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-top:16px}
+.save h3{margin:0 0 8px}.save ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.save li{display:grid;gap:2px;padding-top:10px;border-top:1px solid var(--line)}.save li:first-child{border-top:0;padding-top:0}
+.save li b{font-family:Rubik}
+.evs{display:grid;gap:10px;margin-top:16px}
+.ev{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.ev p{margin:2px 0 0;font-size:.95rem}.ev b{font-family:Rubik}
+.evk{font:800 .78rem Rubik;padding:4px 10px;border-radius:99px;background:var(--tint);color:var(--soft);white-space:nowrap}
+.ev.maybe .evk{background:var(--warn);color:var(--ink)}
+@media(max-width:420px){.cmp{grid-template-columns:1fr}}
+@media print{.legs,.evs{display:block}.leg,.ev,.save,.rule{break-inside:avoid;margin-top:8px}}
 </style>
 </head>
 <body>
@@ -505,7 +529,7 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 </header>
 
 <nav class="rail" aria-label="ניווט במסלול"><div class="wrap" id="nav">
-<button type="button" class="menub" id="menub" aria-haspopup="dialog" aria-controls="toc"><span aria-hidden="true"><i></i><i></i><i></i></span>כל הפרקים</button><a href="#now">עכשיו</a><a href="#days">המסלול</a><a href="#eat">מסעדות</a><a href="#night">לילה</a><a href="#scams">להיזהר</a><a href="#sos">חירום</a><a href="#verify">לבדוק</a>
+<button type="button" class="menub" id="menub" aria-haspopup="dialog" aria-controls="toc"><span aria-hidden="true"><i></i><i></i><i></i></span>כל הפרקים</button><a href="#now">עכשיו</a><a href="#days">המסלול</a><a href="#eat">מסעדות</a><a href="#night">לילה</a><a href="#scams">להיזהר</a><a href="#lines">תחבורה</a><a href="#budget">עלויות</a><a href="#sos">חירום</a><a href="#verify">לבדוק</a>
 </div></nav>
 
 <main id="main">
@@ -598,7 +622,7 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 <div class="cols">
 <ul class="tl rv">
 <li><span class="t">בוקר</span><div>טיסה פנימית מרומא לקטניה, כשעה וחצי. מזמינים סיוע מראש בשני הקצוות.</div></li>
-<li><span class="t">אחה״צ</span><div><b>אוטובוס אינטרבוס</b> משדה התעופה לסירקוזה, שעה עד שעה ועשר דקות, ישיר וללא החלפה. התחנה בשדה בקומת הקרקע, ליד חניון ההשכרה R1. יורדים בתחנת Corso Umberto ליד הגשר לאורטיג׳יה, ומשם מונית קצרה למלון. לפי נתוני הקיץ יש יציאה בערך כל חצי שעה בין 07:10 ל-23:10.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Catania+Airport+Fontanarossa" target="_blank" rel="noopener">מפה: שדה התעופה בקטניה</a></div></li>
+<li><span class="t">אחה״צ</span><div><b>אוטובוס אינטרבוס</b> משדה התעופה לסירקוזה, שעה עד שעה ועשר דקות, ישיר וללא החלפה. התחנה בשדה בקומת הקרקע, ליד חניון ההשכרה R1. יורדים בתחנת Corso Umberto ליד הגשר לאורטיג׳יה, ומשם מונית קצרה למלון. <b>6.20 אירו לאדם</b>. בימי חול יוצא כל 15 דקות בין 09:10 ל-12:10, ואחר כך כל חצי שעה עד 20:10 (BlueKeys, אוגוסט 2026). מונית פרטית לאותה דרך עולה כ-132 אירו, ולכן אוטובוס.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Catania+Airport+Fontanarossa" target="_blank" rel="noopener">מפה: שדה התעופה בקטניה</a></div></li>
 <li><span class="t">ערב</span><div>צ׳ק-אין, ארוחה קרובה למלון, ולילה מוקדם. אם נשאר כוח, הליכה קצרה לפיאצה דואומו.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+Duomo+Siracusa" target="_blank" rel="noopener">מפה: פיאצה דואומו</a></div></li>
 </ul>
 <div class="rv">
@@ -650,7 +674,7 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 </div>
 <div class="cols">
 <ul class="tl rv">
-<li><span class="t">09:30</span><div>מונית מאורטיג׳יה לפארק <b>Neapolis</b>, כ-10 דקות. את הנסיעה כדאי להזמין מראש ולבקש מונית עם מקום לקלנועית.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Parco+Archeologico+della+Neapolis+Siracusa" target="_blank" rel="noopener">מפה: הפארק הארכאולוגי</a></div></li>
+<li><span class="t">09:30</span><div>מונית מאורטיג׳יה לפארק <b>Neapolis</b>, כ-10 דקות, <b>כ-10 עד 15 אירו</b> (הערכה). מונית לא עוצרת ברחוב: מזמינים מתחנת פיאצה פנקלי, 0931 60980, ומבקשים מקום לקלנועית. חלופה בחינם: יוליה על הקלנועית, כ-3 ק״מ.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Parco+Archeologico+della+Neapolis+Siracusa" target="_blank" rel="noopener">מפה: הפארק הארכאולוגי</a></div></li>
 <li><span class="t">10:00</span><div><b>התיאטרון היווני</b> ו<b>האוזן של דיוניסיוס</b>. כניסה חינם למוגבל ולמלווה, לפי אתר הפארק. 2-3 שעות.</div></li>
 <li><span class="t">13:00</span><div>צהריים בעיר, ומונית חזרה לאורטיג׳יה.</div></li>
 <li><span class="t">אחה״צ</span><div>מנוחה, קפה ושוטטות חופשית באי.</div></li>
@@ -677,10 +701,10 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 <div class="split rev">
 <div>
 <ul class="tl rv">
-<li><span class="t">09:00</span><div>אוטובוס מסירקוזה לנוטו, כשעה. יורדים בפיאצ׳לה מרקוני, בקצה העיר.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazzale+Marconi+Noto" target="_blank" rel="noopener">מפה: פיאצ׳לה מרקוני</a></div></li>
+<li><span class="t">09:40</span><div><b>אוטובוס אינטרבוס</b> מ-Corso Umberto 196 לנוטו, כ-55 דקות, <b>כ-4.30 אירו לאדם</b>. יש עוד יציאות ב-11:40, 13:40 ו-14:40 לפי CheckMyBus. יורדים בתחנה ליד הגן הציבורי ופיאצ׳לה מרקוני, בקצה העיר.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazzale+Marconi+Noto" target="_blank" rel="noopener">מפה: פיאצ׳לה מרקוני</a></div></li>
 <li><span class="t">10:30</span><div>הרחוב הראשי <b>Corso Vittorio Emanuele</b>, מתחילים בשער Porta Reale: הקתדרלה, פיאצה המוניציפליות וחזיתות הבארוק מאבן חמה.<br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Cattedrale+di+Noto" target="_blank" rel="noopener">מפה: הקתדרלה</a></div></li>
 <li><span class="t">13:00</span><div>צהריים, וקינוח: קנולי או גרניטה.</div></li>
-<li><span class="t">15:30</span><div>אוטובוס חזרה לסירקוזה, והגעה לפני החושך.</div></li>
+<li><span class="t">15:30</span><div>אוטובוס חזרה לסירקוזה. את שעות החזרה לא מצאתי במקור אמין, ולכן <b>מצלמים את לוח הזמנים בתחנה כבר בהגעה</b>. אם ההמתנה יותר משעה וחצי, או שכבר חושך וגשם: מונית לסירקוזה, <b>כ-60 עד 80 אירו</b>.</div></li>
 </ul>
 </div>
 <div class="rv">
@@ -699,7 +723,7 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 <div class="split">
 <ul class="tl rv">
 <li><span class="t">בוקר</span><div>ארוחת בוקר ארוכה, גרניטה עם בריוש, וצ׳ק-אאוט.</div></li>
-<li><span class="t">אחר כך</span><div>מונית לתחנת Corso Umberto ואוטובוס אינטרבוס לשדה בקטניה, כשעה. עולים על אוטובוס שמגיע לשדה לפחות שלוש שעות לפני הטיסה לרומא.</div></li>
+<li><span class="t">אחר כך</span><div>מונית לתחנת Corso Umberto (כ-10 אירו, הערכה) ואוטובוס אינטרבוס לשדה בקטניה, כשעה, <b>6.20 אירו לאדם</b>. עולים על אוטובוס שמגיע לשדה לפחות שלוש שעות לפני הטיסה לרומא.</div></li>
 <li><span class="t">טיסה</span><div>טיסה פנימית לפיומיצ׳ינו, ומשם הטיסה של אל על בשעה 21:55 עם צ׳ק-אין כ-3 שעות מראש.</div></li>
 </ul>
 <div>
@@ -845,6 +869,12 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 </div>
 </div></section>
 
+<section id="events"><div class="wrap">
+<h2 class="rv">אירועים ופסטיבלים בתאריכים שלכם</h2>
+<p class="lead rv">בדקתי פסטיבלים, סאגרות, קרנבלים ותיאטרון. השורה התחתונה: שבוע שקט, וזה מתאים למסלול רגוע.</p>
+<div class="evs"><div class="ev rv none"><span class="evk">אין</span><div><b>סירקוזה ונוטו, 25-30.1</b><p>לא מצאתי פסטיבל או סאגרה בתאריכים שלכם. רוב הסאגרות בסיציליה בינואר מתרכזות סביב 6.1. זה גם יתרון: אין המונים, והמחירים של עונה נמוכה.</p></div></div><div class="ev rv past"><span class="evk">לא בתאריכים</span><div><b>Luci a Siracusa, תיאטרון העירייה</b><p>בעונה האחרונה התקיים בין 15.12 ל-22.1. אם יחזור באותם תאריכים, הוא יסתיים לפני שתגיעו. את Teatro Massimo בסירקוזה עדיין צריך לבדוק.</p></div></div><div class="ev rv maybe"><span class="evk">לבדוק</span><div><b>הקרנבל של אצ׳יריאלה</b><p>הקרנבל הכי ידוע בסיציליה. ב-2026 נפתח ב-31.1 ונמשך עד 17.2, כרטיס יומי 10 אירו. ב-2027 יום שלישי של הקרנבל נופל ב-9.2, כלומר שבוע מוקדם יותר, ולכן ייתכן שהפתיחה תהיה ב-30.1, היום שבו אתם טסים. התאריכים עוד לא פורסמו. אצ׳יריאלה מעבר לקטניה, וזה לא במסלול.</p></div></div><div class="ev rv past"><span class="evk">לא בתאריכים</span><div><b>סנט׳אגאתה בקטניה</b><p>החג הגדול של קטניה הוא 3-5 בפברואר, אחרי שתחזרו.</p></div></div><div class="ev rv none"><span class="evk">אין</span><div><b>כניסה חינם ביום ראשון</b><p>הכניסה חינם בראשון הראשון בכל חודש. אתם לא בסיציליה בראשון, אבל ממילא נכנסים חינם כנכה ומלווה.</p></div></div></div>
+</div></section>
+
 <section id="it"><div class="wrap">
 <h2 class="rv">איטלקית לדרך</h2>
 <p class="lead rv">משפטים קצרים שבאמת שימושיים. לחיצה על העיגול משמיעה את המשפט בקול באיטלקית, אם הטלפון תומך בזה.</p>
@@ -853,10 +883,11 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 
 <section id="budget"><div class="wrap">
 <h2 class="rv">תקציב משוער</h2>
-<p class="lead rv">אפשר לשנות כל סכום, והחישוב מתעדכן ונשמר. רוב המספרים הם הערכה שלי, ומה שבא ממקור מסומן.</p>
-<div class="bud rv"><div class="tw"><table><thead><tr><th>מה</th><th>אירו</th></tr></thead><tbody><tr><td>אוטובוס שדה קטניה לסירקוזה, הלוך וחזור, לשניים<small>6.20 אירו לכיוון לפי BlueKeys, אוגוסט 2026</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="bus" value="25" aria-label="אוטובוס שדה קטניה לסירקוזה, הלוך וחזור, לשניים, באירו"></td></tr><tr><td>אוטובוס לנוטו הלוך וחזור, לשניים<small>הערכה שלי</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="noto" value="16" aria-label="אוטובוס לנוטו הלוך וחזור, לשניים, באירו"></td></tr><tr><td>מוניות קצרות בסירקוזה (3-4 נסיעות)<small>הערכה שלי</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="taxi" value="50" aria-label="מוניות קצרות בסירקוזה (3-4 נסיעות), באירו"></td></tr><tr><td>טיסה פנים רומא-קטניה-רומא, לשניים<small>הערכה שלי, תלוי בהזמנה</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="fly" value="220" aria-label="טיסה פנים רומא-קטניה-רומא, לשניים, באירו"></td></tr><tr><td>כניסות: ניאפוליס, אורסי, ניקולצ׳י, Badia<small>מלווה ונכה ייתכן חינם בחלק מהאתרים</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="sites" value="40" aria-label="כניסות: ניאפוליס, אורסי, ניקולצ׳י, Badia, באירו"></td></tr><tr><td>אוכל ושתייה, 5 ימים, לשניים<small>הערכה: כ-130 אירו ליום</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="food" value="650" aria-label="אוכל ושתייה, 5 ימים, לשניים, באירו"></td></tr><tr><td>ברים ויציאות<small>הערכה שלי</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="night" value="150" aria-label="ברים ויציאות, באירו"></td></tr><tr><td>מלונות (5 לילות)<small>למלא אחרי ההזמנה</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="hotel" value="0" aria-label="מלונות (5 לילות), באירו"></td></tr><tr><td>שונות ומזכרות<small>הערכה שלי</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="misc" value="80" aria-label="שונות ומזכרות, באירו"></td></tr></tbody></table></div>
+<p class="lead rv">חישוב לתקציב נמוך, בלי טיסות אל על ובלי מלונות. אפשר לשנות כל סכום, והחישוב מתעדכן ונשמר. מה שבא ממקור מסומן, והשאר הערכה שלי.</p>
+<div class="bud rv"><div class="tw"><table><thead><tr><th>מה</th><th>אירו</th></tr></thead><tbody><tr><td>טיסת פנים רומא-קטניה הלוך וחזור, לשניים<small>ממוצע ינואר כ-78 אירו לאדם הלוך וחזור לפי momondo</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="fly" value="160" aria-label="טיסת פנים רומא-קטניה הלוך וחזור, לשניים, באירו"></td></tr><tr><td>מזוודה בטיסת הפנים, אם חברה זולה<small>הערכה. הקלנועית עצמה נטענת בחינם</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="bag" value="60" aria-label="מזוודה בטיסת הפנים, אם חברה זולה, באירו"></td></tr><tr><td>אינטרבוס שדה-סירקוזה, 4 נסיעות<small>6.20 אירו לנסיעה, BlueKeys</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="bus" value="25" aria-label="אינטרבוס שדה-סירקוזה, 4 נסיעות, באירו"></td></tr><tr><td>אינטרבוס לנוטו וחזרה, לשניים<small>כ-4.30 אירו לנסיעה, CheckMyBus</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="noto" value="18" aria-label="אינטרבוס לנוטו וחזרה, לשניים, באירו"></td></tr><tr><td>מוניות בתוך סירקוזה (3-4 נסיעות)<small>הערכה: כ-10 אירו לנסיעה</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="taxi" value="40" aria-label="מוניות בתוך סירקוזה (3-4 נסיעות), באירו"></td></tr><tr><td>כניסות לאתרים<small>ניאפוליס ואורסי חינם לנכה ולמלווה. נשארים דואומו, Badia וניקולצ׳י</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="sites" value="20" aria-label="כניסות לאתרים, באירו"></td></tr><tr><td>אוכל ושתייה, 5 ימים, לשניים<small>כ-60 אירו ליום: אוכל רחוב בצהריים, טרטוריה בערב</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="food" value="300" aria-label="אוכל ושתייה, 5 ימים, לשניים, באירו"></td></tr><tr><td>ברים ויציאות<small>שני ערבים, כ-2 משקאות לאדם</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="night" value="80" aria-label="ברים ויציאות, באירו"></td></tr><tr><td>מלונות (5 לילות)<small>למלא אחרי ההזמנה</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="hotel" value="0" aria-label="מלונות (5 לילות), באירו"></td></tr><tr><td>שונות ומזכרות<small>הערכה שלי</small></td><td><input type="number" inputmode="numeric" min="0" step="1" data-b="misc" value="50" aria-label="שונות ומזכרות, באירו"></td></tr></tbody></table></div>
 <div class="btot"><div><span>סה״כ באירו</span><b id="bEur">0</b></div><div><span>שער אירו</span><input type="number" step="0.01" id="bRate" value="3.90" aria-label="שער אירו בשקלים"></div><div><span>סה״כ בשקלים</span><b id="bIls">0</b></div><div><span>לאדם</span><b id="bPer">0</b></div></div>
 <p class="sm">את שער האירו כדאי לעדכן לפני הטיסה.</p></div>
+<div class="save rv"><h3>איך חוסכים: מה מטיילים ומקומיים אומרים</h3><ul><li><b>הכי גדול: כניסה חינם</b>באתרים של חבל סיציליה (ניאפוליס, מוזיאון אורסי) הכניסה חינם לנכה ולבן משפחה או מלווה, לפי LiveSicilia. מביאים מסמך נכות. בניאפוליס זה חוסך 26-34 אירו לזוג.</li><li><b>מלון ליד התחנה</b>מטיילים ממליצים לישון מחוץ ללב אורטיג׳יה, באזור Santa Lucia או ליד Corso Umberto. זול יותר, שטוח לקלנועית, וקרוב לאוטובוס לשדה ולנוטו.</li><li><b>צהריים מהרחוב</b>ארוחת רחוב בסירקוזה עולה 5-10 אירו לאדם לפי מדריך מקומי: ארנצ׳ינו, פיצה במשקל, פנלה. שומרים את הכסף לארוחת ערב אחת טובה.</li><li><b>השוק לפני 10:00</b>השוק באורטיג׳יה הוא שוק עבודה של מקומיים. מגיעים לפני 10:00, ומקומיים מתארים בו מחירים נמוכים. סנדוויץ׳ גבינות מ-Borderi או Fratelli Burgio הוא ארוחה.</li><li><b>קפה בעמידה</b>קפה וקרואסון ליד הדלפק זולים יותר מאשר בשולחן. בשולחן משלמים גם שירות.</li><li><b>טיסת הפנים</b>מזמינים כ-5 שבועות מראש, לפי Kayak. משווים מחיר כולל מזוודה, כי בחברות זולות המזוודה יכולה לעלות יותר מהכרטיס.</li><li><b>מים וטיפ</b>טיפ לא חובה באיטליה. עיגול או 2-3 אירו בארוחה טובה זה מקובל, ולא להשאיר זה לא גס. מים בבקבוק קונים בסופר, לא בקיוסק ליד אתר.</li><li><b>לא לקנות מראש מה שאפשר בקופה</b>סיורים ו"כרטיס בלי תור" באתרי מכירה עולים יותר. בינואר אין תורים, ולכן קונים במקום.</li></ul></div>
 </div></section>
 
 <section id="sos"><div class="wrap">
@@ -885,28 +916,42 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 </div></div></section>
 
 <section id="lines"><div class="wrap">
-<h2 class="rv">איזה קו לקחת</h2>
-<div class="cols" style="margin-top:20px">
-<div class="rv">
-<table>
-<tr><td><b>שדה קטניה לסירקוזה</b></td><td>אינטרבוס ישיר, שעה עד שעה ועשר דקות. התחנה בשדה בקומת הקרקע, ליד חניון ההשכרה R1. יורדים ב-Corso Umberto. מוודאים עם הנהג לגבי הרמפה.</td></tr>
-<tr><td><b>סירקוזה לנוטו</b></td><td>אוטובוס, כשעה, ויורדים בפיאצ׳לה מרקוני.</td></tr>
-<tr><td><b>אורטיג׳יה לניאפוליס</b></td><td>מונית, כ-10 דקות.</td></tr>
-<tr><td><b>קטניה לסירקוזה ברכבת</b></td><td>סגורה עד 31.1.2027, והחלופה אוטובוס כשעתיים מקטניה מרכזית. לא משתמשים. <span class="pill v">אומת</span></td></tr><tr><td><b>סירקוזה לנוטו ברכבת</b></td><td>הקו הזה פתוח, אבל התחנה בנוטו 10 עד 15 דקות בעלייה מהמרכז, ולכן אוטובוס עדיף.</td></tr>
-</table>
+<h2 class="rv">תחבורה: כל קטע, כמה עולה ומתי מונית</h2>
+<p class="lead rv">לכל קטע יש אוטובוס מול מונית, עם זמן, תדירות ומחיר לשניים. הכלל: מונית רק כשההמתנה ארוכה, בחושך או בגשם, או כשהנסיעה קצרה וזולה ממילא.</p>
+<div class="rule rv"><b>מתי שווה מונית</b><ul><li>קטע קצר בתוך סירקוזה (10-15 אירו) וההמתנה לאוטובוס יותר מ-20 דקות.</li><li>קטע ארוך (נוטו, השדה) רק אם ההמתנה יותר משעה וחצי, בחושך או בגשם.</li><li>הרכבת קטניה-סירקוזה סגורה עד 31.1.2027, ולכן לא משתמשים בה.</li></ul></div>
+<div class="legs"><article class="leg rv" style="--dc:var(--dc1)"><header><span class="dtags"><a class="dtag" href="#d1" style="--c:var(--dc1)">26</a></span><h3>שדה קטניה ← סירקוזה (Corso Umberto)</h3></header>
+<div class="cmp"><div class="op bus"><b>אינטרבוס ישיר</b><span>כ-70 דקות</span><span>כל 15 דקות בבוקר, כל 30 אחה״צ</span><strong>12.40 אירו לשניים</strong></div>
+<div class="op tx"><b>הסעה פרטית</b><span>50-60 דקות</span><span>מתי שרוצים</span><strong>כ-132 אירו, ו-20% יותר בין 20:00 ל-08:00</strong></div></div>
+<p class="rec"><b>ההמלצה</b>אוטובוס. ההמתנה הכי ארוכה היא חצי שעה, וזה לא שווה 120 אירו.</p><ul><li>יוצאים מהטרמינל לקומת הקרקע. התחנה ליד חניון ההשכרה R1.</li><li>כרטיס: באתר booking.interbus.it או בקופה בשדה. לוודא מראש אם אפשר גם אצל הנהג.</li><li>יורדים בתחנה האחרונה, Corso Umberto, ליד הגשר לאורטיג׳יה.</li></ul></article>
+<article class="leg rv" style="--dc:var(--dc1)"><header><span class="dtags"><a class="dtag" href="#d1" style="--c:var(--dc1)">26</a></span><h3>Corso Umberto ← המלון</h3></header>
+<div class="cmp"><div class="op bus"><b>ברגל ובקלנועית</b><span>15-25 דקות</span><span>מתי שרוצים</span><strong>0 אירו</strong></div>
+<div class="op tx"><b>מונית מהתחנה</b><span>כ-5 דקות</span><span>מתחנת המוניות ברכבת: 0931 69722</span><strong>כ-10 אירו (הערכה)</strong></div></div>
+<p class="rec"><b>ההמלצה</b>אם המלון ליד התחנה, לא צריך כלום. אם באורטיג׳יה ועם מזוודות: מונית.</p><ul><li>מוניות בסירקוזה לא עוצרות ברחוב. לוקחים רק מתחנת מוניות או בטלפון.</li><li>לפי מדריך תיירים: מחיר פתיחה כ-3 אירו, מינימום כ-5 אירו, ותוספות בלילה, בראשון ועל מזוודות.</li></ul></article>
+<article class="leg rv" style="--dc:var(--dc3)"><header><span class="dtags"><a class="dtag" href="#d3" style="--c:var(--dc3)">28</a></span><h3>אורטיג׳יה ← פארק ניאפוליס</h3></header>
+<div class="cmp"><div class="op bus"><b>קלנועית ורגל</b><span>30-40 דקות ברגל</span><span>מתי שרוצים</span><strong>0 אירו</strong></div>
+<div class="op tx"><b>מונית</b><span>כ-10 דקות</span><span>מתחנת פיאצה פנקלי: 0931 60980</span><strong>כ-10-15 אירו לכיוון (הערכה)</strong></div></div>
+<p class="rec"><b>ההמלצה</b>מונית בהלוך, כדי להגיע עם כוח. בחזרה, אם יפה בחוץ, קלנועית ורגל.</p><ul><li>יש אוטובוסים עירוניים (SAIS): 1.20 אירו בטבק, 1.50 אצל הנהג, 3 אירו ליום. לפי La Sicilia התדירות נמוכה, ולכן לא בונים עליהם.</li><li>מבקשים מהמונית לחזור בשעה קבועה, או מזמינים שוב מהפארק.</li></ul></article>
+<article class="leg rv" style="--dc:var(--dc4)"><header><span class="dtags"><a class="dtag" href="#d4" style="--c:var(--dc4)">29</a></span><h3>סירקוזה ← נוטו</h3></header>
+<div class="cmp"><div class="op bus"><b>אינטרבוס ישיר</b><span>כ-55 דקות</span><span>09:40, 11:40, 13:40, 14:40</span><strong>כ-8.60 אירו לשניים</strong></div>
+<div class="op tx"><b>מונית</b><span>כ-35 דקות</span><span>מתי שרוצים</span><strong>כ-60-80 אירו</strong></div></div>
+<p class="rec"><b>ההמלצה</b>האוטובוס של 09:40. ההפרש 50-70 אירו, ואין סיבה למהר.</p><ul><li>יוצאים מ-Corso Umberto 196, אותה תחנה של השדה.</li><li>יש גם רכבת, אבל התחנה בנוטו בעלייה של 10-15 דקות מהמרכז.</li></ul></article>
+<article class="leg rv" style="--dc:var(--dc4)"><header><span class="dtags"><a class="dtag" href="#d4" style="--c:var(--dc4)">29</a></span><h3>נוטו ← סירקוזה</h3></header>
+<div class="cmp"><div class="op bus"><b>אינטרבוס</b><span>כ-55 דקות</span><span>לא מצאתי לוח אמין לחזרה</span><strong>כ-8.60 אירו לשניים</strong></div>
+<div class="op tx"><b>מונית</b><span>כ-35 דקות</span><span>מבקשים מבית קפה או מהמסעדה להזמין</span><strong>כ-60-80 אירו</strong></div></div>
+<p class="rec"><b>ההמלצה</b>אוטובוס, אלא אם ההמתנה יותר משעה וחצי אחרי החושך או בגשם.</p><ul><li>כשמגיעים לנוטו, מצלמים את לוח הזמנים בתחנה ושואלים את הנהג מתי האוטובוס האחרון.</li><li>בדיקת חשבון: שעה וחצי בבית קפה עולה כ-10 אירו. המונית עולה 50-70 אירו יותר.</li></ul></article>
+<article class="leg rv" style="--dc:var(--dc5)"><header><span class="dtags"><a class="dtag" href="#d5" style="--c:var(--dc5)">30</a></span><h3>המלון ← שדה קטניה</h3></header>
+<div class="cmp"><div class="op bus"><b>מונית קצרה ואינטרבוס</b><span>כ-80 דקות בסך הכל</span><span>תדיר בימי חול, כולל שבת</span><strong>כ-22 אירו לשניים</strong></div>
+<div class="op tx"><b>הסעה פרטית</b><span>50-60 דקות</span><span>מזמינים מראש</span><strong>כ-132 אירו</strong></div></div>
+<p class="rec"><b>ההמלצה</b>אוטובוס שמגיע לשדה 3 שעות לפני טיסת הפנים, כלומר יוצאים מהמלון כ-4.5 שעות לפני.</p><ul><li>30.1 הוא יום שבת, והקו פועל בשבת כמו ביום חול לפי הלוח הישן.</li><li>בשביתה מודיעים מראש: בודקים יום לפני.</li></ul></article>
 </div>
-<div class="rv">
-<div class="note w"><b>מספרי קווים</b>לא מצאתי מקור עדכני למספרי האוטובוסים העירוניים, ולכן לא כתבתי אותם. בתוך סירקוזה מסתדרים ברגל ובמוניות.</div>
-<div class="note a"><b>מוניות</b>שואלים את המלון להזמין טלפונית מונית עם רמפה או מקום לקלנועית. אם הקלנועית מתקפלת, גם מונית רגילה מתאימה.</div>
-</div>
-</div>
+<p class="rv" style="color:var(--soft);font-size:.9rem">מחירי האוטובוס לפי BlueKeys ו-CheckMyBus, 2026. מחיר מונית לנוטו לפי Rome2Rio, והסעה פרטית לפי BlueKeys. מחירי מוניות בתוך העיר הם הערכה שלי. לוח החורף עוד לא פורסם, ולכן בודקים שבוע לפני.</p>
 </div></section>
 
 <section id="verify"><div class="wrap">
 <h2 class="rv">לבדוק לפני הטיסה</h2>
 <p class="lead rv">אלה הדברים שעוד לא אומתו. כל סימון נשמר בטלפון. להודעות באנגלית יש כפתור העתקה, וממלאים את המקומות הריקים.</p>
 <div class="vprog rv"><span id="vbar"></span></div><p class="rv" id="vtxt" style="color:var(--soft);font-size:.92rem"></p>
-<ul class="vlist rv"><li><label class="vchk"><input type="checkbox" data-v="v-bus"><span><b>לוח החורף של Interbus לשדה קטניה</b><small>booking.interbus.it או +39 0935 22460. בקיץ יש כ-36 יציאות ביום (BlueKeys, אוגוסט 2026), בחורף כנראה פחות. <a href="https://booking.interbus.it/" target="_blank" rel="noopener">לאתר</a> <button type="button" class="cp2" data-msg="bus">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-scoot"><span><b>האם הקלנועית המתקפלת עולה לאוטובוס</b><small>לשאול את Interbus מראש, עם מידות ומשקל. <a href="https://www.interbus.it/" target="_blank" rel="noopener">לאתר</a> <button type="button" class="cp2" data-msg="bus">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-fly"><span><b>טיסת פנים לקטניה ב-26.1 וחזרה ב-30.1</b><small>לוח ינואר 2027 עוד לא פורסם. מזמינים כשהוא עולה, עם סיוע PRM.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-hotel"><span><b>מלונות: מעלית ומקלחת</b><small>מידות מעלית בס״מ, כניסה בלי מדרגות ומקלחת בלי סף. <button type="button" class="cp2" data-msg="hotel">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-taxi"><span><b>מונית עם מקום לקלנועית ל-28.1 ול-30.1</b><small>דרך המלון. לשאול מחיר מראש. <button type="button" class="cp2" data-msg="hotel">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-tea"><span><b>תכנית Teatro Massimo Siracusa לינואר</b><small>קופה ב׳-ש׳ 16-20, טל׳ 0931 1791148.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-park"><span><b>כניסה חינם לנכה ולמלווה בניאפוליס ובאורסי</b><small>לבדוק בקופה עם מסמך נכות.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-bar"><span><b>שעות הברים בינואר</b><small>באינסטגרם של כל בר, יום לפני.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-elal"><span><b>טופס קלנועית של אל על וסוללה</b><small>כולל נתוני הסוללה בוואט-שעה.</small></span></label></li></ul>
+<ul class="vlist rv"><li><label class="vchk"><input type="checkbox" data-v="v-bus"><span><b>לוח החורף של Interbus לשדה קטניה</b><small>booking.interbus.it או +39 0935 22460. בקיץ יש כ-36 יציאות ביום (BlueKeys, אוגוסט 2026), בחורף כנראה פחות. <a href="https://booking.interbus.it/" target="_blank" rel="noopener">לאתר</a> <button type="button" class="cp2" data-msg="bus">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-noto"><span><b>שעות החזרה מנוטו לסירקוזה</b><small>לא מצאתי לוח אמין. לבדוק ב-booking.interbus.it, או לצלם בתחנה כשמגיעים. אם אין אוטובוס סביר: מונית כ-60-80 אירו.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-scoot"><span><b>האם הקלנועית המתקפלת עולה לאוטובוס</b><small>לשאול את Interbus מראש, עם מידות ומשקל. <a href="https://www.interbus.it/" target="_blank" rel="noopener">לאתר</a> <button type="button" class="cp2" data-msg="bus">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-fly"><span><b>טיסת פנים לקטניה ב-26.1 וחזרה ב-30.1</b><small>לוח ינואר 2027 עוד לא פורסם. מזמינים כשהוא עולה, עם סיוע PRM.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-hotel"><span><b>מלונות: מעלית ומקלחת</b><small>מידות מעלית בס״מ, כניסה בלי מדרגות ומקלחת בלי סף. <button type="button" class="cp2" data-msg="hotel">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-taxi"><span><b>מונית עם מקום לקלנועית ל-28.1 ול-30.1</b><small>דרך המלון. לשאול מחיר מראש. <button type="button" class="cp2" data-msg="hotel">העתקת הודעה מוכנה</button></small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-tea"><span><b>תכנית Teatro Massimo Siracusa לינואר</b><small>קופה ב׳-ש׳ 16-20, טל׳ 0931 1791148.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-park"><span><b>כניסה חינם לנכה ולמלווה בניאפוליס ובאורסי</b><small>לבדוק בקופה עם מסמך נכות.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-bar"><span><b>שעות הברים בינואר</b><small>באינסטגרם של כל בר, יום לפני.</small></span></label></li><li><label class="vchk"><input type="checkbox" data-v="v-elal"><span><b>טופס קלנועית של אל על וסוללה</b><small>כולל נתוני הסוללה בוואט-שעה.</small></span></label></li></ul>
 <details class="msgs rv"><summary>להציג את ההודעות המוכנות</summary><p dir="ltr" lang="en" id="m-bus">Hello, we will travel from Catania Airport to Siracusa on 26 January 2027 and back on 30 January. My partner uses a foldable mobility scooter (folded size: __ x __ x __ cm, __ kg). Can it travel in the luggage hold of your bus? What are the departure times on those days? Thank you.</p><p dir="ltr" lang="en" id="m-hotel">Hello, we have a booking for __ to __ January 2027. My partner uses a mobility scooter. Could you please confirm: a step-free entrance from the street, the inside size of the lift (cm), and a shower without a step? Could you also arrange a taxi with room for a folded scooter on __ January? Thank you.</p></details>
 </div></section>
 
@@ -983,6 +1028,14 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 <a href="https://italia.it/en/sicily/siracusa/palazzo-nicolaci">Italia.it, שעות Palazzo Nicolaci</a>
 <a href="https://www.algila.it/post/what-to-do-in-siracusa-in-winter">Algila, סירקוזה בחורף ובגשם</a>
 <a href="https://www.neverendingvoyage.com/things-to-do-in-syracuse-sicily/">Never Ending Voyage, השוק ביום גשום</a>
+<a href="https://www.checkmybus.com/siracusa/noto">CheckMyBus, אינטרבוס סירקוזה-נוטו: שעות ומחיר</a>
+<a href="https://www.rome2rio.com/s/Noto/Siracusa-Bus-Terminal">Rome2Rio, מונית נוטו-סירקוזה 60-80 אירו</a>
+<a href="https://bluekeys.it/it/services/private-transfer/catania-airport/siracusa">BlueKeys, הסעה פרטית מהשדה 132 אירו</a>
+<a href="https://www.blogsicilia.it/siracusa/mobilita-ortigia-bus-navetta/1032334/">BlogSicilia, מחירי האוטובוס העירוני</a>
+<a href="https://livesicilia.it/?p=332694">LiveSicilia, כניסה חינם לנכה ולמלווה באתרי החבל</a>
+<a href="https://www.momondo.it/volo/aeroporto-di-roma-fiumicino-fco/catania">momondo, מחירי טיסות רומא-קטניה בינואר</a>
+<a href="https://www.itimaker.com/blog/syracuse-street-food-guide">ItiMaker, אוכל רחוב בסירקוזה</a>
+<a href="https://siviaggia.it/notizie/carnevale-acireale-2026/573919/">SiViaggia, קרנבל אצ׳יריאלה 2026</a>
 <p style="font-size:.85rem;color:var(--soft)">תמונות: Wikimedia Commons. Reddit חסום מהסביבה שלי ולא נקרא. גרסת פירנצה ובולוניה נשמרת בהיסטוריה של האתר.</p>
 </div>
 </div></section>
@@ -991,7 +1044,7 @@ html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
 <a class="totop" id="totop" href="#now" aria-label="חזרה למעלה"><span aria-hidden="true"></span></a>
 <footer>נבנה בשביל יוליה ודניאל</footer>
 
-<dialog class="toc" id="toc" aria-label="כל הפרקים"><div class="tocin"><div class="toch"><b>כל הפרקים</b><button type="button" class="tocx" id="tocx">סגור</button></div><div class="tocd"><a href="#d0" style="--c:var(--dc0)"><b>25</b><span>נחיתה</span></a><a href="#d1" style="--c:var(--dc1)"><b>26</b><span>לסירקוזה</span></a><a href="#d2" style="--c:var(--dc2)"><b>27</b><span>אורטיג׳יה</span></a><a href="#d3" style="--c:var(--dc3)"><b>28</b><span>ניאפוליס</span></a><a href="#d4" style="--c:var(--dc4)"><b>29</b><span>נוטו</span></a><a href="#d5" style="--c:var(--dc5)"><b>30</b><span>הביתה</span></a></div><h3>לפני הטיסה</h3><div class="tocg"><a href="#verify"><b>לבדוק לפני הטיסה</b><span>מה עוד לא אומת</span></a><a href="#book"><b>להזמין מראש</b><span>מה סוגרים ומתי</span></a><a href="#pack"><b>מזג אוויר וציוד</b><span>רשימת אריזה</span></a><a href="#budget"><b>תקציב</b><span>סכומים שאפשר לשנות</span></a></div><h3>המסלול</h3><div class="tocg"><a href="#now"><b>מה עכשיו</b><span>היום שלכם בכרטיס אחד</span></a><a href="#days"><b>השבוע במבט אחד</b><span>6 ימים ומאמץ</span></a><a href="#why"><b>למה סירקוזה</b><span>ההיגיון של המסלול</span></a><a href="#near"><b>מה קרוב למה</b><span>מרחקים</span></a><a href="#walk"><b>מסלול הליכה</b><span>אם יוליה רוצה ללכת</span></a><a href="#lines"><b>איזה קו לקחת</b><span>אוטובוסים ומוניות</span></a><a href="#wx"><b>מזג אוויר</b><span>תחזית לימים שלנו</span></a></div><h3>אוכל ויציאות</h3><div class="tocg"><a href="#eat"><b>מסעדות מומלצות</b><span>מדורגות לפי אזור</span></a><a href="#food"><b>מה לאכול</b><span>מה מיוחד לאזור</span></a><a href="#dishes"><b>מילון מנות</b><span>מה להזמין</span></a><a href="#night"><b>חיי לילה</b><span>ברים ויין</span></a><a href="#voice"><b>שירה ותיאטרון</b><span>בשביל יוליה</span></a></div><h3>בשטח</h3><div class="tocg"><a href="#scams"><b>להיזהר</b><span>תרמיות וטיפים</span></a><a href="#history"><b>היסטוריה</b><span>קצר, לפי יום</span></a><a href="#it"><b>איטלקית</b><span>משפטים עם השמעה</span></a><a href="#sos"><b>חירום ומסמכים</b><span>מספרים ושגרירות</span></a><a href="#src"><b>מקורות</b><span>מאיפה המידע</span></a></div></div></dialog>
+<dialog class="toc" id="toc" aria-label="כל הפרקים"><div class="tocin"><div class="toch"><b>כל הפרקים</b><button type="button" class="tocx" id="tocx">סגור</button></div><div class="tocd"><a href="#d0" style="--c:var(--dc0)"><b>25</b><span>נחיתה</span></a><a href="#d1" style="--c:var(--dc1)"><b>26</b><span>לסירקוזה</span></a><a href="#d2" style="--c:var(--dc2)"><b>27</b><span>אורטיג׳יה</span></a><a href="#d3" style="--c:var(--dc3)"><b>28</b><span>ניאפוליס</span></a><a href="#d4" style="--c:var(--dc4)"><b>29</b><span>נוטו</span></a><a href="#d5" style="--c:var(--dc5)"><b>30</b><span>הביתה</span></a></div><h3>לפני הטיסה</h3><div class="tocg"><a href="#verify"><b>לבדוק לפני הטיסה</b><span>מה עוד לא אומת</span></a><a href="#book"><b>להזמין מראש</b><span>מה סוגרים ומתי</span></a><a href="#pack"><b>מזג אוויר וציוד</b><span>רשימת אריזה</span></a><a href="#budget"><b>תקציב וחיסכון</b><span>כמה עולה ואיך חוסכים</span></a></div><h3>המסלול</h3><div class="tocg"><a href="#now"><b>מה עכשיו</b><span>היום שלכם בכרטיס אחד</span></a><a href="#days"><b>השבוע במבט אחד</b><span>6 ימים ומאמץ</span></a><a href="#why"><b>למה סירקוזה</b><span>ההיגיון של המסלול</span></a><a href="#near"><b>מה קרוב למה</b><span>מרחקים</span></a><a href="#walk"><b>מסלול הליכה</b><span>אם יוליה רוצה ללכת</span></a><a href="#lines"><b>תחבורה ועלויות</b><span>אוטובוס מול מונית, לכל קטע</span></a><a href="#events"><b>אירועים</b><span>פסטיבלים בתאריכים שלנו</span></a><a href="#wx"><b>מזג אוויר</b><span>תחזית לימים שלנו</span></a></div><h3>אוכל ויציאות</h3><div class="tocg"><a href="#eat"><b>מסעדות מומלצות</b><span>מדורגות לפי אזור</span></a><a href="#food"><b>מה לאכול</b><span>מה מיוחד לאזור</span></a><a href="#dishes"><b>מילון מנות</b><span>מה להזמין</span></a><a href="#night"><b>חיי לילה</b><span>ברים ויין</span></a><a href="#voice"><b>שירה ותיאטרון</b><span>בשביל יוליה</span></a></div><h3>בשטח</h3><div class="tocg"><a href="#scams"><b>להיזהר</b><span>תרמיות וטיפים</span></a><a href="#history"><b>היסטוריה</b><span>קצר, לפי יום</span></a><a href="#it"><b>איטלקית</b><span>משפטים עם השמעה</span></a><a href="#sos"><b>חירום ומסמכים</b><span>מספרים ושגרירות</span></a><a href="#src"><b>מקורות</b><span>מאיפה המידע</span></a></div></div></dialog>
 <dialog class="lb" id="lb" aria-label="תמונה מוגדלת">
 <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
 <button class="x" id="lbX" aria-label="סגירה">סגור</button>
