@@ -154,6 +154,7 @@ def rpage(title,sub,parts):
 SUB='ממוין לפי תמורה למחיר. תמורה: ציון שלנו מ-1 עד 10. מנה: מחיר משוער לאדם, בלי שתייה.'
 pages.append(rpage('מסעדות באורטיג׳יה',SUB,[('אורטיג׳יה',['o'])]))
 pages.append(rpage('מסעדות בסירקוזה, נוטו וקטניה',SUB,[('סירקוזה, ליד הגשר והתחנה',['s']),('נוטו',['n']),('קטניה, אם עוברים בה',['c'])]))
+pages.append(rpage('מסעדות בטאורמינה (אופציה)',SUB,[('טאורמינה',['t'])]))
 pz=''
 for a in s.select('#pizza article.pz'):
     nm=txt(a.select_one('h3')); bd=txt(a.select_one('.pzb')); area=txt(a.select_one('.gsub'))
@@ -193,6 +194,46 @@ pages.append('<section class="pg ess" style="--c:#17806f"><header class="eh"><h2
  f'<div class="bx"><h3>eSIM לגלישה</h3><ul>{es}</ul></div></div>'
  f'<div class="col"><div class="bx"><h3>משימות לפי זמן</h3>{todo}</div></div></div>'
  '<footer><span>לסמן בעט</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
+
+# ---------- taormina option + car rental ----------
+def items(sel):
+    out=''
+    for li in s.select(sel):
+        b=li.select_one('b'); bt=txt(b) if b else ''; full=txt(li)
+        body=full[len(bt):].strip() if bt and full.startswith(bt) else full
+        out+=f'<li><b>{E(bt)}</b> {E(body)}</li>' if bt else f'<li>{E(full)}</li>'
+    return '<ul class="pzl">'+out+'</ul>'
+tvb=''.join(f'<li><b>{E(txt(li.select_one("b")))}.1</b> {E(txt(li)[len(txt(li.select_one("b"))):])}</li>' for li in s.select('#taormina .tv-b li'))
+cards=s.select('#taormina .tcard')
+pages.append('<section class="pg ess" style="--c:#c0392b"><header class="eh"><h2>אופציה: טאורמינה</h2><p class="sm">'+E(txt(s.select_one('#taormina .lead')))+'</p></header>'
+ '<div class="cols"><div class="col">'
+ f'<div class="bx"><h3>המסלול עם טאורמינה</h3><ul class="pzl">{tvb}</ul><p class="sm">{E(txt(s.select_one("#taormina .tv-b p")))}</p></div>'
+ f'<div class="bx"><h3>{E(txt(cards[0].select_one("h3")))}</h3>{items("#taormina .tcard:nth-of-type(1) li")}</div>'
+ f'<div class="bx"><h3>{E(txt(cards[1].select_one("h3")))}</h3>{items("#taormina .tcard:nth-of-type(2) li")}</div>'
+ '</div><div class="col">'
+ f'<div class="bx"><h3>{E(txt(cards[2].select_one("h3")))}</h3>{items("#taormina .tcard:nth-of-type(3) li")}</div>'
+ f'<div class="bx"><h3>בעד ונגד</h3><p><b>בעד:</b> {E(" ".join(txt(x) for x in s.select("#taormina .pro:not(.con) li")))}</p><p><b>נגד:</b> {E(" ".join(txt(x) for x in s.select("#taormina .pro.con li")))}</p></div>'
+ f'<div class="bx"><h3>מה אומרים ב-Reddit</h3>{items("#taormina .tw2 li")}</div>'
+ '</div></div><footer><span>המסעדות של טאורמינה בעמוד המסעדות</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
+dest=''.join(f'<li><b>{E(txt(d.select_one(".cdh b")))}: {E(txt(d.select_one(".cdh span")))}.</b> {E(txt(d.select_one("p")))}</li>' for d in s.select('#car .cd'))
+cost=''.join(f'<li><b>{E(txt(d.select_one("span")))}: {E(txt(d.select_one("b")))}</b> <small>{E(txt(d.select_one("small")))}</small></li>' for d in s.select('#car .costs div'))
+scam=''.join(f'<li><b>{E(txt(d.select_one("b")))}.</b> {E(txt(d.select_one("p")))}</li>' for d in s.select('#car .scam > div'))
+chk=''.join(f'<li>{E(txt(x))}</li>' for x in s.select('#car .chk2 li'))
+docs=items('#car .tcard:nth-of-type(4) li'); car=items('#car .tcard:nth-of-type(1) li'); where=items('#car .tcard:nth-of-type(2) li')
+pages.append('<section class="pg ess" style="--c:#1c2e3b"><header class="eh"><h2>השכרת רכב (1/2)</h2><p class="sm">'+E(txt(s.select_one('#car .verdict p')))+'</p></header>'
+ '<div class="cols"><div class="col">'
+ f'<div class="bx"><h3>לפי יעד</h3><ul class="pzl">{dest}</ul></div>'
+ '</div><div class="col">'
+ f'<div class="bx"><h3>עלויות בינואר</h3><ul class="pzl">{cost}</ul></div>'
+ f'<div class="bx"><h3>מסמכים</h3>{docs}</div>'
+ '</div></div><footer><span>מקורות: Reddit r/sicily, Tyremap, Parclick, Qeeq, Reid\'s</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
+pages.append('<section class="pg ess" style="--c:#1c2e3b"><header class="eh"><h2>השכרת רכב (2/2): תרמיות, רכב ודלפק</h2></header>'
+ '<div class="cols"><div class="col">'
+ f'<div class="bx bw"><h3>תרמיות נפוצות ואיך נמנעים</h3><ul class="pzl">{scam}</ul></div>'
+ '</div><div class="col">'
+ f'<div class="bx"><h3>איזה רכב ומאיפה</h3>{car}{where}</div>'
+ f'<div class="bx"><h3>צ׳קליסט בדלפק</h3><ul class="cb">{chk}</ul></div>'
+ '</div></div><footer><span>מקורות: Reddit r/sicily, Trustpilot, The Local</span><span>aifordaniel.pro/italy-2027</span></footer></section>')
 
 # ---------- essentials ----------
 ph=[]
