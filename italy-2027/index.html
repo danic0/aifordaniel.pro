@@ -410,9 +410,6 @@ html.rm .dbar{transition:none}
 .say span{width:0;height:0;border-block:7px solid transparent;border-inline-end:11px solid var(--on-acc);margin-inline-end:2px}
 .say:active{transform:scale(.92)}.say.on{animation:pulse 1s var(--io) infinite}
 @keyframes pulse{50%{transform:scale(.9)}}
-.jg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:16px}
-.jc{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--dc);border-radius:var(--r);padding:18px;display:grid;gap:10px}
-.jc h3{margin:0;display:flex;gap:10px;align-items:center}.jc h3 span{font:900 1.6rem Rubik;color:var(--dc)}
 .toast{position:fixed;bottom:84px;inset-inline:0;margin:auto;width:max-content;max-width:90vw;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font:700 .92rem Rubik;z-index:120;opacity:0;transform:translateY(10px);transition:opacity .2s var(--out),transform .2s var(--out);pointer-events:none}
 .toast.on{opacity:1;transform:none}
 /* motion polish */
@@ -427,23 +424,57 @@ h2.rv.in::after{transform:none}
 h1{animation:rise 1s var(--out) both}
 .hero p,.hero .row{animation:rise 1s .18s var(--out) both}
 @keyframes rise{from{opacity:0;transform:translateY(24px);filter:blur(6px)}}
-@media(hover:hover){.sc,.tp,.wk,.rc,.nc,.pgrp,.sosc,.jc,.hcard{transition:transform .25s var(--out),box-shadow .25s var(--out)}.sc:hover,.tp:hover,.wk:hover,.rc:hover,.nc:hover,.pgrp:hover,.jc:hover,.hcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -26px color-mix(in srgb,var(--ink) 55%,transparent)}}
+@media(hover:hover){.sc,.tp,.wk,.rc,.nc,.pgrp,.sosc,.hcard{transition:transform .25s var(--out),box-shadow .25s var(--out)}.sc:hover,.tp:hover,.wk:hover,.rc:hover,.nc:hover,.pgrp:hover,.hcard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -26px color-mix(in srgb,var(--ink) 55%,transparent)}}
 @media(prefers-reduced-motion:reduce){.rv,h2.rv::after,.dh .dnum{filter:none;transition:none;clip-path:none;transform:none}h1,.hero p,.hero .row{animation:none}.say.on{animation:none}}
 html.rm .rv,html.rm h2.rv::after,html.rm .dh .dnum{filter:none;transition:none;clip-path:none;transform:none}
 html.rm h1,html.rm .hero p,html.rm .hero .row{animation:none}
 @media print{
  @page{size:A4;margin:12mm}
  body{background:#fff;color:#000;font-size:11pt}
- .hero{min-height:auto;color:#000;background:none}.hero img,.hero::after,.tools,.dbar,.offline,.nowpick,.nowfoot,.quick,.dpn,.say,.cp2,#jshare,#jdl,.lb,.rfil,.chips{display:none!important}
+ .hero{min-height:auto;color:#000;background:none}.hero img,.hero::after,.tools,.dbar,.offline,.nowpick,.nowfoot,.quick,.dpn,.say,.cp2,.lb,.rfil,.chips{display:none!important}
  .rv,.dh .dnum{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
  h2.rv::after{transform:none}
  figure.shot,.mosaic,.snap,.duo,.banner{display:none!important}
  section,.day{padding-block:14px!important;break-inside:auto}
  .day{break-before:page;background:none}
  a{color:#000;text-decoration:none}
- .nowcard,.sc,.tp,.wk,.rc,.nc,.pgrp,.sosc,.jc,.hcard,.bud,.rain,.bwb,.note{box-shadow:none!important;break-inside:avoid}
+ .nowcard,.sc,.tp,.wk,.rc,.nc,.pgrp,.sosc,.hcard,.bud,.rain,.bwb,.note{box-shadow:none!important;break-inside:avoid}
  details{display:block}details>*{display:block}
 }
+/* build11 ux */
+[tabindex="-1"]:focus{outline:none}
+nav.rail .wrap{align-items:center}
+.menub{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:99px;border:1.5px solid var(--ink);background:var(--ink);color:var(--bg);font:700 .92rem Rubik;cursor:pointer;transition:transform .16s var(--out)}
+.menub:active{transform:scale(.96)}
+.menub span{display:grid;gap:3px}.menub i{display:block;width:14px;height:2px;border-radius:2px;background:currentColor}
+.toc{border:0;padding:0;margin:auto auto 0;width:100%;max-width:640px;max-height:86dvh;border-radius:24px 24px 0 0;background:var(--card);color:var(--ink);box-shadow:0 -20px 60px -20px rgba(0,0,0,.45);transform:translateY(100%);transition:transform .32s cubic-bezier(.32,.72,0,1),overlay .32s allow-discrete,display .32s allow-discrete}
+.toc[open]{transform:none}
+@starting-style{.toc[open]{transform:translateY(100%)}}
+.toc::backdrop{background:rgba(5,12,18,0);transition:background .32s,overlay .32s allow-discrete,display .32s allow-discrete}
+.toc[open]::backdrop{background:rgba(5,12,18,.45)}
+@starting-style{.toc[open]::backdrop{background:rgba(5,12,18,0)}}
+.tocin{padding:8px 18px calc(24px + env(safe-area-inset-bottom));overflow-y:auto;max-height:86dvh}
+.toch{position:sticky;top:-8px;background:var(--card);display:flex;justify-content:space-between;align-items:center;padding:16px 0 10px;z-index:1}
+.toch::before{content:"";position:absolute;top:4px;inset-inline:0;margin:auto;width:40px;height:4px;border-radius:4px;background:var(--line)}
+.toch b{font:800 1.2rem Rubik}
+.tocx{min-height:40px;padding:0 14px;border-radius:99px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font:700 .9rem Rubik;cursor:pointer}
+.tocd{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:4px 0 6px}
+.tocd a{display:grid;justify-items:center;gap:2px;padding:10px 2px;border-radius:14px;background:var(--c);color:#fff;text-decoration:none;transition:transform .16s var(--out)}
+.tocd a:active,.tocg a:active{transform:scale(.96)}
+.tocd b{font:900 1.2rem Rubik}.tocd span{font-size:.72rem;opacity:.92}
+.toc h3{font:800 .8rem Rubik;letter-spacing:.06em;color:var(--soft);margin:18px 0 6px}
+.tocg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tocg a{display:grid;gap:1px;padding:12px 14px;border-radius:14px;background:var(--tint);color:var(--ink);text-decoration:none;transition:transform .16s var(--out),background .16s}
+.tocg b{font:700 .95rem Rubik}.tocg span{font-size:.8rem;color:var(--soft)}
+@media(hover:hover){.tocg a:hover{background:color-mix(in srgb,var(--acc) 14%,var(--tint))}}
+@media(max-width:420px){.tocd span{display:none}}
+.totop{position:fixed;inset-inline-end:14px;bottom:14px;z-index:79;width:48px;height:48px;border-radius:50%;background:var(--card);border:1.5px solid var(--ink);display:grid;place-items:center;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s var(--out),transform .2s var(--out);box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop:active{transform:scale(.94)}
+.totop span{width:12px;height:12px;border-top:2.5px solid var(--ink);border-left:2.5px solid var(--ink);transform:translateY(3px) rotate(45deg)}
+@media(prefers-reduced-motion:reduce){.toc,.toc::backdrop,.totop{transition:none}}
+html.rm .toc,html.rm .toc::backdrop,html.rm .totop{transition:none}
+@media print{.toc,.totop,.menub{display:none!important}}
 </style>
 </head>
 <body>
@@ -474,7 +505,7 @@ html.rm h1,html.rm .hero p,html.rm .hero .row{animation:none}
 </header>
 
 <nav class="rail" aria-label="ניווט במסלול"><div class="wrap" id="nav">
-<a href="#now">עכשיו</a><a href="#why">למה כאן</a><a href="#d0">25.1</a><a href="#d1">26.1</a><a href="#d2">27.1</a><a href="#d3">28.1</a><a href="#d4">29.1</a><a href="#d5">30.1</a><a href="#wx">מזג אוויר</a><a href="#near">מרחקים</a><a href="#walk">הליכה</a><a href="#food">אוכל</a><a href="#eat">מסעדות</a><a href="#dishes">מנות</a><a href="#night">חיי לילה</a><a href="#voice">שירה</a><a href="#scams">להיזהר</a><a href="#history">היסטוריה</a><a href="#it">איטלקית</a><a href="#budget">תקציב</a><a href="#sos">חירום</a><a href="#lines">קווים</a><a href="#verify">לבדוק</a><a href="#book">הזמנות</a><a href="#pack">מזג אוויר וציוד</a><a href="#journal">יומן</a><a href="#src">מקורות</a>
+<button type="button" class="menub" id="menub" aria-haspopup="dialog" aria-controls="toc"><span aria-hidden="true"><i></i><i></i><i></i></span>כל הפרקים</button><a href="#now">עכשיו</a><a href="#days">המסלול</a><a href="#eat">מסעדות</a><a href="#night">לילה</a><a href="#scams">להיזהר</a><a href="#sos">חירום</a><a href="#verify">לבדוק</a>
 </div></nav>
 
 <main id="main">
@@ -918,31 +949,6 @@ html.rm h1,html.rm .hero p,html.rm .hero .row{animation:none}
 </div>
 </div></section>
 
-<section id="journal"><div class="wrap">
-<h2 class="rv">יומן הטיול</h2>
-<p class="lead rv">כמה שורות בכל ערב. נשמר בטלפון, ובסוף אפשר לשתף או להוריד כקובץ.</p>
-<div class="jg"><div class="jc rv" style="--dc:var(--dc0)"><h3><span>25</span>ב׳ 25.1</h3>
-<div class="fld"><label for="j0a">הכי טעים היום</label><input id="j0a" data-j="0a"></div>
-<div class="fld"><label for="j0b">הכי יפה היום</label><input id="j0b" data-j="0b"></div>
-<div class="fld"><label for="j0c">מה קרה</label><textarea id="j0c" data-j="0c" rows="3"></textarea></div></div><div class="jc rv" style="--dc:var(--dc1)"><h3><span>26</span>ג׳ 26.1</h3>
-<div class="fld"><label for="j1a">הכי טעים היום</label><input id="j1a" data-j="1a"></div>
-<div class="fld"><label for="j1b">הכי יפה היום</label><input id="j1b" data-j="1b"></div>
-<div class="fld"><label for="j1c">מה קרה</label><textarea id="j1c" data-j="1c" rows="3"></textarea></div></div><div class="jc rv" style="--dc:var(--dc2)"><h3><span>27</span>ד׳ 27.1</h3>
-<div class="fld"><label for="j2a">הכי טעים היום</label><input id="j2a" data-j="2a"></div>
-<div class="fld"><label for="j2b">הכי יפה היום</label><input id="j2b" data-j="2b"></div>
-<div class="fld"><label for="j2c">מה קרה</label><textarea id="j2c" data-j="2c" rows="3"></textarea></div></div><div class="jc rv" style="--dc:var(--dc3)"><h3><span>28</span>ה׳ 28.1</h3>
-<div class="fld"><label for="j3a">הכי טעים היום</label><input id="j3a" data-j="3a"></div>
-<div class="fld"><label for="j3b">הכי יפה היום</label><input id="j3b" data-j="3b"></div>
-<div class="fld"><label for="j3c">מה קרה</label><textarea id="j3c" data-j="3c" rows="3"></textarea></div></div><div class="jc rv" style="--dc:var(--dc4)"><h3><span>29</span>ו׳ 29.1</h3>
-<div class="fld"><label for="j4a">הכי טעים היום</label><input id="j4a" data-j="4a"></div>
-<div class="fld"><label for="j4b">הכי יפה היום</label><input id="j4b" data-j="4b"></div>
-<div class="fld"><label for="j4c">מה קרה</label><textarea id="j4c" data-j="4c" rows="3"></textarea></div></div><div class="jc rv" style="--dc:var(--dc5)"><h3><span>30</span>ש׳ 30.1</h3>
-<div class="fld"><label for="j5a">הכי טעים היום</label><input id="j5a" data-j="5a"></div>
-<div class="fld"><label for="j5b">הכי יפה היום</label><input id="j5b" data-j="5b"></div>
-<div class="fld"><label for="j5c">מה קרה</label><textarea id="j5c" data-j="5c" rows="3"></textarea></div></div></div>
-<div class="row rv"><button type="button" class="btn" id="jshare">שיתוף היומן</button><button type="button" class="btn ghost2" id="jdl">הורדה כקובץ</button></div>
-</div></section>
-
 <section id="src"><div class="wrap">
 <h2 class="rv">מקורות</h2>
 <div class="card rv src">
@@ -982,8 +988,10 @@ html.rm h1,html.rm .hero p,html.rm .hero .row{animation:none}
 </div></section>
 
 </main>
+<a class="totop" id="totop" href="#now" aria-label="חזרה למעלה"><span aria-hidden="true"></span></a>
 <footer>נבנה בשביל יוליה ודניאל</footer>
 
+<dialog class="toc" id="toc" aria-label="כל הפרקים"><div class="tocin"><div class="toch"><b>כל הפרקים</b><button type="button" class="tocx" id="tocx">סגור</button></div><div class="tocd"><a href="#d0" style="--c:var(--dc0)"><b>25</b><span>נחיתה</span></a><a href="#d1" style="--c:var(--dc1)"><b>26</b><span>לסירקוזה</span></a><a href="#d2" style="--c:var(--dc2)"><b>27</b><span>אורטיג׳יה</span></a><a href="#d3" style="--c:var(--dc3)"><b>28</b><span>ניאפוליס</span></a><a href="#d4" style="--c:var(--dc4)"><b>29</b><span>נוטו</span></a><a href="#d5" style="--c:var(--dc5)"><b>30</b><span>הביתה</span></a></div><h3>לפני הטיסה</h3><div class="tocg"><a href="#verify"><b>לבדוק לפני הטיסה</b><span>מה עוד לא אומת</span></a><a href="#book"><b>להזמין מראש</b><span>מה סוגרים ומתי</span></a><a href="#pack"><b>מזג אוויר וציוד</b><span>רשימת אריזה</span></a><a href="#budget"><b>תקציב</b><span>סכומים שאפשר לשנות</span></a></div><h3>המסלול</h3><div class="tocg"><a href="#now"><b>מה עכשיו</b><span>היום שלכם בכרטיס אחד</span></a><a href="#days"><b>השבוע במבט אחד</b><span>6 ימים ומאמץ</span></a><a href="#why"><b>למה סירקוזה</b><span>ההיגיון של המסלול</span></a><a href="#near"><b>מה קרוב למה</b><span>מרחקים</span></a><a href="#walk"><b>מסלול הליכה</b><span>אם יוליה רוצה ללכת</span></a><a href="#lines"><b>איזה קו לקחת</b><span>אוטובוסים ומוניות</span></a><a href="#wx"><b>מזג אוויר</b><span>תחזית לימים שלנו</span></a></div><h3>אוכל ויציאות</h3><div class="tocg"><a href="#eat"><b>מסעדות מומלצות</b><span>מדורגות לפי אזור</span></a><a href="#food"><b>מה לאכול</b><span>מה מיוחד לאזור</span></a><a href="#dishes"><b>מילון מנות</b><span>מה להזמין</span></a><a href="#night"><b>חיי לילה</b><span>ברים ויין</span></a><a href="#voice"><b>שירה ותיאטרון</b><span>בשביל יוליה</span></a></div><h3>בשטח</h3><div class="tocg"><a href="#scams"><b>להיזהר</b><span>תרמיות וטיפים</span></a><a href="#history"><b>היסטוריה</b><span>קצר, לפי יום</span></a><a href="#it"><b>איטלקית</b><span>משפטים עם השמעה</span></a><a href="#sos"><b>חירום ומסמכים</b><span>מספרים ושגרירות</span></a><a href="#src"><b>מקורות</b><span>מאיפה המידע</span></a></div></div></dialog>
 <dialog class="lb" id="lb" aria-label="תמונה מוגדלת">
 <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
 <button class="x" id="lbX" aria-label="סגירה">סגור</button>
@@ -1008,7 +1016,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInter
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
 // nav highlight
 var links=[].slice.call(document.querySelectorAll('#nav a'));
-var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});['d0','d1','d2','d3','d4','d5'].forEach(function(k){map[k]=map.days});
 var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.removeAttribute('aria-current')});var a=map[e.target.id];if(a){a.setAttribute('aria-current','true');a.scrollIntoView({inline:'center',block:'nearest'})}}})},{rootMargin:'-45% 0px -50% 0px'});
 Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)io2.observe(s)});
 // countdown
@@ -1111,7 +1119,6 @@ document.querySelectorAll('.cp2').forEach(function(b){b.addEventListener('click'
 })();
 // fields
 document.querySelectorAll('[data-f]').forEach(function(i){i.value=sg('it_f_'+i.dataset.f)||'';i.addEventListener('input',function(){ss('it_f_'+i.dataset.f,i.value)})});
-document.querySelectorAll('[data-j]').forEach(function(i){i.value=sg('it_j_'+i.dataset.j)||'';i.addEventListener('input',function(){ss('it_j_'+i.dataset.j,i.value)})});
 // budget
 (function(){
 var ins=[].slice.call(document.querySelectorAll('[data-b]')),rate=document.getElementById('bRate');
@@ -1125,12 +1132,21 @@ ins.forEach(function(i){i.addEventListener('input',function(){ss('it_b_'+i.datas
 var bs=document.querySelectorAll('.say');if(!('speechSynthesis' in window)){bs.forEach(function(b){b.hidden=true});return}
 bs.forEach(function(b){b.addEventListener('click',function(){speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(b.dataset.it);u.lang='it-IT';u.rate=.9;var v=speechSynthesis.getVoices().filter(function(x){return /^it/i.test(x.lang)})[0];if(v)u.voice=v;bs.forEach(function(x){x.classList.remove('on')});b.classList.add('on');u.onend=u.onerror=function(){b.classList.remove('on')};speechSynthesis.speak(u)})});
 })();
-// journal export
+// precise anchor scroll: corrects for images that load mid-scroll
+function goTo(id,push){var t=document.getElementById(id);if(!t)return;var rm=document.documentElement.classList.contains('rm')||matchMedia('(prefers-reduced-motion:reduce)').matches;
+ t.scrollIntoView({behavior:rm?'auto':'smooth'});history.replaceState(null,'','#'+id);
+ var n=0,last=-1;(function fix(){var y=scrollY;if(y===last||n>12){var off=t.getBoundingClientRect().top-parseFloat(getComputedStyle(t).scrollMarginTop||0);if(Math.abs(off)>24&&n<14){n=14;t.scrollIntoView({behavior:'auto'})}return}last=y;n++;setTimeout(fix,220)})();
+ setTimeout(function(){if(!t.hasAttribute('tabindex'))t.setAttribute('tabindex','-1');t.focus({preventScroll:true})},700)}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||a.closest('#toc'))return;var id=a.getAttribute('href').slice(1);if(!id||!document.getElementById(id))return;e.preventDefault();goTo(id)});
+// toc + top
 (function(){
-var NM=['25.1','26.1','27.1','28.1','29.1','30.1'];
-function text(){var o='יומן סיציליה, ינואר 2027\n';NM.forEach(function(d,i){var a=sg('it_j_'+i+'a')||'',b=sg('it_j_'+i+'b')||'',c=sg('it_j_'+i+'c')||'';if(a||b||c)o+='\n'+d+'\n'+(a?'הכי טעים: '+a+'\n':'')+(b?'הכי יפה: '+b+'\n':'')+(c?c+'\n':'')});return o}
-document.getElementById('jshare').addEventListener('click',function(){var t=text();if(navigator.share)navigator.share({title:'יומן סיציליה',text:t}).catch(function(){});else if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){toast('היומן הועתק')})});
-document.getElementById('jdl').addEventListener('click',function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+text()],{type:'text/plain;charset=utf-8'}));a.download='sicily-journal.txt';a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},2000)});
+var d=document.getElementById('toc'),b=document.getElementById('menub');
+if(d&&d.showModal){b.addEventListener('click',function(){d.showModal()});document.getElementById('tocx').addEventListener('click',function(){d.close()});
+d.addEventListener('click',function(e){if(e.target===d)d.close()});
+d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var id=a.getAttribute('href').slice(1);d.close();setTimeout(function(){goTo(id)},60)})});}
+else if(b){b.addEventListener('click',function(){location.hash='#days'})}
+var tt=document.getElementById('totop');addEventListener('scroll',function(){tt.classList.toggle('on',scrollY>1200)},{passive:true});
+tt.addEventListener('click',function(e){e.preventDefault();scrollTo({top:0,behavior:document.documentElement.classList.contains('rm')?'auto':'smooth'})});
 })();
 // day bar
 (function(){
