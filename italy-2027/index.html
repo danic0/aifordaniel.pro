@@ -1647,8 +1647,8 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=37.06&longitude=15.29&dai
 <script>(function(){var b=document.getElementById('ckbtn'),f=document.getElementById('ckbox'),i=document.getElementById('ckin'),st=document.getElementById('ckst'),d=document.getElementById('ckdel');if(!b||!f)return;
 function cur(){try{return localStorage.getItem('carto_key')||''}catch(e){return ''}}
 function apply(){if(window.setMapTiles){try{window.setMapTiles()}catch(e){}}else if(window.tripMap&&window.tripMap.show){window.tripMap.show()}}
-b.addEventListener('click',function(){var o=f.hidden;f.hidden=!o;b.setAttribute('aria-expanded',o);if(o){i.value=cur();if(!st.textContent)st.textContent=cur()?'יש מפתח שמור.':'אין מפתח: המפה מוצגת מ-OpenStreetMap.';i.focus()}});
+b.addEventListener('click',function(){var o=f.hidden;f.hidden=!o;b.setAttribute('aria-expanded',o);if(o){i.value=cur();if(!st.textContent)st.textContent=cur()?'יש מפתח אישי שמור בדפדפן הזה.':'המפה משתמשת במפתח המוטמע באתר.';i.focus()}});
 f.addEventListener('submit',function(e){e.preventDefault();var v=i.value.trim();if(!v){st.textContent='הדבק מפתח קודם.';return}try{localStorage.setItem('carto_key',v)}catch(x){}st.textContent='נשמר. טוען את מפת CARTO...';apply()});
-d.addEventListener('click',function(){try{localStorage.removeItem('carto_key')}catch(x){}i.value='';st.textContent='המפתח הוסר. המפה מוצגת מ-OpenStreetMap.';apply()});
+d.addEventListener('click',function(){try{localStorage.removeItem('carto_key')}catch(x){}i.value='';st.textContent='המפתח שלך הוסר. חזרתי למפתח המוטמע באתר.';apply()});
 })();</script></body>
 </html>
