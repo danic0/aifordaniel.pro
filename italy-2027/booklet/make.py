@@ -96,6 +96,8 @@ pages.append(f'''<section class="pg cover"><div class="cin">
 <p class="cl">25-30 בינואר 2027 · דניאל ויוליה</p>
 <div class="ov">{ov}</div>
 <div class="fl"><div><b>הלוך LY383</b><span>25.1 · 18:15 תל אביב ← 21:00 רומא, טרמינל 3 · מושב 38K</span></div>
+<div><b>טיסת פנים הלוך</b><span>25.1 · בלילה, רומא ← קטניה (שעה לפי הכרטיס)</span></div>
+<div><b>טיסת פנים חזור, Aeroitalia</b><span>30.1 · 15:40 קטניה ← 17:05 רומא</span></div>
 <div><b>חזור LY384</b><span>30.1 · 21:55 רומא ← 02:15 תל אביב · מושב 42K</span></div></div>
 <p class="note2">כל עמוד הוא יום. שמות של מסעדות, ברים ואתרים לחיצים ופותחים אותם בגוגל מפות. קוד ה-QR בראש כל יום פותח את מסלול היום.</p>
 </div></section>''')
@@ -104,7 +106,7 @@ pages.append(f'''<section class="pg cover"><div class="cin">
 for i in range(6):
     a=s.select_one(f'#d{i}')
     title=txt(a.select_one('.dh h2')); wd=txt(a.select_one('.dmeta .w'))
-    LINKER[0]=day_names(a,'Noto' if i==4 else 'Siracusa')
+    LINKER[0]=day_names(a,{2:'Noto',3:'Modica'}.get(i,'Siracusa'))
     tl=''.join(f'<li><span class="t">{E(txt(li.select_one(".t")))}</span><span>{L(txt(li.select_one("div")))}</span></li>' for li in a.select('.tl li'))
     meals=''.join(f'<li><span class="t">{E(txt(li.select_one(".mt")))}</span><span>{L(txt(li.select_one("div")))}</span></li>' for li in a.select('.meals li'))
     tips=[txt(x) for x in a.select('.tips:not(.night) li')]
@@ -154,6 +156,7 @@ def rpage(title,sub,parts):
 SUB='ממוין לפי תמורה למחיר. תמורה: ציון שלנו מ-1 עד 10. מנה: מחיר משוער לאדם, בלי שתייה.'
 pages.append(rpage('מסעדות באורטיג׳יה',SUB,[('אורטיג׳יה',['o'])]))
 pages.append(rpage('מסעדות בסירקוזה, נוטו וקטניה',SUB,[('סירקוזה, ליד הגשר והתחנה',['s']),('נוטו',['n']),('קטניה, אם עוברים בה',['c'])]))
+pages.append(rpage('מסעדות בראגוזה, מודיקה ומרזממי',SUB,[('ראגוזה איבלה ומודיקה, 28.1',['g']),('מרזממי, 27.1',['m'])]))
 pages.append(rpage('מסעדות בטאורמינה (אופציה)',SUB,[('טאורמינה',['t'])]))
 pz=''
 for a in s.select('#pizza article.pz'):
@@ -244,7 +247,7 @@ pages.append(f'''<section class="pg ess">
 <div class="cols"><div class="col">
 <div class="bx"><h3>חירום באיטליה</h3><ul class="nums"><li><b>112</b>חירום כללי</li><li><b>118</b>אמבולנס</li><li><b>113</b>משטרה</li><li><b>115</b>כבאות</li></ul></div>
 <div class="bx"><h3>שגרירות ישראל ברומא</h3><p>Via Michele Mercati 14, רומא</p><ul class="nums"><li><b dir="ltr">+39 06 36198 586</b>קונסולרית</li><li><b dir="ltr">+39 06 36198 505</b>חירום וסופ״ש</li><li><b dir="ltr">+972 2 5303155</b>חדר מצב, משרד החוץ</li></ul><p class="sm">דרכון שאבד: קודם משטרה, אחר כך השגרירות.</p></div>
-<div class="bx"><h3>הפרטים שלנו</h3><div class="fill"><span>מלון 25.1</span><i></i></div><div class="fill"><span>מלון 26-30.1</span><i></i></div><div class="fill"><span>ביטוח</span><i></i></div><div class="fill"><span>קלנועית</span><i></i></div></div>
+<div class="bx"><h3>הפרטים שלנו</h3><div class="fill"><span>מלון 25-29.1</span><i></i></div><div class="fill"><span>הסעה מהשדה 25.1</span><i></i></div><div class="fill"><span>רכב 27-28.1</span><i></i></div><div class="fill"><span>ביטוח</span><i></i></div><div class="fill"><span>קלנועית</span><i></i></div></div>
 </div><div class="col">
 <div class="bx"><h3>איטלקית בקצרה</h3><ul class="ph">{''.join(ph)}</ul></div>
 <div class="bx"><h3>כללי אצבע</h3><ul><li>במסוף כרטיס בוחרים תמיד לחייב באירו.</li><li>דג לפי משקל: שואלים מחיר ל-100 גרם.</li><li>"coperto" של 1 עד 3 אירו לאדם הוא חוקי.</li><li>מונית: רק לבנה רשמית, מחיר מסכימים מראש.</li></ul></div>
